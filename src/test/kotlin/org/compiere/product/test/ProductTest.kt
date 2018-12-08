@@ -6,7 +6,7 @@ import org.junit.Test
 class ProductTest : BaseProductTest() {
     @Test
     fun `getting a product using DefaultModelFactory should work`() {
-        getProductById(1000000)
+        getProductById(someProductId)
     }
 
     @Test

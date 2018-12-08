@@ -20,6 +20,8 @@ abstract class BaseProductTest {
         DummyEventManager()
     }
 
+    protected val someProductId = 136
+
     fun <T : IPO> getById(id: Int, tableName: String): T {
         val modelFactory: IModelFactory = DefaultModelFactory()
         val result = modelFactory.getPO(tableName, id, null)
@@ -43,7 +45,7 @@ abstract class BaseProductTest {
     }
 
     fun createAProduct(name: String, productType: String): I_M_Product {
-        val standardProduct = getProductById(1000000)
+        val standardProduct = getProductById(someProductId)
         val ctx = Env.getCtx()
         val product = MProduct(ctx, 0, null)
         product.name = name
