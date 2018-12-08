@@ -1,13 +1,12 @@
 package org.compiere.product;
 
+import java.sql.ResultSet;
+import java.sql.Timestamp;
+import java.util.Properties;
 import org.compiere.model.I_M_Lot;
 import org.compiere.orm.BasePOName;
 import org.compiere.orm.MTable;
 import org.idempiere.orm.I_Persistent;
-
-import java.sql.ResultSet;
-import java.sql.Timestamp;
-import java.util.Properties;
 
 /**
  * Generated Model for M_Lot
@@ -45,15 +44,6 @@ public class X_M_Lot extends BasePOName implements I_M_Lot, I_Persistent {
   }
 
   /**
-   * Set Date From.
-   *
-   * @param DateFrom Starting date for a range
-   */
-  public void setDateFrom(Timestamp DateFrom) {
-    set_Value(COLUMNNAME_DateFrom, DateFrom);
-  }
-
-  /**
    * Get Date From.
    *
    * @return Starting date for a range
@@ -63,12 +53,12 @@ public class X_M_Lot extends BasePOName implements I_M_Lot, I_Persistent {
   }
 
   /**
-   * Set Date To.
+   * Set Date From.
    *
-   * @param DateTo End date of a date range
+   * @param DateFrom Starting date for a range
    */
-  public void setDateTo(Timestamp DateTo) {
-    set_Value(COLUMNNAME_DateTo, DateTo);
+  public void setDateFrom(Timestamp DateFrom) {
+    set_Value(COLUMNNAME_DateFrom, DateFrom);
   }
 
   /**
@@ -81,12 +71,12 @@ public class X_M_Lot extends BasePOName implements I_M_Lot, I_Persistent {
   }
 
   /**
-   * Set Description.
+   * Set Date To.
    *
-   * @param Description Optional short description of the record
+   * @param DateTo End date of a date range
    */
-  public void setDescription(String Description) {
-    set_Value(COLUMNNAME_Description, Description);
+  public void setDateTo(Timestamp DateTo) {
+    set_Value(COLUMNNAME_DateTo, DateTo);
   }
 
   /**
@@ -99,12 +89,12 @@ public class X_M_Lot extends BasePOName implements I_M_Lot, I_Persistent {
   }
 
   /**
-   * Set Comment/Help.
+   * Set Description.
    *
-   * @param Help Comment or Hint
+   * @param Description Optional short description of the record
    */
-  public void setHelp(String Help) {
-    set_Value(COLUMNNAME_Help, Help);
+  public void setDescription(String Description) {
+    set_Value(COLUMNNAME_Description, Description);
   }
 
   /**
@@ -116,10 +106,30 @@ public class X_M_Lot extends BasePOName implements I_M_Lot, I_Persistent {
     return (String) get_Value(COLUMNNAME_Help);
   }
 
+  /**
+   * Set Comment/Help.
+   *
+   * @param Help Comment or Hint
+   */
+  public void setHelp(String Help) {
+    set_Value(COLUMNNAME_Help, Help);
+  }
+
   public org.compiere.model.I_M_LotCtl getM_LotCtl() throws RuntimeException {
     return (org.compiere.model.I_M_LotCtl)
         MTable.get(getCtx(), org.compiere.model.I_M_LotCtl.Table_Name)
             .getPO(getM_LotCtl_ID(), get_TrxName());
+  }
+
+  /**
+   * Get Lot Control.
+   *
+   * @return Product Lot Control
+   */
+  public int getM_LotCtl_ID() {
+    Integer ii = (Integer) get_Value(COLUMNNAME_M_LotCtl_ID);
+    if (ii == null) return 0;
+    return ii;
   }
 
   /**
@@ -133,12 +143,12 @@ public class X_M_Lot extends BasePOName implements I_M_Lot, I_Persistent {
   }
 
   /**
-   * Get Lot Control.
+   * Get Lot.
    *
-   * @return Product Lot Control
+   * @return Product Lot Definition
    */
-  public int getM_LotCtl_ID() {
-    Integer ii = (Integer) get_Value(COLUMNNAME_M_LotCtl_ID);
+  public int getM_Lot_ID() {
+    Integer ii = (Integer) get_Value(COLUMNNAME_M_Lot_ID);
     if (ii == null) return 0;
     return ii;
   }
@@ -154,14 +164,12 @@ public class X_M_Lot extends BasePOName implements I_M_Lot, I_Persistent {
   }
 
   /**
-   * Get Lot.
+   * Get M_Lot_UU.
    *
-   * @return Product Lot Definition
+   * @return M_Lot_UU
    */
-  public int getM_Lot_ID() {
-    Integer ii = (Integer) get_Value(COLUMNNAME_M_Lot_ID);
-    if (ii == null) return 0;
-    return ii;
+  public String getM_Lot_UU() {
+    return (String) get_Value(COLUMNNAME_M_Lot_UU);
   }
 
   /**
@@ -173,29 +181,10 @@ public class X_M_Lot extends BasePOName implements I_M_Lot, I_Persistent {
     set_Value(COLUMNNAME_M_Lot_UU, M_Lot_UU);
   }
 
-  /**
-   * Get M_Lot_UU.
-   *
-   * @return M_Lot_UU
-   */
-  public String getM_Lot_UU() {
-    return (String) get_Value(COLUMNNAME_M_Lot_UU);
-  }
-
   public org.compiere.model.I_M_Product getM_Product() throws RuntimeException {
     return (org.compiere.model.I_M_Product)
         MTable.get(getCtx(), org.compiere.model.I_M_Product.Table_Name)
             .getPO(getM_Product_ID(), get_TrxName());
-  }
-
-  /**
-   * Set Product.
-   *
-   * @param M_Product_ID Product, Service, Item
-   */
-  public void setM_Product_ID(int M_Product_ID) {
-    if (M_Product_ID < 1) set_ValueNoCheck(COLUMNNAME_M_Product_ID, null);
-    else set_ValueNoCheck(COLUMNNAME_M_Product_ID, Integer.valueOf(M_Product_ID));
   }
 
   /**
@@ -207,6 +196,16 @@ public class X_M_Lot extends BasePOName implements I_M_Lot, I_Persistent {
     Integer ii = (Integer) get_Value(COLUMNNAME_M_Product_ID);
     if (ii == null) return 0;
     return ii;
+  }
+
+  /**
+   * Set Product.
+   *
+   * @param M_Product_ID Product, Service, Item
+   */
+  public void setM_Product_ID(int M_Product_ID) {
+    if (M_Product_ID < 1) set_ValueNoCheck(COLUMNNAME_M_Product_ID, null);
+    else set_ValueNoCheck(COLUMNNAME_M_Product_ID, Integer.valueOf(M_Product_ID));
   }
 
   @Override

@@ -1,14 +1,13 @@
 package org.compiere.product;
 
+import java.math.BigDecimal;
+import java.sql.ResultSet;
+import java.util.Properties;
 import org.compiere.model.I_M_ProductPriceVendorBreak;
 import org.compiere.orm.MTable;
 import org.compiere.orm.PO;
 import org.idempiere.common.util.Env;
 import org.idempiere.orm.I_Persistent;
-
-import java.math.BigDecimal;
-import java.sql.ResultSet;
-import java.util.Properties;
 
 public class X_M_ProductPriceVendorBreak extends PO
     implements I_M_ProductPriceVendorBreak, I_Persistent {
@@ -47,15 +46,6 @@ public class X_M_ProductPriceVendorBreak extends PO
   }
 
   /**
-   * Set Break Value.
-   *
-   * @param BreakValue Low Value of trade discount break level
-   */
-  public void setBreakValue(BigDecimal BreakValue) {
-    set_ValueNoCheck(COLUMNNAME_BreakValue, BreakValue);
-  }
-
-  /**
    * Get Break Value.
    *
    * @return Low Value of trade discount break level
@@ -66,20 +56,19 @@ public class X_M_ProductPriceVendorBreak extends PO
     return bd;
   }
 
+  /**
+   * Set Break Value.
+   *
+   * @param BreakValue Low Value of trade discount break level
+   */
+  public void setBreakValue(BigDecimal BreakValue) {
+    set_ValueNoCheck(COLUMNNAME_BreakValue, BreakValue);
+  }
+
   public org.compiere.model.I_C_BPartner getC_BPartner() throws RuntimeException {
     return (org.compiere.model.I_C_BPartner)
         MTable.get(getCtx(), org.compiere.model.I_C_BPartner.Table_Name)
             .getPO(getC_BPartner_ID(), get_TrxName());
-  }
-
-  /**
-   * Set Business Partner .
-   *
-   * @param C_BPartner_ID Identifies a Business Partner
-   */
-  public void setC_BPartner_ID(int C_BPartner_ID) {
-    if (C_BPartner_ID < 1) set_ValueNoCheck(COLUMNNAME_C_BPartner_ID, null);
-    else set_ValueNoCheck(COLUMNNAME_C_BPartner_ID, Integer.valueOf(C_BPartner_ID));
   }
 
   /**
@@ -93,21 +82,20 @@ public class X_M_ProductPriceVendorBreak extends PO
     return ii;
   }
 
+  /**
+   * Set Business Partner .
+   *
+   * @param C_BPartner_ID Identifies a Business Partner
+   */
+  public void setC_BPartner_ID(int C_BPartner_ID) {
+    if (C_BPartner_ID < 1) set_ValueNoCheck(COLUMNNAME_C_BPartner_ID, null);
+    else set_ValueNoCheck(COLUMNNAME_C_BPartner_ID, Integer.valueOf(C_BPartner_ID));
+  }
+
   public org.compiere.model.I_M_PriceList_Version getM_PriceList_Version() throws RuntimeException {
     return (org.compiere.model.I_M_PriceList_Version)
         MTable.get(getCtx(), org.compiere.model.I_M_PriceList_Version.Table_Name)
             .getPO(getM_PriceList_Version_ID(), get_TrxName());
-  }
-
-  /**
-   * Set Price List Version.
-   *
-   * @param M_PriceList_Version_ID Identifies a unique instance of a Price List
-   */
-  public void setM_PriceList_Version_ID(int M_PriceList_Version_ID) {
-    if (M_PriceList_Version_ID < 1) set_ValueNoCheck(COLUMNNAME_M_PriceList_Version_ID, null);
-    else
-      set_ValueNoCheck(COLUMNNAME_M_PriceList_Version_ID, Integer.valueOf(M_PriceList_Version_ID));
   }
 
   /**
@@ -121,10 +109,32 @@ public class X_M_ProductPriceVendorBreak extends PO
     return ii;
   }
 
+  /**
+   * Set Price List Version.
+   *
+   * @param M_PriceList_Version_ID Identifies a unique instance of a Price List
+   */
+  public void setM_PriceList_Version_ID(int M_PriceList_Version_ID) {
+    if (M_PriceList_Version_ID < 1) set_ValueNoCheck(COLUMNNAME_M_PriceList_Version_ID, null);
+    else
+      set_ValueNoCheck(COLUMNNAME_M_PriceList_Version_ID, Integer.valueOf(M_PriceList_Version_ID));
+  }
+
   public org.compiere.model.I_M_Product getM_Product() throws RuntimeException {
     return (org.compiere.model.I_M_Product)
         MTable.get(getCtx(), org.compiere.model.I_M_Product.Table_Name)
             .getPO(getM_Product_ID(), get_TrxName());
+  }
+
+  /**
+   * Get Product.
+   *
+   * @return Product, Service, Item
+   */
+  public int getM_Product_ID() {
+    Integer ii = (Integer) get_Value(COLUMNNAME_M_Product_ID);
+    if (ii == null) return 0;
+    return ii;
   }
 
   /**
@@ -138,12 +148,12 @@ public class X_M_ProductPriceVendorBreak extends PO
   }
 
   /**
-   * Get Product.
+   * Get Product Price Break.
    *
-   * @return Product, Service, Item
+   * @return Product Price Break
    */
-  public int getM_Product_ID() {
-    Integer ii = (Integer) get_Value(COLUMNNAME_M_Product_ID);
+  public int getM_ProductPriceVendorBreak_ID() {
+    Integer ii = (Integer) get_Value(COLUMNNAME_M_ProductPriceVendorBreak_ID);
     if (ii == null) return 0;
     return ii;
   }
@@ -162,26 +172,6 @@ public class X_M_ProductPriceVendorBreak extends PO
   }
 
   /**
-   * Get Product Price Break.
-   *
-   * @return Product Price Break
-   */
-  public int getM_ProductPriceVendorBreak_ID() {
-    Integer ii = (Integer) get_Value(COLUMNNAME_M_ProductPriceVendorBreak_ID);
-    if (ii == null) return 0;
-    return ii;
-  }
-
-  /**
-   * Set M_ProductPriceVendorBreak_UU.
-   *
-   * @param M_ProductPriceVendorBreak_UU M_ProductPriceVendorBreak_UU
-   */
-  public void setM_ProductPriceVendorBreak_UU(String M_ProductPriceVendorBreak_UU) {
-    set_Value(COLUMNNAME_M_ProductPriceVendorBreak_UU, M_ProductPriceVendorBreak_UU);
-  }
-
-  /**
    * Get M_ProductPriceVendorBreak_UU.
    *
    * @return M_ProductPriceVendorBreak_UU
@@ -191,12 +181,12 @@ public class X_M_ProductPriceVendorBreak extends PO
   }
 
   /**
-   * Set Limit Price.
+   * Set M_ProductPriceVendorBreak_UU.
    *
-   * @param PriceLimit Lowest price for a product
+   * @param M_ProductPriceVendorBreak_UU M_ProductPriceVendorBreak_UU
    */
-  public void setPriceLimit(BigDecimal PriceLimit) {
-    set_Value(COLUMNNAME_PriceLimit, PriceLimit);
+  public void setM_ProductPriceVendorBreak_UU(String M_ProductPriceVendorBreak_UU) {
+    set_Value(COLUMNNAME_M_ProductPriceVendorBreak_UU, M_ProductPriceVendorBreak_UU);
   }
 
   /**
@@ -211,12 +201,12 @@ public class X_M_ProductPriceVendorBreak extends PO
   }
 
   /**
-   * Set List Price.
+   * Set Limit Price.
    *
-   * @param PriceList List Price
+   * @param PriceLimit Lowest price for a product
    */
-  public void setPriceList(BigDecimal PriceList) {
-    set_Value(COLUMNNAME_PriceList, PriceList);
+  public void setPriceLimit(BigDecimal PriceLimit) {
+    set_Value(COLUMNNAME_PriceLimit, PriceLimit);
   }
 
   /**
@@ -231,12 +221,12 @@ public class X_M_ProductPriceVendorBreak extends PO
   }
 
   /**
-   * Set Standard Price.
+   * Set List Price.
    *
-   * @param PriceStd Standard Price
+   * @param PriceList List Price
    */
-  public void setPriceStd(BigDecimal PriceStd) {
-    set_Value(COLUMNNAME_PriceStd, PriceStd);
+  public void setPriceList(BigDecimal PriceList) {
+    set_Value(COLUMNNAME_PriceList, PriceList);
   }
 
   /**
@@ -248,6 +238,15 @@ public class X_M_ProductPriceVendorBreak extends PO
     BigDecimal bd = (BigDecimal) get_Value(COLUMNNAME_PriceStd);
     if (bd == null) return Env.ZERO;
     return bd;
+  }
+
+  /**
+   * Set Standard Price.
+   *
+   * @param PriceStd Standard Price
+   */
+  public void setPriceStd(BigDecimal PriceStd) {
+    set_Value(COLUMNNAME_PriceStd, PriceStd);
   }
 
   @Override

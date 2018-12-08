@@ -1,13 +1,7 @@
 package org.compiere.product;
 
-import org.compiere.model.I_A_Asset;
-import org.compiere.model.I_C_BPartner_Location;
-import org.compiere.orm.MTable;
-import org.compiere.orm.PO;
-import org.compiere.orm.Query;
-import org.compiere.orm.SetGetUtil;
-import org.idempiere.common.util.Env;
-import software.hsharp.core.util.DB;
+import static software.hsharp.core.util.DBKt.TO_STRING;
+import static software.hsharp.core.util.DBKt.executeUpdateEx;
 
 import java.math.BigDecimal;
 import java.sql.ResultSet;
@@ -16,9 +10,13 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Properties;
 import java.util.logging.Level;
-
-import static software.hsharp.core.util.DBKt.TO_STRING;
-import static software.hsharp.core.util.DBKt.executeUpdateEx;
+import org.compiere.model.I_A_Asset;
+import org.compiere.model.I_C_BPartner_Location;
+import org.compiere.orm.MTable;
+import org.compiere.orm.PO;
+import org.compiere.orm.Query;
+import org.compiere.orm.SetGetUtil;
+import org.idempiere.common.util.Env;
 
 /**
  * Asset Model
@@ -31,6 +29,45 @@ public class MAsset extends X_A_Asset
 {
   /** ChangeType - Asset Group changed */
   public static final int CHANGETYPE_setAssetGroup = I_A_Asset.Table_ID * 100 + 1;
+  /** */
+  private int m_UseLifeMonths_F = 0;
+  /** */
+  private int m_A_Current_Period = 0;
+  /** */
+  private Timestamp m_DateAcct = null;
+  /** */
+  private int m_A_Depreciation_ID = 0;
+  /** */
+  private int m_A_Depreciation_F_ID = 0;
+  /** */
+  private BigDecimal m_A_Asset_Cost = Env.ZERO;
+
+  private BigDecimal m_A_Accumulated_Depr = Env.ZERO;
+  private BigDecimal m_A_Accumulated_Depr_F = Env.ZERO;
+
+  /** Create constructor */
+  public MAsset(Properties ctx, int A_Asset_ID, String trxName) {
+    super(ctx, A_Asset_ID, trxName);
+    if (A_Asset_ID == 0) {
+      setA_Asset_Status(X_A_Asset.A_ASSET_STATUS_New);
+      // commented out by @win
+      /*
+      setA_Asset_Type("MFX");
+      setA_Asset_Type_ID(1); // MFX
+      */
+      // end comment by @win
+    }
+  } //	MAsset
+
+  /**
+   * Load Constructor
+   *
+   * @param ctx context
+   * @param rs result set record
+   */
+  public MAsset(Properties ctx, ResultSet rs, String trxName) {
+    super(ctx, rs, trxName);
+  } //	MAsset
 
   /**
    * Get Asset
@@ -65,29 +102,16 @@ public class MAsset extends X_A_Asset
     return new Query(ctx, MAsset.Table_Name, whereClause, null).setParameters(params).list();
   }
 
-  /** Create constructor */
-  public MAsset(Properties ctx, int A_Asset_ID, String trxName) {
-    super(ctx, A_Asset_ID, trxName);
-    if (A_Asset_ID == 0) {
-      setA_Asset_Status(X_A_Asset.A_ASSET_STATUS_New);
-      // commented out by @win
-      /*
-      setA_Asset_Type("MFX");
-      setA_Asset_Type_ID(1); // MFX
-      */
-      // end comment by @win
-    }
-  } //	MAsset
+  // Temporary used variables:
 
-  /**
-   * Load Constructor
-   *
-   * @param ctx context
-   * @param rs result set record
-   */
-  public MAsset(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
-  } //	MAsset
+  public static MAsset getFromShipment(Properties ctx, int i, String trxName) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  public MAssetGroup getAssetGroup() {
+    return MAssetGroup.get(getCtx(), getA_Asset_Group_ID());
+  }
 
   /**
    * Set Asset Group; also it sets other default fields
@@ -104,10 +128,6 @@ public class MAsset extends X_A_Asset
     assetType.update(SetGetUtil.wrap(this), true);
     */
     // end commet by @win
-  }
-
-  public MAssetGroup getAssetGroup() {
-    return MAssetGroup.get(getCtx(), getA_Asset_Group_ID());
   }
 
   /**
@@ -314,10 +334,6 @@ public class MAsset extends X_A_Asset
     setA_Asset_Status(newStatus);
   } //	changeStatus
 
-  // Temporary used variables:
-  /** */
-  private int m_UseLifeMonths_F = 0;
-
   public int getUseLifeMonths_F() {
     return m_UseLifeMonths_F;
   }
@@ -325,8 +341,6 @@ public class MAsset extends X_A_Asset
   public void setUseLifeMonths_F(int UseLifeMonths_F) {
     m_UseLifeMonths_F = UseLifeMonths_F;
   }
-  /** */
-  private int m_A_Current_Period = 0;
 
   public int getA_Current_Period() {
     return m_A_Current_Period;
@@ -335,8 +349,6 @@ public class MAsset extends X_A_Asset
   public void setA_Current_Period(int A_Current_Period) {
     m_A_Current_Period = A_Current_Period;
   }
-  /** */
-  private Timestamp m_DateAcct = null;
 
   public Timestamp getDateAcct() {
     return m_DateAcct;
@@ -345,8 +357,6 @@ public class MAsset extends X_A_Asset
   public void setDateAcct(Timestamp DateAcct) {
     m_DateAcct = DateAcct;
   }
-  /** */
-  private int m_A_Depreciation_ID = 0;
 
   public int getA_Depreciation_ID() {
     return m_A_Depreciation_ID;
@@ -355,8 +365,6 @@ public class MAsset extends X_A_Asset
   public void setA_Depreciation_ID(int A_Depreciation_ID) {
     m_A_Depreciation_ID = A_Depreciation_ID;
   }
-  /** */
-  private int m_A_Depreciation_F_ID = 0;
 
   public int getA_Depreciation_F_ID() {
     return m_A_Depreciation_F_ID;
@@ -365,11 +373,6 @@ public class MAsset extends X_A_Asset
   public void setA_Depreciation_F_ID(int A_Depreciation_F_ID) {
     m_A_Depreciation_F_ID = A_Depreciation_F_ID;
   }
-  /** */
-  private BigDecimal m_A_Asset_Cost = Env.ZERO;
-
-  private BigDecimal m_A_Accumulated_Depr = Env.ZERO;
-  private BigDecimal m_A_Accumulated_Depr_F = Env.ZERO;
 
   public BigDecimal getA_Asset_Cost() {
     return m_A_Asset_Cost;
@@ -396,11 +399,6 @@ public class MAsset extends X_A_Asset
   }
 
   public MProductDownload[] getProductDownloads() {
-    // TODO Auto-generated method stub
-    return null;
-  }
-
-  public static MAsset getFromShipment(Properties ctx, int i, String trxName) {
     // TODO Auto-generated method stub
     return null;
   }

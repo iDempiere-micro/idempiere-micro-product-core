@@ -1,16 +1,15 @@
 package org.compiere.product;
 
+import java.math.BigDecimal;
+import java.sql.ResultSet;
+import java.sql.Timestamp;
+import java.util.Properties;
 import org.compiere.model.HasName;
 import org.compiere.model.I_I_PriceList;
 import org.compiere.orm.MTable;
 import org.compiere.orm.PO;
 import org.idempiere.common.util.Env;
 import org.idempiere.orm.I_Persistent;
-
-import java.math.BigDecimal;
-import java.sql.ResultSet;
-import java.sql.Timestamp;
-import java.util.Properties;
 
 /**
  * Generated Model for I_PriceList
@@ -48,15 +47,6 @@ public class X_I_PriceList extends PO implements I_I_PriceList, I_Persistent {
   }
 
   /**
-   * Set Business Partner Key.
-   *
-   * @param BPartner_Value The Key of the Business Partner
-   */
-  public void setBPartner_Value(String BPartner_Value) {
-    set_Value(COLUMNNAME_BPartner_Value, BPartner_Value);
-  }
-
-  /**
    * Get Business Partner Key.
    *
    * @return The Key of the Business Partner
@@ -66,12 +56,12 @@ public class X_I_PriceList extends PO implements I_I_PriceList, I_Persistent {
   }
 
   /**
-   * Set Break Value.
+   * Set Business Partner Key.
    *
-   * @param BreakValue Low Value of trade discount break level
+   * @param BPartner_Value The Key of the Business Partner
    */
-  public void setBreakValue(BigDecimal BreakValue) {
-    set_Value(COLUMNNAME_BreakValue, BreakValue);
+  public void setBPartner_Value(String BPartner_Value) {
+    set_Value(COLUMNNAME_BPartner_Value, BPartner_Value);
   }
 
   /**
@@ -85,20 +75,19 @@ public class X_I_PriceList extends PO implements I_I_PriceList, I_Persistent {
     return bd;
   }
 
+  /**
+   * Set Break Value.
+   *
+   * @param BreakValue Low Value of trade discount break level
+   */
+  public void setBreakValue(BigDecimal BreakValue) {
+    set_Value(COLUMNNAME_BreakValue, BreakValue);
+  }
+
   public org.compiere.model.I_C_BPartner getC_BPartner() throws RuntimeException {
     return (org.compiere.model.I_C_BPartner)
         MTable.get(getCtx(), org.compiere.model.I_C_BPartner.Table_Name)
             .getPO(getC_BPartner_ID(), get_TrxName());
-  }
-
-  /**
-   * Set Business Partner .
-   *
-   * @param C_BPartner_ID Identifies a Business Partner
-   */
-  public void setC_BPartner_ID(int C_BPartner_ID) {
-    if (C_BPartner_ID < 1) set_Value(COLUMNNAME_C_BPartner_ID, null);
-    else set_Value(COLUMNNAME_C_BPartner_ID, Integer.valueOf(C_BPartner_ID));
   }
 
   /**
@@ -112,20 +101,20 @@ public class X_I_PriceList extends PO implements I_I_PriceList, I_Persistent {
     return ii;
   }
 
+  /**
+   * Set Business Partner .
+   *
+   * @param C_BPartner_ID Identifies a Business Partner
+   */
+  public void setC_BPartner_ID(int C_BPartner_ID) {
+    if (C_BPartner_ID < 1) set_Value(COLUMNNAME_C_BPartner_ID, null);
+    else set_Value(COLUMNNAME_C_BPartner_ID, Integer.valueOf(C_BPartner_ID));
+  }
+
   public org.compiere.model.I_C_Currency getC_Currency() throws RuntimeException {
     return (org.compiere.model.I_C_Currency)
         MTable.get(getCtx(), org.compiere.model.I_C_Currency.Table_Name)
             .getPO(getC_Currency_ID(), get_TrxName());
-  }
-
-  /**
-   * Set Currency.
-   *
-   * @param C_Currency_ID The Currency for this record
-   */
-  public void setC_Currency_ID(int C_Currency_ID) {
-    if (C_Currency_ID < 1) set_Value(COLUMNNAME_C_Currency_ID, null);
-    else set_Value(COLUMNNAME_C_Currency_ID, Integer.valueOf(C_Currency_ID));
   }
 
   /**
@@ -139,20 +128,20 @@ public class X_I_PriceList extends PO implements I_I_PriceList, I_Persistent {
     return ii;
   }
 
+  /**
+   * Set Currency.
+   *
+   * @param C_Currency_ID The Currency for this record
+   */
+  public void setC_Currency_ID(int C_Currency_ID) {
+    if (C_Currency_ID < 1) set_Value(COLUMNNAME_C_Currency_ID, null);
+    else set_Value(COLUMNNAME_C_Currency_ID, Integer.valueOf(C_Currency_ID));
+  }
+
   public org.compiere.model.I_C_UOM getC_UOM() throws RuntimeException {
     return (org.compiere.model.I_C_UOM)
         MTable.get(getCtx(), org.compiere.model.I_C_UOM.Table_Name)
             .getPO(getC_UOM_ID(), get_TrxName());
-  }
-
-  /**
-   * Set UOM.
-   *
-   * @param C_UOM_ID Unit of Measure
-   */
-  public void setC_UOM_ID(int C_UOM_ID) {
-    if (C_UOM_ID < 1) set_Value(COLUMNNAME_C_UOM_ID, null);
-    else set_Value(COLUMNNAME_C_UOM_ID, Integer.valueOf(C_UOM_ID));
   }
 
   /**
@@ -167,12 +156,13 @@ public class X_I_PriceList extends PO implements I_I_PriceList, I_Persistent {
   }
 
   /**
-   * Set Description.
+   * Set UOM.
    *
-   * @param Description Optional short description of the record
+   * @param C_UOM_ID Unit of Measure
    */
-  public void setDescription(String Description) {
-    set_Value(COLUMNNAME_Description, Description);
+  public void setC_UOM_ID(int C_UOM_ID) {
+    if (C_UOM_ID < 1) set_Value(COLUMNNAME_C_UOM_ID, null);
+    else set_Value(COLUMNNAME_C_UOM_ID, Integer.valueOf(C_UOM_ID));
   }
 
   /**
@@ -185,12 +175,12 @@ public class X_I_PriceList extends PO implements I_I_PriceList, I_Persistent {
   }
 
   /**
-   * Set Enforce price limit.
+   * Set Description.
    *
-   * @param EnforcePriceLimit Do not allow prices below the limit price
+   * @param Description Optional short description of the record
    */
-  public void setEnforcePriceLimit(boolean EnforcePriceLimit) {
-    set_Value(COLUMNNAME_EnforcePriceLimit, Boolean.valueOf(EnforcePriceLimit));
+  public void setDescription(String Description) {
+    set_Value(COLUMNNAME_Description, Description);
   }
 
   /**
@@ -208,12 +198,12 @@ public class X_I_PriceList extends PO implements I_I_PriceList, I_Persistent {
   }
 
   /**
-   * Set Import Error Message.
+   * Set Enforce price limit.
    *
-   * @param I_ErrorMsg Messages generated from import process
+   * @param EnforcePriceLimit Do not allow prices below the limit price
    */
-  public void setI_ErrorMsg(String I_ErrorMsg) {
-    set_Value(COLUMNNAME_I_ErrorMsg, I_ErrorMsg);
+  public void setEnforcePriceLimit(boolean EnforcePriceLimit) {
+    set_Value(COLUMNNAME_EnforcePriceLimit, Boolean.valueOf(EnforcePriceLimit));
   }
 
   /**
@@ -226,12 +216,12 @@ public class X_I_PriceList extends PO implements I_I_PriceList, I_Persistent {
   }
 
   /**
-   * Set Imported.
+   * Set Import Error Message.
    *
-   * @param I_IsImported Has this import been processed
+   * @param I_ErrorMsg Messages generated from import process
    */
-  public void setI_IsImported(boolean I_IsImported) {
-    set_Value(COLUMNNAME_I_IsImported, Boolean.valueOf(I_IsImported));
+  public void setI_ErrorMsg(String I_ErrorMsg) {
+    set_Value(COLUMNNAME_I_ErrorMsg, I_ErrorMsg);
   }
 
   /**
@@ -249,13 +239,12 @@ public class X_I_PriceList extends PO implements I_I_PriceList, I_Persistent {
   }
 
   /**
-   * Set Import Price List.
+   * Set Imported.
    *
-   * @param I_PriceList_ID Import Price List
+   * @param I_IsImported Has this import been processed
    */
-  public void setI_PriceList_ID(int I_PriceList_ID) {
-    if (I_PriceList_ID < 1) set_ValueNoCheck(COLUMNNAME_I_PriceList_ID, null);
-    else set_ValueNoCheck(COLUMNNAME_I_PriceList_ID, Integer.valueOf(I_PriceList_ID));
+  public void setI_IsImported(boolean I_IsImported) {
+    set_Value(COLUMNNAME_I_IsImported, Boolean.valueOf(I_IsImported));
   }
 
   /**
@@ -270,12 +259,13 @@ public class X_I_PriceList extends PO implements I_I_PriceList, I_Persistent {
   }
 
   /**
-   * Set I_PriceList_UU.
+   * Set Import Price List.
    *
-   * @param I_PriceList_UU I_PriceList_UU
+   * @param I_PriceList_ID Import Price List
    */
-  public void setI_PriceList_UU(String I_PriceList_UU) {
-    set_Value(COLUMNNAME_I_PriceList_UU, I_PriceList_UU);
+  public void setI_PriceList_ID(int I_PriceList_ID) {
+    if (I_PriceList_ID < 1) set_ValueNoCheck(COLUMNNAME_I_PriceList_ID, null);
+    else set_ValueNoCheck(COLUMNNAME_I_PriceList_ID, Integer.valueOf(I_PriceList_ID));
   }
 
   /**
@@ -288,12 +278,12 @@ public class X_I_PriceList extends PO implements I_I_PriceList, I_Persistent {
   }
 
   /**
-   * Set ISO Currency Code.
+   * Set I_PriceList_UU.
    *
-   * @param ISO_Code Three letter ISO 4217 Code of the Currency
+   * @param I_PriceList_UU I_PriceList_UU
    */
-  public void setISO_Code(String ISO_Code) {
-    set_Value(COLUMNNAME_ISO_Code, ISO_Code);
+  public void setI_PriceList_UU(String I_PriceList_UU) {
+    set_Value(COLUMNNAME_I_PriceList_UU, I_PriceList_UU);
   }
 
   /**
@@ -303,6 +293,15 @@ public class X_I_PriceList extends PO implements I_I_PriceList, I_Persistent {
    */
   public String getISO_Code() {
     return (String) get_Value(COLUMNNAME_ISO_Code);
+  }
+
+  /**
+   * Set ISO Currency Code.
+   *
+   * @param ISO_Code Three letter ISO 4217 Code of the Currency
+   */
+  public void setISO_Code(String ISO_Code) {
+    set_Value(COLUMNNAME_ISO_Code, ISO_Code);
   }
 
   /**
@@ -358,16 +357,6 @@ public class X_I_PriceList extends PO implements I_I_PriceList, I_Persistent {
   }
 
   /**
-   * Set Price List.
-   *
-   * @param M_PriceList_ID Unique identifier of a Price List
-   */
-  public void setM_PriceList_ID(int M_PriceList_ID) {
-    if (M_PriceList_ID < 1) set_Value(COLUMNNAME_M_PriceList_ID, null);
-    else set_Value(COLUMNNAME_M_PriceList_ID, Integer.valueOf(M_PriceList_ID));
-  }
-
-  /**
    * Get Price List.
    *
    * @return Unique identifier of a Price List
@@ -378,20 +367,20 @@ public class X_I_PriceList extends PO implements I_I_PriceList, I_Persistent {
     return ii;
   }
 
+  /**
+   * Set Price List.
+   *
+   * @param M_PriceList_ID Unique identifier of a Price List
+   */
+  public void setM_PriceList_ID(int M_PriceList_ID) {
+    if (M_PriceList_ID < 1) set_Value(COLUMNNAME_M_PriceList_ID, null);
+    else set_Value(COLUMNNAME_M_PriceList_ID, Integer.valueOf(M_PriceList_ID));
+  }
+
   public org.compiere.model.I_M_PriceList_Version getM_PriceList_Version() throws RuntimeException {
     return (org.compiere.model.I_M_PriceList_Version)
         MTable.get(getCtx(), org.compiere.model.I_M_PriceList_Version.Table_Name)
             .getPO(getM_PriceList_Version_ID(), get_TrxName());
-  }
-
-  /**
-   * Set Price List Version.
-   *
-   * @param M_PriceList_Version_ID Identifies a unique instance of a Price List
-   */
-  public void setM_PriceList_Version_ID(int M_PriceList_Version_ID) {
-    if (M_PriceList_Version_ID < 1) set_Value(COLUMNNAME_M_PriceList_Version_ID, null);
-    else set_Value(COLUMNNAME_M_PriceList_Version_ID, Integer.valueOf(M_PriceList_Version_ID));
   }
 
   /**
@@ -405,20 +394,20 @@ public class X_I_PriceList extends PO implements I_I_PriceList, I_Persistent {
     return ii;
   }
 
+  /**
+   * Set Price List Version.
+   *
+   * @param M_PriceList_Version_ID Identifies a unique instance of a Price List
+   */
+  public void setM_PriceList_Version_ID(int M_PriceList_Version_ID) {
+    if (M_PriceList_Version_ID < 1) set_Value(COLUMNNAME_M_PriceList_Version_ID, null);
+    else set_Value(COLUMNNAME_M_PriceList_Version_ID, Integer.valueOf(M_PriceList_Version_ID));
+  }
+
   public org.compiere.model.I_M_Product getM_Product() throws RuntimeException {
     return (org.compiere.model.I_M_Product)
         MTable.get(getCtx(), org.compiere.model.I_M_Product.Table_Name)
             .getPO(getM_Product_ID(), get_TrxName());
-  }
-
-  /**
-   * Set Product.
-   *
-   * @param M_Product_ID Product, Service, Item
-   */
-  public void setM_Product_ID(int M_Product_ID) {
-    if (M_Product_ID < 1) set_Value(COLUMNNAME_M_Product_ID, null);
-    else set_Value(COLUMNNAME_M_Product_ID, Integer.valueOf(M_Product_ID));
   }
 
   /**
@@ -433,12 +422,13 @@ public class X_I_PriceList extends PO implements I_I_PriceList, I_Persistent {
   }
 
   /**
-   * Set Name.
+   * Set Product.
    *
-   * @param Name Alphanumeric identifier of the entity
+   * @param M_Product_ID Product, Service, Item
    */
-  public void setName(String Name) {
-    set_Value(HasName.Companion.getCOLUMNNAME_Name(), Name);
+  public void setM_Product_ID(int M_Product_ID) {
+    if (M_Product_ID < 1) set_Value(COLUMNNAME_M_Product_ID, null);
+    else set_Value(COLUMNNAME_M_Product_ID, Integer.valueOf(M_Product_ID));
   }
 
   /**
@@ -451,12 +441,12 @@ public class X_I_PriceList extends PO implements I_I_PriceList, I_Persistent {
   }
 
   /**
-   * Set Limit Price.
+   * Set Name.
    *
-   * @param PriceLimit Lowest price for a product
+   * @param Name Alphanumeric identifier of the entity
    */
-  public void setPriceLimit(BigDecimal PriceLimit) {
-    set_Value(COLUMNNAME_PriceLimit, PriceLimit);
+  public void setName(String Name) {
+    set_Value(HasName.Companion.getCOLUMNNAME_Name(), Name);
   }
 
   /**
@@ -471,12 +461,12 @@ public class X_I_PriceList extends PO implements I_I_PriceList, I_Persistent {
   }
 
   /**
-   * Set List Price.
+   * Set Limit Price.
    *
-   * @param PriceList List Price
+   * @param PriceLimit Lowest price for a product
    */
-  public void setPriceList(BigDecimal PriceList) {
-    set_Value(COLUMNNAME_PriceList, PriceList);
+  public void setPriceLimit(BigDecimal PriceLimit) {
+    set_Value(COLUMNNAME_PriceLimit, PriceLimit);
   }
 
   /**
@@ -491,12 +481,12 @@ public class X_I_PriceList extends PO implements I_I_PriceList, I_Persistent {
   }
 
   /**
-   * Set Price Precision.
+   * Set List Price.
    *
-   * @param PricePrecision Precision (number of decimals) for the Price
+   * @param PriceList List Price
    */
-  public void setPricePrecision(int PricePrecision) {
-    set_Value(COLUMNNAME_PricePrecision, Integer.valueOf(PricePrecision));
+  public void setPriceList(BigDecimal PriceList) {
+    set_Value(COLUMNNAME_PriceList, PriceList);
   }
 
   /**
@@ -511,12 +501,12 @@ public class X_I_PriceList extends PO implements I_I_PriceList, I_Persistent {
   }
 
   /**
-   * Set Standard Price.
+   * Set Price Precision.
    *
-   * @param PriceStd Standard Price
+   * @param PricePrecision Precision (number of decimals) for the Price
    */
-  public void setPriceStd(BigDecimal PriceStd) {
-    set_Value(COLUMNNAME_PriceStd, PriceStd);
+  public void setPricePrecision(int PricePrecision) {
+    set_Value(COLUMNNAME_PricePrecision, Integer.valueOf(PricePrecision));
   }
 
   /**
@@ -531,12 +521,12 @@ public class X_I_PriceList extends PO implements I_I_PriceList, I_Persistent {
   }
 
   /**
-   * Set Processed.
+   * Set Standard Price.
    *
-   * @param Processed The document has been processed
+   * @param PriceStd Standard Price
    */
-  public void setProcessed(boolean Processed) {
-    set_Value(COLUMNNAME_Processed, Boolean.valueOf(Processed));
+  public void setPriceStd(BigDecimal PriceStd) {
+    set_Value(COLUMNNAME_PriceStd, PriceStd);
   }
 
   /**
@@ -554,12 +544,12 @@ public class X_I_PriceList extends PO implements I_I_PriceList, I_Persistent {
   }
 
   /**
-   * Set Process Now.
+   * Set Processed.
    *
-   * @param Processing Process Now
+   * @param Processed The document has been processed
    */
-  public void setProcessing(boolean Processing) {
-    set_Value(COLUMNNAME_Processing, Boolean.valueOf(Processing));
+  public void setProcessed(boolean Processed) {
+    set_Value(COLUMNNAME_Processed, Boolean.valueOf(Processed));
   }
 
   /**
@@ -577,12 +567,12 @@ public class X_I_PriceList extends PO implements I_I_PriceList, I_Persistent {
   }
 
   /**
-   * Set Product Key.
+   * Set Process Now.
    *
-   * @param ProductValue Key of the Product
+   * @param Processing Process Now
    */
-  public void setProductValue(String ProductValue) {
-    set_Value(COLUMNNAME_ProductValue, ProductValue);
+  public void setProcessing(boolean Processing) {
+    set_Value(COLUMNNAME_Processing, Boolean.valueOf(Processing));
   }
 
   /**
@@ -595,12 +585,12 @@ public class X_I_PriceList extends PO implements I_I_PriceList, I_Persistent {
   }
 
   /**
-   * Set Valid from.
+   * Set Product Key.
    *
-   * @param ValidFrom Valid from including this date (first day)
+   * @param ProductValue Key of the Product
    */
-  public void setValidFrom(Timestamp ValidFrom) {
-    set_Value(COLUMNNAME_ValidFrom, ValidFrom);
+  public void setProductValue(String ProductValue) {
+    set_Value(COLUMNNAME_ProductValue, ProductValue);
   }
 
   /**
@@ -613,12 +603,12 @@ public class X_I_PriceList extends PO implements I_I_PriceList, I_Persistent {
   }
 
   /**
-   * Set UOM Code.
+   * Set Valid from.
    *
-   * @param X12DE355 UOM EDI X12 Code
+   * @param ValidFrom Valid from including this date (first day)
    */
-  public void setX12DE355(String X12DE355) {
-    set_Value(COLUMNNAME_X12DE355, X12DE355);
+  public void setValidFrom(Timestamp ValidFrom) {
+    set_Value(COLUMNNAME_ValidFrom, ValidFrom);
   }
 
   /**
@@ -628,6 +618,15 @@ public class X_I_PriceList extends PO implements I_I_PriceList, I_Persistent {
    */
   public String getX12DE355() {
     return (String) get_Value(COLUMNNAME_X12DE355);
+  }
+
+  /**
+   * Set UOM Code.
+   *
+   * @param X12DE355 UOM EDI X12 Code
+   */
+  public void setX12DE355(String X12DE355) {
+    set_Value(COLUMNNAME_X12DE355, X12DE355);
   }
 
   @Override

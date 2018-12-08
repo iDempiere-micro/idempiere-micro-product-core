@@ -1,5 +1,9 @@
 package org.compiere.product;
 
+import java.math.BigDecimal;
+import java.sql.ResultSet;
+import java.sql.Timestamp;
+import java.util.Properties;
 import org.compiere.model.HasName;
 import org.compiere.model.I_M_AttributeSetInstance;
 import org.compiere.model.I_M_Locator;
@@ -10,11 +14,6 @@ import org.idempiere.common.util.Env;
 import org.idempiere.common.util.KeyNamePair;
 import org.idempiere.orm.I_Persistent;
 
-import java.math.BigDecimal;
-import java.sql.ResultSet;
-import java.sql.Timestamp;
-import java.util.Properties;
-
 /**
  * Generated Model for M_Product
  *
@@ -23,6 +22,8 @@ import java.util.Properties;
  */
 public class X_M_Product extends PO implements I_Persistent {
 
+  /** ProductType AD_Reference_ID=270 */
+  public static final int PRODUCTTYPE_AD_Reference_ID = 270;
   /** */
   private static final long serialVersionUID = 20171031L;
 
@@ -60,15 +61,6 @@ public class X_M_Product extends PO implements I_Persistent {
   }
 
   /**
-   * Set Classification.
-   *
-   * @param Classification Classification for grouping
-   */
-  public void setClassification(String Classification) {
-    set_Value(I_M_Product.COLUMNNAME_Classification, Classification);
-  }
-
-  /**
    * Get Classification.
    *
    * @return Classification for grouping
@@ -78,12 +70,12 @@ public class X_M_Product extends PO implements I_Persistent {
   }
 
   /**
-   * Set Copy From.
+   * Set Classification.
    *
-   * @param CopyFrom Copy From Record
+   * @param Classification Classification for grouping
    */
-  public void setCopyFrom(String CopyFrom) {
-    set_Value(I_M_Product.COLUMNNAME_CopyFrom, CopyFrom);
+  public void setClassification(String Classification) {
+    set_Value(I_M_Product.COLUMNNAME_Classification, Classification);
   }
 
   /**
@@ -95,11 +87,31 @@ public class X_M_Product extends PO implements I_Persistent {
     return (String) get_Value(I_M_Product.COLUMNNAME_CopyFrom);
   }
 
+  /**
+   * Set Copy From.
+   *
+   * @param CopyFrom Copy From Record
+   */
+  public void setCopyFrom(String CopyFrom) {
+    set_Value(I_M_Product.COLUMNNAME_CopyFrom, CopyFrom);
+  }
+
   public org.compiere.model.I_C_RevenueRecognition getC_RevenueRecognition()
       throws RuntimeException {
     return (org.compiere.model.I_C_RevenueRecognition)
         MTable.get(getCtx(), org.compiere.model.I_C_RevenueRecognition.Table_Name)
             .getPO(getC_RevenueRecognition_ID(), get_TrxName());
+  }
+
+  /**
+   * Get Revenue Recognition.
+   *
+   * @return Method for recording revenue
+   */
+  public int getC_RevenueRecognition_ID() {
+    Integer ii = (Integer) get_Value(I_M_Product.COLUMNNAME_C_RevenueRecognition_ID);
+    if (ii == null) return 0;
+    return ii;
   }
 
   /**
@@ -115,21 +127,21 @@ public class X_M_Product extends PO implements I_Persistent {
           I_M_Product.COLUMNNAME_C_RevenueRecognition_ID, Integer.valueOf(C_RevenueRecognition_ID));
   }
 
-  /**
-   * Get Revenue Recognition.
-   *
-   * @return Method for recording revenue
-   */
-  public int getC_RevenueRecognition_ID() {
-    Integer ii = (Integer) get_Value(I_M_Product.COLUMNNAME_C_RevenueRecognition_ID);
-    if (ii == null) return 0;
-    return ii;
-  }
-
   public org.compiere.model.I_C_SubscriptionType getC_SubscriptionType() throws RuntimeException {
     return (org.compiere.model.I_C_SubscriptionType)
         MTable.get(getCtx(), org.compiere.model.I_C_SubscriptionType.Table_Name)
             .getPO(getC_SubscriptionType_ID(), get_TrxName());
+  }
+
+  /**
+   * Get Subscription Type.
+   *
+   * @return Type of subscription
+   */
+  public int getC_SubscriptionType_ID() {
+    Integer ii = (Integer) get_Value(I_M_Product.COLUMNNAME_C_SubscriptionType_ID);
+    if (ii == null) return 0;
+    return ii;
   }
 
   /**
@@ -144,31 +156,10 @@ public class X_M_Product extends PO implements I_Persistent {
           I_M_Product.COLUMNNAME_C_SubscriptionType_ID, Integer.valueOf(C_SubscriptionType_ID));
   }
 
-  /**
-   * Get Subscription Type.
-   *
-   * @return Type of subscription
-   */
-  public int getC_SubscriptionType_ID() {
-    Integer ii = (Integer) get_Value(I_M_Product.COLUMNNAME_C_SubscriptionType_ID);
-    if (ii == null) return 0;
-    return ii;
-  }
-
   public org.compiere.model.I_C_TaxCategory getC_TaxCategory() throws RuntimeException {
     return (org.compiere.model.I_C_TaxCategory)
         MTable.get(getCtx(), org.compiere.model.I_C_TaxCategory.Table_Name)
             .getPO(getC_TaxCategory_ID(), get_TrxName());
-  }
-
-  /**
-   * Set Tax Category.
-   *
-   * @param C_TaxCategory_ID Tax Category
-   */
-  public void setC_TaxCategory_ID(int C_TaxCategory_ID) {
-    if (C_TaxCategory_ID < 1) set_Value(I_M_Product.COLUMNNAME_C_TaxCategory_ID, null);
-    else set_Value(I_M_Product.COLUMNNAME_C_TaxCategory_ID, Integer.valueOf(C_TaxCategory_ID));
   }
 
   /**
@@ -182,20 +173,20 @@ public class X_M_Product extends PO implements I_Persistent {
     return ii;
   }
 
+  /**
+   * Set Tax Category.
+   *
+   * @param C_TaxCategory_ID Tax Category
+   */
+  public void setC_TaxCategory_ID(int C_TaxCategory_ID) {
+    if (C_TaxCategory_ID < 1) set_Value(I_M_Product.COLUMNNAME_C_TaxCategory_ID, null);
+    else set_Value(I_M_Product.COLUMNNAME_C_TaxCategory_ID, Integer.valueOf(C_TaxCategory_ID));
+  }
+
   public org.compiere.model.I_C_UOM getC_UOM() throws RuntimeException {
     return (org.compiere.model.I_C_UOM)
         MTable.get(getCtx(), org.compiere.model.I_C_UOM.Table_Name)
             .getPO(getC_UOM_ID(), get_TrxName());
-  }
-
-  /**
-   * Set UOM.
-   *
-   * @param C_UOM_ID Unit of Measure
-   */
-  public void setC_UOM_ID(int C_UOM_ID) {
-    if (C_UOM_ID < 1) set_Value(I_M_Product.COLUMNNAME_C_UOM_ID, null);
-    else set_Value(I_M_Product.COLUMNNAME_C_UOM_ID, Integer.valueOf(C_UOM_ID));
   }
 
   /**
@@ -210,12 +201,13 @@ public class X_M_Product extends PO implements I_Persistent {
   }
 
   /**
-   * Set Description.
+   * Set UOM.
    *
-   * @param Description Optional short description of the record
+   * @param C_UOM_ID Unit of Measure
    */
-  public void setDescription(String Description) {
-    set_Value(I_M_Product.COLUMNNAME_Description, Description);
+  public void setC_UOM_ID(int C_UOM_ID) {
+    if (C_UOM_ID < 1) set_Value(I_M_Product.COLUMNNAME_C_UOM_ID, null);
+    else set_Value(I_M_Product.COLUMNNAME_C_UOM_ID, Integer.valueOf(C_UOM_ID));
   }
 
   /**
@@ -228,12 +220,12 @@ public class X_M_Product extends PO implements I_Persistent {
   }
 
   /**
-   * Set Description URL.
+   * Set Description.
    *
-   * @param DescriptionURL URL for the description
+   * @param Description Optional short description of the record
    */
-  public void setDescriptionURL(String DescriptionURL) {
-    set_Value(I_M_Product.COLUMNNAME_DescriptionURL, DescriptionURL);
+  public void setDescription(String Description) {
+    set_Value(I_M_Product.COLUMNNAME_Description, Description);
   }
 
   /**
@@ -246,12 +238,12 @@ public class X_M_Product extends PO implements I_Persistent {
   }
 
   /**
-   * Set Discontinued.
+   * Set Description URL.
    *
-   * @param Discontinued This product is no longer available
+   * @param DescriptionURL URL for the description
    */
-  public void setDiscontinued(boolean Discontinued) {
-    set_Value(I_M_Product.COLUMNNAME_Discontinued, Boolean.valueOf(Discontinued));
+  public void setDescriptionURL(String DescriptionURL) {
+    set_Value(I_M_Product.COLUMNNAME_DescriptionURL, DescriptionURL);
   }
 
   /**
@@ -269,12 +261,12 @@ public class X_M_Product extends PO implements I_Persistent {
   }
 
   /**
-   * Set Discontinued At.
+   * Set Discontinued.
    *
-   * @param DiscontinuedAt Discontinued At indicates Date when product was discontinued
+   * @param Discontinued This product is no longer available
    */
-  public void setDiscontinuedAt(Timestamp DiscontinuedAt) {
-    set_Value(I_M_Product.COLUMNNAME_DiscontinuedAt, DiscontinuedAt);
+  public void setDiscontinued(boolean Discontinued) {
+    set_Value(I_M_Product.COLUMNNAME_Discontinued, Boolean.valueOf(Discontinued));
   }
 
   /**
@@ -287,12 +279,12 @@ public class X_M_Product extends PO implements I_Persistent {
   }
 
   /**
-   * Set Document Note.
+   * Set Discontinued At.
    *
-   * @param DocumentNote Additional information for a Document
+   * @param DiscontinuedAt Discontinued At indicates Date when product was discontinued
    */
-  public void setDocumentNote(String DocumentNote) {
-    set_Value(I_M_Product.COLUMNNAME_DocumentNote, DocumentNote);
+  public void setDiscontinuedAt(Timestamp DiscontinuedAt) {
+    set_Value(I_M_Product.COLUMNNAME_DiscontinuedAt, DiscontinuedAt);
   }
 
   /**
@@ -305,12 +297,12 @@ public class X_M_Product extends PO implements I_Persistent {
   }
 
   /**
-   * Set Group1.
+   * Set Document Note.
    *
-   * @param Group1 Group1
+   * @param DocumentNote Additional information for a Document
    */
-  public void setGroup1(String Group1) {
-    set_Value(I_M_Product.COLUMNNAME_Group1, Group1);
+  public void setDocumentNote(String DocumentNote) {
+    set_Value(I_M_Product.COLUMNNAME_DocumentNote, DocumentNote);
   }
 
   /**
@@ -323,12 +315,12 @@ public class X_M_Product extends PO implements I_Persistent {
   }
 
   /**
-   * Set Group2.
+   * Set Group1.
    *
-   * @param Group2 Group2
+   * @param Group1 Group1
    */
-  public void setGroup2(String Group2) {
-    set_Value(I_M_Product.COLUMNNAME_Group2, Group2);
+  public void setGroup1(String Group1) {
+    set_Value(I_M_Product.COLUMNNAME_Group1, Group1);
   }
 
   /**
@@ -341,12 +333,12 @@ public class X_M_Product extends PO implements I_Persistent {
   }
 
   /**
-   * Set Guarantee Days.
+   * Set Group2.
    *
-   * @param GuaranteeDays Number of days the product is guaranteed or available
+   * @param Group2 Group2
    */
-  public void setGuaranteeDays(int GuaranteeDays) {
-    set_Value(I_M_Product.COLUMNNAME_GuaranteeDays, Integer.valueOf(GuaranteeDays));
+  public void setGroup2(String Group2) {
+    set_Value(I_M_Product.COLUMNNAME_Group2, Group2);
   }
 
   /**
@@ -361,12 +353,12 @@ public class X_M_Product extends PO implements I_Persistent {
   }
 
   /**
-   * Set Min Guarantee Days.
+   * Set Guarantee Days.
    *
-   * @param GuaranteeDaysMin Minimum number of guarantee days
+   * @param GuaranteeDays Number of days the product is guaranteed or available
    */
-  public void setGuaranteeDaysMin(int GuaranteeDaysMin) {
-    set_Value(I_M_Product.COLUMNNAME_GuaranteeDaysMin, Integer.valueOf(GuaranteeDaysMin));
+  public void setGuaranteeDays(int GuaranteeDays) {
+    set_Value(I_M_Product.COLUMNNAME_GuaranteeDays, Integer.valueOf(GuaranteeDays));
   }
 
   /**
@@ -381,12 +373,12 @@ public class X_M_Product extends PO implements I_Persistent {
   }
 
   /**
-   * Set Comment/Help.
+   * Set Min Guarantee Days.
    *
-   * @param Help Comment or Hint
+   * @param GuaranteeDaysMin Minimum number of guarantee days
    */
-  public void setHelp(String Help) {
-    set_Value(I_M_Product.COLUMNNAME_Help, Help);
+  public void setGuaranteeDaysMin(int GuaranteeDaysMin) {
+    set_Value(I_M_Product.COLUMNNAME_GuaranteeDaysMin, Integer.valueOf(GuaranteeDaysMin));
   }
 
   /**
@@ -399,12 +391,12 @@ public class X_M_Product extends PO implements I_Persistent {
   }
 
   /**
-   * Set Image URL.
+   * Set Comment/Help.
    *
-   * @param ImageURL URL of image
+   * @param Help Comment or Hint
    */
-  public void setImageURL(String ImageURL) {
-    set_Value(I_M_Product.COLUMNNAME_ImageURL, ImageURL);
+  public void setHelp(String Help) {
+    set_Value(I_M_Product.COLUMNNAME_Help, Help);
   }
 
   /**
@@ -414,6 +406,15 @@ public class X_M_Product extends PO implements I_Persistent {
    */
   public String getImageURL() {
     return (String) get_Value(I_M_Product.COLUMNNAME_ImageURL);
+  }
+
+  /**
+   * Set Image URL.
+   *
+   * @param ImageURL URL of image
+   */
+  public void setImageURL(String ImageURL) {
+    set_Value(I_M_Product.COLUMNNAME_ImageURL, ImageURL);
   }
 
   /**
@@ -787,16 +788,6 @@ public class X_M_Product extends PO implements I_Persistent {
   }
 
   /**
-   * Set Low Level.
-   *
-   * @param LowLevel The Low Level is used to calculate the material plan and determines if a net
-   *     requirement should be exploited
-   */
-  public void setLowLevel(int LowLevel) {
-    set_Value(I_M_Product.COLUMNNAME_LowLevel, Integer.valueOf(LowLevel));
-  }
-
-  /**
    * Get Low Level.
    *
    * @return The Low Level is used to calculate the material plan and determines if a net
@@ -806,6 +797,16 @@ public class X_M_Product extends PO implements I_Persistent {
     Integer ii = (Integer) get_Value(I_M_Product.COLUMNNAME_LowLevel);
     if (ii == null) return 0;
     return ii;
+  }
+
+  /**
+   * Set Low Level.
+   *
+   * @param LowLevel The Low Level is used to calculate the material plan and determines if a net
+   *     requirement should be exploited
+   */
+  public void setLowLevel(int LowLevel) {
+    set_Value(I_M_Product.COLUMNNAME_LowLevel, Integer.valueOf(LowLevel));
   }
 
   public org.compiere.model.I_M_AttributeSet getMAttributeSet() throws RuntimeException {
@@ -873,17 +874,6 @@ public class X_M_Product extends PO implements I_Persistent {
   }
 
   /**
-   * Set Freight Category.
-   *
-   * @param M_FreightCategory_ID Category of the Freight
-   */
-  public void setM_FreightCategory_ID(int M_FreightCategory_ID) {
-    if (M_FreightCategory_ID < 1) set_Value(I_M_Product.COLUMNNAME_M_FreightCategory_ID, null);
-    else
-      set_Value(I_M_Product.COLUMNNAME_M_FreightCategory_ID, Integer.valueOf(M_FreightCategory_ID));
-  }
-
-  /**
    * Get Freight Category.
    *
    * @return Category of the Freight
@@ -894,19 +884,20 @@ public class X_M_Product extends PO implements I_Persistent {
     return ii;
   }
 
+  /**
+   * Set Freight Category.
+   *
+   * @param M_FreightCategory_ID Category of the Freight
+   */
+  public void setM_FreightCategory_ID(int M_FreightCategory_ID) {
+    if (M_FreightCategory_ID < 1) set_Value(I_M_Product.COLUMNNAME_M_FreightCategory_ID, null);
+    else
+      set_Value(I_M_Product.COLUMNNAME_M_FreightCategory_ID, Integer.valueOf(M_FreightCategory_ID));
+  }
+
   public I_M_Locator getM_Locator() throws RuntimeException {
     return (I_M_Locator)
         MTable.get(getCtx(), I_M_Locator.Table_Name).getPO(getM_Locator_ID(), get_TrxName());
-  }
-
-  /**
-   * Set Locator.
-   *
-   * @param M_Locator_ID Warehouse Locator
-   */
-  public void setM_Locator_ID(int M_Locator_ID) {
-    if (M_Locator_ID < 1) set_Value(I_M_Product.COLUMNNAME_M_Locator_ID, null);
-    else set_Value(I_M_Product.COLUMNNAME_M_Locator_ID, Integer.valueOf(M_Locator_ID));
   }
 
   /**
@@ -920,20 +911,20 @@ public class X_M_Product extends PO implements I_Persistent {
     return ii;
   }
 
+  /**
+   * Set Locator.
+   *
+   * @param M_Locator_ID Warehouse Locator
+   */
+  public void setM_Locator_ID(int M_Locator_ID) {
+    if (M_Locator_ID < 1) set_Value(I_M_Product.COLUMNNAME_M_Locator_ID, null);
+    else set_Value(I_M_Product.COLUMNNAME_M_Locator_ID, Integer.valueOf(M_Locator_ID));
+  }
+
   public org.compiere.model.I_M_PartType getM_PartType() throws RuntimeException {
     return (org.compiere.model.I_M_PartType)
         MTable.get(getCtx(), org.compiere.model.I_M_PartType.Table_Name)
             .getPO(getM_PartType_ID(), get_TrxName());
-  }
-
-  /**
-   * Set Part Type.
-   *
-   * @param M_PartType_ID Part Type
-   */
-  public void setM_PartType_ID(int M_PartType_ID) {
-    if (M_PartType_ID < 1) set_Value(I_M_Product.COLUMNNAME_M_PartType_ID, null);
-    else set_Value(I_M_Product.COLUMNNAME_M_PartType_ID, Integer.valueOf(M_PartType_ID));
   }
 
   /**
@@ -947,10 +938,31 @@ public class X_M_Product extends PO implements I_Persistent {
     return ii;
   }
 
+  /**
+   * Set Part Type.
+   *
+   * @param M_PartType_ID Part Type
+   */
+  public void setM_PartType_ID(int M_PartType_ID) {
+    if (M_PartType_ID < 1) set_Value(I_M_Product.COLUMNNAME_M_PartType_ID, null);
+    else set_Value(I_M_Product.COLUMNNAME_M_PartType_ID, Integer.valueOf(M_PartType_ID));
+  }
+
   public org.compiere.model.I_M_Product_Category getM_Product_Category() throws RuntimeException {
     return (org.compiere.model.I_M_Product_Category)
         MTable.get(getCtx(), org.compiere.model.I_M_Product_Category.Table_Name)
             .getPO(getM_Product_Category_ID(), get_TrxName());
+  }
+
+  /**
+   * Get Product Category.
+   *
+   * @return Category of a Product
+   */
+  public int getM_Product_Category_ID() {
+    Integer ii = (Integer) get_Value(I_M_Product.COLUMNNAME_M_Product_Category_ID);
+    if (ii == null) return 0;
+    return ii;
   }
 
   /**
@@ -966,12 +978,12 @@ public class X_M_Product extends PO implements I_Persistent {
   }
 
   /**
-   * Get Product Category.
+   * Get Product.
    *
-   * @return Category of a Product
+   * @return Product, Service, Item
    */
-  public int getM_Product_Category_ID() {
-    Integer ii = (Integer) get_Value(I_M_Product.COLUMNNAME_M_Product_Category_ID);
+  public int getM_Product_ID() {
+    Integer ii = (Integer) get_Value(I_M_Product.COLUMNNAME_M_Product_ID);
     if (ii == null) return 0;
     return ii;
   }
@@ -987,14 +999,12 @@ public class X_M_Product extends PO implements I_Persistent {
   }
 
   /**
-   * Get Product.
+   * Get M_Product_UU.
    *
-   * @return Product, Service, Item
+   * @return M_Product_UU
    */
-  public int getM_Product_ID() {
-    Integer ii = (Integer) get_Value(I_M_Product.COLUMNNAME_M_Product_ID);
-    if (ii == null) return 0;
-    return ii;
+  public String getM_Product_UU() {
+    return (String) get_Value(I_M_Product.COLUMNNAME_M_Product_UU);
   }
 
   /**
@@ -1007,24 +1017,6 @@ public class X_M_Product extends PO implements I_Persistent {
   }
 
   /**
-   * Get M_Product_UU.
-   *
-   * @return M_Product_UU
-   */
-  public String getM_Product_UU() {
-    return (String) get_Value(I_M_Product.COLUMNNAME_M_Product_UU);
-  }
-
-  /**
-   * Set Name.
-   *
-   * @param Name Alphanumeric identifier of the entity
-   */
-  public void setName(String Name) {
-    set_Value(HasName.Companion.getCOLUMNNAME_Name(), Name);
-  }
-
-  /**
    * Get Name.
    *
    * @return Alphanumeric identifier of the entity
@@ -1034,12 +1026,12 @@ public class X_M_Product extends PO implements I_Persistent {
   }
 
   /**
-   * Set Process Now.
+   * Set Name.
    *
-   * @param Processing Process Now
+   * @param Name Alphanumeric identifier of the entity
    */
-  public void setProcessing(boolean Processing) {
-    set_Value(I_M_Product.COLUMNNAME_Processing, Boolean.valueOf(Processing));
+  public void setName(String Name) {
+    set_Value(HasName.Companion.getCOLUMNNAME_Name(), Name);
   }
 
   /**
@@ -1056,16 +1048,13 @@ public class X_M_Product extends PO implements I_Persistent {
     return false;
   }
 
-  /** ProductType AD_Reference_ID=270 */
-  public static final int PRODUCTTYPE_AD_Reference_ID = 270;
   /**
-   * Set Product Type.
+   * Set Process Now.
    *
-   * @param ProductType Type of product
+   * @param Processing Process Now
    */
-  public void setProductType(String ProductType) {
-
-    set_Value(I_M_Product.COLUMNNAME_ProductType, ProductType);
+  public void setProcessing(boolean Processing) {
+    set_Value(I_M_Product.COLUMNNAME_Processing, Boolean.valueOf(Processing));
   }
 
   /**
@@ -1077,20 +1066,20 @@ public class X_M_Product extends PO implements I_Persistent {
     return (String) get_Value(I_M_Product.COLUMNNAME_ProductType);
   }
 
+  /**
+   * Set Product Type.
+   *
+   * @param ProductType Type of product
+   */
+  public void setProductType(String ProductType) {
+
+    set_Value(I_M_Product.COLUMNNAME_ProductType, ProductType);
+  }
+
   public org.compiere.model.I_R_MailText getR_MailText() throws RuntimeException {
     return (org.compiere.model.I_R_MailText)
         MTable.get(getCtx(), org.compiere.model.I_R_MailText.Table_Name)
             .getPO(getR_MailText_ID(), get_TrxName());
-  }
-
-  /**
-   * Set Mail Template.
-   *
-   * @param R_MailText_ID Text templates for mailings
-   */
-  public void setR_MailText_ID(int R_MailText_ID) {
-    if (R_MailText_ID < 1) set_Value(I_M_Product.COLUMNNAME_R_MailText_ID, null);
-    else set_Value(I_M_Product.COLUMNNAME_R_MailText_ID, Integer.valueOf(R_MailText_ID));
   }
 
   /**
@@ -1104,20 +1093,20 @@ public class X_M_Product extends PO implements I_Persistent {
     return ii;
   }
 
+  /**
+   * Set Mail Template.
+   *
+   * @param R_MailText_ID Text templates for mailings
+   */
+  public void setR_MailText_ID(int R_MailText_ID) {
+    if (R_MailText_ID < 1) set_Value(I_M_Product.COLUMNNAME_R_MailText_ID, null);
+    else set_Value(I_M_Product.COLUMNNAME_R_MailText_ID, Integer.valueOf(R_MailText_ID));
+  }
+
   public org.compiere.model.I_AD_User getSalesRep() throws RuntimeException {
     return (org.compiere.model.I_AD_User)
         MTable.get(getCtx(), org.compiere.model.I_AD_User.Table_Name)
             .getPO(getSalesRep_ID(), get_TrxName());
-  }
-
-  /**
-   * Set Sales Representative.
-   *
-   * @param SalesRep_ID Sales Representative or Company Agent
-   */
-  public void setSalesRep_ID(int SalesRep_ID) {
-    if (SalesRep_ID < 1) set_Value(I_M_Product.COLUMNNAME_SalesRep_ID, null);
-    else set_Value(I_M_Product.COLUMNNAME_SalesRep_ID, Integer.valueOf(SalesRep_ID));
   }
 
   /**
@@ -1131,21 +1120,20 @@ public class X_M_Product extends PO implements I_Persistent {
     return ii;
   }
 
+  /**
+   * Set Sales Representative.
+   *
+   * @param SalesRep_ID Sales Representative or Company Agent
+   */
+  public void setSalesRep_ID(int SalesRep_ID) {
+    if (SalesRep_ID < 1) set_Value(I_M_Product.COLUMNNAME_SalesRep_ID, null);
+    else set_Value(I_M_Product.COLUMNNAME_SalesRep_ID, Integer.valueOf(SalesRep_ID));
+  }
+
   public org.compiere.model.I_S_ExpenseType getS_ExpenseType() throws RuntimeException {
     return (org.compiere.model.I_S_ExpenseType)
         MTable.get(getCtx(), org.compiere.model.I_S_ExpenseType.Table_Name)
             .getPO(getS_ExpenseType_ID(), get_TrxName());
-  }
-
-  /**
-   * Set Expense Type.
-   *
-   * @param S_ExpenseType_ID Expense report type
-   */
-  public void setS_ExpenseType_ID(int S_ExpenseType_ID) {
-    if (S_ExpenseType_ID < 1) set_ValueNoCheck(I_M_Product.COLUMNNAME_S_ExpenseType_ID, null);
-    else
-      set_ValueNoCheck(I_M_Product.COLUMNNAME_S_ExpenseType_ID, Integer.valueOf(S_ExpenseType_ID));
   }
 
   /**
@@ -1160,12 +1148,14 @@ public class X_M_Product extends PO implements I_Persistent {
   }
 
   /**
-   * Set Shelf Depth.
+   * Set Expense Type.
    *
-   * @param ShelfDepth Shelf depth required
+   * @param S_ExpenseType_ID Expense report type
    */
-  public void setShelfDepth(int ShelfDepth) {
-    set_Value(I_M_Product.COLUMNNAME_ShelfDepth, Integer.valueOf(ShelfDepth));
+  public void setS_ExpenseType_ID(int S_ExpenseType_ID) {
+    if (S_ExpenseType_ID < 1) set_ValueNoCheck(I_M_Product.COLUMNNAME_S_ExpenseType_ID, null);
+    else
+      set_ValueNoCheck(I_M_Product.COLUMNNAME_S_ExpenseType_ID, Integer.valueOf(S_ExpenseType_ID));
   }
 
   /**
@@ -1180,12 +1170,12 @@ public class X_M_Product extends PO implements I_Persistent {
   }
 
   /**
-   * Set Shelf Height.
+   * Set Shelf Depth.
    *
-   * @param ShelfHeight Shelf height required
+   * @param ShelfDepth Shelf depth required
    */
-  public void setShelfHeight(BigDecimal ShelfHeight) {
-    set_Value(I_M_Product.COLUMNNAME_ShelfHeight, ShelfHeight);
+  public void setShelfDepth(int ShelfDepth) {
+    set_Value(I_M_Product.COLUMNNAME_ShelfDepth, Integer.valueOf(ShelfDepth));
   }
 
   /**
@@ -1200,12 +1190,12 @@ public class X_M_Product extends PO implements I_Persistent {
   }
 
   /**
-   * Set Shelf Width.
+   * Set Shelf Height.
    *
-   * @param ShelfWidth Shelf width required
+   * @param ShelfHeight Shelf height required
    */
-  public void setShelfWidth(int ShelfWidth) {
-    set_Value(I_M_Product.COLUMNNAME_ShelfWidth, Integer.valueOf(ShelfWidth));
+  public void setShelfHeight(BigDecimal ShelfHeight) {
+    set_Value(I_M_Product.COLUMNNAME_ShelfHeight, ShelfHeight);
   }
 
   /**
@@ -1220,12 +1210,12 @@ public class X_M_Product extends PO implements I_Persistent {
   }
 
   /**
-   * Set SKU.
+   * Set Shelf Width.
    *
-   * @param SKU Stock Keeping Unit
+   * @param ShelfWidth Shelf width required
    */
-  public void setSKU(String SKU) {
-    set_Value(I_M_Product.COLUMNNAME_SKU, SKU);
+  public void setShelfWidth(int ShelfWidth) {
+    set_Value(I_M_Product.COLUMNNAME_ShelfWidth, Integer.valueOf(ShelfWidth));
   }
 
   /**
@@ -1237,20 +1227,19 @@ public class X_M_Product extends PO implements I_Persistent {
     return (String) get_Value(I_M_Product.COLUMNNAME_SKU);
   }
 
+  /**
+   * Set SKU.
+   *
+   * @param SKU Stock Keeping Unit
+   */
+  public void setSKU(String SKU) {
+    set_Value(I_M_Product.COLUMNNAME_SKU, SKU);
+  }
+
   public org.compiere.model.I_S_Resource getS_Resource() throws RuntimeException {
     return (org.compiere.model.I_S_Resource)
         MTable.get(getCtx(), org.compiere.model.I_S_Resource.Table_Name)
             .getPO(getS_Resource_ID(), get_TrxName());
-  }
-
-  /**
-   * Set Resource.
-   *
-   * @param S_Resource_ID Resource
-   */
-  public void setS_Resource_ID(int S_Resource_ID) {
-    if (S_Resource_ID < 1) set_ValueNoCheck(I_M_Product.COLUMNNAME_S_Resource_ID, null);
-    else set_ValueNoCheck(I_M_Product.COLUMNNAME_S_Resource_ID, Integer.valueOf(S_Resource_ID));
   }
 
   /**
@@ -1265,12 +1254,13 @@ public class X_M_Product extends PO implements I_Persistent {
   }
 
   /**
-   * Set UnitsPerPack.
+   * Set Resource.
    *
-   * @param UnitsPerPack The Units Per Pack indicates the no of units of a product packed together.
+   * @param S_Resource_ID Resource
    */
-  public void setUnitsPerPack(int UnitsPerPack) {
-    set_Value(I_M_Product.COLUMNNAME_UnitsPerPack, Integer.valueOf(UnitsPerPack));
+  public void setS_Resource_ID(int S_Resource_ID) {
+    if (S_Resource_ID < 1) set_ValueNoCheck(I_M_Product.COLUMNNAME_S_Resource_ID, null);
+    else set_ValueNoCheck(I_M_Product.COLUMNNAME_S_Resource_ID, Integer.valueOf(S_Resource_ID));
   }
 
   /**
@@ -1285,12 +1275,12 @@ public class X_M_Product extends PO implements I_Persistent {
   }
 
   /**
-   * Set Units Per Pallet.
+   * Set UnitsPerPack.
    *
-   * @param UnitsPerPallet Units Per Pallet
+   * @param UnitsPerPack The Units Per Pack indicates the no of units of a product packed together.
    */
-  public void setUnitsPerPallet(BigDecimal UnitsPerPallet) {
-    set_Value(I_M_Product.COLUMNNAME_UnitsPerPallet, UnitsPerPallet);
+  public void setUnitsPerPack(int UnitsPerPack) {
+    set_Value(I_M_Product.COLUMNNAME_UnitsPerPack, Integer.valueOf(UnitsPerPack));
   }
 
   /**
@@ -1305,12 +1295,12 @@ public class X_M_Product extends PO implements I_Persistent {
   }
 
   /**
-   * Set UPC/EAN.
+   * Set Units Per Pallet.
    *
-   * @param UPC Bar Code (Universal Product Code or its superset European Article Number)
+   * @param UnitsPerPallet Units Per Pallet
    */
-  public void setUPC(String UPC) {
-    set_Value(I_M_Product.COLUMNNAME_UPC, UPC);
+  public void setUnitsPerPallet(BigDecimal UnitsPerPallet) {
+    set_Value(I_M_Product.COLUMNNAME_UnitsPerPallet, UnitsPerPallet);
   }
 
   /**
@@ -1323,12 +1313,12 @@ public class X_M_Product extends PO implements I_Persistent {
   }
 
   /**
-   * Set Search Key.
+   * Set UPC/EAN.
    *
-   * @param Value Search key for the record in the format required - must be unique
+   * @param UPC Bar Code (Universal Product Code or its superset European Article Number)
    */
-  public void setValue(String Value) {
-    set_Value(I_M_Product.COLUMNNAME_Value, Value);
+  public void setUPC(String UPC) {
+    set_Value(I_M_Product.COLUMNNAME_UPC, UPC);
   }
 
   /**
@@ -1341,21 +1331,21 @@ public class X_M_Product extends PO implements I_Persistent {
   }
 
   /**
+   * Set Search Key.
+   *
+   * @param Value Search key for the record in the format required - must be unique
+   */
+  public void setValue(String Value) {
+    set_Value(I_M_Product.COLUMNNAME_Value, Value);
+  }
+
+  /**
    * Get Record ID/ColumnName
    *
    * @return ID/ColumnName pair
    */
   public KeyNamePair getKeyNamePair() {
     return new KeyNamePair(getId(), getValue());
-  }
-
-  /**
-   * Set Version No.
-   *
-   * @param VersionNo Version Number
-   */
-  public void setVersionNo(String VersionNo) {
-    set_Value(I_M_Product.COLUMNNAME_VersionNo, VersionNo);
   }
 
   /**
@@ -1368,12 +1358,12 @@ public class X_M_Product extends PO implements I_Persistent {
   }
 
   /**
-   * Set Volume.
+   * Set Version No.
    *
-   * @param Volume Volume of a product
+   * @param VersionNo Version Number
    */
-  public void setVolume(BigDecimal Volume) {
-    set_Value(I_M_Product.COLUMNNAME_Volume, Volume);
+  public void setVersionNo(String VersionNo) {
+    set_Value(I_M_Product.COLUMNNAME_VersionNo, VersionNo);
   }
 
   /**
@@ -1388,12 +1378,12 @@ public class X_M_Product extends PO implements I_Persistent {
   }
 
   /**
-   * Set Weight.
+   * Set Volume.
    *
-   * @param Weight Weight of a product
+   * @param Volume Volume of a product
    */
-  public void setWeight(BigDecimal Weight) {
-    set_Value(I_M_Product.COLUMNNAME_Weight, Weight);
+  public void setVolume(BigDecimal Volume) {
+    set_Value(I_M_Product.COLUMNNAME_Volume, Volume);
   }
 
   /**
@@ -1405,6 +1395,15 @@ public class X_M_Product extends PO implements I_Persistent {
     BigDecimal bd = (BigDecimal) get_Value(I_M_Product.COLUMNNAME_Weight);
     if (bd == null) return Env.ZERO;
     return bd;
+  }
+
+  /**
+   * Set Weight.
+   *
+   * @param Weight Weight of a product
+   */
+  public void setWeight(BigDecimal Weight) {
+    set_Value(I_M_Product.COLUMNNAME_Weight, Weight);
   }
 
   @Override

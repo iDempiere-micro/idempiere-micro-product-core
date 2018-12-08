@@ -1,11 +1,6 @@
 package org.compiere.product;
 
-import org.compiere.model.I_M_Attribute;
-import org.compiere.model.I_M_AttributeInstance;
-import org.compiere.model.I_M_AttributeValue;
-import org.compiere.orm.Query;
-import org.idempiere.common.util.CLogger;
-import org.idempiere.common.util.Env;
+import static software.hsharp.core.util.DBKt.executeUpdate;
 
 import java.math.BigDecimal;
 import java.sql.ResultSet;
@@ -13,8 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
-
-import static software.hsharp.core.util.DBKt.executeUpdate;
+import org.compiere.model.I_M_Attribute;
+import org.compiere.model.I_M_AttributeInstance;
+import org.compiere.model.I_M_AttributeValue;
+import org.compiere.orm.Query;
+import org.idempiere.common.util.CLogger;
+import org.idempiere.common.util.Env;
 
 /**
  * Product Attribute
@@ -25,6 +24,37 @@ import static software.hsharp.core.util.DBKt.executeUpdate;
 public class MAttribute extends X_M_Attribute {
   /** */
   private static final long serialVersionUID = 7869800574413317999L;
+  /** Logger */
+  private static CLogger s_log = CLogger.getCLogger(MAttribute.class);
+  /** Values */
+  private MAttributeValue[] m_values = null;
+
+  /**
+   * Standard Constructor
+   *
+   * @param ctx context
+   * @param M_Attribute_ID id
+   * @param trxName transaction
+   */
+  public MAttribute(Properties ctx, int M_Attribute_ID, String trxName) {
+    super(ctx, M_Attribute_ID, trxName);
+    if (M_Attribute_ID == 0) {
+      setAttributeValueType(X_M_Attribute.ATTRIBUTEVALUETYPE_StringMax40);
+      setIsInstanceAttribute(false);
+      setIsMandatory(false);
+    }
+  } //	MAttribute
+
+  /**
+   * Load Constructor
+   *
+   * @param ctx context
+   * @param rs result set
+   * @param trxName transaction
+   */
+  public MAttribute(Properties ctx, ResultSet rs, String trxName) {
+    super(ctx, rs, trxName);
+  } //	MAttribute
 
   /**
    * Get Attributes Of Client
@@ -63,39 +93,6 @@ public class MAttribute extends X_M_Attribute {
       s_log.fine("AD_Client_ID=" + AD_Client_ID + " - #" + list.size());
     return retValue;
   } //	getOfClient
-
-  /** Logger */
-  private static CLogger s_log = CLogger.getCLogger(MAttribute.class);
-
-  /**
-   * Standard Constructor
-   *
-   * @param ctx context
-   * @param M_Attribute_ID id
-   * @param trxName transaction
-   */
-  public MAttribute(Properties ctx, int M_Attribute_ID, String trxName) {
-    super(ctx, M_Attribute_ID, trxName);
-    if (M_Attribute_ID == 0) {
-      setAttributeValueType(X_M_Attribute.ATTRIBUTEVALUETYPE_StringMax40);
-      setIsInstanceAttribute(false);
-      setIsMandatory(false);
-    }
-  } //	MAttribute
-
-  /**
-   * Load Constructor
-   *
-   * @param ctx context
-   * @param rs result set
-   * @param trxName transaction
-   */
-  public MAttribute(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
-  } //	MAttribute
-
-  /** Values */
-  private MAttributeValue[] m_values = null;
 
   /**
    * Get Values if List

@@ -1,11 +1,7 @@
 package org.compiere.product;
 
-import org.compiere.model.I_M_Product;
-import org.compiere.util.Msg;
-import org.idempiere.common.util.CCache;
-import org.idempiere.common.util.CLogger;
-import org.idempiere.common.util.Env;
-import software.hsharp.core.util.DB;
+import static software.hsharp.core.util.DBKt.close;
+import static software.hsharp.core.util.DBKt.prepareStatement;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,9 +10,11 @@ import java.util.Iterator;
 import java.util.Properties;
 import java.util.Vector;
 import java.util.logging.Level;
-
-import static software.hsharp.core.util.DBKt.close;
-import static software.hsharp.core.util.DBKt.prepareStatement;
+import org.compiere.model.I_M_Product;
+import org.compiere.util.Msg;
+import org.idempiere.common.util.CCache;
+import org.idempiere.common.util.CLogger;
+import org.idempiere.common.util.Env;
 
 /**
  * Product Category Model
@@ -27,6 +25,42 @@ import static software.hsharp.core.util.DBKt.prepareStatement;
 public class MProductCategory extends X_M_Product_Category {
   /** */
   private static final long serialVersionUID = 1239249591584452179L;
+  /** Categopry Cache */
+  private static CCache<Integer, MProductCategory> s_cache =
+      new CCache<Integer, MProductCategory>(Table_Name, 20);
+  /** Product Cache */
+  private static CCache<Integer, Integer> s_products =
+      new CCache<Integer, Integer>(I_M_Product.Table_Name, Table_Name + ".M_Product", 100);
+  /** Static Logger */
+  private static CLogger s_log = CLogger.getCLogger(MProductCategory.class);
+  /**
+   * ************************************************************************ Default Constructor
+   *
+   * @param ctx context
+   * @param M_Product_Category_ID id
+   * @param trxName transaction
+   */
+  public MProductCategory(Properties ctx, int M_Product_Category_ID, String trxName) {
+    super(ctx, M_Product_Category_ID, trxName);
+    if (M_Product_Category_ID == 0) {
+      //	setName (null);
+      //	setValue (null);
+      setMMPolicy(MMPOLICY_FiFo); // F
+      setPlannedMargin(Env.ZERO);
+      setIsDefault(false);
+      setIsSelfService(true); // Y
+    }
+  } //	MProductCategory
+  /**
+   * Load Constructor
+   *
+   * @param ctx context
+   * @param rs result set
+   * @param trxName transaction
+   */
+  public MProductCategory(Properties ctx, ResultSet rs, String trxName) {
+    super(ctx, rs, trxName);
+  } //	MProductCategory
 
   /**
    * Get from Cache
@@ -92,45 +126,6 @@ public class MProductCategory extends X_M_Product_Category {
     s_log.log(Level.SEVERE, "Not found M_Product_ID=" + M_Product_ID);
     return false;
   } //	isCategory
-
-  /** Categopry Cache */
-  private static CCache<Integer, MProductCategory> s_cache =
-      new CCache<Integer, MProductCategory>(Table_Name, 20);
-  /** Product Cache */
-  private static CCache<Integer, Integer> s_products =
-      new CCache<Integer, Integer>(I_M_Product.Table_Name, Table_Name + ".M_Product", 100);
-  /** Static Logger */
-  private static CLogger s_log = CLogger.getCLogger(MProductCategory.class);
-
-  /**
-   * ************************************************************************ Default Constructor
-   *
-   * @param ctx context
-   * @param M_Product_Category_ID id
-   * @param trxName transaction
-   */
-  public MProductCategory(Properties ctx, int M_Product_Category_ID, String trxName) {
-    super(ctx, M_Product_Category_ID, trxName);
-    if (M_Product_Category_ID == 0) {
-      //	setName (null);
-      //	setValue (null);
-      setMMPolicy(MMPOLICY_FiFo); // F
-      setPlannedMargin(Env.ZERO);
-      setIsDefault(false);
-      setIsSelfService(true); // Y
-    }
-  } //	MProductCategory
-
-  /**
-   * Load Constructor
-   *
-   * @param ctx context
-   * @param rs result set
-   * @param trxName transaction
-   */
-  public MProductCategory(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
-  } //	MProductCategory
 
   /**
    * Before Save

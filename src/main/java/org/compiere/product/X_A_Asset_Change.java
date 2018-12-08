@@ -1,5 +1,9 @@
 package org.compiere.product;
 
+import java.math.BigDecimal;
+import java.sql.ResultSet;
+import java.sql.Timestamp;
+import java.util.Properties;
 import org.compiere.model.I_A_Asset_Change;
 import org.compiere.model.I_C_Location;
 import org.compiere.model.I_C_ValidCombination;
@@ -9,11 +13,6 @@ import org.idempiere.common.util.Env;
 import org.idempiere.common.util.KeyNamePair;
 import org.idempiere.orm.I_Persistent;
 
-import java.math.BigDecimal;
-import java.sql.ResultSet;
-import java.sql.Timestamp;
-import java.util.Properties;
-
 /**
  * Generated Model for A_Asset_Change
  *
@@ -22,6 +21,62 @@ import java.util.Properties;
  */
 public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persistent {
 
+  /** A_Depreciation_Manual_Period AD_Reference_ID=53256 */
+  public static final int A_DEPRECIATION_MANUAL_PERIOD_AD_Reference_ID = 53256;
+  /** Period = PR */
+  public static final String A_DEPRECIATION_MANUAL_PERIOD_Period = "PR";
+  /** Yearly = YR */
+  public static final String A_DEPRECIATION_MANUAL_PERIOD_Yearly = "YR";
+  /** A_Reval_Cal_Method AD_Reference_ID=53259 */
+  public static final int A_REVAL_CAL_METHOD_AD_Reference_ID = 53259;
+  /** Default = DFT */
+  public static final String A_REVAL_CAL_METHOD_Default = "DFT";
+  /** Inception to date = IDF */
+  public static final String A_REVAL_CAL_METHOD_InceptionToDate = "IDF";
+  /** Year Balances = YBF */
+  public static final String A_REVAL_CAL_METHOD_YearBalances = "YBF";
+  /** ChangeType AD_Reference_ID=53273 */
+  public static final int CHANGETYPE_AD_Reference_ID = 53273;
+  /** Addition = ADD */
+  public static final String CHANGETYPE_Addition = "ADD";
+  /** Balance = BAL */
+  public static final String CHANGETYPE_Balance = "BAL";
+  /** Create = CRT */
+  public static final String CHANGETYPE_Create = "CRT";
+  /** Depreciation = DEP */
+  public static final String CHANGETYPE_Depreciation = "DEP";
+  /** Disposal = DIS */
+  public static final String CHANGETYPE_Disposal = "DIS";
+  /** Expense = EXP */
+  public static final String CHANGETYPE_Expense = "EXP";
+  /** Forecast = FOR */
+  public static final String CHANGETYPE_Forecast = "FOR";
+  /** Import = IMP */
+  public static final String CHANGETYPE_Import = "IMP";
+  /** Revaluation = RVL */
+  public static final String CHANGETYPE_Revaluation = "RVL";
+  /** Setup = SET */
+  public static final String CHANGETYPE_Setup = "SET";
+  /** Split = SPL */
+  public static final String CHANGETYPE_Split = "SPL";
+  /** Transfer = TRN */
+  public static final String CHANGETYPE_Transfer = "TRN";
+  /** Update = UPD */
+  public static final String CHANGETYPE_Update = "UPD";
+  /** Usage = USE */
+  public static final String CHANGETYPE_Usage = "USE";
+  /** PostingType AD_Reference_ID=125 */
+  public static final int POSTINGTYPE_AD_Reference_ID = 125;
+  /** Actual = A */
+  public static final String POSTINGTYPE_Actual = "A";
+  /** Budget = B */
+  public static final String POSTINGTYPE_Budget = "B";
+  /** Commitment = E */
+  public static final String POSTINGTYPE_Commitment = "E";
+  /** Statistical = S */
+  public static final String POSTINGTYPE_Statistical = "S";
+  /** Reservation = R */
+  public static final String POSTINGTYPE_Reservation = "R";
   /** */
   private static final long serialVersionUID = 20171031L;
 
@@ -60,15 +115,6 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
   }
 
   /**
-   * Set Accumulated Depreciation Account.
-   *
-   * @param A_Accumdepreciation_Acct Accumulated Depreciation Account
-   */
-  public void setA_Accumdepreciation_Acct(int A_Accumdepreciation_Acct) {
-    set_Value(COLUMNNAME_A_Accumdepreciation_Acct, Integer.valueOf(A_Accumdepreciation_Acct));
-  }
-
-  /**
    * Get Accumulated Depreciation Account.
    *
    * @return Accumulated Depreciation Account
@@ -79,10 +125,30 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
     return ii;
   }
 
+  /**
+   * Set Accumulated Depreciation Account.
+   *
+   * @param A_Accumdepreciation_Acct Accumulated Depreciation Account
+   */
+  public void setA_Accumdepreciation_Acct(int A_Accumdepreciation_Acct) {
+    set_Value(COLUMNNAME_A_Accumdepreciation_Acct, Integer.valueOf(A_Accumdepreciation_Acct));
+  }
+
   public I_C_ValidCombination getA_Asset_A() throws RuntimeException {
     return (I_C_ValidCombination)
         MTable.get(getCtx(), I_C_ValidCombination.Table_Name)
             .getPO(getA_Asset_Acct(), get_TrxName());
+  }
+
+  /**
+   * Get Asset Acct.
+   *
+   * @return Asset Acct
+   */
+  public int getA_Asset_Acct() {
+    Integer ii = (Integer) get_Value(COLUMNNAME_A_Asset_Acct);
+    if (ii == null) return 0;
+    return ii;
   }
 
   /**
@@ -95,12 +161,12 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
   }
 
   /**
-   * Get Asset Acct.
+   * Get A_Asset_Acct_ID.
    *
-   * @return Asset Acct
+   * @return A_Asset_Acct_ID
    */
-  public int getA_Asset_Acct() {
-    Integer ii = (Integer) get_Value(COLUMNNAME_A_Asset_Acct);
+  public int getA_Asset_Acct_ID() {
+    Integer ii = (Integer) get_Value(COLUMNNAME_A_Asset_Acct_ID);
     if (ii == null) return 0;
     return ii;
   }
@@ -116,12 +182,12 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
   }
 
   /**
-   * Get A_Asset_Acct_ID.
+   * Get Asset Addition.
    *
-   * @return A_Asset_Acct_ID
+   * @return Asset Addition
    */
-  public int getA_Asset_Acct_ID() {
-    Integer ii = (Integer) get_Value(COLUMNNAME_A_Asset_Acct_ID);
+  public int getA_Asset_Addition_ID() {
+    Integer ii = (Integer) get_Value(COLUMNNAME_A_Asset_Addition_ID);
     if (ii == null) return 0;
     return ii;
   }
@@ -137,12 +203,12 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
   }
 
   /**
-   * Get Asset Addition.
+   * Get A_Asset_Change_ID.
    *
-   * @return Asset Addition
+   * @return A_Asset_Change_ID
    */
-  public int getA_Asset_Addition_ID() {
-    Integer ii = (Integer) get_Value(COLUMNNAME_A_Asset_Addition_ID);
+  public int getA_Asset_Change_ID() {
+    Integer ii = (Integer) get_Value(COLUMNNAME_A_Asset_Change_ID);
     if (ii == null) return 0;
     return ii;
   }
@@ -158,32 +224,12 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
   }
 
   /**
-   * Get A_Asset_Change_ID.
-   *
-   * @return A_Asset_Change_ID
-   */
-  public int getA_Asset_Change_ID() {
-    Integer ii = (Integer) get_Value(COLUMNNAME_A_Asset_Change_ID);
-    if (ii == null) return 0;
-    return ii;
-  }
-
-  /**
    * Get Record ID/ColumnName
    *
    * @return ID/ColumnName pair
    */
   public KeyNamePair getKeyNamePair() {
     return new KeyNamePair(getId(), String.valueOf(getA_Asset_Change_ID()));
-  }
-
-  /**
-   * Set A_Asset_Change_UU.
-   *
-   * @param A_Asset_Change_UU A_Asset_Change_UU
-   */
-  public void setA_Asset_Change_UU(String A_Asset_Change_UU) {
-    set_Value(COLUMNNAME_A_Asset_Change_UU, A_Asset_Change_UU);
   }
 
   /**
@@ -196,12 +242,12 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
   }
 
   /**
-   * Set Create Date.
+   * Set A_Asset_Change_UU.
    *
-   * @param A_Asset_CreateDate Create Date
+   * @param A_Asset_Change_UU A_Asset_Change_UU
    */
-  public void setA_Asset_CreateDate(Timestamp A_Asset_CreateDate) {
-    set_Value(COLUMNNAME_A_Asset_CreateDate, A_Asset_CreateDate);
+  public void setA_Asset_Change_UU(String A_Asset_Change_UU) {
+    set_Value(COLUMNNAME_A_Asset_Change_UU, A_Asset_Change_UU);
   }
 
   /**
@@ -213,10 +259,30 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
     return (Timestamp) get_Value(COLUMNNAME_A_Asset_CreateDate);
   }
 
+  /**
+   * Set Create Date.
+   *
+   * @param A_Asset_CreateDate Create Date
+   */
+  public void setA_Asset_CreateDate(Timestamp A_Asset_CreateDate) {
+    set_Value(COLUMNNAME_A_Asset_CreateDate, A_Asset_CreateDate);
+  }
+
   public org.compiere.model.I_A_Asset getA_Asset() throws RuntimeException {
     return (org.compiere.model.I_A_Asset)
         MTable.get(getCtx(), org.compiere.model.I_A_Asset.Table_Name)
             .getPO(getA_Asset_ID(), get_TrxName());
+  }
+
+  /**
+   * Get Asset.
+   *
+   * @return Asset used internally or by customers
+   */
+  public int getA_Asset_ID() {
+    Integer ii = (Integer) get_Value(COLUMNNAME_A_Asset_ID);
+    if (ii == null) return 0;
+    return ii;
   }
 
   /**
@@ -230,12 +296,12 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
   }
 
   /**
-   * Get Asset.
+   * Get Asset Retirement.
    *
-   * @return Asset used internally or by customers
+   * @return Internally used asset is not longer used.
    */
-  public int getA_Asset_ID() {
-    Integer ii = (Integer) get_Value(COLUMNNAME_A_Asset_ID);
+  public int getA_Asset_Retirement_ID() {
+    Integer ii = (Integer) get_Value(COLUMNNAME_A_Asset_Retirement_ID);
     if (ii == null) return 0;
     return ii;
   }
@@ -251,14 +317,12 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
   }
 
   /**
-   * Get Asset Retirement.
+   * Get Revaluation Date.
    *
-   * @return Internally used asset is not longer used.
+   * @return Revaluation Date
    */
-  public int getA_Asset_Retirement_ID() {
-    Integer ii = (Integer) get_Value(COLUMNNAME_A_Asset_Retirement_ID);
-    if (ii == null) return 0;
-    return ii;
+  public Timestamp getA_Asset_RevalDate() {
+    return (Timestamp) get_Value(COLUMNNAME_A_Asset_RevalDate);
   }
 
   /**
@@ -270,28 +334,10 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
     set_Value(COLUMNNAME_A_Asset_RevalDate, A_Asset_RevalDate);
   }
 
-  /**
-   * Get Revaluation Date.
-   *
-   * @return Revaluation Date
-   */
-  public Timestamp getA_Asset_RevalDate() {
-    return (Timestamp) get_Value(COLUMNNAME_A_Asset_RevalDate);
-  }
-
   public org.compiere.model.I_A_Asset_Spread getA_Asset_Spread_T() throws RuntimeException {
     return (org.compiere.model.I_A_Asset_Spread)
         MTable.get(getCtx(), org.compiere.model.I_A_Asset_Spread.Table_Name)
             .getPO(getA_Asset_Spread_Type(), get_TrxName());
-  }
-
-  /**
-   * Set Spread Type.
-   *
-   * @param A_Asset_Spread_Type Spread Type
-   */
-  public void setA_Asset_Spread_Type(int A_Asset_Spread_Type) {
-    set_Value(COLUMNNAME_A_Asset_Spread_Type, Integer.valueOf(A_Asset_Spread_Type));
   }
 
   /**
@@ -305,19 +351,19 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
     return ii;
   }
 
+  /**
+   * Set Spread Type.
+   *
+   * @param A_Asset_Spread_Type Spread Type
+   */
+  public void setA_Asset_Spread_Type(int A_Asset_Spread_Type) {
+    set_Value(COLUMNNAME_A_Asset_Spread_Type, Integer.valueOf(A_Asset_Spread_Type));
+  }
+
   public I_C_ValidCombination getA_Depreciation_A() throws RuntimeException {
     return (I_C_ValidCombination)
         MTable.get(getCtx(), I_C_ValidCombination.Table_Name)
             .getPO(getA_Depreciation_Acct(), get_TrxName());
-  }
-
-  /**
-   * Set Depreciation Account.
-   *
-   * @param A_Depreciation_Acct Depreciation Account
-   */
-  public void setA_Depreciation_Acct(int A_Depreciation_Acct) {
-    set_Value(COLUMNNAME_A_Depreciation_Acct, Integer.valueOf(A_Depreciation_Acct));
   }
 
   /**
@@ -331,20 +377,20 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
     return ii;
   }
 
+  /**
+   * Set Depreciation Account.
+   *
+   * @param A_Depreciation_Acct Depreciation Account
+   */
+  public void setA_Depreciation_Acct(int A_Depreciation_Acct) {
+    set_Value(COLUMNNAME_A_Depreciation_Acct, Integer.valueOf(A_Depreciation_Acct));
+  }
+
   public org.compiere.model.I_A_Depreciation_Method getA_Depreciation_Calc_T()
       throws RuntimeException {
     return (org.compiere.model.I_A_Depreciation_Method)
         MTable.get(getCtx(), org.compiere.model.I_A_Depreciation_Method.Table_Name)
             .getPO(getA_Depreciation_Calc_Type(), get_TrxName());
-  }
-
-  /**
-   * Set Calculation Type.
-   *
-   * @param A_Depreciation_Calc_Type Calculation Type
-   */
-  public void setA_Depreciation_Calc_Type(int A_Depreciation_Calc_Type) {
-    set_Value(COLUMNNAME_A_Depreciation_Calc_Type, Integer.valueOf(A_Depreciation_Calc_Type));
   }
 
   /**
@@ -359,12 +405,12 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
   }
 
   /**
-   * Set A_Depreciation_Manual_Amount.
+   * Set Calculation Type.
    *
-   * @param A_Depreciation_Manual_Amount A_Depreciation_Manual_Amount
+   * @param A_Depreciation_Calc_Type Calculation Type
    */
-  public void setA_Depreciation_Manual_Amount(BigDecimal A_Depreciation_Manual_Amount) {
-    set_Value(COLUMNNAME_A_Depreciation_Manual_Amount, A_Depreciation_Manual_Amount);
+  public void setA_Depreciation_Calc_Type(int A_Depreciation_Calc_Type) {
+    set_Value(COLUMNNAME_A_Depreciation_Calc_Type, Integer.valueOf(A_Depreciation_Calc_Type));
   }
 
   /**
@@ -378,20 +424,13 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
     return bd;
   }
 
-  /** A_Depreciation_Manual_Period AD_Reference_ID=53256 */
-  public static final int A_DEPRECIATION_MANUAL_PERIOD_AD_Reference_ID = 53256;
-  /** Period = PR */
-  public static final String A_DEPRECIATION_MANUAL_PERIOD_Period = "PR";
-  /** Yearly = YR */
-  public static final String A_DEPRECIATION_MANUAL_PERIOD_Yearly = "YR";
   /**
-   * Set A_Depreciation_Manual_Period.
+   * Set A_Depreciation_Manual_Amount.
    *
-   * @param A_Depreciation_Manual_Period A_Depreciation_Manual_Period
+   * @param A_Depreciation_Manual_Amount A_Depreciation_Manual_Amount
    */
-  public void setA_Depreciation_Manual_Period(String A_Depreciation_Manual_Period) {
-
-    set_Value(COLUMNNAME_A_Depreciation_Manual_Period, A_Depreciation_Manual_Period);
+  public void setA_Depreciation_Manual_Amount(BigDecimal A_Depreciation_Manual_Amount) {
+    set_Value(COLUMNNAME_A_Depreciation_Manual_Amount, A_Depreciation_Manual_Amount);
   }
 
   /**
@@ -403,11 +442,32 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
     return (String) get_Value(COLUMNNAME_A_Depreciation_Manual_Period);
   }
 
+  /**
+   * Set A_Depreciation_Manual_Period.
+   *
+   * @param A_Depreciation_Manual_Period A_Depreciation_Manual_Period
+   */
+  public void setA_Depreciation_Manual_Period(String A_Depreciation_Manual_Period) {
+
+    set_Value(COLUMNNAME_A_Depreciation_Manual_Period, A_Depreciation_Manual_Period);
+  }
+
   public org.compiere.model.I_A_Depreciation_Table_Header getA_Depreciation_Table_Header()
       throws RuntimeException {
     return (org.compiere.model.I_A_Depreciation_Table_Header)
         MTable.get(getCtx(), org.compiere.model.I_A_Depreciation_Table_Header.Table_Name)
             .getPO(getA_Depreciation_Table_Header_ID(), get_TrxName());
+  }
+
+  /**
+   * Get A_Depreciation_Table_Header_ID.
+   *
+   * @return A_Depreciation_Table_Header_ID
+   */
+  public int getA_Depreciation_Table_Header_ID() {
+    Integer ii = (Integer) get_Value(COLUMNNAME_A_Depreciation_Table_Header_ID);
+    if (ii == null) return 0;
+    return ii;
   }
 
   /**
@@ -425,14 +485,14 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
   }
 
   /**
-   * Get A_Depreciation_Table_Header_ID.
+   * Get Variable Percent.
    *
-   * @return A_Depreciation_Table_Header_ID
+   * @return Variable Percent
    */
-  public int getA_Depreciation_Table_Header_ID() {
-    Integer ii = (Integer) get_Value(COLUMNNAME_A_Depreciation_Table_Header_ID);
-    if (ii == null) return 0;
-    return ii;
+  public BigDecimal getA_Depreciation_Variable_Perc() {
+    BigDecimal bd = (BigDecimal) get_Value(COLUMNNAME_A_Depreciation_Variable_Perc);
+    if (bd == null) return Env.ZERO;
+    return bd;
   }
 
   /**
@@ -444,30 +504,10 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
     set_Value(COLUMNNAME_A_Depreciation_Variable_Perc, A_Depreciation_Variable_Perc);
   }
 
-  /**
-   * Get Variable Percent.
-   *
-   * @return Variable Percent
-   */
-  public BigDecimal getA_Depreciation_Variable_Perc() {
-    BigDecimal bd = (BigDecimal) get_Value(COLUMNNAME_A_Depreciation_Variable_Perc);
-    if (bd == null) return Env.ZERO;
-    return bd;
-  }
-
   public I_C_ValidCombination getA_Disposal_L() throws RuntimeException {
     return (I_C_ValidCombination)
         MTable.get(getCtx(), I_C_ValidCombination.Table_Name)
             .getPO(getA_Disposal_Loss(), get_TrxName());
-  }
-
-  /**
-   * Set Loss on Disposal.
-   *
-   * @param A_Disposal_Loss Loss on Disposal
-   */
-  public void setA_Disposal_Loss(int A_Disposal_Loss) {
-    set_Value(COLUMNNAME_A_Disposal_Loss, Integer.valueOf(A_Disposal_Loss));
   }
 
   /**
@@ -481,19 +521,19 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
     return ii;
   }
 
+  /**
+   * Set Loss on Disposal.
+   *
+   * @param A_Disposal_Loss Loss on Disposal
+   */
+  public void setA_Disposal_Loss(int A_Disposal_Loss) {
+    set_Value(COLUMNNAME_A_Disposal_Loss, Integer.valueOf(A_Disposal_Loss));
+  }
+
   public I_C_ValidCombination getA_Disposal_Loss_A() throws RuntimeException {
     return (I_C_ValidCombination)
         MTable.get(getCtx(), I_C_ValidCombination.Table_Name)
             .getPO(getA_Disposal_Loss_Acct(), get_TrxName());
-  }
-
-  /**
-   * Set Disposal Loss Acct.
-   *
-   * @param A_Disposal_Loss_Acct Disposal Loss Acct
-   */
-  public void setA_Disposal_Loss_Acct(int A_Disposal_Loss_Acct) {
-    set_Value(COLUMNNAME_A_Disposal_Loss_Acct, Integer.valueOf(A_Disposal_Loss_Acct));
   }
 
   /**
@@ -507,19 +547,19 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
     return ii;
   }
 
+  /**
+   * Set Disposal Loss Acct.
+   *
+   * @param A_Disposal_Loss_Acct Disposal Loss Acct
+   */
+  public void setA_Disposal_Loss_Acct(int A_Disposal_Loss_Acct) {
+    set_Value(COLUMNNAME_A_Disposal_Loss_Acct, Integer.valueOf(A_Disposal_Loss_Acct));
+  }
+
   public I_C_ValidCombination getA_Disposal_Reve() throws RuntimeException {
     return (I_C_ValidCombination)
         MTable.get(getCtx(), I_C_ValidCombination.Table_Name)
             .getPO(getA_Disposal_Revenue(), get_TrxName());
-  }
-
-  /**
-   * Set Disposal Revenue.
-   *
-   * @param A_Disposal_Revenue Disposal Revenue
-   */
-  public void setA_Disposal_Revenue(int A_Disposal_Revenue) {
-    set_Value(COLUMNNAME_A_Disposal_Revenue, Integer.valueOf(A_Disposal_Revenue));
   }
 
   /**
@@ -533,19 +573,19 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
     return ii;
   }
 
+  /**
+   * Set Disposal Revenue.
+   *
+   * @param A_Disposal_Revenue Disposal Revenue
+   */
+  public void setA_Disposal_Revenue(int A_Disposal_Revenue) {
+    set_Value(COLUMNNAME_A_Disposal_Revenue, Integer.valueOf(A_Disposal_Revenue));
+  }
+
   public I_C_ValidCombination getA_Disposal_Revenue_A() throws RuntimeException {
     return (I_C_ValidCombination)
         MTable.get(getCtx(), I_C_ValidCombination.Table_Name)
             .getPO(getA_Disposal_Revenue_Acct(), get_TrxName());
-  }
-
-  /**
-   * Set Disposal Revenue Acct.
-   *
-   * @param A_Disposal_Revenue_Acct Disposal Revenue Acct
-   */
-  public void setA_Disposal_Revenue_Acct(int A_Disposal_Revenue_Acct) {
-    set_Value(COLUMNNAME_A_Disposal_Revenue_Acct, Integer.valueOf(A_Disposal_Revenue_Acct));
   }
 
   /**
@@ -559,20 +599,19 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
     return ii;
   }
 
+  /**
+   * Set Disposal Revenue Acct.
+   *
+   * @param A_Disposal_Revenue_Acct Disposal Revenue Acct
+   */
+  public void setA_Disposal_Revenue_Acct(int A_Disposal_Revenue_Acct) {
+    set_Value(COLUMNNAME_A_Disposal_Revenue_Acct, Integer.valueOf(A_Disposal_Revenue_Acct));
+  }
+
   public org.compiere.model.I_AD_User getAD_User() throws RuntimeException {
     return (org.compiere.model.I_AD_User)
         MTable.get(getCtx(), org.compiere.model.I_AD_User.Table_Name)
             .getPO(getAD_User_ID(), get_TrxName());
-  }
-
-  /**
-   * Set User/Contact.
-   *
-   * @param AD_User_ID User within the system - Internal or Business Partner Contact
-   */
-  public void setAD_User_ID(int AD_User_ID) {
-    if (AD_User_ID < 1) set_Value(COLUMNNAME_AD_User_ID, null);
-    else set_Value(COLUMNNAME_AD_User_ID, Integer.valueOf(AD_User_ID));
   }
 
   /**
@@ -586,20 +625,20 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
     return ii;
   }
 
+  /**
+   * Set User/Contact.
+   *
+   * @param AD_User_ID User within the system - Internal or Business Partner Contact
+   */
+  public void setAD_User_ID(int AD_User_ID) {
+    if (AD_User_ID < 1) set_Value(COLUMNNAME_AD_User_ID, null);
+    else set_Value(COLUMNNAME_AD_User_ID, Integer.valueOf(AD_User_ID));
+  }
+
   public org.compiere.model.I_A_Asset getA_Parent_Asset() throws RuntimeException {
     return (org.compiere.model.I_A_Asset)
         MTable.get(getCtx(), org.compiere.model.I_A_Asset.Table_Name)
             .getPO(getA_Parent_Asset_ID(), get_TrxName());
-  }
-
-  /**
-   * Set Parent Asset.
-   *
-   * @param A_Parent_Asset_ID Parent Asset
-   */
-  public void setA_Parent_Asset_ID(int A_Parent_Asset_ID) {
-    if (A_Parent_Asset_ID < 1) set_Value(COLUMNNAME_A_Parent_Asset_ID, null);
-    else set_Value(COLUMNNAME_A_Parent_Asset_ID, Integer.valueOf(A_Parent_Asset_ID));
   }
 
   /**
@@ -614,12 +653,13 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
   }
 
   /**
-   * Set A_Period_End.
+   * Set Parent Asset.
    *
-   * @param A_Period_End A_Period_End
+   * @param A_Parent_Asset_ID Parent Asset
    */
-  public void setA_Period_End(int A_Period_End) {
-    set_Value(COLUMNNAME_A_Period_End, Integer.valueOf(A_Period_End));
+  public void setA_Parent_Asset_ID(int A_Parent_Asset_ID) {
+    if (A_Parent_Asset_ID < 1) set_Value(COLUMNNAME_A_Parent_Asset_ID, null);
+    else set_Value(COLUMNNAME_A_Parent_Asset_ID, Integer.valueOf(A_Parent_Asset_ID));
   }
 
   /**
@@ -634,12 +674,12 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
   }
 
   /**
-   * Set A_Period_Start.
+   * Set A_Period_End.
    *
-   * @param A_Period_Start A_Period_Start
+   * @param A_Period_End A_Period_End
    */
-  public void setA_Period_Start(int A_Period_Start) {
-    set_Value(COLUMNNAME_A_Period_Start, Integer.valueOf(A_Period_Start));
+  public void setA_Period_End(int A_Period_End) {
+    set_Value(COLUMNNAME_A_Period_End, Integer.valueOf(A_Period_End));
   }
 
   /**
@@ -654,12 +694,12 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
   }
 
   /**
-   * Set Current Qty.
+   * Set A_Period_Start.
    *
-   * @param A_QTY_Current Current Qty
+   * @param A_Period_Start A_Period_Start
    */
-  public void setA_QTY_Current(BigDecimal A_QTY_Current) {
-    set_Value(COLUMNNAME_A_QTY_Current, A_QTY_Current);
+  public void setA_Period_Start(int A_Period_Start) {
+    set_Value(COLUMNNAME_A_Period_Start, Integer.valueOf(A_Period_Start));
   }
 
   /**
@@ -674,12 +714,12 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
   }
 
   /**
-   * Set A_QTY_Original.
+   * Set Current Qty.
    *
-   * @param A_QTY_Original A_QTY_Original
+   * @param A_QTY_Current Current Qty
    */
-  public void setA_QTY_Original(BigDecimal A_QTY_Original) {
-    set_Value(COLUMNNAME_A_QTY_Original, A_QTY_Original);
+  public void setA_QTY_Current(BigDecimal A_QTY_Current) {
+    set_Value(COLUMNNAME_A_QTY_Current, A_QTY_Current);
   }
 
   /**
@@ -694,12 +734,12 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
   }
 
   /**
-   * Set Revaluation Accumulated Depreciation Offset for Current Year.
+   * Set A_QTY_Original.
    *
-   * @param A_Reval_Accumdep_Offset_Cur Revaluation Accumulated Depreciation Offset for Current Year
+   * @param A_QTY_Original A_QTY_Original
    */
-  public void setA_Reval_Accumdep_Offset_Cur(int A_Reval_Accumdep_Offset_Cur) {
-    set_Value(COLUMNNAME_A_Reval_Accumdep_Offset_Cur, Integer.valueOf(A_Reval_Accumdep_Offset_Cur));
+  public void setA_QTY_Original(BigDecimal A_QTY_Original) {
+    set_Value(COLUMNNAME_A_QTY_Original, A_QTY_Original);
   }
 
   /**
@@ -709,6 +749,26 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
    */
   public int getA_Reval_Accumdep_Offset_Cur() {
     Integer ii = (Integer) get_Value(COLUMNNAME_A_Reval_Accumdep_Offset_Cur);
+    if (ii == null) return 0;
+    return ii;
+  }
+
+  /**
+   * Set Revaluation Accumulated Depreciation Offset for Current Year.
+   *
+   * @param A_Reval_Accumdep_Offset_Cur Revaluation Accumulated Depreciation Offset for Current Year
+   */
+  public void setA_Reval_Accumdep_Offset_Cur(int A_Reval_Accumdep_Offset_Cur) {
+    set_Value(COLUMNNAME_A_Reval_Accumdep_Offset_Cur, Integer.valueOf(A_Reval_Accumdep_Offset_Cur));
+  }
+
+  /**
+   * Get Revaluation Accumulated Depreciation Offset for Prior Year.
+   *
+   * @return Revaluation Accumulated Depreciation Offset for Prior Year
+   */
+  public int getA_Reval_Accumdep_Offset_Prior() {
+    Integer ii = (Integer) get_Value(COLUMNNAME_A_Reval_Accumdep_Offset_Prior);
     if (ii == null) return 0;
     return ii;
   }
@@ -724,12 +784,12 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
   }
 
   /**
-   * Get Revaluation Accumulated Depreciation Offset for Prior Year.
+   * Get A_Reval_Accumdep_Offset_Cur.
    *
-   * @return Revaluation Accumulated Depreciation Offset for Prior Year
+   * @return A_Reval_Accumdep_Offset_Cur
    */
-  public int getA_Reval_Accumdep_Offset_Prior() {
-    Integer ii = (Integer) get_Value(COLUMNNAME_A_Reval_Accumdep_Offset_Prior);
+  public int getA_Reval_Adep_Offset_Cur_Acct() {
+    Integer ii = (Integer) get_Value(COLUMNNAME_A_Reval_Adep_Offset_Cur_Acct);
     if (ii == null) return 0;
     return ii;
   }
@@ -745,12 +805,12 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
   }
 
   /**
-   * Get A_Reval_Accumdep_Offset_Cur.
+   * Get A_Reval_Accumdep_Offset_Prior.
    *
-   * @return A_Reval_Accumdep_Offset_Cur
+   * @return A_Reval_Accumdep_Offset_Prior
    */
-  public int getA_Reval_Adep_Offset_Cur_Acct() {
-    Integer ii = (Integer) get_Value(COLUMNNAME_A_Reval_Adep_Offset_Cur_Acct);
+  public int getA_Reval_Adep_Offset_Prior_Acct() {
+    Integer ii = (Integer) get_Value(COLUMNNAME_A_Reval_Adep_Offset_Prior_Acct);
     if (ii == null) return 0;
     return ii;
   }
@@ -766,35 +826,6 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
   }
 
   /**
-   * Get A_Reval_Accumdep_Offset_Prior.
-   *
-   * @return A_Reval_Accumdep_Offset_Prior
-   */
-  public int getA_Reval_Adep_Offset_Prior_Acct() {
-    Integer ii = (Integer) get_Value(COLUMNNAME_A_Reval_Adep_Offset_Prior_Acct);
-    if (ii == null) return 0;
-    return ii;
-  }
-
-  /** A_Reval_Cal_Method AD_Reference_ID=53259 */
-  public static final int A_REVAL_CAL_METHOD_AD_Reference_ID = 53259;
-  /** Default = DFT */
-  public static final String A_REVAL_CAL_METHOD_Default = "DFT";
-  /** Inception to date = IDF */
-  public static final String A_REVAL_CAL_METHOD_InceptionToDate = "IDF";
-  /** Year Balances = YBF */
-  public static final String A_REVAL_CAL_METHOD_YearBalances = "YBF";
-  /**
-   * Set A_Reval_Cal_Method.
-   *
-   * @param A_Reval_Cal_Method A_Reval_Cal_Method
-   */
-  public void setA_Reval_Cal_Method(String A_Reval_Cal_Method) {
-
-    set_Value(COLUMNNAME_A_Reval_Cal_Method, A_Reval_Cal_Method);
-  }
-
-  /**
    * Get A_Reval_Cal_Method.
    *
    * @return A_Reval_Cal_Method
@@ -804,12 +835,13 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
   }
 
   /**
-   * Set Revaluation Cost Offset for Current Year.
+   * Set A_Reval_Cal_Method.
    *
-   * @param A_Reval_Cost_Offset Revaluation Cost Offset for Current Year
+   * @param A_Reval_Cal_Method A_Reval_Cal_Method
    */
-  public void setA_Reval_Cost_Offset(int A_Reval_Cost_Offset) {
-    set_Value(COLUMNNAME_A_Reval_Cost_Offset, Integer.valueOf(A_Reval_Cost_Offset));
+  public void setA_Reval_Cal_Method(String A_Reval_Cal_Method) {
+
+    set_Value(COLUMNNAME_A_Reval_Cal_Method, A_Reval_Cal_Method);
   }
 
   /**
@@ -824,12 +856,12 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
   }
 
   /**
-   * Set Reval Cost Offset Acct.
+   * Set Revaluation Cost Offset for Current Year.
    *
-   * @param A_Reval_Cost_Offset_Acct Reval Cost Offset Acct
+   * @param A_Reval_Cost_Offset Revaluation Cost Offset for Current Year
    */
-  public void setA_Reval_Cost_Offset_Acct(int A_Reval_Cost_Offset_Acct) {
-    set_Value(COLUMNNAME_A_Reval_Cost_Offset_Acct, Integer.valueOf(A_Reval_Cost_Offset_Acct));
+  public void setA_Reval_Cost_Offset(int A_Reval_Cost_Offset) {
+    set_Value(COLUMNNAME_A_Reval_Cost_Offset, Integer.valueOf(A_Reval_Cost_Offset));
   }
 
   /**
@@ -844,12 +876,12 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
   }
 
   /**
-   * Set Revaluation Cost Offset for Prior Year.
+   * Set Reval Cost Offset Acct.
    *
-   * @param A_Reval_Cost_Offset_Prior Revaluation Cost Offset for Prior Year
+   * @param A_Reval_Cost_Offset_Acct Reval Cost Offset Acct
    */
-  public void setA_Reval_Cost_Offset_Prior(int A_Reval_Cost_Offset_Prior) {
-    set_Value(COLUMNNAME_A_Reval_Cost_Offset_Prior, Integer.valueOf(A_Reval_Cost_Offset_Prior));
+  public void setA_Reval_Cost_Offset_Acct(int A_Reval_Cost_Offset_Acct) {
+    set_Value(COLUMNNAME_A_Reval_Cost_Offset_Acct, Integer.valueOf(A_Reval_Cost_Offset_Acct));
   }
 
   /**
@@ -859,6 +891,26 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
    */
   public int getA_Reval_Cost_Offset_Prior() {
     Integer ii = (Integer) get_Value(COLUMNNAME_A_Reval_Cost_Offset_Prior);
+    if (ii == null) return 0;
+    return ii;
+  }
+
+  /**
+   * Set Revaluation Cost Offset for Prior Year.
+   *
+   * @param A_Reval_Cost_Offset_Prior Revaluation Cost Offset for Prior Year
+   */
+  public void setA_Reval_Cost_Offset_Prior(int A_Reval_Cost_Offset_Prior) {
+    set_Value(COLUMNNAME_A_Reval_Cost_Offset_Prior, Integer.valueOf(A_Reval_Cost_Offset_Prior));
+  }
+
+  /**
+   * Get Reval Cost Offset Prior Acct.
+   *
+   * @return Reval Cost Offset Prior Acct
+   */
+  public int getA_Reval_Cost_Offset_Prior_Acct() {
+    Integer ii = (Integer) get_Value(COLUMNNAME_A_Reval_Cost_Offset_Prior_Acct);
     if (ii == null) return 0;
     return ii;
   }
@@ -874,12 +926,12 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
   }
 
   /**
-   * Get Reval Cost Offset Prior Acct.
+   * Get Revaluation Expense Offs.
    *
-   * @return Reval Cost Offset Prior Acct
+   * @return Revaluation Expense Offs
    */
-  public int getA_Reval_Cost_Offset_Prior_Acct() {
-    Integer ii = (Integer) get_Value(COLUMNNAME_A_Reval_Cost_Offset_Prior_Acct);
+  public int getA_Reval_Depexp_Offset() {
+    Integer ii = (Integer) get_Value(COLUMNNAME_A_Reval_Depexp_Offset);
     if (ii == null) return 0;
     return ii;
   }
@@ -894,12 +946,12 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
   }
 
   /**
-   * Get Revaluation Expense Offs.
+   * Get Reval Depexp Offset Acct.
    *
-   * @return Revaluation Expense Offs
+   * @return Reval Depexp Offset Acct
    */
-  public int getA_Reval_Depexp_Offset() {
-    Integer ii = (Integer) get_Value(COLUMNNAME_A_Reval_Depexp_Offset);
+  public int getA_Reval_Depexp_Offset_Acct() {
+    Integer ii = (Integer) get_Value(COLUMNNAME_A_Reval_Depexp_Offset_Acct);
     if (ii == null) return 0;
     return ii;
   }
@@ -914,26 +966,6 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
   }
 
   /**
-   * Get Reval Depexp Offset Acct.
-   *
-   * @return Reval Depexp Offset Acct
-   */
-  public int getA_Reval_Depexp_Offset_Acct() {
-    Integer ii = (Integer) get_Value(COLUMNNAME_A_Reval_Depexp_Offset_Acct);
-    if (ii == null) return 0;
-    return ii;
-  }
-
-  /**
-   * Set Asset Salvage Value.
-   *
-   * @param A_Salvage_Value Asset Salvage Value
-   */
-  public void setA_Salvage_Value(BigDecimal A_Salvage_Value) {
-    set_Value(COLUMNNAME_A_Salvage_Value, A_Salvage_Value);
-  }
-
-  /**
    * Get Asset Salvage Value.
    *
    * @return Asset Salvage Value
@@ -945,12 +977,12 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
   }
 
   /**
-   * Set Split Percent.
+   * Set Asset Salvage Value.
    *
-   * @param A_Split_Percent Split Percent
+   * @param A_Salvage_Value Asset Salvage Value
    */
-  public void setA_Split_Percent(BigDecimal A_Split_Percent) {
-    set_Value(COLUMNNAME_A_Split_Percent, A_Split_Percent);
+  public void setA_Salvage_Value(BigDecimal A_Salvage_Value) {
+    set_Value(COLUMNNAME_A_Salvage_Value, A_Salvage_Value);
   }
 
   /**
@@ -965,12 +997,12 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
   }
 
   /**
-   * Set AssetAccumDepreciationAmt.
+   * Set Split Percent.
    *
-   * @param AssetAccumDepreciationAmt AssetAccumDepreciationAmt
+   * @param A_Split_Percent Split Percent
    */
-  public void setAssetAccumDepreciationAmt(BigDecimal AssetAccumDepreciationAmt) {
-    set_ValueNoCheck(COLUMNNAME_AssetAccumDepreciationAmt, AssetAccumDepreciationAmt);
+  public void setA_Split_Percent(BigDecimal A_Split_Percent) {
+    set_Value(COLUMNNAME_A_Split_Percent, A_Split_Percent);
   }
 
   /**
@@ -985,12 +1017,12 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
   }
 
   /**
-   * Set AssetBookValueAmt.
+   * Set AssetAccumDepreciationAmt.
    *
-   * @param AssetBookValueAmt AssetBookValueAmt
+   * @param AssetAccumDepreciationAmt AssetAccumDepreciationAmt
    */
-  public void setAssetBookValueAmt(BigDecimal AssetBookValueAmt) {
-    set_ValueNoCheck(COLUMNNAME_AssetBookValueAmt, AssetBookValueAmt);
+  public void setAssetAccumDepreciationAmt(BigDecimal AssetAccumDepreciationAmt) {
+    set_ValueNoCheck(COLUMNNAME_AssetAccumDepreciationAmt, AssetAccumDepreciationAmt);
   }
 
   /**
@@ -1005,12 +1037,12 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
   }
 
   /**
-   * Set Asset Depreciation Date.
+   * Set AssetBookValueAmt.
    *
-   * @param AssetDepreciationDate Date of last depreciation
+   * @param AssetBookValueAmt AssetBookValueAmt
    */
-  public void setAssetDepreciationDate(Timestamp AssetDepreciationDate) {
-    set_ValueNoCheck(COLUMNNAME_AssetDepreciationDate, AssetDepreciationDate);
+  public void setAssetBookValueAmt(BigDecimal AssetBookValueAmt) {
+    set_ValueNoCheck(COLUMNNAME_AssetBookValueAmt, AssetBookValueAmt);
   }
 
   /**
@@ -1023,12 +1055,12 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
   }
 
   /**
-   * Set Asset Disposal Date.
+   * Set Asset Depreciation Date.
    *
-   * @param AssetDisposalDate Date when the asset is/was disposed
+   * @param AssetDepreciationDate Date of last depreciation
    */
-  public void setAssetDisposalDate(Timestamp AssetDisposalDate) {
-    set_Value(COLUMNNAME_AssetDisposalDate, AssetDisposalDate);
+  public void setAssetDepreciationDate(Timestamp AssetDepreciationDate) {
+    set_ValueNoCheck(COLUMNNAME_AssetDepreciationDate, AssetDepreciationDate);
   }
 
   /**
@@ -1041,12 +1073,12 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
   }
 
   /**
-   * Set Market value Amount.
+   * Set Asset Disposal Date.
    *
-   * @param AssetMarketValueAmt Market value of the asset
+   * @param AssetDisposalDate Date when the asset is/was disposed
    */
-  public void setAssetMarketValueAmt(BigDecimal AssetMarketValueAmt) {
-    set_ValueNoCheck(COLUMNNAME_AssetMarketValueAmt, AssetMarketValueAmt);
+  public void setAssetDisposalDate(Timestamp AssetDisposalDate) {
+    set_Value(COLUMNNAME_AssetDisposalDate, AssetDisposalDate);
   }
 
   /**
@@ -1061,12 +1093,12 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
   }
 
   /**
-   * Set In Service Date.
+   * Set Market value Amount.
    *
-   * @param AssetServiceDate Date when Asset was put into service
+   * @param AssetMarketValueAmt Market value of the asset
    */
-  public void setAssetServiceDate(Timestamp AssetServiceDate) {
-    set_ValueNoCheck(COLUMNNAME_AssetServiceDate, AssetServiceDate);
+  public void setAssetMarketValueAmt(BigDecimal AssetMarketValueAmt) {
+    set_ValueNoCheck(COLUMNNAME_AssetMarketValueAmt, AssetMarketValueAmt);
   }
 
   /**
@@ -1079,12 +1111,12 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
   }
 
   /**
-   * Set Asset value.
+   * Set In Service Date.
    *
-   * @param AssetValueAmt Book Value of the asset
+   * @param AssetServiceDate Date when Asset was put into service
    */
-  public void setAssetValueAmt(BigDecimal AssetValueAmt) {
-    set_ValueNoCheck(COLUMNNAME_AssetValueAmt, AssetValueAmt);
+  public void setAssetServiceDate(Timestamp AssetServiceDate) {
+    set_ValueNoCheck(COLUMNNAME_AssetServiceDate, AssetServiceDate);
   }
 
   /**
@@ -1098,20 +1130,19 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
     return bd;
   }
 
+  /**
+   * Set Asset value.
+   *
+   * @param AssetValueAmt Book Value of the asset
+   */
+  public void setAssetValueAmt(BigDecimal AssetValueAmt) {
+    set_ValueNoCheck(COLUMNNAME_AssetValueAmt, AssetValueAmt);
+  }
+
   public org.compiere.model.I_C_AcctSchema getC_AcctSchema() throws RuntimeException {
     return (org.compiere.model.I_C_AcctSchema)
         MTable.get(getCtx(), org.compiere.model.I_C_AcctSchema.Table_Name)
             .getPO(getC_AcctSchema_ID(), get_TrxName());
-  }
-
-  /**
-   * Set Accounting Schema.
-   *
-   * @param C_AcctSchema_ID Rules for accounting
-   */
-  public void setC_AcctSchema_ID(int C_AcctSchema_ID) {
-    if (C_AcctSchema_ID < 1) set_Value(COLUMNNAME_C_AcctSchema_ID, null);
-    else set_Value(COLUMNNAME_C_AcctSchema_ID, Integer.valueOf(C_AcctSchema_ID));
   }
 
   /**
@@ -1125,20 +1156,20 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
     return ii;
   }
 
+  /**
+   * Set Accounting Schema.
+   *
+   * @param C_AcctSchema_ID Rules for accounting
+   */
+  public void setC_AcctSchema_ID(int C_AcctSchema_ID) {
+    if (C_AcctSchema_ID < 1) set_Value(COLUMNNAME_C_AcctSchema_ID, null);
+    else set_Value(COLUMNNAME_C_AcctSchema_ID, Integer.valueOf(C_AcctSchema_ID));
+  }
+
   public org.compiere.model.I_C_BPartner getC_BPartner() throws RuntimeException {
     return (org.compiere.model.I_C_BPartner)
         MTable.get(getCtx(), org.compiere.model.I_C_BPartner.Table_Name)
             .getPO(getC_BPartner_ID(), get_TrxName());
-  }
-
-  /**
-   * Set Business Partner .
-   *
-   * @param C_BPartner_ID Identifies a Business Partner
-   */
-  public void setC_BPartner_ID(int C_BPartner_ID) {
-    if (C_BPartner_ID < 1) set_Value(COLUMNNAME_C_BPartner_ID, null);
-    else set_Value(COLUMNNAME_C_BPartner_ID, Integer.valueOf(C_BPartner_ID));
   }
 
   /**
@@ -1152,20 +1183,20 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
     return ii;
   }
 
+  /**
+   * Set Business Partner .
+   *
+   * @param C_BPartner_ID Identifies a Business Partner
+   */
+  public void setC_BPartner_ID(int C_BPartner_ID) {
+    if (C_BPartner_ID < 1) set_Value(COLUMNNAME_C_BPartner_ID, null);
+    else set_Value(COLUMNNAME_C_BPartner_ID, Integer.valueOf(C_BPartner_ID));
+  }
+
   public org.compiere.model.I_C_BPartner_Location getC_BPartner_Location() throws RuntimeException {
     return (org.compiere.model.I_C_BPartner_Location)
         MTable.get(getCtx(), org.compiere.model.I_C_BPartner_Location.Table_Name)
             .getPO(getC_BPartner_Location_ID(), get_TrxName());
-  }
-
-  /**
-   * Set Partner Location.
-   *
-   * @param C_BPartner_Location_ID Identifies the (ship to) address for this Business Partner
-   */
-  public void setC_BPartner_Location_ID(int C_BPartner_Location_ID) {
-    if (C_BPartner_Location_ID < 1) set_Value(COLUMNNAME_C_BPartner_Location_ID, null);
-    else set_Value(COLUMNNAME_C_BPartner_Location_ID, Integer.valueOf(C_BPartner_Location_ID));
   }
 
   /**
@@ -1180,12 +1211,13 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
   }
 
   /**
-   * Set ChangeAmt.
+   * Set Partner Location.
    *
-   * @param ChangeAmt ChangeAmt
+   * @param C_BPartner_Location_ID Identifies the (ship to) address for this Business Partner
    */
-  public void setChangeAmt(BigDecimal ChangeAmt) {
-    set_ValueNoCheck(COLUMNNAME_ChangeAmt, ChangeAmt);
+  public void setC_BPartner_Location_ID(int C_BPartner_Location_ID) {
+    if (C_BPartner_Location_ID < 1) set_Value(COLUMNNAME_C_BPartner_Location_ID, null);
+    else set_Value(COLUMNNAME_C_BPartner_Location_ID, Integer.valueOf(C_BPartner_Location_ID));
   }
 
   /**
@@ -1200,12 +1232,12 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
   }
 
   /**
-   * Set ChangeDate.
+   * Set ChangeAmt.
    *
-   * @param ChangeDate ChangeDate
+   * @param ChangeAmt ChangeAmt
    */
-  public void setChangeDate(Timestamp ChangeDate) {
-    set_ValueNoCheck(COLUMNNAME_ChangeDate, ChangeDate);
+  public void setChangeAmt(BigDecimal ChangeAmt) {
+    set_ValueNoCheck(COLUMNNAME_ChangeAmt, ChangeAmt);
   }
 
   /**
@@ -1217,44 +1249,13 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
     return (Timestamp) get_Value(COLUMNNAME_ChangeDate);
   }
 
-  /** ChangeType AD_Reference_ID=53273 */
-  public static final int CHANGETYPE_AD_Reference_ID = 53273;
-  /** Addition = ADD */
-  public static final String CHANGETYPE_Addition = "ADD";
-  /** Balance = BAL */
-  public static final String CHANGETYPE_Balance = "BAL";
-  /** Create = CRT */
-  public static final String CHANGETYPE_Create = "CRT";
-  /** Depreciation = DEP */
-  public static final String CHANGETYPE_Depreciation = "DEP";
-  /** Disposal = DIS */
-  public static final String CHANGETYPE_Disposal = "DIS";
-  /** Expense = EXP */
-  public static final String CHANGETYPE_Expense = "EXP";
-  /** Forecast = FOR */
-  public static final String CHANGETYPE_Forecast = "FOR";
-  /** Import = IMP */
-  public static final String CHANGETYPE_Import = "IMP";
-  /** Revaluation = RVL */
-  public static final String CHANGETYPE_Revaluation = "RVL";
-  /** Setup = SET */
-  public static final String CHANGETYPE_Setup = "SET";
-  /** Split = SPL */
-  public static final String CHANGETYPE_Split = "SPL";
-  /** Transfer = TRN */
-  public static final String CHANGETYPE_Transfer = "TRN";
-  /** Update = UPD */
-  public static final String CHANGETYPE_Update = "UPD";
-  /** Usage = USE */
-  public static final String CHANGETYPE_Usage = "USE";
   /**
-   * Set ChangeType.
+   * Set ChangeDate.
    *
-   * @param ChangeType ChangeType
+   * @param ChangeDate ChangeDate
    */
-  public void setChangeType(String ChangeType) {
-
-    set_ValueNoCheck(COLUMNNAME_ChangeType, ChangeType);
+  public void setChangeDate(Timestamp ChangeDate) {
+    set_ValueNoCheck(COLUMNNAME_ChangeDate, ChangeDate);
   }
 
   /**
@@ -1266,19 +1267,19 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
     return (String) get_Value(COLUMNNAME_ChangeType);
   }
 
+  /**
+   * Set ChangeType.
+   *
+   * @param ChangeType ChangeType
+   */
+  public void setChangeType(String ChangeType) {
+
+    set_ValueNoCheck(COLUMNNAME_ChangeType, ChangeType);
+  }
+
   public I_C_Location getC_Location() throws RuntimeException {
     return (I_C_Location)
         MTable.get(getCtx(), I_C_Location.Table_Name).getPO(getC_Location_ID(), get_TrxName());
-  }
-
-  /**
-   * Set Address.
-   *
-   * @param C_Location_ID Location or Address
-   */
-  public void setC_Location_ID(int C_Location_ID) {
-    if (C_Location_ID < 1) set_Value(COLUMNNAME_C_Location_ID, null);
-    else set_Value(COLUMNNAME_C_Location_ID, Integer.valueOf(C_Location_ID));
   }
 
   /**
@@ -1292,19 +1293,20 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
     return ii;
   }
 
+  /**
+   * Set Address.
+   *
+   * @param C_Location_ID Location or Address
+   */
+  public void setC_Location_ID(int C_Location_ID) {
+    if (C_Location_ID < 1) set_Value(COLUMNNAME_C_Location_ID, null);
+    else set_Value(COLUMNNAME_C_Location_ID, Integer.valueOf(C_Location_ID));
+  }
+
   public org.compiere.model.I_A_Depreciation_Convention getConventionT() throws RuntimeException {
     return (org.compiere.model.I_A_Depreciation_Convention)
         MTable.get(getCtx(), org.compiere.model.I_A_Depreciation_Convention.Table_Name)
             .getPO(getConventionType(), get_TrxName());
-  }
-
-  /**
-   * Set ConventionType.
-   *
-   * @param ConventionType ConventionType
-   */
-  public void setConventionType(int ConventionType) {
-    set_Value(COLUMNNAME_ConventionType, Integer.valueOf(ConventionType));
   }
 
   /**
@@ -1318,20 +1320,19 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
     return ii;
   }
 
+  /**
+   * Set ConventionType.
+   *
+   * @param ConventionType ConventionType
+   */
+  public void setConventionType(int ConventionType) {
+    set_Value(COLUMNNAME_ConventionType, Integer.valueOf(ConventionType));
+  }
+
   public I_C_ValidCombination getC_ValidCombination() throws RuntimeException {
     return (I_C_ValidCombination)
         MTable.get(getCtx(), I_C_ValidCombination.Table_Name)
             .getPO(getC_ValidCombination_ID(), get_TrxName());
-  }
-
-  /**
-   * Set Combination.
-   *
-   * @param C_ValidCombination_ID Valid Account Combination
-   */
-  public void setC_ValidCombination_ID(int C_ValidCombination_ID) {
-    if (C_ValidCombination_ID < 1) set_Value(COLUMNNAME_C_ValidCombination_ID, null);
-    else set_Value(COLUMNNAME_C_ValidCombination_ID, Integer.valueOf(C_ValidCombination_ID));
   }
 
   /**
@@ -1346,12 +1347,13 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
   }
 
   /**
-   * Set Account Date.
+   * Set Combination.
    *
-   * @param DateAcct Accounting Date
+   * @param C_ValidCombination_ID Valid Account Combination
    */
-  public void setDateAcct(Timestamp DateAcct) {
-    set_Value(COLUMNNAME_DateAcct, DateAcct);
+  public void setC_ValidCombination_ID(int C_ValidCombination_ID) {
+    if (C_ValidCombination_ID < 1) set_Value(COLUMNNAME_C_ValidCombination_ID, null);
+    else set_Value(COLUMNNAME_C_ValidCombination_ID, Integer.valueOf(C_ValidCombination_ID));
   }
 
   /**
@@ -1363,19 +1365,19 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
     return (Timestamp) get_Value(COLUMNNAME_DateAcct);
   }
 
+  /**
+   * Set Account Date.
+   *
+   * @param DateAcct Accounting Date
+   */
+  public void setDateAcct(Timestamp DateAcct) {
+    set_Value(COLUMNNAME_DateAcct, DateAcct);
+  }
+
   public org.compiere.model.I_A_Depreciation getDepreciationT() throws RuntimeException {
     return (org.compiere.model.I_A_Depreciation)
         MTable.get(getCtx(), org.compiere.model.I_A_Depreciation.Table_Name)
             .getPO(getDepreciationType(), get_TrxName());
-  }
-
-  /**
-   * Set DepreciationType.
-   *
-   * @param DepreciationType DepreciationType
-   */
-  public void setDepreciationType(int DepreciationType) {
-    set_Value(COLUMNNAME_DepreciationType, Integer.valueOf(DepreciationType));
   }
 
   /**
@@ -1387,6 +1389,15 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
     Integer ii = (Integer) get_Value(COLUMNNAME_DepreciationType);
     if (ii == null) return 0;
     return ii;
+  }
+
+  /**
+   * Set DepreciationType.
+   *
+   * @param DepreciationType DepreciationType
+   */
+  public void setDepreciationType(int DepreciationType) {
+    set_Value(COLUMNNAME_DepreciationType, Integer.valueOf(DepreciationType));
   }
 
   /**
@@ -1505,6 +1516,17 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
   }
 
   /**
+   * Get Life use.
+   *
+   * @return Units of use until the asset is not usable anymore
+   */
+  public int getLifeUseUnits() {
+    Integer ii = (Integer) get_Value(COLUMNNAME_LifeUseUnits);
+    if (ii == null) return 0;
+    return ii;
+  }
+
+  /**
    * Set Life use.
    *
    * @param LifeUseUnits Units of use until the asset is not usable anymore
@@ -1514,14 +1536,12 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
   }
 
   /**
-   * Get Life use.
+   * Get Lot No.
    *
-   * @return Units of use until the asset is not usable anymore
+   * @return Lot number (alphanumeric)
    */
-  public int getLifeUseUnits() {
-    Integer ii = (Integer) get_Value(COLUMNNAME_LifeUseUnits);
-    if (ii == null) return 0;
-    return ii;
+  public String getLot() {
+    return (String) get_Value(COLUMNNAME_Lot);
   }
 
   /**
@@ -1534,37 +1554,6 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
   }
 
   /**
-   * Get Lot No.
-   *
-   * @return Lot number (alphanumeric)
-   */
-  public String getLot() {
-    return (String) get_Value(COLUMNNAME_Lot);
-  }
-
-  /** PostingType AD_Reference_ID=125 */
-  public static final int POSTINGTYPE_AD_Reference_ID = 125;
-  /** Actual = A */
-  public static final String POSTINGTYPE_Actual = "A";
-  /** Budget = B */
-  public static final String POSTINGTYPE_Budget = "B";
-  /** Commitment = E */
-  public static final String POSTINGTYPE_Commitment = "E";
-  /** Statistical = S */
-  public static final String POSTINGTYPE_Statistical = "S";
-  /** Reservation = R */
-  public static final String POSTINGTYPE_Reservation = "R";
-  /**
-   * Set PostingType.
-   *
-   * @param PostingType The type of posted amount for the transaction
-   */
-  public void setPostingType(String PostingType) {
-
-    set_Value(COLUMNNAME_PostingType, PostingType);
-  }
-
-  /**
    * Get PostingType.
    *
    * @return The type of posted amount for the transaction
@@ -1574,12 +1563,13 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
   }
 
   /**
-   * Set Serial No.
+   * Set PostingType.
    *
-   * @param SerNo Product Serial Number
+   * @param PostingType The type of posted amount for the transaction
    */
-  public void setSerNo(String SerNo) {
-    set_ValueNoCheck(COLUMNNAME_SerNo, SerNo);
+  public void setPostingType(String PostingType) {
+
+    set_Value(COLUMNNAME_PostingType, PostingType);
   }
 
   /**
@@ -1592,12 +1582,12 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
   }
 
   /**
-   * Set Details.
+   * Set Serial No.
    *
-   * @param TextDetails Details
+   * @param SerNo Product Serial Number
    */
-  public void setTextDetails(String TextDetails) {
-    set_ValueNoCheck(COLUMNNAME_TextDetails, TextDetails);
+  public void setSerNo(String SerNo) {
+    set_ValueNoCheck(COLUMNNAME_SerNo, SerNo);
   }
 
   /**
@@ -1610,12 +1600,12 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
   }
 
   /**
-   * Set Usable Life - Months.
+   * Set Details.
    *
-   * @param UseLifeMonths Months of the usable life of the asset
+   * @param TextDetails Details
    */
-  public void setUseLifeMonths(int UseLifeMonths) {
-    set_ValueNoCheck(COLUMNNAME_UseLifeMonths, Integer.valueOf(UseLifeMonths));
+  public void setTextDetails(String TextDetails) {
+    set_ValueNoCheck(COLUMNNAME_TextDetails, TextDetails);
   }
 
   /**
@@ -1630,12 +1620,12 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
   }
 
   /**
-   * Set Usable Life - Years.
+   * Set Usable Life - Months.
    *
-   * @param UseLifeYears Years of the usable life of the asset
+   * @param UseLifeMonths Months of the usable life of the asset
    */
-  public void setUseLifeYears(int UseLifeYears) {
-    set_ValueNoCheck(COLUMNNAME_UseLifeYears, Integer.valueOf(UseLifeYears));
+  public void setUseLifeMonths(int UseLifeMonths) {
+    set_ValueNoCheck(COLUMNNAME_UseLifeMonths, Integer.valueOf(UseLifeMonths));
   }
 
   /**
@@ -1650,12 +1640,12 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
   }
 
   /**
-   * Set Use units.
+   * Set Usable Life - Years.
    *
-   * @param UseUnits Currently used units of the assets
+   * @param UseLifeYears Years of the usable life of the asset
    */
-  public void setUseUnits(int UseUnits) {
-    set_Value(COLUMNNAME_UseUnits, Integer.valueOf(UseUnits));
+  public void setUseLifeYears(int UseLifeYears) {
+    set_ValueNoCheck(COLUMNNAME_UseLifeYears, Integer.valueOf(UseLifeYears));
   }
 
   /**
@@ -1670,12 +1660,12 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
   }
 
   /**
-   * Set Version No.
+   * Set Use units.
    *
-   * @param VersionNo Version Number
+   * @param UseUnits Currently used units of the assets
    */
-  public void setVersionNo(String VersionNo) {
-    set_ValueNoCheck(COLUMNNAME_VersionNo, VersionNo);
+  public void setUseUnits(int UseUnits) {
+    set_Value(COLUMNNAME_UseUnits, Integer.valueOf(UseUnits));
   }
 
   /**
@@ -1685,6 +1675,15 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
    */
   public String getVersionNo() {
     return (String) get_Value(COLUMNNAME_VersionNo);
+  }
+
+  /**
+   * Set Version No.
+   *
+   * @param VersionNo Version Number
+   */
+  public void setVersionNo(String VersionNo) {
+    set_ValueNoCheck(COLUMNNAME_VersionNo, VersionNo);
   }
 
   @Override

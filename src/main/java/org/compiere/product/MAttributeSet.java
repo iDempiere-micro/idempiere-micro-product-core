@@ -1,10 +1,6 @@
 package org.compiere.product;
 
-import org.compiere.model.I_M_AttributeSet;
-import org.compiere.orm.MColumn;
-import org.compiere.orm.Query;
-import org.idempiere.common.exceptions.DBException;
-import org.idempiere.common.util.CCache;
+import static software.hsharp.core.util.DBKt.*;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,40 +8,36 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
-
-import static software.hsharp.core.util.DBKt.*;
+import org.compiere.model.I_M_AttributeSet;
+import org.compiere.orm.MColumn;
+import org.compiere.orm.Query;
+import org.idempiere.common.exceptions.DBException;
+import org.idempiere.common.util.CCache;
 
 /**
  * Product Attribute Set
  *
  * @author Jorg Janke
- * @version $Id: MAttributeSet.java,v 1.3 2006/07/30 00:51:05 jjanke Exp $
  * @author Teo Sarca, www.arhipac.ro
  *     <li>FR [ 2214883 ] Remove SQL code and Replace for Query
+ * @version $Id: MAttributeSet.java,v 1.3 2006/07/30 00:51:05 jjanke Exp $
  */
 public class MAttributeSet extends X_M_AttributeSet {
   /** */
   private static final long serialVersionUID = -187568054160926817L;
-
-  /**
-   * Get MAttributeSet from Cache
-   *
-   * @param ctx context
-   * @param M_AttributeSet_ID id
-   * @return MAttributeSet
-   */
-  public static MAttributeSet get(Properties ctx, int M_AttributeSet_ID) {
-    Integer key = new Integer(M_AttributeSet_ID);
-    MAttributeSet retValue = (MAttributeSet) s_cache.get(key);
-    if (retValue != null) return retValue;
-    retValue = new MAttributeSet(ctx, M_AttributeSet_ID, null);
-    if (retValue.getId() != 0) s_cache.put(key, retValue);
-    return retValue;
-  } //	get
-
   /** Cache */
   private static CCache<Integer, MAttributeSet> s_cache =
       new CCache<Integer, MAttributeSet>(I_M_AttributeSet.Table_Name, 20);
+  /** Instance Attributes */
+  private MAttribute[] m_instanceAttributes = null;
+  /** Instance Attributes */
+  private MAttribute[] m_productAttributes = null;
+  /** Entry Exclude */
+  private X_M_AttributeSetExclude[] m_excludes = null;
+  /** Lot create Exclude */
+  private X_M_LotCtlExclude[] m_excludeLots = null;
+  /** Serial No create Exclude */
+  private X_M_SerNoCtlExclude[] m_excludeSerNos = null;
 
   /**
    * Standard constructor
@@ -68,7 +60,6 @@ public class MAttributeSet extends X_M_AttributeSet {
       setMandatoryType(X_M_AttributeSet.MANDATORYTYPE_NotMandatory);
     }
   } //	MAttributeSet
-
   /**
    * Load constructor
    *
@@ -80,17 +71,21 @@ public class MAttributeSet extends X_M_AttributeSet {
     super(ctx, rs, trxName);
   } //	MAttributeSet
 
-  /** Instance Attributes */
-  private MAttribute[] m_instanceAttributes = null;
-  /** Instance Attributes */
-  private MAttribute[] m_productAttributes = null;
-
-  /** Entry Exclude */
-  private X_M_AttributeSetExclude[] m_excludes = null;
-  /** Lot create Exclude */
-  private X_M_LotCtlExclude[] m_excludeLots = null;
-  /** Serial No create Exclude */
-  private X_M_SerNoCtlExclude[] m_excludeSerNos = null;
+  /**
+   * Get MAttributeSet from Cache
+   *
+   * @param ctx context
+   * @param M_AttributeSet_ID id
+   * @return MAttributeSet
+   */
+  public static MAttributeSet get(Properties ctx, int M_AttributeSet_ID) {
+    Integer key = new Integer(M_AttributeSet_ID);
+    MAttributeSet retValue = (MAttributeSet) s_cache.get(key);
+    if (retValue != null) return retValue;
+    retValue = new MAttributeSet(ctx, M_AttributeSet_ID, null);
+    if (retValue.getId() != 0) s_cache.put(key, retValue);
+    return retValue;
+  } //	get
 
   /**
    * Get Attribute Array

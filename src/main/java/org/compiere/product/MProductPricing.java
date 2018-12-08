@@ -1,17 +1,16 @@
 package org.compiere.product;
 
-import org.compiere.model.*;
-import org.idempiere.common.util.CLogger;
-import org.idempiere.common.util.Env;
-import org.idempiere.common.util.Trace;
+import static software.hsharp.core.util.DBKt.*;
 
 import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.logging.Level;
-
-import static software.hsharp.core.util.DBKt.*;
+import org.compiere.model.*;
+import org.idempiere.common.util.CLogger;
+import org.idempiere.common.util.Env;
+import org.idempiere.common.util.Trace;
 
 /**
  * Product Price Calculations
@@ -21,11 +20,30 @@ import static software.hsharp.core.util.DBKt.*;
  */
 public class MProductPricing extends AbstractProductPricing {
 
-  private String trxName = null;
+  /** Logger */
+  protected CLogger log = CLogger.getCLogger(getClass());
 
+  private String trxName = null;
+  private int m_M_PriceList_Version_ID = 0;
+  private Timestamp m_PriceDate;
+  /** Precision -1 = no rounding */
+  private int m_precision = -1;
+
+  private boolean m_calculated = false;
+  private boolean m_vendorbreak = false;
+  private boolean m_useVendorBreak;
+  private Boolean m_found = null;
+  private BigDecimal m_PriceList = Env.ZERO;
+  private BigDecimal m_PriceStd = Env.ZERO;
+  private BigDecimal m_PriceLimit = Env.ZERO;
+  private int m_C_Currency_ID = 0;
+  private boolean m_enforcePriceLimit = false;
+  private int m_C_UOM_ID = 0;
+  private int m_M_Product_Category_ID;
+  private boolean m_discountSchema = false;
+  private boolean m_isTaxIncluded = false;
   /** New constructor to be used with the ProductPriceFactories */
   public MProductPricing() {}
-
   /**
    * Old Constructor to keep backward compatibility
    *
@@ -39,7 +57,6 @@ public class MProductPricing extends AbstractProductPricing {
       int M_Product_ID, int C_BPartner_ID, BigDecimal Qty, boolean isSOTrx, String trxName) {
     setInitialValues(M_Product_ID, C_BPartner_ID, Qty, isSOTrx, trxName);
   }
-
   /**
    * Constructor
    *
@@ -69,29 +86,6 @@ public class MProductPricing extends AbstractProductPricing {
             m_C_BPartner_ID);
     m_useVendorBreak = thereAreVendorBreakRecords > 0;
   }
-
-  private int m_M_PriceList_Version_ID = 0;
-  private Timestamp m_PriceDate;
-  /** Precision -1 = no rounding */
-  private int m_precision = -1;
-
-  private boolean m_calculated = false;
-  private boolean m_vendorbreak = false;
-  private boolean m_useVendorBreak;
-  private Boolean m_found = null;
-
-  private BigDecimal m_PriceList = Env.ZERO;
-  private BigDecimal m_PriceStd = Env.ZERO;
-  private BigDecimal m_PriceLimit = Env.ZERO;
-  private int m_C_Currency_ID = 0;
-  private boolean m_enforcePriceLimit = false;
-  private int m_C_UOM_ID = 0;
-  private int m_M_Product_Category_ID;
-  private boolean m_discountSchema = false;
-  private boolean m_isTaxIncluded = false;
-
-  /** Logger */
-  protected CLogger log = CLogger.getCLogger(getClass());
 
   /**
    * Calculate Price
@@ -754,6 +748,7 @@ public class MProductPricing extends AbstractProductPricing {
     if (!m_calculated) calculatePrice();
     return round(m_PriceList);
   }
+
   /**
    * Get Price Std
    *
@@ -763,6 +758,7 @@ public class MProductPricing extends AbstractProductPricing {
     if (!m_calculated) calculatePrice();
     return round(m_PriceStd);
   }
+
   /**
    * Get Price Limit
    *
@@ -772,6 +768,7 @@ public class MProductPricing extends AbstractProductPricing {
     if (!m_calculated) calculatePrice();
     return round(m_PriceLimit);
   }
+
   /**
    * Get Price List Currency
    *
@@ -781,6 +778,7 @@ public class MProductPricing extends AbstractProductPricing {
     if (!m_calculated) calculatePrice();
     return m_C_Currency_ID;
   }
+
   /**
    * Is Price List enforded?
    *

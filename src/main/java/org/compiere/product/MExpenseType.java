@@ -13,6 +13,8 @@ public class MExpenseType extends X_S_ExpenseType {
 
   /** */
   private static final long serialVersionUID = -5721855125106737886L;
+  /** Cached Product */
+  private MProduct m_product = null;
 
   /**
    * Default Constructor
@@ -36,9 +38,6 @@ public class MExpenseType extends X_S_ExpenseType {
     super(ctx, rs, trxName);
   } //	MExpenseType
 
-  /** Cached Product */
-  private MProduct m_product = null;
-
   /**
    * Get Product
    *
@@ -56,9 +55,9 @@ public class MExpenseType extends X_S_ExpenseType {
   /**
    * beforeSave
    *
-   * @see PO#beforeSave(boolean)
    * @param newRecord
    * @return true
+   * @see PO#beforeSave(boolean)
    */
   protected boolean beforeSave(boolean newRecord) {
     if (newRecord) {

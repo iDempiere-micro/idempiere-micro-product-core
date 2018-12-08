@@ -1,9 +1,7 @@
 package org.compiere.product;
 
-import org.compiere.model.I_M_Lot;
-import org.compiere.orm.Query;
-import org.idempiere.common.util.CLogger;
-import org.idempiere.common.util.KeyNamePair;
+import static software.hsharp.core.util.DBKt.close;
+import static software.hsharp.core.util.DBKt.prepareStatement;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,9 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
-
-import static software.hsharp.core.util.DBKt.close;
-import static software.hsharp.core.util.DBKt.prepareStatement;
+import org.compiere.model.I_M_Lot;
+import org.compiere.orm.Query;
+import org.idempiere.common.util.CLogger;
+import org.idempiere.common.util.KeyNamePair;
 
 /**
  * Product Lot
@@ -28,6 +27,44 @@ public class MLot extends X_M_Lot {
   private static final long serialVersionUID = -2238962371935615958L;
   /** Logger */
   private static CLogger s_log = CLogger.getCLogger(MLot.class);
+
+  /**
+   * ************************************************************************ Standard Constructor
+   *
+   * @param ctx context
+   * @param M_Lot_ID ID
+   * @param trxName transaction
+   */
+  public MLot(Properties ctx, int M_Lot_ID, String trxName) {
+    super(ctx, M_Lot_ID, trxName);
+    /** if (M_Lot_ID == 0) { setM_Lot_ID (0); setM_Product_ID (0); setName (null); } */
+  } //	MLot
+
+  /**
+   * Load Constructor
+   *
+   * @param ctx context
+   * @param rs result set
+   * @param trxName transaction
+   */
+  public MLot(Properties ctx, ResultSet rs, String trxName) {
+    super(ctx, rs, trxName);
+  } //	MLot
+
+  /**
+   * Parent Constructor
+   *
+   * @param ctl lot control
+   * @param M_Product_ID product
+   * @param Name name
+   */
+  public MLot(MLotCtl ctl, int M_Product_ID, String Name) {
+    this(ctl.getCtx(), 0, ctl.get_TrxName());
+    setClientOrg(ctl);
+    setM_LotCtl_ID(ctl.getM_LotCtl_ID());
+    setM_Product_ID(M_Product_ID);
+    setName(Name);
+  } //	MLot
 
   /**
    * Get Lots for Product
@@ -96,44 +133,6 @@ public class MLot extends X_M_Lot {
     list.toArray(retValue);
     return retValue;
   } //	getProductLotPairs
-
-  /**
-   * ************************************************************************ Standard Constructor
-   *
-   * @param ctx context
-   * @param M_Lot_ID ID
-   * @param trxName transaction
-   */
-  public MLot(Properties ctx, int M_Lot_ID, String trxName) {
-    super(ctx, M_Lot_ID, trxName);
-    /** if (M_Lot_ID == 0) { setM_Lot_ID (0); setM_Product_ID (0); setName (null); } */
-  } //	MLot
-
-  /**
-   * Load Constructor
-   *
-   * @param ctx context
-   * @param rs result set
-   * @param trxName transaction
-   */
-  public MLot(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
-  } //	MLot
-
-  /**
-   * Parent Constructor
-   *
-   * @param ctl lot control
-   * @param M_Product_ID product
-   * @param Name name
-   */
-  public MLot(MLotCtl ctl, int M_Product_ID, String Name) {
-    this(ctl.getCtx(), 0, ctl.get_TrxName());
-    setClientOrg(ctl);
-    setM_LotCtl_ID(ctl.getM_LotCtl_ID());
-    setM_Product_ID(M_Product_ID);
-    setName(Name);
-  } //	MLot
 
   /**
    * String Representation

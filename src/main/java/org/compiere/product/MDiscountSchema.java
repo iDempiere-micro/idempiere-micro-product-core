@@ -1,10 +1,7 @@
 package org.compiere.product;
 
-import org.compiere.model.I_M_DiscountSchema;
-import org.compiere.orm.TimeUtil;
-import org.idempiere.common.util.CCache;
-import org.idempiere.common.util.Env;
-import org.idempiere.orm.PO;
+import static software.hsharp.core.util.DBKt.close;
+import static software.hsharp.core.util.DBKt.prepareStatement;
 
 import java.math.BigDecimal;
 import java.sql.PreparedStatement;
@@ -12,9 +9,11 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Properties;
 import java.util.logging.Level;
-
-import static software.hsharp.core.util.DBKt.close;
-import static software.hsharp.core.util.DBKt.prepareStatement;
+import org.compiere.model.I_M_DiscountSchema;
+import org.compiere.orm.TimeUtil;
+import org.idempiere.common.util.CCache;
+import org.idempiere.common.util.Env;
+import org.idempiere.orm.PO;
 
 /**
  * Discount Schema Model
@@ -25,26 +24,13 @@ import static software.hsharp.core.util.DBKt.prepareStatement;
 public class MDiscountSchema extends X_M_DiscountSchema {
   /** */
   private static final long serialVersionUID = -3314884382853756019L;
-
-  /**
-   * Get Discount Schema from Cache
-   *
-   * @param ctx context
-   * @param M_DiscountSchema_ID id
-   * @return MDiscountSchema
-   */
-  public static MDiscountSchema get(Properties ctx, int M_DiscountSchema_ID) {
-    Integer key = new Integer(M_DiscountSchema_ID);
-    MDiscountSchema retValue = (MDiscountSchema) s_cache.get(key);
-    if (retValue != null) return retValue;
-    retValue = new MDiscountSchema(ctx, M_DiscountSchema_ID, null);
-    if (retValue.getId() != 0) s_cache.put(key, retValue);
-    return retValue;
-  } //	get
-
   /** Cache */
   private static CCache<Integer, MDiscountSchema> s_cache =
       new CCache<Integer, MDiscountSchema>(I_M_DiscountSchema.Table_Name, 20);
+  /** Breaks */
+  private MDiscountSchemaBreak[] m_breaks = null;
+  /** Lines */
+  private MDiscountSchemaLine[] m_lines = null;
 
   /**
    * ************************************************************************ Standard Constructor
@@ -77,10 +63,21 @@ public class MDiscountSchema extends X_M_DiscountSchema {
     super(ctx, rs, trxName);
   } //	MDiscountSchema
 
-  /** Breaks */
-  private MDiscountSchemaBreak[] m_breaks = null;
-  /** Lines */
-  private MDiscountSchemaLine[] m_lines = null;
+  /**
+   * Get Discount Schema from Cache
+   *
+   * @param ctx context
+   * @param M_DiscountSchema_ID id
+   * @return MDiscountSchema
+   */
+  public static MDiscountSchema get(Properties ctx, int M_DiscountSchema_ID) {
+    Integer key = new Integer(M_DiscountSchema_ID);
+    MDiscountSchema retValue = (MDiscountSchema) s_cache.get(key);
+    if (retValue != null) return retValue;
+    retValue = new MDiscountSchema(ctx, M_DiscountSchema_ID, null);
+    if (retValue.getId() != 0) s_cache.put(key, retValue);
+    return retValue;
+  } //	get
 
   /**
    * Get Breaks

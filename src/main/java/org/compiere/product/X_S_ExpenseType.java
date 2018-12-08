@@ -1,12 +1,11 @@
 package org.compiere.product;
 
+import java.sql.ResultSet;
+import java.util.Properties;
 import org.compiere.model.I_S_ExpenseType;
 import org.compiere.orm.BasePONameValue;
 import org.compiere.orm.MTable;
 import org.idempiere.orm.I_Persistent;
-
-import java.sql.ResultSet;
-import java.util.Properties;
 
 /**
  * Generated Model for S_ExpenseType
@@ -53,16 +52,6 @@ public class X_S_ExpenseType extends BasePONameValue implements I_S_ExpenseType,
   }
 
   /**
-   * Set Tax Category.
-   *
-   * @param C_TaxCategory_ID Tax Category
-   */
-  public void setC_TaxCategory_ID(int C_TaxCategory_ID) {
-    if (C_TaxCategory_ID < 1) set_Value(COLUMNNAME_C_TaxCategory_ID, null);
-    else set_Value(COLUMNNAME_C_TaxCategory_ID, Integer.valueOf(C_TaxCategory_ID));
-  }
-
-  /**
    * Get Tax Category.
    *
    * @return Tax Category
@@ -73,20 +62,20 @@ public class X_S_ExpenseType extends BasePONameValue implements I_S_ExpenseType,
     return ii;
   }
 
+  /**
+   * Set Tax Category.
+   *
+   * @param C_TaxCategory_ID Tax Category
+   */
+  public void setC_TaxCategory_ID(int C_TaxCategory_ID) {
+    if (C_TaxCategory_ID < 1) set_Value(COLUMNNAME_C_TaxCategory_ID, null);
+    else set_Value(COLUMNNAME_C_TaxCategory_ID, Integer.valueOf(C_TaxCategory_ID));
+  }
+
   public org.compiere.model.I_C_UOM getC_UOM() throws RuntimeException {
     return (org.compiere.model.I_C_UOM)
         MTable.get(getCtx(), org.compiere.model.I_C_UOM.Table_Name)
             .getPO(getC_UOM_ID(), get_TrxName());
-  }
-
-  /**
-   * Set UOM.
-   *
-   * @param C_UOM_ID Unit of Measure
-   */
-  public void setC_UOM_ID(int C_UOM_ID) {
-    if (C_UOM_ID < 1) set_Value(COLUMNNAME_C_UOM_ID, null);
-    else set_Value(COLUMNNAME_C_UOM_ID, Integer.valueOf(C_UOM_ID));
   }
 
   /**
@@ -101,12 +90,13 @@ public class X_S_ExpenseType extends BasePONameValue implements I_S_ExpenseType,
   }
 
   /**
-   * Set Description.
+   * Set UOM.
    *
-   * @param Description Optional short description of the record
+   * @param C_UOM_ID Unit of Measure
    */
-  public void setDescription(String Description) {
-    set_Value(COLUMNNAME_Description, Description);
+  public void setC_UOM_ID(int C_UOM_ID) {
+    if (C_UOM_ID < 1) set_Value(COLUMNNAME_C_UOM_ID, null);
+    else set_Value(COLUMNNAME_C_UOM_ID, Integer.valueOf(C_UOM_ID));
   }
 
   /**
@@ -116,6 +106,15 @@ public class X_S_ExpenseType extends BasePONameValue implements I_S_ExpenseType,
    */
   public String getDescription() {
     return (String) get_Value(COLUMNNAME_Description);
+  }
+
+  /**
+   * Set Description.
+   *
+   * @param Description Optional short description of the record
+   */
+  public void setDescription(String Description) {
+    set_Value(COLUMNNAME_Description, Description);
   }
 
   /**
@@ -148,6 +147,17 @@ public class X_S_ExpenseType extends BasePONameValue implements I_S_ExpenseType,
   }
 
   /**
+   * Get Product Category.
+   *
+   * @return Category of a Product
+   */
+  public int getM_Product_Category_ID() {
+    Integer ii = (Integer) get_Value(COLUMNNAME_M_Product_Category_ID);
+    if (ii == null) return 0;
+    return ii;
+  }
+
+  /**
    * Set Product Category.
    *
    * @param M_Product_Category_ID Category of a Product
@@ -158,12 +168,12 @@ public class X_S_ExpenseType extends BasePONameValue implements I_S_ExpenseType,
   }
 
   /**
-   * Get Product Category.
+   * Get Expense Type.
    *
-   * @return Category of a Product
+   * @return Expense report type
    */
-  public int getM_Product_Category_ID() {
-    Integer ii = (Integer) get_Value(COLUMNNAME_M_Product_Category_ID);
+  public int getS_ExpenseType_ID() {
+    Integer ii = (Integer) get_Value(COLUMNNAME_S_ExpenseType_ID);
     if (ii == null) return 0;
     return ii;
   }
@@ -179,14 +189,12 @@ public class X_S_ExpenseType extends BasePONameValue implements I_S_ExpenseType,
   }
 
   /**
-   * Get Expense Type.
+   * Get S_ExpenseType_UU.
    *
-   * @return Expense report type
+   * @return S_ExpenseType_UU
    */
-  public int getS_ExpenseType_ID() {
-    Integer ii = (Integer) get_Value(COLUMNNAME_S_ExpenseType_ID);
-    if (ii == null) return 0;
-    return ii;
+  public String getS_ExpenseType_UU() {
+    return (String) get_Value(COLUMNNAME_S_ExpenseType_UU);
   }
 
   /**
@@ -196,15 +204,6 @@ public class X_S_ExpenseType extends BasePONameValue implements I_S_ExpenseType,
    */
   public void setS_ExpenseType_UU(String S_ExpenseType_UU) {
     set_Value(COLUMNNAME_S_ExpenseType_UU, S_ExpenseType_UU);
-  }
-
-  /**
-   * Get S_ExpenseType_UU.
-   *
-   * @return S_ExpenseType_UU
-   */
-  public String getS_ExpenseType_UU() {
-    return (String) get_Value(COLUMNNAME_S_ExpenseType_UU);
   }
 
   @Override

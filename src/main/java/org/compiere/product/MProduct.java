@@ -1,5 +1,8 @@
 package org.compiere.product;
 
+import static software.hsharp.core.util.DBKt.executeUpdate;
+import static software.hsharp.core.util.DBKt.getSQLValueEx;
+
 import java.sql.ResultSet;
 import java.util.List;
 import java.util.Properties;
@@ -14,14 +17,10 @@ import org.idempiere.common.exceptions.AdempiereException;
 import org.idempiere.common.util.CCache;
 import org.idempiere.common.util.Env;
 
-import static software.hsharp.core.util.DBKt.executeUpdate;
-import static software.hsharp.core.util.DBKt.getSQLValueEx;
-
 /**
  * Product Model
  *
  * @author Jorg Janke
- * @version $Id: MProduct.java,v 1.5 2006/07/30 00:51:05 jjanke Exp $
  * @author Teo Sarca, SC ARHIPAC SERVICE SRL
  *     <li>FR [ 1885153 ] Refactor: getMMPolicy code
  *     <li>BF [ 1885414 ] ASI should be always mandatory if CostingLevel is Batch/Lot
@@ -31,10 +30,113 @@ import static software.hsharp.core.util.DBKt.getSQLValueEx;
  *         https://sourceforge.net/tracker/?func=detail&aid=2824795&group_id=176962&atid=879332
  * @author Mark Ostermann (mark_o), metas consult GmbH
  *     <li>BF [ 2814628 ] Wrong evaluation of Product inactive in beforeSave()
+ * @version $Id: MProduct.java,v 1.5 2006/07/30 00:51:05 jjanke Exp $
  */
 public class MProduct extends X_M_Product implements I_M_Product {
   /** */
   private static final long serialVersionUID = 285926961771269935L;
+  /** Cache */
+  private static CCache<Integer, MProduct> s_cache =
+      new CCache<Integer, MProduct>(I_M_Product.Table_Name, 40, 5); // 	5 minutes
+  /** UOM Precision */
+  protected Integer m_precision = null;
+  /** Additional Downloads */
+  private MProductDownload[] m_downloads = null;
+
+  /**
+   * ************************************************************************ Standard Constructor
+   *
+   * @param ctx context
+   * @param M_Product_ID id
+   * @param trxName transaction
+   */
+  public MProduct(Properties ctx, int M_Product_ID, String trxName) {
+    super(ctx, M_Product_ID, trxName);
+    if (M_Product_ID == 0) {
+      //	setValue (null);
+      //	setName (null);
+      //	setM_Product_Category_ID (0);
+      //	setC_TaxCategory_ID (0);
+      //	setC_UOM_ID (0);
+      //
+      setProductType(I_M_Product.PRODUCTTYPE_Item); // I
+      setIsBOM(false); // N
+      setIsInvoicePrintDetails(false);
+      setIsPickListPrintDetails(false);
+      setIsPurchased(true); // Y
+      setIsSold(true); // Y
+      setIsStocked(true); // Y
+      setIsSummary(false);
+      setIsVerified(false); // N
+      setIsWebStoreFeatured(false);
+      setIsSelfService(true);
+      setIsExcludeAutoDelivery(false);
+      setProcessing(false); // N
+      setLowLevel(0);
+    }
+  } //	MProduct
+
+  /**
+   * Load constructor
+   *
+   * @param ctx context
+   * @param rs result set
+   * @param trxName transaction
+   */
+  public MProduct(Properties ctx, ResultSet rs, String trxName) {
+    super(ctx, rs, trxName);
+  } //	MProduct
+
+  /**
+   * Parent Constructor
+   *
+   * @param et parent
+   */
+  public MProduct(MExpenseType et) {
+    this(et.getCtx(), 0, et.get_TrxName());
+    setProductType(I_M_Product.PRODUCTTYPE_ExpenseType);
+    setExpenseType(et);
+  } //	MProduct
+
+  /**
+   * Parent Constructor
+   *
+   * @param resource parent
+   * @param resourceType resource type
+   */
+  public MProduct(MResource resource, MResourceType resourceType) {
+    this(resource.getCtx(), 0, resource.get_TrxName());
+    setAD_Org_ID(resource.getOrgId());
+    setProductType(I_M_Product.PRODUCTTYPE_Resource);
+    setResource(resource);
+    setResource(resourceType);
+  } //	MProduct
+
+  /**
+   * Import Constructor
+   *
+   * @param impP import
+   */
+  public MProduct(X_I_Product impP) {
+    this(impP.getCtx(), 0, impP.get_TrxName());
+    setClientOrg(impP);
+    setUpdatedBy(impP.getUpdatedBy());
+    //
+    setValue(impP.getValue());
+    setName(impP.getName());
+    setDescription(impP.getDescription());
+    setDocumentNote(impP.getDocumentNote());
+    setHelp(impP.getHelp());
+    setUPC(impP.getUPC());
+    setSKU(impP.getSKU());
+    setC_UOM_ID(impP.getC_UOM_ID());
+    setM_Product_Category_ID(impP.getM_Product_Category_ID());
+    setProductType(impP.getProductType());
+    setImageURL(impP.getImageURL());
+    setDescriptionURL(impP.getDescriptionURL());
+    setVolume(impP.getVolume());
+    setWeight(impP.getWeight());
+  } //	MProduct
 
   /**
    * Get MProduct from Cache
@@ -143,107 +245,29 @@ public class MProduct extends X_M_Product implements I_M_Product {
     return product.isStocked();
   } //	isProductStocked
 
-  /** Cache */
-  private static CCache<Integer, MProduct> s_cache =
-      new CCache<Integer, MProduct>(I_M_Product.Table_Name, 40, 5); // 	5 minutes
-
   /**
-   * ************************************************************************ Standard Constructor
+   * get ProductPricing instance
    *
-   * @param ctx context
-   * @param M_Product_ID id
-   * @param trxName transaction
+   * @return instance of the IProductPricing or null
    */
-  public MProduct(Properties ctx, int M_Product_ID, String trxName) {
-    super(ctx, M_Product_ID, trxName);
-    if (M_Product_ID == 0) {
-      //	setValue (null);
-      //	setName (null);
-      //	setM_Product_Category_ID (0);
-      //	setC_TaxCategory_ID (0);
-      //	setC_UOM_ID (0);
-      //
-      setProductType(I_M_Product.PRODUCTTYPE_Item); // I
-      setIsBOM(false); // N
-      setIsInvoicePrintDetails(false);
-      setIsPickListPrintDetails(false);
-      setIsPurchased(true); // Y
-      setIsSold(true); // Y
-      setIsStocked(true); // Y
-      setIsSummary(false);
-      setIsVerified(false); // N
-      setIsWebStoreFeatured(false);
-      setIsSelfService(true);
-      setIsExcludeAutoDelivery(false);
-      setProcessing(false); // N
-      setLowLevel(0);
+  public static IProductPricing getProductPricing() {
+
+    IServicesHolder<IProductPricingFactory> metaFactory =
+        Service.Companion.locator().list(IProductPricingFactory.class);
+    if (metaFactory != null) {
+      List<IProductPricingFactory> factoryList = metaFactory.getServices();
+      if (factoryList != null) {
+        for (IProductPricingFactory factory : factoryList) {
+          IProductPricing myProductPricing = factory.newProductPricingInstance();
+          if (myProductPricing != null) {
+            return myProductPricing;
+          }
+        }
+      }
     }
-  } //	MProduct
 
-  /**
-   * Load constructor
-   *
-   * @param ctx context
-   * @param rs result set
-   * @param trxName transaction
-   */
-  public MProduct(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
-  } //	MProduct
-
-  /**
-   * Parent Constructor
-   *
-   * @param et parent
-   */
-  public MProduct(MExpenseType et) {
-    this(et.getCtx(), 0, et.get_TrxName());
-    setProductType(I_M_Product.PRODUCTTYPE_ExpenseType);
-    setExpenseType(et);
-  } //	MProduct
-
-  /**
-   * Parent Constructor
-   *
-   * @param resource parent
-   * @param resourceType resource type
-   */
-  public MProduct(MResource resource, MResourceType resourceType) {
-    this(resource.getCtx(), 0, resource.get_TrxName());
-    setAD_Org_ID(resource.getOrgId());
-    setProductType(I_M_Product.PRODUCTTYPE_Resource);
-    setResource(resource);
-    setResource(resourceType);
-  } //	MProduct
-
-  /**
-   * Import Constructor
-   *
-   * @param impP import
-   */
-  public MProduct(X_I_Product impP) {
-    this(impP.getCtx(), 0, impP.get_TrxName());
-    setClientOrg(impP);
-    setUpdatedBy(impP.getUpdatedBy());
-    //
-    setValue(impP.getValue());
-    setName(impP.getName());
-    setDescription(impP.getDescription());
-    setDocumentNote(impP.getDocumentNote());
-    setHelp(impP.getHelp());
-    setUPC(impP.getUPC());
-    setSKU(impP.getSKU());
-    setC_UOM_ID(impP.getC_UOM_ID());
-    setM_Product_Category_ID(impP.getM_Product_Category_ID());
-    setProductType(impP.getProductType());
-    setImageURL(impP.getImageURL());
-    setDescriptionURL(impP.getDescriptionURL());
-    setVolume(impP.getVolume());
-    setWeight(impP.getWeight());
-  } //	MProduct
-
-  /** Additional Downloads */
-  private MProductDownload[] m_downloads = null;
+    return new DefaultProductPricingFactory().newProductPricingInstance();
+  }
 
   /**
    * Set Expense Type
@@ -361,9 +385,6 @@ public class MProduct extends X_M_Product implements I_M_Product {
     //
     return changed;
   } //	setResource
-
-  /** UOM Precision */
-  protected Integer m_precision = null;
 
   /**
    * Get UOM Standard Precision
@@ -677,29 +698,5 @@ public class MProduct extends X_M_Product implements I_M_Product {
     if (!as.isGuaranteeDate()) return false;
 
     return as.isUseGuaranteeDateForMPolicy();
-  }
-
-  /**
-   * get ProductPricing instance
-   *
-   * @return instance of the IProductPricing or null
-   */
-  public static IProductPricing getProductPricing() {
-
-    IServicesHolder<IProductPricingFactory> metaFactory =
-        Service.Companion.locator().list(IProductPricingFactory.class);
-    if (metaFactory != null) {
-      List<IProductPricingFactory> factoryList = metaFactory.getServices();
-      if (factoryList != null) {
-        for (IProductPricingFactory factory : factoryList) {
-          IProductPricing myProductPricing = factory.newProductPricingInstance();
-          if (myProductPricing != null) {
-            return myProductPricing;
-          }
-        }
-      }
-    }
-
-    return new DefaultProductPricingFactory().newProductPricingInstance();
   }
 } //	MProduct

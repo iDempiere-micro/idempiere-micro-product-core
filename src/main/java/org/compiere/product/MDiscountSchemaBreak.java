@@ -1,18 +1,18 @@
 package org.compiere.product;
 
+import static software.hsharp.core.orm.POKt.I_ZERO;
+
 import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.util.Properties;
-
-import static software.hsharp.core.orm.POKt.I_ZERO;
 
 /**
  * Discount Break Schema (Model)
  *
  * @author Jorg Janke
- * @version $Id: MDiscountSchemaBreak.java,v 1.3 2006/07/30 00:51:05 jjanke Exp $
  * @author Teo Sarca, SC ARHIPAC SERVICE SRL
  *     <li>BF [ 2012439 ] DiscountSchemaBreak: setting product & category is allowed
+ * @version $Id: MDiscountSchemaBreak.java,v 1.3 2006/07/30 00:51:05 jjanke Exp $
  */
 public class MDiscountSchemaBreak extends X_M_DiscountSchemaBreak {
 
@@ -72,8 +72,7 @@ public class MDiscountSchemaBreak extends X_M_DiscountSchemaBreak {
   protected boolean beforeSave(boolean newRecord) {
     // If M_Product_ID and M_Product_Category_ID is set, M_Product_ID has priority - teo_sarca [
     // 2012439 ]
-    if (getM_Product_ID() > 0 && getM_Product_Category_ID() > 0)
-      setM_Product_Category_ID(I_ZERO);
+    if (getM_Product_ID() > 0 && getM_Product_Category_ID() > 0) setM_Product_Category_ID(I_ZERO);
     //
     return true;
   }

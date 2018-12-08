@@ -1,11 +1,10 @@
 package org.compiere.product;
 
+import java.sql.ResultSet;
+import java.util.Properties;
 import org.compiere.model.I_M_SerNoCtl;
 import org.compiere.orm.BasePOName;
 import org.idempiere.orm.I_Persistent;
-
-import java.sql.ResultSet;
-import java.util.Properties;
 
 /**
  * Generated Model for M_SerNoCtl
@@ -47,15 +46,6 @@ public class X_M_SerNoCtl extends BasePOName implements I_M_SerNoCtl, I_Persiste
   }
 
   /**
-   * Set Current Next.
-   *
-   * @param CurrentNext The next number to be used
-   */
-  public void setCurrentNext(int CurrentNext) {
-    set_Value(COLUMNNAME_CurrentNext, Integer.valueOf(CurrentNext));
-  }
-
-  /**
    * Get Current Next.
    *
    * @return The next number to be used
@@ -67,12 +57,12 @@ public class X_M_SerNoCtl extends BasePOName implements I_M_SerNoCtl, I_Persiste
   }
 
   /**
-   * Set Description.
+   * Set Current Next.
    *
-   * @param Description Optional short description of the record
+   * @param CurrentNext The next number to be used
    */
-  public void setDescription(String Description) {
-    set_Value(COLUMNNAME_Description, Description);
+  public void setCurrentNext(int CurrentNext) {
+    set_Value(COLUMNNAME_CurrentNext, Integer.valueOf(CurrentNext));
   }
 
   /**
@@ -85,12 +75,12 @@ public class X_M_SerNoCtl extends BasePOName implements I_M_SerNoCtl, I_Persiste
   }
 
   /**
-   * Set Increment.
+   * Set Description.
    *
-   * @param IncrementNo The number to increment the last document number by
+   * @param Description Optional short description of the record
    */
-  public void setIncrementNo(int IncrementNo) {
-    set_Value(COLUMNNAME_IncrementNo, Integer.valueOf(IncrementNo));
+  public void setDescription(String Description) {
+    set_Value(COLUMNNAME_Description, Description);
   }
 
   /**
@@ -100,6 +90,26 @@ public class X_M_SerNoCtl extends BasePOName implements I_M_SerNoCtl, I_Persiste
    */
   public int getIncrementNo() {
     Integer ii = (Integer) get_Value(COLUMNNAME_IncrementNo);
+    if (ii == null) return 0;
+    return ii;
+  }
+
+  /**
+   * Set Increment.
+   *
+   * @param IncrementNo The number to increment the last document number by
+   */
+  public void setIncrementNo(int IncrementNo) {
+    set_Value(COLUMNNAME_IncrementNo, Integer.valueOf(IncrementNo));
+  }
+
+  /**
+   * Get Serial No Control.
+   *
+   * @return Product Serial Number Control
+   */
+  public int getM_SerNoCtl_ID() {
+    Integer ii = (Integer) get_Value(COLUMNNAME_M_SerNoCtl_ID);
     if (ii == null) return 0;
     return ii;
   }
@@ -115,14 +125,12 @@ public class X_M_SerNoCtl extends BasePOName implements I_M_SerNoCtl, I_Persiste
   }
 
   /**
-   * Get Serial No Control.
+   * Get M_SerNoCtl_UU.
    *
-   * @return Product Serial Number Control
+   * @return M_SerNoCtl_UU
    */
-  public int getM_SerNoCtl_ID() {
-    Integer ii = (Integer) get_Value(COLUMNNAME_M_SerNoCtl_ID);
-    if (ii == null) return 0;
-    return ii;
+  public String getM_SerNoCtl_UU() {
+    return (String) get_Value(COLUMNNAME_M_SerNoCtl_UU);
   }
 
   /**
@@ -135,24 +143,6 @@ public class X_M_SerNoCtl extends BasePOName implements I_M_SerNoCtl, I_Persiste
   }
 
   /**
-   * Get M_SerNoCtl_UU.
-   *
-   * @return M_SerNoCtl_UU
-   */
-  public String getM_SerNoCtl_UU() {
-    return (String) get_Value(COLUMNNAME_M_SerNoCtl_UU);
-  }
-
-  /**
-   * Set Prefix.
-   *
-   * @param Prefix Prefix before the sequence number
-   */
-  public void setPrefix(String Prefix) {
-    set_Value(COLUMNNAME_Prefix, Prefix);
-  }
-
-  /**
    * Get Prefix.
    *
    * @return Prefix before the sequence number
@@ -162,12 +152,12 @@ public class X_M_SerNoCtl extends BasePOName implements I_M_SerNoCtl, I_Persiste
   }
 
   /**
-   * Set Start No.
+   * Set Prefix.
    *
-   * @param StartNo Starting number/position
+   * @param Prefix Prefix before the sequence number
    */
-  public void setStartNo(int StartNo) {
-    set_Value(COLUMNNAME_StartNo, Integer.valueOf(StartNo));
+  public void setPrefix(String Prefix) {
+    set_Value(COLUMNNAME_Prefix, Prefix);
   }
 
   /**
@@ -182,12 +172,12 @@ public class X_M_SerNoCtl extends BasePOName implements I_M_SerNoCtl, I_Persiste
   }
 
   /**
-   * Set Suffix.
+   * Set Start No.
    *
-   * @param Suffix Suffix after the number
+   * @param StartNo Starting number/position
    */
-  public void setSuffix(String Suffix) {
-    set_Value(COLUMNNAME_Suffix, Suffix);
+  public void setStartNo(int StartNo) {
+    set_Value(COLUMNNAME_StartNo, Integer.valueOf(StartNo));
   }
 
   /**
@@ -197,6 +187,15 @@ public class X_M_SerNoCtl extends BasePOName implements I_M_SerNoCtl, I_Persiste
    */
   public String getSuffix() {
     return (String) get_Value(COLUMNNAME_Suffix);
+  }
+
+  /**
+   * Set Suffix.
+   *
+   * @param Suffix Suffix after the number
+   */
+  public void setSuffix(String Suffix) {
+    set_Value(COLUMNNAME_Suffix, Suffix);
   }
 
   @Override

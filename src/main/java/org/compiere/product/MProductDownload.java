@@ -1,7 +1,5 @@
 package org.compiere.product;
 
-import org.idempiere.common.util.CLogger;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -9,13 +7,14 @@ import java.net.URI;
 import java.sql.ResultSet;
 import java.util.Properties;
 import java.util.logging.Level;
+import org.idempiere.common.util.CLogger;
 
 /**
  * Product Download Model
  *
  * @author Jorg Janke
- * @version $Id: MProductDownload.java,v 1.2 2006/07/30 00:51:03 jjanke Exp $
  * @author Michael Judd BF [ 2736995 ] - toURL() in java.io.File has been deprecated
+ * @version $Id: MProductDownload.java,v 1.2 2006/07/30 00:51:03 jjanke Exp $
  */
 public class MProductDownload extends X_M_ProductDownload {
   /** */

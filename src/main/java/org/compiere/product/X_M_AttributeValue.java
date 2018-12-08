@@ -1,12 +1,11 @@
 package org.compiere.product;
 
+import java.sql.ResultSet;
+import java.util.Properties;
 import org.compiere.model.I_M_AttributeValue;
 import org.compiere.orm.BasePONameValue;
 import org.compiere.orm.MTable;
 import org.idempiere.orm.I_Persistent;
-
-import java.sql.ResultSet;
-import java.util.Properties;
 
 /**
  * Generated Model for M_AttributeValue
@@ -49,21 +48,21 @@ public class X_M_AttributeValue extends BasePONameValue
   }
 
   /**
-   * Set Description.
-   *
-   * @param Description Optional short description of the record
-   */
-  public void setDescription(String Description) {
-    set_Value(COLUMNNAME_Description, Description);
-  }
-
-  /**
    * Get Description.
    *
    * @return Optional short description of the record
    */
   public String getDescription() {
     return (String) get_Value(COLUMNNAME_Description);
+  }
+
+  /**
+   * Set Description.
+   *
+   * @param Description Optional short description of the record
+   */
+  public void setDescription(String Description) {
+    set_Value(COLUMNNAME_Description, Description);
   }
 
   public org.compiere.model.I_M_Attribute getMAttribute() throws RuntimeException {

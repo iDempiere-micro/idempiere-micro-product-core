@@ -1,15 +1,14 @@
 package org.compiere.product;
 
+import java.math.BigDecimal;
+import java.sql.ResultSet;
+import java.util.Properties;
 import org.compiere.model.I_M_Product_BOM;
 import org.compiere.orm.MTable;
 import org.compiere.orm.PO;
 import org.idempiere.common.util.Env;
 import org.idempiere.common.util.KeyNamePair;
 import org.idempiere.orm.I_Persistent;
-
-import java.math.BigDecimal;
-import java.sql.ResultSet;
-import java.util.Properties;
 
 /**
  * Generated Model for M_Product_BOM
@@ -18,58 +17,6 @@ import java.util.Properties;
  * @version Release 5.1 - $Id$
  */
 public class X_M_Product_BOM extends PO implements I_M_Product_BOM, I_Persistent {
-
-  /** */
-  private static final long serialVersionUID = 20171031L;
-
-  /** Standard Constructor */
-  public X_M_Product_BOM(Properties ctx, int M_Product_BOM_ID, String trxName) {
-    super(ctx, M_Product_BOM_ID, trxName);
-    /**
-     * if (M_Product_BOM_ID == 0) { setBOMQty (Env.ZERO); // 1 setLine (0); // @SQL=SELECT
-     * NVL(MAX(Line),0)+10 AS DefaultValue FROM M_Product_BOM WHERE M_Product_ID=@M_Product_ID@
-     * setM_Product_BOM_ID (0); setM_ProductBOM_ID (0); setM_Product_ID (0); }
-     */
-  }
-
-  /** Load Constructor */
-  public X_M_Product_BOM(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
-  }
-
-  /**
-   * AccessLevel
-   *
-   * @return 3 - Client - Org
-   */
-  protected int getAccessLevel() {
-    return accessLevel.intValue();
-  }
-
-  public String toString() {
-    StringBuffer sb = new StringBuffer("X_M_Product_BOM[").append(getId()).append("]");
-    return sb.toString();
-  }
-
-  /**
-   * Set BOM Quantity.
-   *
-   * @param BOMQty Bill of Materials Quantity
-   */
-  public void setBOMQty(BigDecimal BOMQty) {
-    set_Value(COLUMNNAME_BOMQty, BOMQty);
-  }
-
-  /**
-   * Get BOM Quantity.
-   *
-   * @return Bill of Materials Quantity
-   */
-  public BigDecimal getBOMQty() {
-    BigDecimal bd = (BigDecimal) get_Value(COLUMNNAME_BOMQty);
-    if (bd == null) return Env.ZERO;
-    return bd;
-  }
 
   /** BOMType AD_Reference_ID=279 */
   public static final int BOMTYPE_AD_Reference_ID = 279;
@@ -95,14 +42,54 @@ public class X_M_Product_BOM extends PO implements I_M_Product_BOM, I_Persistent
   public static final String BOMTYPE_InAlternativeGroup8 = "8";
   /** In alternative Group 9 = 9 */
   public static final String BOMTYPE_InAlternativeGroup9 = "9";
-  /**
-   * Set BOM Type.
-   *
-   * @param BOMType Type of BOM
-   */
-  public void setBOMType(String BOMType) {
+  /** */
+  private static final long serialVersionUID = 20171031L;
+  /** Standard Constructor */
+  public X_M_Product_BOM(Properties ctx, int M_Product_BOM_ID, String trxName) {
+    super(ctx, M_Product_BOM_ID, trxName);
+    /**
+     * if (M_Product_BOM_ID == 0) { setBOMQty (Env.ZERO); // 1 setLine (0); // @SQL=SELECT
+     * NVL(MAX(Line),0)+10 AS DefaultValue FROM M_Product_BOM WHERE M_Product_ID=@M_Product_ID@
+     * setM_Product_BOM_ID (0); setM_ProductBOM_ID (0); setM_Product_ID (0); }
+     */
+  }
+  /** Load Constructor */
+  public X_M_Product_BOM(Properties ctx, ResultSet rs, String trxName) {
+    super(ctx, rs, trxName);
+  }
 
-    set_Value(COLUMNNAME_BOMType, BOMType);
+  /**
+   * AccessLevel
+   *
+   * @return 3 - Client - Org
+   */
+  protected int getAccessLevel() {
+    return accessLevel.intValue();
+  }
+
+  public String toString() {
+    StringBuffer sb = new StringBuffer("X_M_Product_BOM[").append(getId()).append("]");
+    return sb.toString();
+  }
+
+  /**
+   * Get BOM Quantity.
+   *
+   * @return Bill of Materials Quantity
+   */
+  public BigDecimal getBOMQty() {
+    BigDecimal bd = (BigDecimal) get_Value(COLUMNNAME_BOMQty);
+    if (bd == null) return Env.ZERO;
+    return bd;
+  }
+
+  /**
+   * Set BOM Quantity.
+   *
+   * @param BOMQty Bill of Materials Quantity
+   */
+  public void setBOMQty(BigDecimal BOMQty) {
+    set_Value(COLUMNNAME_BOMQty, BOMQty);
   }
 
   /**
@@ -115,12 +102,13 @@ public class X_M_Product_BOM extends PO implements I_M_Product_BOM, I_Persistent
   }
 
   /**
-   * Set Standard Cost.
+   * Set BOM Type.
    *
-   * @param CostStandard Standard Costs
+   * @param BOMType Type of BOM
    */
-  public void setCostStandard(BigDecimal CostStandard) {
-    throw new IllegalArgumentException("CostStandard is virtual column");
+  public void setBOMType(String BOMType) {
+
+    set_Value(COLUMNNAME_BOMType, BOMType);
   }
 
   /**
@@ -135,12 +123,12 @@ public class X_M_Product_BOM extends PO implements I_M_Product_BOM, I_Persistent
   }
 
   /**
-   * Set Std Cost Amount Sum.
+   * Set Standard Cost.
    *
-   * @param CostStandardCumAmt Standard Cost Invoice Amount Sum (internal)
+   * @param CostStandard Standard Costs
    */
-  public void setCostStandardCumAmt(BigDecimal CostStandardCumAmt) {
-    throw new IllegalArgumentException("CostStandardCumAmt is virtual column");
+  public void setCostStandard(BigDecimal CostStandard) {
+    throw new IllegalArgumentException("CostStandard is virtual column");
   }
 
   /**
@@ -155,12 +143,12 @@ public class X_M_Product_BOM extends PO implements I_M_Product_BOM, I_Persistent
   }
 
   /**
-   * Set Description.
+   * Set Std Cost Amount Sum.
    *
-   * @param Description Optional short description of the record
+   * @param CostStandardCumAmt Standard Cost Invoice Amount Sum (internal)
    */
-  public void setDescription(String Description) {
-    set_Value(COLUMNNAME_Description, Description);
+  public void setCostStandardCumAmt(BigDecimal CostStandardCumAmt) {
+    throw new IllegalArgumentException("CostStandardCumAmt is virtual column");
   }
 
   /**
@@ -170,6 +158,15 @@ public class X_M_Product_BOM extends PO implements I_M_Product_BOM, I_Persistent
    */
   public String getDescription() {
     return (String) get_Value(COLUMNNAME_Description);
+  }
+
+  /**
+   * Set Description.
+   *
+   * @param Description Optional short description of the record
+   */
+  public void setDescription(String Description) {
+    set_Value(COLUMNNAME_Description, Description);
   }
 
   /**
@@ -196,15 +193,6 @@ public class X_M_Product_BOM extends PO implements I_M_Product_BOM, I_Persistent
   }
 
   /**
-   * Set Line No.
-   *
-   * @param Line Unique line for this document
-   */
-  public void setLine(int Line) {
-    set_Value(COLUMNNAME_Line, Integer.valueOf(Line));
-  }
-
-  /**
    * Get Line No.
    *
    * @return Unique line for this document
@@ -215,19 +203,19 @@ public class X_M_Product_BOM extends PO implements I_M_Product_BOM, I_Persistent
     return ii;
   }
 
+  /**
+   * Set Line No.
+   *
+   * @param Line Unique line for this document
+   */
+  public void setLine(int Line) {
+    set_Value(COLUMNNAME_Line, Integer.valueOf(Line));
+  }
+
   public org.compiere.model.I_M_PartType getM_PartType() throws RuntimeException {
     return (org.compiere.model.I_M_PartType)
         MTable.get(getCtx(), org.compiere.model.I_M_PartType.Table_Name)
             .getPO(getM_PartType_ID(), get_TrxName());
-  }
-
-  /**
-   * Set Part Type.
-   *
-   * @param M_PartType_ID Part Type
-   */
-  public void setM_PartType_ID(int M_PartType_ID) {
-    throw new IllegalArgumentException("M_PartType_ID is virtual column");
   }
 
   /**
@@ -242,13 +230,12 @@ public class X_M_Product_BOM extends PO implements I_M_Product_BOM, I_Persistent
   }
 
   /**
-   * Set BOM Line.
+   * Set Part Type.
    *
-   * @param M_Product_BOM_ID BOM Line
+   * @param M_PartType_ID Part Type
    */
-  public void setM_Product_BOM_ID(int M_Product_BOM_ID) {
-    if (M_Product_BOM_ID < 1) set_ValueNoCheck(COLUMNNAME_M_Product_BOM_ID, null);
-    else set_ValueNoCheck(COLUMNNAME_M_Product_BOM_ID, Integer.valueOf(M_Product_BOM_ID));
+  public void setM_PartType_ID(int M_PartType_ID) {
+    throw new IllegalArgumentException("M_PartType_ID is virtual column");
   }
 
   /**
@@ -262,20 +249,20 @@ public class X_M_Product_BOM extends PO implements I_M_Product_BOM, I_Persistent
     return ii;
   }
 
+  /**
+   * Set BOM Line.
+   *
+   * @param M_Product_BOM_ID BOM Line
+   */
+  public void setM_Product_BOM_ID(int M_Product_BOM_ID) {
+    if (M_Product_BOM_ID < 1) set_ValueNoCheck(COLUMNNAME_M_Product_BOM_ID, null);
+    else set_ValueNoCheck(COLUMNNAME_M_Product_BOM_ID, Integer.valueOf(M_Product_BOM_ID));
+  }
+
   public org.compiere.model.I_M_Product getM_ProductBOM() throws RuntimeException {
     return (org.compiere.model.I_M_Product)
         MTable.get(getCtx(), org.compiere.model.I_M_Product.Table_Name)
             .getPO(getM_ProductBOM_ID(), get_TrxName());
-  }
-
-  /**
-   * Set BOM Product.
-   *
-   * @param M_ProductBOM_ID Bill of Material Component Product
-   */
-  public void setM_ProductBOM_ID(int M_ProductBOM_ID) {
-    if (M_ProductBOM_ID < 1) set_Value(COLUMNNAME_M_ProductBOM_ID, null);
-    else set_Value(COLUMNNAME_M_ProductBOM_ID, Integer.valueOf(M_ProductBOM_ID));
   }
 
   /**
@@ -290,21 +277,22 @@ public class X_M_Product_BOM extends PO implements I_M_Product_BOM, I_Persistent
   }
 
   /**
+   * Set BOM Product.
+   *
+   * @param M_ProductBOM_ID Bill of Material Component Product
+   */
+  public void setM_ProductBOM_ID(int M_ProductBOM_ID) {
+    if (M_ProductBOM_ID < 1) set_Value(COLUMNNAME_M_ProductBOM_ID, null);
+    else set_Value(COLUMNNAME_M_ProductBOM_ID, Integer.valueOf(M_ProductBOM_ID));
+  }
+
+  /**
    * Get Record ID/ColumnName
    *
    * @return ID/ColumnName pair
    */
   public KeyNamePair getKeyNamePair() {
     return new KeyNamePair(getId(), String.valueOf(getM_ProductBOM_ID()));
-  }
-
-  /**
-   * Set M_Product_BOM_UU.
-   *
-   * @param M_Product_BOM_UU M_Product_BOM_UU
-   */
-  public void setM_Product_BOM_UU(String M_Product_BOM_UU) {
-    set_Value(COLUMNNAME_M_Product_BOM_UU, M_Product_BOM_UU);
   }
 
   /**
@@ -316,20 +304,19 @@ public class X_M_Product_BOM extends PO implements I_M_Product_BOM, I_Persistent
     return (String) get_Value(COLUMNNAME_M_Product_BOM_UU);
   }
 
+  /**
+   * Set M_Product_BOM_UU.
+   *
+   * @param M_Product_BOM_UU M_Product_BOM_UU
+   */
+  public void setM_Product_BOM_UU(String M_Product_BOM_UU) {
+    set_Value(COLUMNNAME_M_Product_BOM_UU, M_Product_BOM_UU);
+  }
+
   public org.compiere.model.I_M_Product getM_Product() throws RuntimeException {
     return (org.compiere.model.I_M_Product)
         MTable.get(getCtx(), org.compiere.model.I_M_Product.Table_Name)
             .getPO(getM_Product_ID(), get_TrxName());
-  }
-
-  /**
-   * Set Product.
-   *
-   * @param M_Product_ID Product, Service, Item
-   */
-  public void setM_Product_ID(int M_Product_ID) {
-    if (M_Product_ID < 1) set_ValueNoCheck(COLUMNNAME_M_Product_ID, null);
-    else set_ValueNoCheck(COLUMNNAME_M_Product_ID, Integer.valueOf(M_Product_ID));
   }
 
   /**
@@ -344,12 +331,13 @@ public class X_M_Product_BOM extends PO implements I_M_Product_BOM, I_Persistent
   }
 
   /**
-   * Set Search Key.
+   * Set Product.
    *
-   * @param Value Search key for the record in the format required - must be unique
+   * @param M_Product_ID Product, Service, Item
    */
-  public void setValue(String Value) {
-    throw new IllegalArgumentException("Value is virtual column");
+  public void setM_Product_ID(int M_Product_ID) {
+    if (M_Product_ID < 1) set_ValueNoCheck(COLUMNNAME_M_Product_ID, null);
+    else set_ValueNoCheck(COLUMNNAME_M_Product_ID, Integer.valueOf(M_Product_ID));
   }
 
   /**
@@ -359,6 +347,15 @@ public class X_M_Product_BOM extends PO implements I_M_Product_BOM, I_Persistent
    */
   public String getValue() {
     return (String) get_Value(COLUMNNAME_Value);
+  }
+
+  /**
+   * Set Search Key.
+   *
+   * @param Value Search key for the record in the format required - must be unique
+   */
+  public void setValue(String Value) {
+    throw new IllegalArgumentException("Value is virtual column");
   }
 
   @Override

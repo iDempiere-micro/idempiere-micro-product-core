@@ -1,5 +1,8 @@
 package org.compiere.product;
 
+import java.math.BigDecimal;
+import java.sql.ResultSet;
+import java.util.Properties;
 import org.compiere.model.I_M_AttributeInstance;
 import org.compiere.model.I_M_AttributeSetInstance;
 import org.compiere.orm.MTable;
@@ -7,10 +10,6 @@ import org.compiere.orm.PO;
 import org.idempiere.common.util.Env;
 import org.idempiere.common.util.KeyNamePair;
 import org.idempiere.orm.I_Persistent;
-
-import java.math.BigDecimal;
-import java.sql.ResultSet;
-import java.util.Properties;
 
 /**
  * Generated Model for M_AttributeInstance
@@ -160,15 +159,6 @@ public class X_M_AttributeInstance extends PO implements I_M_AttributeInstance, 
   }
 
   /**
-   * Set Search Key.
-   *
-   * @param Value Search key for the record in the format required - must be unique
-   */
-  public void setValue(String Value) {
-    set_Value(COLUMNNAME_Value, Value);
-  }
-
-  /**
    * Get Search Key.
    *
    * @return Search key for the record in the format required - must be unique
@@ -178,12 +168,12 @@ public class X_M_AttributeInstance extends PO implements I_M_AttributeInstance, 
   }
 
   /**
-   * Set Value.
+   * Set Search Key.
    *
-   * @param ValueNumber Numeric Value
+   * @param Value Search key for the record in the format required - must be unique
    */
-  public void setValueNumber(BigDecimal ValueNumber) {
-    set_Value(COLUMNNAME_ValueNumber, ValueNumber);
+  public void setValue(String Value) {
+    set_Value(COLUMNNAME_Value, Value);
   }
 
   /**
@@ -195,6 +185,15 @@ public class X_M_AttributeInstance extends PO implements I_M_AttributeInstance, 
     BigDecimal bd = (BigDecimal) get_Value(COLUMNNAME_ValueNumber);
     if (bd == null) return Env.ZERO;
     return bd;
+  }
+
+  /**
+   * Set Value.
+   *
+   * @param ValueNumber Numeric Value
+   */
+  public void setValueNumber(BigDecimal ValueNumber) {
+    set_Value(COLUMNNAME_ValueNumber, ValueNumber);
   }
 
   @Override

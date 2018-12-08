@@ -1,12 +1,11 @@
 package org.compiere.product;
 
+import java.sql.ResultSet;
+import java.util.Properties;
 import org.compiere.model.I_A_Asset_Group;
 import org.compiere.orm.BasePOName;
 import org.compiere.orm.MTable;
 import org.idempiere.orm.I_Persistent;
-
-import java.sql.ResultSet;
-import java.util.Properties;
 
 /**
  * Generated Model for A_Asset_Group
@@ -50,6 +49,17 @@ public class X_A_Asset_Group extends BasePOName implements I_A_Asset_Group, I_Pe
   }
 
   /**
+   * Get Asset class.
+   *
+   * @return Asset class
+   */
+  public int getA_Asset_Class_ID() {
+    Integer ii = (Integer) get_Value(COLUMNNAME_A_Asset_Class_ID);
+    if (ii == null) return 0;
+    return ii;
+  }
+
+  /**
    * Set Asset class.
    *
    * @param A_Asset_Class_ID Asset class
@@ -60,12 +70,12 @@ public class X_A_Asset_Group extends BasePOName implements I_A_Asset_Group, I_Pe
   }
 
   /**
-   * Get Asset class.
+   * Get Asset Group.
    *
-   * @return Asset class
+   * @return Group of Assets
    */
-  public int getA_Asset_Class_ID() {
-    Integer ii = (Integer) get_Value(COLUMNNAME_A_Asset_Class_ID);
+  public int getA_Asset_Group_ID() {
+    Integer ii = (Integer) get_Value(COLUMNNAME_A_Asset_Group_ID);
     if (ii == null) return 0;
     return ii;
   }
@@ -81,14 +91,12 @@ public class X_A_Asset_Group extends BasePOName implements I_A_Asset_Group, I_Pe
   }
 
   /**
-   * Get Asset Group.
+   * Get A_Asset_Group_UU.
    *
-   * @return Group of Assets
+   * @return A_Asset_Group_UU
    */
-  public int getA_Asset_Group_ID() {
-    Integer ii = (Integer) get_Value(COLUMNNAME_A_Asset_Group_ID);
-    if (ii == null) return 0;
-    return ii;
+  public String getA_Asset_Group_UU() {
+    return (String) get_Value(COLUMNNAME_A_Asset_Group_UU);
   }
 
   /**
@@ -100,29 +108,10 @@ public class X_A_Asset_Group extends BasePOName implements I_A_Asset_Group, I_Pe
     set_Value(COLUMNNAME_A_Asset_Group_UU, A_Asset_Group_UU);
   }
 
-  /**
-   * Get A_Asset_Group_UU.
-   *
-   * @return A_Asset_Group_UU
-   */
-  public String getA_Asset_Group_UU() {
-    return (String) get_Value(COLUMNNAME_A_Asset_Group_UU);
-  }
-
   public org.compiere.model.I_A_Asset_Type getA_Asset_Type() throws RuntimeException {
     return (org.compiere.model.I_A_Asset_Type)
         MTable.get(getCtx(), org.compiere.model.I_A_Asset_Type.Table_Name)
             .getPO(getA_Asset_Type_ID(), get_TrxName());
-  }
-
-  /**
-   * Set Asset Type.
-   *
-   * @param A_Asset_Type_ID Asset Type
-   */
-  public void setA_Asset_Type_ID(int A_Asset_Type_ID) {
-    if (A_Asset_Type_ID < 1) set_Value(COLUMNNAME_A_Asset_Type_ID, null);
-    else set_Value(COLUMNNAME_A_Asset_Type_ID, Integer.valueOf(A_Asset_Type_ID));
   }
 
   /**
@@ -137,12 +126,13 @@ public class X_A_Asset_Group extends BasePOName implements I_A_Asset_Group, I_Pe
   }
 
   /**
-   * Set Description.
+   * Set Asset Type.
    *
-   * @param Description Optional short description of the record
+   * @param A_Asset_Type_ID Asset Type
    */
-  public void setDescription(String Description) {
-    set_Value(COLUMNNAME_Description, Description);
+  public void setA_Asset_Type_ID(int A_Asset_Type_ID) {
+    if (A_Asset_Type_ID < 1) set_Value(COLUMNNAME_A_Asset_Type_ID, null);
+    else set_Value(COLUMNNAME_A_Asset_Type_ID, Integer.valueOf(A_Asset_Type_ID));
   }
 
   /**
@@ -155,12 +145,12 @@ public class X_A_Asset_Group extends BasePOName implements I_A_Asset_Group, I_Pe
   }
 
   /**
-   * Set Comment/Help.
+   * Set Description.
    *
-   * @param Help Comment or Hint
+   * @param Description Optional short description of the record
    */
-  public void setHelp(String Help) {
-    set_Value(COLUMNNAME_Help, Help);
+  public void setDescription(String Description) {
+    set_Value(COLUMNNAME_Description, Description);
   }
 
   /**
@@ -170,6 +160,15 @@ public class X_A_Asset_Group extends BasePOName implements I_A_Asset_Group, I_Pe
    */
   public String getHelp() {
     return (String) get_Value(COLUMNNAME_Help);
+  }
+
+  /**
+   * Set Comment/Help.
+   *
+   * @param Help Comment or Hint
+   */
+  public void setHelp(String Help) {
+    set_Value(COLUMNNAME_Help, Help);
   }
 
   /**

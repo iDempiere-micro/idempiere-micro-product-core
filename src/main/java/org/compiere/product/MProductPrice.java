@@ -16,30 +16,6 @@ import org.idempiere.common.util.CLogger;
 public class MProductPrice extends X_M_ProductPrice {
   /** */
   private static final long serialVersionUID = 9187555438223385521L;
-
-  /**
-   * Get Product Price
-   *
-   * @param ctx ctx
-   * @param M_PriceList_Version_ID id
-   * @param M_Product_ID id
-   * @param trxName trx
-   * @return product price or null
-   */
-  public static MProductPrice get(
-      Properties ctx, int M_PriceList_Version_ID, int M_Product_ID, String trxName) {
-    final String whereClause =
-        MProductPrice.COLUMNNAME_M_PriceList_Version_ID
-            + "=? AND "
-            + MProductPrice.COLUMNNAME_M_Product_ID
-            + "=?";
-    MProductPrice retValue =
-        new Query(ctx, I_M_ProductPrice.Table_Name, whereClause, trxName)
-            .setParameters(M_PriceList_Version_ID, M_Product_ID)
-            .first();
-    return retValue;
-  } //	get
-
   /** Logger */
   @SuppressWarnings("unused")
   private static CLogger s_log = CLogger.getCLogger(MProductPrice.class);
@@ -125,6 +101,29 @@ public class MProductPrice extends X_M_ProductPrice {
     setM_Product_ID(M_Product_ID);
     setPrices(PriceList, PriceStd, PriceLimit);
   } //	MProductPrice
+
+  /**
+   * Get Product Price
+   *
+   * @param ctx ctx
+   * @param M_PriceList_Version_ID id
+   * @param M_Product_ID id
+   * @param trxName trx
+   * @return product price or null
+   */
+  public static MProductPrice get(
+      Properties ctx, int M_PriceList_Version_ID, int M_Product_ID, String trxName) {
+    final String whereClause =
+        MProductPrice.COLUMNNAME_M_PriceList_Version_ID
+            + "=? AND "
+            + MProductPrice.COLUMNNAME_M_Product_ID
+            + "=?";
+    MProductPrice retValue =
+        new Query(ctx, I_M_ProductPrice.Table_Name, whereClause, trxName)
+            .setParameters(M_PriceList_Version_ID, M_Product_ID)
+            .first();
+    return retValue;
+  } //	get
 
   /**
    * Set Prices

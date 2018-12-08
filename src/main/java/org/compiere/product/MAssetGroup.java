@@ -1,14 +1,13 @@
 package org.compiere.product;
 
+import static software.hsharp.core.util.DBKt.getSQLValueEx;
+
+import java.sql.ResultSet;
+import java.util.Properties;
 import org.compiere.model.I_A_Asset_Group;
 import org.compiere.model.SetGetModel;
 import org.compiere.orm.SetGetUtil;
 import org.idempiere.common.util.CCache;
-
-import java.sql.ResultSet;
-import java.util.Properties;
-
-import static software.hsharp.core.util.DBKt.getSQLValueEx;
 
 /**
  * Asset Group Model

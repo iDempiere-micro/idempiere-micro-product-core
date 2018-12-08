@@ -1,28 +1,84 @@
 package org.compiere.product;
 
+import java.sql.ResultSet;
+import java.sql.Timestamp;
+import java.util.Iterator;
+import java.util.Properties;
+import java.util.logging.Level;
 import org.compiere.model.I_M_PriceList;
 import org.compiere.model.I_M_PriceList_Version;
 import org.compiere.orm.Query;
 import org.idempiere.common.util.CCache;
 import org.idempiere.common.util.Env;
 
-import java.sql.ResultSet;
-import java.sql.Timestamp;
-import java.util.Iterator;
-import java.util.Properties;
-import java.util.logging.Level;
-
 /**
  * Price List Model
  *
  * @author Jorg Janke
- * @version $Id: MPriceList.java,v 1.3 2006/07/30 00:51:03 jjanke Exp $
  * @author Teo Sarca, www.arhipac.ro
  *     <li>BF [ 2073484 ] MPriceList.getDefault is not working correctly
+ * @version $Id: MPriceList.java,v 1.3 2006/07/30 00:51:03 jjanke Exp $
  */
 public class MPriceList extends X_M_PriceList {
   /** */
   private static final long serialVersionUID = -5096935348390226068L;
+  /** Cache of Price Lists */
+  private static CCache<Integer, MPriceList> s_cache =
+      new CCache<Integer, MPriceList>(I_M_PriceList.Table_Name, 5, 5);
+  /** Cached PLV */
+  private MPriceListVersion m_plv = null;
+  /** Cached Precision */
+  private Integer m_precision = null;
+
+  /**
+   * ************************************************************************ Standard Constructor
+   *
+   * @param ctx context
+   * @param M_PriceList_ID id
+   * @param trxName transaction
+   */
+  public MPriceList(Properties ctx, int M_PriceList_ID, String trxName) {
+    super(ctx, M_PriceList_ID, trxName);
+    if (M_PriceList_ID == 0) {
+      setEnforcePriceLimit(false);
+      setIsDefault(false);
+      setIsSOPriceList(false);
+      setIsTaxIncluded(false);
+      setPricePrecision(2); // 2
+      //	setName (null);
+      //	setC_Currency_ID (0);
+    }
+  } //	MPriceList
+
+  /**
+   * Load Constructor
+   *
+   * @param ctx context
+   * @param rs result set
+   * @param trxName transaction
+   */
+  public MPriceList(Properties ctx, ResultSet rs, String trxName) {
+    super(ctx, rs, trxName);
+  } //	MPriceList
+
+  /**
+   * Import Constructor
+   *
+   * @param impPL import
+   */
+  public MPriceList(X_I_PriceList impPL) {
+    this(impPL.getCtx(), 0, impPL.get_TrxName());
+    setClientOrg(impPL);
+    setUpdatedBy(impPL.getUpdatedBy());
+    //
+    setName(impPL.getName());
+    setDescription(impPL.getDescription());
+    setC_Currency_ID(impPL.getC_Currency_ID());
+    setPricePrecision(impPL.getPricePrecision());
+    setIsSOPriceList(impPL.isSOPriceList());
+    setIsTaxIncluded(impPL.isTaxIncluded());
+    setEnforcePriceLimit(impPL.isEnforcePriceLimit());
+  } //	MPriceList
 
   /**
    * Get Price List (cached)
@@ -148,65 +204,6 @@ public class MPriceList extends X_M_PriceList {
     MPriceList pl = MPriceList.get(ctx, M_PriceList_ID, null);
     return pl.getPricePrecision();
   } //	getPricePrecision
-
-  /** Cache of Price Lists */
-  private static CCache<Integer, MPriceList> s_cache =
-      new CCache<Integer, MPriceList>(I_M_PriceList.Table_Name, 5, 5);
-
-  /**
-   * ************************************************************************ Standard Constructor
-   *
-   * @param ctx context
-   * @param M_PriceList_ID id
-   * @param trxName transaction
-   */
-  public MPriceList(Properties ctx, int M_PriceList_ID, String trxName) {
-    super(ctx, M_PriceList_ID, trxName);
-    if (M_PriceList_ID == 0) {
-      setEnforcePriceLimit(false);
-      setIsDefault(false);
-      setIsSOPriceList(false);
-      setIsTaxIncluded(false);
-      setPricePrecision(2); // 2
-      //	setName (null);
-      //	setC_Currency_ID (0);
-    }
-  } //	MPriceList
-
-  /**
-   * Load Constructor
-   *
-   * @param ctx context
-   * @param rs result set
-   * @param trxName transaction
-   */
-  public MPriceList(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
-  } //	MPriceList
-
-  /**
-   * Import Constructor
-   *
-   * @param impPL import
-   */
-  public MPriceList(X_I_PriceList impPL) {
-    this(impPL.getCtx(), 0, impPL.get_TrxName());
-    setClientOrg(impPL);
-    setUpdatedBy(impPL.getUpdatedBy());
-    //
-    setName(impPL.getName());
-    setDescription(impPL.getDescription());
-    setC_Currency_ID(impPL.getC_Currency_ID());
-    setPricePrecision(impPL.getPricePrecision());
-    setIsSOPriceList(impPL.isSOPriceList());
-    setIsTaxIncluded(impPL.isTaxIncluded());
-    setEnforcePriceLimit(impPL.isEnforcePriceLimit());
-  } //	MPriceList
-
-  /** Cached PLV */
-  private MPriceListVersion m_plv = null;
-  /** Cached Precision */
-  private Integer m_precision = null;
 
   /**
    * Get Price List Version

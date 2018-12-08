@@ -14,10 +14,9 @@ import org.idempiere.common.util.Env;
  *         https://sourceforge.net/tracker/?func=detail&aid=2872255&group_id=176962&atid=879335
  */
 public class ProductNotOnPriceListException extends AdempiereException {
+  public static final String AD_Message = "ProductNotOnPriceList";
   /** */
   private static final long serialVersionUID = -3505579126676698444L;
-
-  public static final String AD_Message = "ProductNotOnPriceList";
 
   public ProductNotOnPriceListException(IProductPricing productPricing, int documentLineNo) {
     super(buildMessage(productPricing, documentLineNo));

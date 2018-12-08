@@ -1,18 +1,17 @@
 package org.compiere.product;
 
+import static software.hsharp.core.util.DBKt.getSQLValue;
+
+import java.math.BigDecimal;
+import java.sql.ResultSet;
+import java.util.List;
+import java.util.Properties;
 import org.compiere.model.I_C_UOM;
 import org.compiere.orm.MRole;
 import org.compiere.orm.MTable;
 import org.compiere.orm.Query;
 import org.idempiere.common.util.CCache;
 import org.idempiere.common.util.Env;
-
-import java.math.BigDecimal;
-import java.sql.ResultSet;
-import java.util.List;
-import java.util.Properties;
-
-import static software.hsharp.core.util.DBKt.getSQLValue;
 
 /**
  * Unit Of Measure Model
@@ -21,8 +20,6 @@ import static software.hsharp.core.util.DBKt.getSQLValue;
  * @version $Id: MUOM.java,v 1.3 2006/07/30 00:51:05 jjanke Exp $
  */
 public class MUOM extends X_C_UOM {
-  /** */
-  private static final long serialVersionUID = -7248044516358949324L;
   /** X12 Element 355 Code Second */
   public static final String X12_SECOND = "03";
   /** X12 Element 355 Code Minute */
@@ -41,6 +38,41 @@ public class MUOM extends X_C_UOM {
   public static final String X12_MONTH_WORK = "WM";
   /** X12 Element 355 Code Year */
   public static final String X12_YEAR = "YR";
+  /** */
+  private static final long serialVersionUID = -7248044516358949324L;
+  /** UOM Cache */
+  private static CCache<Integer, MUOM> s_cache = new CCache<Integer, MUOM>(I_C_UOM.Table_Name, 30);
+
+  /**
+   * ************************************************************************ Constructor.
+   *
+   * @param ctx context
+   * @param C_UOM_ID UOM ID
+   * @param trxName transaction
+   */
+  public MUOM(Properties ctx, int C_UOM_ID, String trxName) {
+    super(ctx, C_UOM_ID, trxName);
+    if (C_UOM_ID == 0) {
+      //	setName (null);
+      //	setX12DE355 (null);
+      setIsDefault(false);
+      setStdPrecision(2);
+      setCostingPrecision(6);
+    }
+  } //	UOM
+
+  /** ********************************************************************** */
+
+  /**
+   * Load Constructor.
+   *
+   * @param ctx context
+   * @param rs result set
+   * @param trxName transaction
+   */
+  public MUOM(Properties ctx, ResultSet rs, String trxName) {
+    super(ctx, rs, trxName);
+  } //	UOM
 
   /**
    * Get Minute C_UOM_ID
@@ -68,11 +100,6 @@ public class MUOM extends X_C_UOM {
             + "ORDER BY IsDefault DESC, AD_Client_ID DESC, C_UOM_ID";
     return getSQLValue(null, sql, Env.getADClientID(ctx));
   } //	getDefault_UOM_ID
-
-  /** ********************************************************************** */
-
-  /** UOM Cache */
-  private static CCache<Integer, MUOM> s_cache = new CCache<Integer, MUOM>(I_C_UOM.Table_Name, 30);
 
   /**
    * Get UOM from Cache
@@ -136,35 +163,6 @@ public class MUOM extends X_C_UOM {
   } //	loadUOMs
 
   /**
-   * ************************************************************************ Constructor.
-   *
-   * @param ctx context
-   * @param C_UOM_ID UOM ID
-   * @param trxName transaction
-   */
-  public MUOM(Properties ctx, int C_UOM_ID, String trxName) {
-    super(ctx, C_UOM_ID, trxName);
-    if (C_UOM_ID == 0) {
-      //	setName (null);
-      //	setX12DE355 (null);
-      setIsDefault(false);
-      setStdPrecision(2);
-      setCostingPrecision(6);
-    }
-  } //	UOM
-
-  /**
-   * Load Constructor.
-   *
-   * @param ctx context
-   * @param rs result set
-   * @param trxName transaction
-   */
-  public MUOM(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
-  } //	UOM
-
-  /**
    * String Representation
    *
    * @return info
@@ -197,6 +195,7 @@ public class MUOM extends X_C_UOM {
   public boolean isSecond() {
     return X12_SECOND.equals(getX12DE355());
   }
+
   /**
    * Minute
    *
@@ -205,6 +204,7 @@ public class MUOM extends X_C_UOM {
   public boolean isMinute() {
     return X12_MINUTE.equals(getX12DE355());
   }
+
   /**
    * Hour
    *
@@ -213,6 +213,7 @@ public class MUOM extends X_C_UOM {
   public boolean isHour() {
     return X12_HOUR.equals(getX12DE355());
   }
+
   /**
    * Day
    *
@@ -221,6 +222,7 @@ public class MUOM extends X_C_UOM {
   public boolean isDay() {
     return X12_DAY.equals(getX12DE355());
   }
+
   /**
    * WorkDay
    *
@@ -229,6 +231,7 @@ public class MUOM extends X_C_UOM {
   public boolean isWorkDay() {
     return X12_DAY_WORK.equals(getX12DE355());
   }
+
   /**
    * Week
    *
@@ -237,6 +240,7 @@ public class MUOM extends X_C_UOM {
   public boolean isWeek() {
     return X12_WEEK.equals(getX12DE355());
   }
+
   /**
    * Month
    *
@@ -245,6 +249,7 @@ public class MUOM extends X_C_UOM {
   public boolean isMonth() {
     return X12_MONTH.equals(getX12DE355());
   }
+
   /**
    * WorkMonth
    *
@@ -253,6 +258,7 @@ public class MUOM extends X_C_UOM {
   public boolean isWorkMonth() {
     return X12_MONTH_WORK.equals(getX12DE355());
   }
+
   /**
    * Year
    *

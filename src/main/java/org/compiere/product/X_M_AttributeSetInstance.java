@@ -1,14 +1,13 @@
 package org.compiere.product;
 
+import java.sql.ResultSet;
+import java.sql.Timestamp;
+import java.util.Properties;
 import org.compiere.model.I_M_AttributeSetInstance;
 import org.compiere.orm.MTable;
 import org.compiere.orm.PO;
 import org.idempiere.common.util.KeyNamePair;
 import org.idempiere.orm.I_Persistent;
-
-import java.sql.ResultSet;
-import java.sql.Timestamp;
-import java.util.Properties;
 
 /**
  * Generated Model for M_AttributeSetInstance
@@ -50,15 +49,6 @@ public class X_M_AttributeSetInstance extends PO implements I_M_AttributeSetInst
   }
 
   /**
-   * Set Description.
-   *
-   * @param Description Optional short description of the record
-   */
-  public void setDescription(String Description) {
-    set_Value(COLUMNNAME_Description, Description);
-  }
-
-  /**
    * Get Description.
    *
    * @return Optional short description of the record
@@ -68,12 +58,12 @@ public class X_M_AttributeSetInstance extends PO implements I_M_AttributeSetInst
   }
 
   /**
-   * Set Guarantee Date.
+   * Set Description.
    *
-   * @param GuaranteeDate Date when guarantee expires
+   * @param Description Optional short description of the record
    */
-  public void setGuaranteeDate(Timestamp GuaranteeDate) {
-    set_Value(COLUMNNAME_GuaranteeDate, GuaranteeDate);
+  public void setDescription(String Description) {
+    set_Value(COLUMNNAME_Description, Description);
   }
 
   /**
@@ -86,12 +76,12 @@ public class X_M_AttributeSetInstance extends PO implements I_M_AttributeSetInst
   }
 
   /**
-   * Set Lot No.
+   * Set Guarantee Date.
    *
-   * @param Lot Lot number (alphanumeric)
+   * @param GuaranteeDate Date when guarantee expires
    */
-  public void setLot(String Lot) {
-    set_Value(COLUMNNAME_Lot, Lot);
+  public void setGuaranteeDate(Timestamp GuaranteeDate) {
+    set_Value(COLUMNNAME_GuaranteeDate, GuaranteeDate);
   }
 
   /**
@@ -101,6 +91,15 @@ public class X_M_AttributeSetInstance extends PO implements I_M_AttributeSetInst
    */
   public String getLot() {
     return (String) get_Value(COLUMNNAME_Lot);
+  }
+
+  /**
+   * Set Lot No.
+   *
+   * @param Lot Lot number (alphanumeric)
+   */
+  public void setLot(String Lot) {
+    set_Value(COLUMNNAME_Lot, Lot);
   }
 
   public org.compiere.model.I_M_AttributeSet getMAttributeSet() throws RuntimeException {
@@ -187,16 +186,6 @@ public class X_M_AttributeSetInstance extends PO implements I_M_AttributeSetInst
   }
 
   /**
-   * Set Lot.
-   *
-   * @param M_Lot_ID Product Lot Definition
-   */
-  public void setM_Lot_ID(int M_Lot_ID) {
-    if (M_Lot_ID < 1) set_Value(COLUMNNAME_M_Lot_ID, null);
-    else set_Value(COLUMNNAME_M_Lot_ID, Integer.valueOf(M_Lot_ID));
-  }
-
-  /**
    * Get Lot.
    *
    * @return Product Lot Definition
@@ -208,12 +197,13 @@ public class X_M_AttributeSetInstance extends PO implements I_M_AttributeSetInst
   }
 
   /**
-   * Set Serial No.
+   * Set Lot.
    *
-   * @param SerNo Product Serial Number
+   * @param M_Lot_ID Product Lot Definition
    */
-  public void setSerNo(String SerNo) {
-    set_Value(COLUMNNAME_SerNo, SerNo);
+  public void setM_Lot_ID(int M_Lot_ID) {
+    if (M_Lot_ID < 1) set_Value(COLUMNNAME_M_Lot_ID, null);
+    else set_Value(COLUMNNAME_M_Lot_ID, Integer.valueOf(M_Lot_ID));
   }
 
   /**
@@ -223,6 +213,15 @@ public class X_M_AttributeSetInstance extends PO implements I_M_AttributeSetInst
    */
   public String getSerNo() {
     return (String) get_Value(COLUMNNAME_SerNo);
+  }
+
+  /**
+   * Set Serial No.
+   *
+   * @param SerNo Product Serial Number
+   */
+  public void setSerNo(String SerNo) {
+    set_Value(COLUMNNAME_SerNo, SerNo);
   }
 
   @Override

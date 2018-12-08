@@ -1,12 +1,11 @@
 package org.compiere.product;
 
+import java.sql.ResultSet;
+import java.util.Properties;
 import org.compiere.model.I_M_LotCtlExclude;
 import org.compiere.orm.MTable;
 import org.compiere.orm.PO;
 import org.idempiere.orm.I_Persistent;
-
-import java.sql.ResultSet;
-import java.util.Properties;
 
 /**
  * Generated Model for M_LotCtlExclude
@@ -54,16 +53,6 @@ public class X_M_LotCtlExclude extends PO implements I_M_LotCtlExclude, I_Persis
   }
 
   /**
-   * Set Table.
-   *
-   * @param AD_Table_ID Database Table information
-   */
-  public void setAD_Table_ID(int AD_Table_ID) {
-    if (AD_Table_ID < 1) set_Value(COLUMNNAME_AD_Table_ID, null);
-    else set_Value(COLUMNNAME_AD_Table_ID, Integer.valueOf(AD_Table_ID));
-  }
-
-  /**
    * Get Table.
    *
    * @return Database Table information
@@ -72,6 +61,16 @@ public class X_M_LotCtlExclude extends PO implements I_M_LotCtlExclude, I_Persis
     Integer ii = (Integer) get_Value(COLUMNNAME_AD_Table_ID);
     if (ii == null) return 0;
     return ii;
+  }
+
+  /**
+   * Set Table.
+   *
+   * @param AD_Table_ID Database Table information
+   */
+  public void setAD_Table_ID(int AD_Table_ID) {
+    if (AD_Table_ID < 1) set_Value(COLUMNNAME_AD_Table_ID, null);
+    else set_Value(COLUMNNAME_AD_Table_ID, Integer.valueOf(AD_Table_ID));
   }
 
   /**
@@ -98,16 +97,6 @@ public class X_M_LotCtlExclude extends PO implements I_M_LotCtlExclude, I_Persis
   }
 
   /**
-   * Set Exclude Lot.
-   *
-   * @param M_LotCtlExclude_ID Exclude the ability to create Lots in Attribute Sets
-   */
-  public void setM_LotCtlExclude_ID(int M_LotCtlExclude_ID) {
-    if (M_LotCtlExclude_ID < 1) set_ValueNoCheck(COLUMNNAME_M_LotCtlExclude_ID, null);
-    else set_ValueNoCheck(COLUMNNAME_M_LotCtlExclude_ID, Integer.valueOf(M_LotCtlExclude_ID));
-  }
-
-  /**
    * Get Exclude Lot.
    *
    * @return Exclude the ability to create Lots in Attribute Sets
@@ -119,12 +108,13 @@ public class X_M_LotCtlExclude extends PO implements I_M_LotCtlExclude, I_Persis
   }
 
   /**
-   * Set M_LotCtlExclude_UU.
+   * Set Exclude Lot.
    *
-   * @param M_LotCtlExclude_UU M_LotCtlExclude_UU
+   * @param M_LotCtlExclude_ID Exclude the ability to create Lots in Attribute Sets
    */
-  public void setM_LotCtlExclude_UU(String M_LotCtlExclude_UU) {
-    set_Value(COLUMNNAME_M_LotCtlExclude_UU, M_LotCtlExclude_UU);
+  public void setM_LotCtlExclude_ID(int M_LotCtlExclude_ID) {
+    if (M_LotCtlExclude_ID < 1) set_ValueNoCheck(COLUMNNAME_M_LotCtlExclude_ID, null);
+    else set_ValueNoCheck(COLUMNNAME_M_LotCtlExclude_ID, Integer.valueOf(M_LotCtlExclude_ID));
   }
 
   /**
@@ -136,20 +126,19 @@ public class X_M_LotCtlExclude extends PO implements I_M_LotCtlExclude, I_Persis
     return (String) get_Value(COLUMNNAME_M_LotCtlExclude_UU);
   }
 
+  /**
+   * Set M_LotCtlExclude_UU.
+   *
+   * @param M_LotCtlExclude_UU M_LotCtlExclude_UU
+   */
+  public void setM_LotCtlExclude_UU(String M_LotCtlExclude_UU) {
+    set_Value(COLUMNNAME_M_LotCtlExclude_UU, M_LotCtlExclude_UU);
+  }
+
   public org.compiere.model.I_M_LotCtl getM_LotCtl() throws RuntimeException {
     return (org.compiere.model.I_M_LotCtl)
         MTable.get(getCtx(), org.compiere.model.I_M_LotCtl.Table_Name)
             .getPO(getM_LotCtl_ID(), get_TrxName());
-  }
-
-  /**
-   * Set Lot Control.
-   *
-   * @param M_LotCtl_ID Product Lot Control
-   */
-  public void setM_LotCtl_ID(int M_LotCtl_ID) {
-    if (M_LotCtl_ID < 1) set_ValueNoCheck(COLUMNNAME_M_LotCtl_ID, null);
-    else set_ValueNoCheck(COLUMNNAME_M_LotCtl_ID, Integer.valueOf(M_LotCtl_ID));
   }
 
   /**
@@ -161,6 +150,16 @@ public class X_M_LotCtlExclude extends PO implements I_M_LotCtlExclude, I_Persis
     Integer ii = (Integer) get_Value(COLUMNNAME_M_LotCtl_ID);
     if (ii == null) return 0;
     return ii;
+  }
+
+  /**
+   * Set Lot Control.
+   *
+   * @param M_LotCtl_ID Product Lot Control
+   */
+  public void setM_LotCtl_ID(int M_LotCtl_ID) {
+    if (M_LotCtl_ID < 1) set_ValueNoCheck(COLUMNNAME_M_LotCtl_ID, null);
+    else set_ValueNoCheck(COLUMNNAME_M_LotCtl_ID, Integer.valueOf(M_LotCtl_ID));
   }
 
   @Override

@@ -1,12 +1,11 @@
 package org.compiere.product;
 
+import java.sql.ResultSet;
+import java.util.Properties;
 import org.compiere.model.I_M_SerNoCtlExclude;
 import org.compiere.orm.MTable;
 import org.compiere.orm.PO;
 import org.idempiere.orm.I_Persistent;
-
-import java.sql.ResultSet;
-import java.util.Properties;
 
 /**
  * Generated Model for M_SerNoCtlExclude
@@ -54,16 +53,6 @@ public class X_M_SerNoCtlExclude extends PO implements I_M_SerNoCtlExclude, I_Pe
   }
 
   /**
-   * Set Table.
-   *
-   * @param AD_Table_ID Database Table information
-   */
-  public void setAD_Table_ID(int AD_Table_ID) {
-    if (AD_Table_ID < 1) set_Value(COLUMNNAME_AD_Table_ID, null);
-    else set_Value(COLUMNNAME_AD_Table_ID, Integer.valueOf(AD_Table_ID));
-  }
-
-  /**
    * Get Table.
    *
    * @return Database Table information
@@ -72,6 +61,16 @@ public class X_M_SerNoCtlExclude extends PO implements I_M_SerNoCtlExclude, I_Pe
     Integer ii = (Integer) get_Value(COLUMNNAME_AD_Table_ID);
     if (ii == null) return 0;
     return ii;
+  }
+
+  /**
+   * Set Table.
+   *
+   * @param AD_Table_ID Database Table information
+   */
+  public void setAD_Table_ID(int AD_Table_ID) {
+    if (AD_Table_ID < 1) set_Value(COLUMNNAME_AD_Table_ID, null);
+    else set_Value(COLUMNNAME_AD_Table_ID, Integer.valueOf(AD_Table_ID));
   }
 
   /**
@@ -98,16 +97,6 @@ public class X_M_SerNoCtlExclude extends PO implements I_M_SerNoCtlExclude, I_Pe
   }
 
   /**
-   * Set Exclude SerNo.
-   *
-   * @param M_SerNoCtlExclude_ID Exclude the ability to create Serial Numbers in Attribute Sets
-   */
-  public void setM_SerNoCtlExclude_ID(int M_SerNoCtlExclude_ID) {
-    if (M_SerNoCtlExclude_ID < 1) set_ValueNoCheck(COLUMNNAME_M_SerNoCtlExclude_ID, null);
-    else set_ValueNoCheck(COLUMNNAME_M_SerNoCtlExclude_ID, Integer.valueOf(M_SerNoCtlExclude_ID));
-  }
-
-  /**
    * Get Exclude SerNo.
    *
    * @return Exclude the ability to create Serial Numbers in Attribute Sets
@@ -119,12 +108,13 @@ public class X_M_SerNoCtlExclude extends PO implements I_M_SerNoCtlExclude, I_Pe
   }
 
   /**
-   * Set M_SerNoCtlExclude_UU.
+   * Set Exclude SerNo.
    *
-   * @param M_SerNoCtlExclude_UU M_SerNoCtlExclude_UU
+   * @param M_SerNoCtlExclude_ID Exclude the ability to create Serial Numbers in Attribute Sets
    */
-  public void setM_SerNoCtlExclude_UU(String M_SerNoCtlExclude_UU) {
-    set_Value(COLUMNNAME_M_SerNoCtlExclude_UU, M_SerNoCtlExclude_UU);
+  public void setM_SerNoCtlExclude_ID(int M_SerNoCtlExclude_ID) {
+    if (M_SerNoCtlExclude_ID < 1) set_ValueNoCheck(COLUMNNAME_M_SerNoCtlExclude_ID, null);
+    else set_ValueNoCheck(COLUMNNAME_M_SerNoCtlExclude_ID, Integer.valueOf(M_SerNoCtlExclude_ID));
   }
 
   /**
@@ -136,20 +126,19 @@ public class X_M_SerNoCtlExclude extends PO implements I_M_SerNoCtlExclude, I_Pe
     return (String) get_Value(COLUMNNAME_M_SerNoCtlExclude_UU);
   }
 
+  /**
+   * Set M_SerNoCtlExclude_UU.
+   *
+   * @param M_SerNoCtlExclude_UU M_SerNoCtlExclude_UU
+   */
+  public void setM_SerNoCtlExclude_UU(String M_SerNoCtlExclude_UU) {
+    set_Value(COLUMNNAME_M_SerNoCtlExclude_UU, M_SerNoCtlExclude_UU);
+  }
+
   public org.compiere.model.I_M_SerNoCtl getM_SerNoCtl() throws RuntimeException {
     return (org.compiere.model.I_M_SerNoCtl)
         MTable.get(getCtx(), org.compiere.model.I_M_SerNoCtl.Table_Name)
             .getPO(getM_SerNoCtl_ID(), get_TrxName());
-  }
-
-  /**
-   * Set Serial No Control.
-   *
-   * @param M_SerNoCtl_ID Product Serial Number Control
-   */
-  public void setM_SerNoCtl_ID(int M_SerNoCtl_ID) {
-    if (M_SerNoCtl_ID < 1) set_ValueNoCheck(COLUMNNAME_M_SerNoCtl_ID, null);
-    else set_ValueNoCheck(COLUMNNAME_M_SerNoCtl_ID, Integer.valueOf(M_SerNoCtl_ID));
   }
 
   /**
@@ -161,6 +150,16 @@ public class X_M_SerNoCtlExclude extends PO implements I_M_SerNoCtlExclude, I_Pe
     Integer ii = (Integer) get_Value(COLUMNNAME_M_SerNoCtl_ID);
     if (ii == null) return 0;
     return ii;
+  }
+
+  /**
+   * Set Serial No Control.
+   *
+   * @param M_SerNoCtl_ID Product Serial Number Control
+   */
+  public void setM_SerNoCtl_ID(int M_SerNoCtl_ID) {
+    if (M_SerNoCtl_ID < 1) set_ValueNoCheck(COLUMNNAME_M_SerNoCtl_ID, null);
+    else set_ValueNoCheck(COLUMNNAME_M_SerNoCtl_ID, Integer.valueOf(M_SerNoCtl_ID));
   }
 
   @Override

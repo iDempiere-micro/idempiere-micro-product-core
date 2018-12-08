@@ -1,12 +1,11 @@
 package org.compiere.product;
 
+import java.sql.ResultSet;
+import java.util.Properties;
 import org.compiere.model.I_M_AttributeSetExclude;
 import org.compiere.orm.MTable;
 import org.compiere.orm.PO;
 import org.idempiere.orm.I_Persistent;
-
-import java.sql.ResultSet;
-import java.util.Properties;
 
 /**
  * Generated Model for M_AttributeSetExclude
@@ -53,16 +52,6 @@ public class X_M_AttributeSetExclude extends PO implements I_M_AttributeSetExclu
   }
 
   /**
-   * Set Table.
-   *
-   * @param AD_Table_ID Database Table information
-   */
-  public void setAD_Table_ID(int AD_Table_ID) {
-    if (AD_Table_ID < 1) set_Value(COLUMNNAME_AD_Table_ID, null);
-    else set_Value(COLUMNNAME_AD_Table_ID, AD_Table_ID);
-  }
-
-  /**
    * Get Table.
    *
    * @return Database Table information
@@ -71,6 +60,16 @@ public class X_M_AttributeSetExclude extends PO implements I_M_AttributeSetExclu
     Integer ii = (Integer) get_Value(COLUMNNAME_AD_Table_ID);
     if (ii == null) return 0;
     return ii;
+  }
+
+  /**
+   * Set Table.
+   *
+   * @param AD_Table_ID Database Table information
+   */
+  public void setAD_Table_ID(int AD_Table_ID) {
+    if (AD_Table_ID < 1) set_Value(COLUMNNAME_AD_Table_ID, null);
+    else set_Value(COLUMNNAME_AD_Table_ID, AD_Table_ID);
   }
 
   /**
@@ -103,9 +102,7 @@ public class X_M_AttributeSetExclude extends PO implements I_M_AttributeSetExclu
    */
   public void setM_AttributeSetExclude_ID(int M_AttributeSetExclude_ID) {
     if (M_AttributeSetExclude_ID < 1) set_ValueNoCheck(COLUMNNAME_M_AttributeSetExclude_ID, null);
-    else
-      set_ValueNoCheck(
-          COLUMNNAME_M_AttributeSetExclude_ID, M_AttributeSetExclude_ID);
+    else set_ValueNoCheck(COLUMNNAME_M_AttributeSetExclude_ID, M_AttributeSetExclude_ID);
   }
 
   /**

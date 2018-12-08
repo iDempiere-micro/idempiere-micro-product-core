@@ -1,14 +1,13 @@
 package org.compiere.product;
 
+import java.math.BigDecimal;
+import java.sql.ResultSet;
+import java.util.Properties;
 import org.compiere.model.I_M_ProductPrice;
 import org.compiere.orm.MTable;
 import org.compiere.orm.PO;
 import org.idempiere.common.util.Env;
 import org.idempiere.orm.I_Persistent;
-
-import java.math.BigDecimal;
-import java.sql.ResultSet;
-import java.util.Properties;
 
 /**
  * Generated Model for M_ProductPrice
@@ -56,17 +55,6 @@ public class X_M_ProductPrice extends PO implements I_M_ProductPrice, I_Persiste
   }
 
   /**
-   * Set Price List Version.
-   *
-   * @param M_PriceList_Version_ID Identifies a unique instance of a Price List
-   */
-  public void setM_PriceList_Version_ID(int M_PriceList_Version_ID) {
-    if (M_PriceList_Version_ID < 1) set_ValueNoCheck(COLUMNNAME_M_PriceList_Version_ID, null);
-    else
-      set_ValueNoCheck(COLUMNNAME_M_PriceList_Version_ID, Integer.valueOf(M_PriceList_Version_ID));
-  }
-
-  /**
    * Get Price List Version.
    *
    * @return Identifies a unique instance of a Price List
@@ -77,10 +65,32 @@ public class X_M_ProductPrice extends PO implements I_M_ProductPrice, I_Persiste
     return ii;
   }
 
+  /**
+   * Set Price List Version.
+   *
+   * @param M_PriceList_Version_ID Identifies a unique instance of a Price List
+   */
+  public void setM_PriceList_Version_ID(int M_PriceList_Version_ID) {
+    if (M_PriceList_Version_ID < 1) set_ValueNoCheck(COLUMNNAME_M_PriceList_Version_ID, null);
+    else
+      set_ValueNoCheck(COLUMNNAME_M_PriceList_Version_ID, Integer.valueOf(M_PriceList_Version_ID));
+  }
+
   public org.compiere.model.I_M_Product getM_Product() throws RuntimeException {
     return (org.compiere.model.I_M_Product)
         MTable.get(getCtx(), org.compiere.model.I_M_Product.Table_Name)
             .getPO(getM_Product_ID(), get_TrxName());
+  }
+
+  /**
+   * Get Product.
+   *
+   * @return Product, Service, Item
+   */
+  public int getM_Product_ID() {
+    Integer ii = (Integer) get_Value(COLUMNNAME_M_Product_ID);
+    if (ii == null) return 0;
+    return ii;
   }
 
   /**
@@ -94,12 +104,12 @@ public class X_M_ProductPrice extends PO implements I_M_ProductPrice, I_Persiste
   }
 
   /**
-   * Get Product.
+   * Get Product Price.
    *
-   * @return Product, Service, Item
+   * @return Intersection between a Product and a Price List Version
    */
-  public int getM_Product_ID() {
-    Integer ii = (Integer) get_Value(COLUMNNAME_M_Product_ID);
+  public int getM_ProductPrice_ID() {
+    Integer ii = (Integer) get_Value(COLUMNNAME_M_ProductPrice_ID);
     if (ii == null) return 0;
     return ii;
   }
@@ -115,26 +125,6 @@ public class X_M_ProductPrice extends PO implements I_M_ProductPrice, I_Persiste
   }
 
   /**
-   * Get Product Price.
-   *
-   * @return Intersection between a Product and a Price List Version
-   */
-  public int getM_ProductPrice_ID() {
-    Integer ii = (Integer) get_Value(COLUMNNAME_M_ProductPrice_ID);
-    if (ii == null) return 0;
-    return ii;
-  }
-
-  /**
-   * Set M_ProductPrice_UU.
-   *
-   * @param M_ProductPrice_UU M_ProductPrice_UU
-   */
-  public void setM_ProductPrice_UU(String M_ProductPrice_UU) {
-    set_Value(COLUMNNAME_M_ProductPrice_UU, M_ProductPrice_UU);
-  }
-
-  /**
    * Get M_ProductPrice_UU.
    *
    * @return M_ProductPrice_UU
@@ -144,12 +134,12 @@ public class X_M_ProductPrice extends PO implements I_M_ProductPrice, I_Persiste
   }
 
   /**
-   * Set Limit Price.
+   * Set M_ProductPrice_UU.
    *
-   * @param PriceLimit Lowest price for a product
+   * @param M_ProductPrice_UU M_ProductPrice_UU
    */
-  public void setPriceLimit(BigDecimal PriceLimit) {
-    set_Value(COLUMNNAME_PriceLimit, PriceLimit);
+  public void setM_ProductPrice_UU(String M_ProductPrice_UU) {
+    set_Value(COLUMNNAME_M_ProductPrice_UU, M_ProductPrice_UU);
   }
 
   /**
@@ -164,12 +154,12 @@ public class X_M_ProductPrice extends PO implements I_M_ProductPrice, I_Persiste
   }
 
   /**
-   * Set List Price.
+   * Set Limit Price.
    *
-   * @param PriceList List Price
+   * @param PriceLimit Lowest price for a product
    */
-  public void setPriceList(BigDecimal PriceList) {
-    set_Value(COLUMNNAME_PriceList, PriceList);
+  public void setPriceLimit(BigDecimal PriceLimit) {
+    set_Value(COLUMNNAME_PriceLimit, PriceLimit);
   }
 
   /**
@@ -184,12 +174,12 @@ public class X_M_ProductPrice extends PO implements I_M_ProductPrice, I_Persiste
   }
 
   /**
-   * Set Standard Price.
+   * Set List Price.
    *
-   * @param PriceStd Standard Price
+   * @param PriceList List Price
    */
-  public void setPriceStd(BigDecimal PriceStd) {
-    set_Value(COLUMNNAME_PriceStd, PriceStd);
+  public void setPriceList(BigDecimal PriceList) {
+    set_Value(COLUMNNAME_PriceList, PriceList);
   }
 
   /**
@@ -201,6 +191,15 @@ public class X_M_ProductPrice extends PO implements I_M_ProductPrice, I_Persiste
     BigDecimal bd = (BigDecimal) get_Value(COLUMNNAME_PriceStd);
     if (bd == null) return Env.ZERO;
     return bd;
+  }
+
+  /**
+   * Set Standard Price.
+   *
+   * @param PriceStd Standard Price
+   */
+  public void setPriceStd(BigDecimal PriceStd) {
+    set_Value(COLUMNNAME_PriceStd, PriceStd);
   }
 
   @Override

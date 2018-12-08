@@ -1,15 +1,14 @@
 package org.compiere.product;
 
-import org.compiere.model.I_M_Product_BOM;
-import org.compiere.orm.Query;
-import org.idempiere.common.util.CLogger;
-import org.idempiere.common.util.Env;
+import static software.hsharp.core.util.DBKt.getSQLValue;
 
 import java.sql.ResultSet;
 import java.util.List;
 import java.util.Properties;
-
-import static software.hsharp.core.util.DBKt.getSQLValue;
+import org.compiere.model.I_M_Product_BOM;
+import org.compiere.orm.Query;
+import org.idempiere.common.util.CLogger;
+import org.idempiere.common.util.Env;
 
 /**
  * Product BOM Model (old). M_Product_ID = the parent M_Product_BOM_ID = the BOM line
@@ -21,6 +20,40 @@ import static software.hsharp.core.util.DBKt.getSQLValue;
 public class MProductBOM extends X_M_Product_BOM {
   /** */
   private static final long serialVersionUID = 2615029184168566124L;
+  /** Static Logger */
+  @SuppressWarnings("unused")
+  private static CLogger s_log = CLogger.getCLogger(MProductBOM.class);
+  /** Included Product */
+  private MProduct m_product = null;
+
+  /**
+   * ************************************************************************ Standard Constructor
+   *
+   * @param ctx context
+   * @param M_Product_BOM_ID id
+   * @param trxName transaction
+   */
+  public MProductBOM(Properties ctx, int M_Product_BOM_ID, String trxName) {
+    super(ctx, M_Product_BOM_ID, trxName);
+    if (M_Product_BOM_ID == 0) {
+      //	setM_Product_ID (0);	//	parent
+      //	setLine (0);	// @SQL=SELECT NVL(MAX(Line),0)+10 AS DefaultValue FROM M_Product_BOM WHERE
+      // M_Product_ID=@M_Product_ID@
+      //	setM_ProductBOM_ID(0);
+      setBOMQty(Env.ZERO); // 1
+    }
+  } //	MProductBOM
+
+  /**
+   * Load Constructor
+   *
+   * @param ctx context
+   * @param rs result set
+   * @param trxName transaction
+   */
+  public MProductBOM(Properties ctx, ResultSet rs, String trxName) {
+    super(ctx, rs, trxName);
+  } //	MProductBOM
 
   /**
    * Get BOM Lines for Product
@@ -54,42 +87,6 @@ public class MProductBOM extends X_M_Product_BOM {
     list.toArray(retValue);
     return retValue;
   } //	getBOMLines
-
-  /** Static Logger */
-  @SuppressWarnings("unused")
-  private static CLogger s_log = CLogger.getCLogger(MProductBOM.class);
-
-  /**
-   * ************************************************************************ Standard Constructor
-   *
-   * @param ctx context
-   * @param M_Product_BOM_ID id
-   * @param trxName transaction
-   */
-  public MProductBOM(Properties ctx, int M_Product_BOM_ID, String trxName) {
-    super(ctx, M_Product_BOM_ID, trxName);
-    if (M_Product_BOM_ID == 0) {
-      //	setM_Product_ID (0);	//	parent
-      //	setLine (0);	// @SQL=SELECT NVL(MAX(Line),0)+10 AS DefaultValue FROM M_Product_BOM WHERE
-      // M_Product_ID=@M_Product_ID@
-      //	setM_ProductBOM_ID(0);
-      setBOMQty(Env.ZERO); // 1
-    }
-  } //	MProductBOM
-
-  /**
-   * Load Constructor
-   *
-   * @param ctx context
-   * @param rs result set
-   * @param trxName transaction
-   */
-  public MProductBOM(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
-  } //	MProductBOM
-
-  /** Included Product */
-  private MProduct m_product = null;
 
   /**
    * Get BOM Product

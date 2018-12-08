@@ -1,5 +1,8 @@
 package org.compiere.product;
 
+import java.math.BigDecimal;
+import java.sql.ResultSet;
+import java.util.Properties;
 import org.compiere.model.HasName;
 import org.compiere.model.I_S_Resource;
 import org.compiere.orm.BasePOUser;
@@ -7,10 +10,6 @@ import org.compiere.orm.MTable;
 import org.idempiere.common.util.Env;
 import org.idempiere.common.util.KeyNamePair;
 import org.idempiere.orm.I_Persistent;
-
-import java.math.BigDecimal;
-import java.sql.ResultSet;
-import java.util.Properties;
 
 /**
  * Generated Model for S_Resource
@@ -20,6 +19,16 @@ import java.util.Properties;
  */
 public class X_S_Resource extends BasePOUser implements I_S_Resource, I_Persistent {
 
+  /** ManufacturingResourceType AD_Reference_ID=53223 */
+  public static final int MANUFACTURINGRESOURCETYPE_AD_Reference_ID = 53223;
+  /** Production Line = PL */
+  public static final String MANUFACTURINGRESOURCETYPE_ProductionLine = "PL";
+  /** Plant = PT */
+  public static final String MANUFACTURINGRESOURCETYPE_Plant = "PT";
+  /** Work Center = WC */
+  public static final String MANUFACTURINGRESOURCETYPE_WorkCenter = "WC";
+  /** Work Station = WS */
+  public static final String MANUFACTURINGRESOURCETYPE_WorkStation = "WS";
   /** */
   private static final long serialVersionUID = 20171031L;
 
@@ -52,15 +61,6 @@ public class X_S_Resource extends BasePOUser implements I_S_Resource, I_Persiste
   }
 
   /**
-   * Set Chargeable Quantity.
-   *
-   * @param ChargeableQty Chargeable Quantity
-   */
-  public void setChargeableQty(BigDecimal ChargeableQty) {
-    set_Value(COLUMNNAME_ChargeableQty, ChargeableQty);
-  }
-
-  /**
    * Get Chargeable Quantity.
    *
    * @return Chargeable Quantity
@@ -72,12 +72,12 @@ public class X_S_Resource extends BasePOUser implements I_S_Resource, I_Persiste
   }
 
   /**
-   * Set Daily Capacity.
+   * Set Chargeable Quantity.
    *
-   * @param DailyCapacity Daily Capacity
+   * @param ChargeableQty Chargeable Quantity
    */
-  public void setDailyCapacity(BigDecimal DailyCapacity) {
-    set_Value(COLUMNNAME_DailyCapacity, DailyCapacity);
+  public void setChargeableQty(BigDecimal ChargeableQty) {
+    set_Value(COLUMNNAME_ChargeableQty, ChargeableQty);
   }
 
   /**
@@ -92,12 +92,12 @@ public class X_S_Resource extends BasePOUser implements I_S_Resource, I_Persiste
   }
 
   /**
-   * Set Description.
+   * Set Daily Capacity.
    *
-   * @param Description Optional short description of the record
+   * @param DailyCapacity Daily Capacity
    */
-  public void setDescription(String Description) {
-    set_Value(COLUMNNAME_Description, Description);
+  public void setDailyCapacity(BigDecimal DailyCapacity) {
+    set_Value(COLUMNNAME_DailyCapacity, DailyCapacity);
   }
 
   /**
@@ -107,6 +107,15 @@ public class X_S_Resource extends BasePOUser implements I_S_Resource, I_Persiste
    */
   public String getDescription() {
     return (String) get_Value(COLUMNNAME_Description);
+  }
+
+  /**
+   * Set Description.
+   *
+   * @param Description Optional short description of the record
+   */
+  public void setDescription(String Description) {
+    set_Value(COLUMNNAME_Description, Description);
   }
 
   /**
@@ -155,16 +164,15 @@ public class X_S_Resource extends BasePOUser implements I_S_Resource, I_Persiste
     return false;
   }
 
-  /** ManufacturingResourceType AD_Reference_ID=53223 */
-  public static final int MANUFACTURINGRESOURCETYPE_AD_Reference_ID = 53223;
-  /** Production Line = PL */
-  public static final String MANUFACTURINGRESOURCETYPE_ProductionLine = "PL";
-  /** Plant = PT */
-  public static final String MANUFACTURINGRESOURCETYPE_Plant = "PT";
-  /** Work Center = WC */
-  public static final String MANUFACTURINGRESOURCETYPE_WorkCenter = "WC";
-  /** Work Station = WS */
-  public static final String MANUFACTURINGRESOURCETYPE_WorkStation = "WS";
+  /**
+   * Get Manufacturing Resource Type.
+   *
+   * @return Manufacturing Resource Type
+   */
+  public String getManufacturingResourceType() {
+    return (String) get_Value(COLUMNNAME_ManufacturingResourceType);
+  }
+
   /**
    * Set Manufacturing Resource Type.
    *
@@ -175,29 +183,10 @@ public class X_S_Resource extends BasePOUser implements I_S_Resource, I_Persiste
     set_Value(COLUMNNAME_ManufacturingResourceType, ManufacturingResourceType);
   }
 
-  /**
-   * Get Manufacturing Resource Type.
-   *
-   * @return Manufacturing Resource Type
-   */
-  public String getManufacturingResourceType() {
-    return (String) get_Value(COLUMNNAME_ManufacturingResourceType);
-  }
-
   public org.compiere.model.I_M_Warehouse getM_Warehouse() throws RuntimeException {
     return (org.compiere.model.I_M_Warehouse)
         MTable.get(getCtx(), org.compiere.model.I_M_Warehouse.Table_Name)
             .getPO(getM_Warehouse_ID(), get_TrxName());
-  }
-
-  /**
-   * Set Warehouse.
-   *
-   * @param M_Warehouse_ID Storage Warehouse and Service Point
-   */
-  public void setM_Warehouse_ID(int M_Warehouse_ID) {
-    if (M_Warehouse_ID < 1) set_Value(COLUMNNAME_M_Warehouse_ID, null);
-    else set_Value(COLUMNNAME_M_Warehouse_ID, Integer.valueOf(M_Warehouse_ID));
   }
 
   /**
@@ -212,12 +201,13 @@ public class X_S_Resource extends BasePOUser implements I_S_Resource, I_Persiste
   }
 
   /**
-   * Set Name.
+   * Set Warehouse.
    *
-   * @param Name Alphanumeric identifier of the entity
+   * @param M_Warehouse_ID Storage Warehouse and Service Point
    */
-  public void setName(String Name) {
-    set_Value(HasName.Companion.getCOLUMNNAME_Name(), Name);
+  public void setM_Warehouse_ID(int M_Warehouse_ID) {
+    if (M_Warehouse_ID < 1) set_Value(COLUMNNAME_M_Warehouse_ID, null);
+    else set_Value(COLUMNNAME_M_Warehouse_ID, Integer.valueOf(M_Warehouse_ID));
   }
 
   /**
@@ -230,21 +220,21 @@ public class X_S_Resource extends BasePOUser implements I_S_Resource, I_Persiste
   }
 
   /**
+   * Set Name.
+   *
+   * @param Name Alphanumeric identifier of the entity
+   */
+  public void setName(String Name) {
+    set_Value(HasName.Companion.getCOLUMNNAME_Name(), Name);
+  }
+
+  /**
    * Get Record ID/ColumnName
    *
    * @return ID/ColumnName pair
    */
   public KeyNamePair getKeyNamePair() {
     return new KeyNamePair(getId(), getName());
-  }
-
-  /**
-   * Set % Utilization.
-   *
-   * @param PercentUtilization % Utilization
-   */
-  public void setPercentUtilization(BigDecimal PercentUtilization) {
-    set_Value(COLUMNNAME_PercentUtilization, PercentUtilization);
   }
 
   /**
@@ -259,13 +249,12 @@ public class X_S_Resource extends BasePOUser implements I_S_Resource, I_Persiste
   }
 
   /**
-   * Set Planning Horizon.
+   * Set % Utilization.
    *
-   * @param PlanningHorizon The planning horizon is the amount of time (Days) an organisation will
-   *     look into the future when preparing a strategic plan.
+   * @param PercentUtilization % Utilization
    */
-  public void setPlanningHorizon(int PlanningHorizon) {
-    set_Value(COLUMNNAME_PlanningHorizon, Integer.valueOf(PlanningHorizon));
+  public void setPercentUtilization(BigDecimal PercentUtilization) {
+    set_Value(COLUMNNAME_PercentUtilization, PercentUtilization);
   }
 
   /**
@@ -281,12 +270,13 @@ public class X_S_Resource extends BasePOUser implements I_S_Resource, I_Persiste
   }
 
   /**
-   * Set Queuing Time.
+   * Set Planning Horizon.
    *
-   * @param QueuingTime Queue time is the time a job waits at a work center before begin handled.
+   * @param PlanningHorizon The planning horizon is the amount of time (Days) an organisation will
+   *     look into the future when preparing a strategic plan.
    */
-  public void setQueuingTime(BigDecimal QueuingTime) {
-    set_Value(COLUMNNAME_QueuingTime, QueuingTime);
+  public void setPlanningHorizon(int PlanningHorizon) {
+    set_Value(COLUMNNAME_PlanningHorizon, Integer.valueOf(PlanningHorizon));
   }
 
   /**
@@ -301,13 +291,12 @@ public class X_S_Resource extends BasePOUser implements I_S_Resource, I_Persiste
   }
 
   /**
-   * Set Resource.
+   * Set Queuing Time.
    *
-   * @param S_Resource_ID Resource
+   * @param QueuingTime Queue time is the time a job waits at a work center before begin handled.
    */
-  public void setS_Resource_ID(int S_Resource_ID) {
-    if (S_Resource_ID < 1) set_ValueNoCheck(COLUMNNAME_S_Resource_ID, null);
-    else set_ValueNoCheck(COLUMNNAME_S_Resource_ID, Integer.valueOf(S_Resource_ID));
+  public void setQueuingTime(BigDecimal QueuingTime) {
+    set_Value(COLUMNNAME_QueuingTime, QueuingTime);
   }
 
   /**
@@ -321,20 +310,20 @@ public class X_S_Resource extends BasePOUser implements I_S_Resource, I_Persiste
     return ii;
   }
 
+  /**
+   * Set Resource.
+   *
+   * @param S_Resource_ID Resource
+   */
+  public void setS_Resource_ID(int S_Resource_ID) {
+    if (S_Resource_ID < 1) set_ValueNoCheck(COLUMNNAME_S_Resource_ID, null);
+    else set_ValueNoCheck(COLUMNNAME_S_Resource_ID, Integer.valueOf(S_Resource_ID));
+  }
+
   public org.compiere.model.I_S_ResourceType getS_ResourceType() throws RuntimeException {
     return (org.compiere.model.I_S_ResourceType)
         MTable.get(getCtx(), org.compiere.model.I_S_ResourceType.Table_Name)
             .getPO(getS_ResourceType_ID(), get_TrxName());
-  }
-
-  /**
-   * Set Resource Type.
-   *
-   * @param S_ResourceType_ID Resource Type
-   */
-  public void setS_ResourceType_ID(int S_ResourceType_ID) {
-    if (S_ResourceType_ID < 1) set_Value(COLUMNNAME_S_ResourceType_ID, null);
-    else set_Value(COLUMNNAME_S_ResourceType_ID, Integer.valueOf(S_ResourceType_ID));
   }
 
   /**
@@ -349,12 +338,13 @@ public class X_S_Resource extends BasePOUser implements I_S_Resource, I_Persiste
   }
 
   /**
-   * Set S_Resource_UU.
+   * Set Resource Type.
    *
-   * @param S_Resource_UU S_Resource_UU
+   * @param S_ResourceType_ID Resource Type
    */
-  public void setS_Resource_UU(String S_Resource_UU) {
-    set_Value(COLUMNNAME_S_Resource_UU, S_Resource_UU);
+  public void setS_ResourceType_ID(int S_ResourceType_ID) {
+    if (S_ResourceType_ID < 1) set_Value(COLUMNNAME_S_ResourceType_ID, null);
+    else set_Value(COLUMNNAME_S_ResourceType_ID, Integer.valueOf(S_ResourceType_ID));
   }
 
   /**
@@ -367,12 +357,12 @@ public class X_S_Resource extends BasePOUser implements I_S_Resource, I_Persiste
   }
 
   /**
-   * Set Search Key.
+   * Set S_Resource_UU.
    *
-   * @param Value Search key for the record in the format required - must be unique
+   * @param S_Resource_UU S_Resource_UU
    */
-  public void setValue(String Value) {
-    set_Value(COLUMNNAME_Value, Value);
+  public void setS_Resource_UU(String S_Resource_UU) {
+    set_Value(COLUMNNAME_S_Resource_UU, S_Resource_UU);
   }
 
   /**
@@ -385,12 +375,12 @@ public class X_S_Resource extends BasePOUser implements I_S_Resource, I_Persiste
   }
 
   /**
-   * Set Waiting Time.
+   * Set Search Key.
    *
-   * @param WaitingTime Workflow Simulation Waiting time
+   * @param Value Search key for the record in the format required - must be unique
    */
-  public void setWaitingTime(BigDecimal WaitingTime) {
-    set_Value(COLUMNNAME_WaitingTime, WaitingTime);
+  public void setValue(String Value) {
+    set_Value(COLUMNNAME_Value, Value);
   }
 
   /**
@@ -402,6 +392,15 @@ public class X_S_Resource extends BasePOUser implements I_S_Resource, I_Persiste
     BigDecimal bd = (BigDecimal) get_Value(COLUMNNAME_WaitingTime);
     if (bd == null) return Env.ZERO;
     return bd;
+  }
+
+  /**
+   * Set Waiting Time.
+   *
+   * @param WaitingTime Workflow Simulation Waiting time
+   */
+  public void setWaitingTime(BigDecimal WaitingTime) {
+    set_Value(COLUMNNAME_WaitingTime, WaitingTime);
   }
 
   @Override

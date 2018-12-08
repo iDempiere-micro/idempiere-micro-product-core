@@ -10,12 +10,12 @@ import org.idempiere.common.util.CCache;
  * Resource Model
  *
  * @author Jorg Janke
- * @version $Id: MResource.java,v 1.2 2006/07/30 00:51:05 jjanke Exp $
  * @author Teo Sarca, www.arhipac.ro
  *     <li>FR [ 2051056 ] MResource[Type] should be cached
  *     <li>BF [ 2227901 ] MRP (Calculate Material Plan) fails if resource is empty
  *     <li>BF [ 2824795 ] Deleting Resource product should be forbidden
  *         https://sourceforge.net/tracker/?func=detail&aid=2824795&group_id=176962&atid=879332
+ * @version $Id: MResource.java,v 1.2 2006/07/30 00:51:05 jjanke Exp $
  */
 public class MResource extends X_S_Resource {
   /** */
@@ -23,25 +23,10 @@ public class MResource extends X_S_Resource {
   /** Cache */
   private static CCache<Integer, MResource> s_cache =
       new CCache<Integer, MResource>(I_S_Resource.Table_Name, 20);
-
-  /**
-   * Get from Cache
-   *
-   * @param ctx
-   * @param S_Resource_ID
-   * @return MResource
-   */
-  public static MResource get(Properties ctx, int S_Resource_ID) {
-    if (S_Resource_ID <= 0) return null;
-    MResource r = s_cache.get(S_Resource_ID);
-    if (r == null) {
-      r = new MResource(ctx, S_Resource_ID, null);
-      if (r.getId() == S_Resource_ID) {
-        s_cache.put(S_Resource_ID, r);
-      }
-    }
-    return r;
-  }
+  /** Cached Resource Type */
+  private MResourceType m_resourceType = null;
+  /** Cached Product */
+  private MProduct m_product = null;
 
   /**
    * Standard Constructor
@@ -63,10 +48,24 @@ public class MResource extends X_S_Resource {
     super(ctx, rs, trxName);
   } //	MResource
 
-  /** Cached Resource Type */
-  private MResourceType m_resourceType = null;
-  /** Cached Product */
-  private MProduct m_product = null;
+  /**
+   * Get from Cache
+   *
+   * @param ctx
+   * @param S_Resource_ID
+   * @return MResource
+   */
+  public static MResource get(Properties ctx, int S_Resource_ID) {
+    if (S_Resource_ID <= 0) return null;
+    MResource r = s_cache.get(S_Resource_ID);
+    if (r == null) {
+      r = new MResource(ctx, S_Resource_ID, null);
+      if (r.getId() == S_Resource_ID) {
+        s_cache.put(S_Resource_ID, r);
+      }
+    }
+    return r;
+  }
 
   /**
    * Get cached Resource Type

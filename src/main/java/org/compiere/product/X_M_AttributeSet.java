@@ -1,12 +1,11 @@
 package org.compiere.product;
 
+import java.sql.ResultSet;
+import java.util.Properties;
 import org.compiere.model.I_M_AttributeSet;
 import org.compiere.orm.BasePOName;
 import org.compiere.orm.MTable;
 import org.idempiere.orm.I_Persistent;
-
-import java.sql.ResultSet;
-import java.util.Properties;
 
 /**
  * Generated Model for M_AttributeSet
@@ -16,6 +15,14 @@ import java.util.Properties;
  */
 public class X_M_AttributeSet extends BasePOName implements I_M_AttributeSet, I_Persistent {
 
+  /** MandatoryType AD_Reference_ID=324 */
+  public static final int MANDATORYTYPE_AD_Reference_ID = 324;
+  /** Not Mandatory = N */
+  public static final String MANDATORYTYPE_NotMandatory = "N";
+  /** Always Mandatory = Y */
+  public static final String MANDATORYTYPE_AlwaysMandatory = "Y";
+  /** When Shipping = S */
+  public static final String MANDATORYTYPE_WhenShipping = "S";
   /** */
   private static final long serialVersionUID = 20171031L;
 
@@ -43,15 +50,6 @@ public class X_M_AttributeSet extends BasePOName implements I_M_AttributeSet, I_
   }
 
   /**
-   * Set Description.
-   *
-   * @param Description Optional short description of the record
-   */
-  public void setDescription(String Description) {
-    set_Value(COLUMNNAME_Description, Description);
-  }
-
-  /**
    * Get Description.
    *
    * @return Optional short description of the record
@@ -61,12 +59,12 @@ public class X_M_AttributeSet extends BasePOName implements I_M_AttributeSet, I_
   }
 
   /**
-   * Set Guarantee Days.
+   * Set Description.
    *
-   * @param GuaranteeDays Number of days the product is guaranteed or available
+   * @param Description Optional short description of the record
    */
-  public void setGuaranteeDays(int GuaranteeDays) {
-    set_Value(COLUMNNAME_GuaranteeDays, GuaranteeDays);
+  public void setDescription(String Description) {
+    set_Value(COLUMNNAME_Description, Description);
   }
 
   /**
@@ -78,6 +76,15 @@ public class X_M_AttributeSet extends BasePOName implements I_M_AttributeSet, I_
     Integer ii = (Integer) get_Value(COLUMNNAME_GuaranteeDays);
     if (ii == null) return 0;
     return ii;
+  }
+
+  /**
+   * Set Guarantee Days.
+   *
+   * @param GuaranteeDays Number of days the product is guaranteed or available
+   */
+  public void setGuaranteeDays(int GuaranteeDays) {
+    set_Value(COLUMNNAME_GuaranteeDays, GuaranteeDays);
   }
 
   /**
@@ -268,6 +275,15 @@ public class X_M_AttributeSet extends BasePOName implements I_M_AttributeSet, I_
   }
 
   /**
+   * Get Lot Char End Overwrite.
+   *
+   * @return Lot/Batch End Indicator overwrite - default »
+   */
+  public String getLotCharEOverwrite() {
+    return (String) get_Value(COLUMNNAME_LotCharEOverwrite);
+  }
+
+  /**
    * Set Lot Char End Overwrite.
    *
    * @param LotCharEOverwrite Lot/Batch End Indicator overwrite - default »
@@ -277,12 +293,12 @@ public class X_M_AttributeSet extends BasePOName implements I_M_AttributeSet, I_
   }
 
   /**
-   * Get Lot Char End Overwrite.
+   * Get Lot Char Start Overwrite.
    *
-   * @return Lot/Batch End Indicator overwrite - default »
+   * @return Lot/Batch Start Indicator overwrite - default «
    */
-  public String getLotCharEOverwrite() {
-    return (String) get_Value(COLUMNNAME_LotCharEOverwrite);
+  public String getLotCharSOverwrite() {
+    return (String) get_Value(COLUMNNAME_LotCharSOverwrite);
   }
 
   /**
@@ -295,22 +311,14 @@ public class X_M_AttributeSet extends BasePOName implements I_M_AttributeSet, I_
   }
 
   /**
-   * Get Lot Char Start Overwrite.
+   * Get Mandatory Type.
    *
-   * @return Lot/Batch Start Indicator overwrite - default «
+   * @return The specification of a Product Attribute Instance is mandatory
    */
-  public String getLotCharSOverwrite() {
-    return (String) get_Value(COLUMNNAME_LotCharSOverwrite);
+  public String getMandatoryType() {
+    return (String) get_Value(COLUMNNAME_MandatoryType);
   }
 
-  /** MandatoryType AD_Reference_ID=324 */
-  public static final int MANDATORYTYPE_AD_Reference_ID = 324;
-  /** Not Mandatory = N */
-  public static final String MANDATORYTYPE_NotMandatory = "N";
-  /** Always Mandatory = Y */
-  public static final String MANDATORYTYPE_AlwaysMandatory = "Y";
-  /** When Shipping = S */
-  public static final String MANDATORYTYPE_WhenShipping = "S";
   /**
    * Set Mandatory Type.
    *
@@ -319,15 +327,6 @@ public class X_M_AttributeSet extends BasePOName implements I_M_AttributeSet, I_
   public void setMandatoryType(String MandatoryType) {
 
     set_Value(COLUMNNAME_MandatoryType, MandatoryType);
-  }
-
-  /**
-   * Get Mandatory Type.
-   *
-   * @return The specification of a Product Attribute Instance is mandatory
-   */
-  public String getMandatoryType() {
-    return (String) get_Value(COLUMNNAME_MandatoryType);
   }
 
   /**
@@ -376,16 +375,6 @@ public class X_M_AttributeSet extends BasePOName implements I_M_AttributeSet, I_
   }
 
   /**
-   * Set Lot Control.
-   *
-   * @param M_LotCtl_ID Product Lot Control
-   */
-  public void setM_LotCtl_ID(int M_LotCtl_ID) {
-    if (M_LotCtl_ID < 1) set_Value(COLUMNNAME_M_LotCtl_ID, null);
-    else set_Value(COLUMNNAME_M_LotCtl_ID, Integer.valueOf(M_LotCtl_ID));
-  }
-
-  /**
    * Get Lot Control.
    *
    * @return Product Lot Control
@@ -396,20 +385,20 @@ public class X_M_AttributeSet extends BasePOName implements I_M_AttributeSet, I_
     return ii;
   }
 
+  /**
+   * Set Lot Control.
+   *
+   * @param M_LotCtl_ID Product Lot Control
+   */
+  public void setM_LotCtl_ID(int M_LotCtl_ID) {
+    if (M_LotCtl_ID < 1) set_Value(COLUMNNAME_M_LotCtl_ID, null);
+    else set_Value(COLUMNNAME_M_LotCtl_ID, Integer.valueOf(M_LotCtl_ID));
+  }
+
   public org.compiere.model.I_M_SerNoCtl getM_SerNoCtl() throws RuntimeException {
     return (org.compiere.model.I_M_SerNoCtl)
         MTable.get(getCtx(), org.compiere.model.I_M_SerNoCtl.Table_Name)
             .getPO(getM_SerNoCtl_ID(), get_TrxName());
-  }
-
-  /**
-   * Set Serial No Control.
-   *
-   * @param M_SerNoCtl_ID Product Serial Number Control
-   */
-  public void setM_SerNoCtl_ID(int M_SerNoCtl_ID) {
-    if (M_SerNoCtl_ID < 1) set_Value(COLUMNNAME_M_SerNoCtl_ID, null);
-    else set_Value(COLUMNNAME_M_SerNoCtl_ID, Integer.valueOf(M_SerNoCtl_ID));
   }
 
   /**
@@ -424,12 +413,13 @@ public class X_M_AttributeSet extends BasePOName implements I_M_AttributeSet, I_
   }
 
   /**
-   * Set SerNo Char End Overwrite.
+   * Set Serial No Control.
    *
-   * @param SerNoCharEOverwrite Serial Number End Indicator overwrite - default empty
+   * @param M_SerNoCtl_ID Product Serial Number Control
    */
-  public void setSerNoCharEOverwrite(String SerNoCharEOverwrite) {
-    set_Value(COLUMNNAME_SerNoCharEOverwrite, SerNoCharEOverwrite);
+  public void setM_SerNoCtl_ID(int M_SerNoCtl_ID) {
+    if (M_SerNoCtl_ID < 1) set_Value(COLUMNNAME_M_SerNoCtl_ID, null);
+    else set_Value(COLUMNNAME_M_SerNoCtl_ID, Integer.valueOf(M_SerNoCtl_ID));
   }
 
   /**
@@ -442,12 +432,12 @@ public class X_M_AttributeSet extends BasePOName implements I_M_AttributeSet, I_
   }
 
   /**
-   * Set SerNo Char Start Overwrite.
+   * Set SerNo Char End Overwrite.
    *
-   * @param SerNoCharSOverwrite Serial Number Start Indicator overwrite - default #
+   * @param SerNoCharEOverwrite Serial Number End Indicator overwrite - default empty
    */
-  public void setSerNoCharSOverwrite(String SerNoCharSOverwrite) {
-    set_Value(COLUMNNAME_SerNoCharSOverwrite, SerNoCharSOverwrite);
+  public void setSerNoCharEOverwrite(String SerNoCharEOverwrite) {
+    set_Value(COLUMNNAME_SerNoCharEOverwrite, SerNoCharEOverwrite);
   }
 
   /**
@@ -460,12 +450,12 @@ public class X_M_AttributeSet extends BasePOName implements I_M_AttributeSet, I_
   }
 
   /**
-   * Set Use Guarantee Date for Material Policy.
+   * Set SerNo Char Start Overwrite.
    *
-   * @param UseGuaranteeDateForMPolicy Use Guarantee Date for Material Policy
+   * @param SerNoCharSOverwrite Serial Number Start Indicator overwrite - default #
    */
-  public void setUseGuaranteeDateForMPolicy(boolean UseGuaranteeDateForMPolicy) {
-    set_Value(COLUMNNAME_UseGuaranteeDateForMPolicy, UseGuaranteeDateForMPolicy);
+  public void setSerNoCharSOverwrite(String SerNoCharSOverwrite) {
+    set_Value(COLUMNNAME_SerNoCharSOverwrite, SerNoCharSOverwrite);
   }
 
   /**
@@ -480,6 +470,15 @@ public class X_M_AttributeSet extends BasePOName implements I_M_AttributeSet, I_
       return "Y".equals(oo);
     }
     return false;
+  }
+
+  /**
+   * Set Use Guarantee Date for Material Policy.
+   *
+   * @param UseGuaranteeDateForMPolicy Use Guarantee Date for Material Policy
+   */
+  public void setUseGuaranteeDateForMPolicy(boolean UseGuaranteeDateForMPolicy) {
+    set_Value(COLUMNNAME_UseGuaranteeDateForMPolicy, UseGuaranteeDateForMPolicy);
   }
 
   @Override

@@ -1,5 +1,7 @@
 package org.compiere.product;
 
+import java.sql.ResultSet;
+import java.util.Properties;
 import org.compiere.model.HasName;
 import org.compiere.model.I_C_Currency;
 import org.compiere.model.I_M_PriceList;
@@ -7,9 +9,6 @@ import org.compiere.orm.MTable;
 import org.compiere.orm.PO;
 import org.idempiere.common.util.KeyNamePair;
 import org.idempiere.orm.I_Persistent;
-
-import java.sql.ResultSet;
-import java.util.Properties;
 
 /**
  * Generated Model for M_PriceList
@@ -53,18 +52,7 @@ public abstract class X_M_PriceList extends PO implements I_M_PriceList, I_Persi
 
   public I_M_PriceList getBasePriceList() throws RuntimeException {
     return (I_M_PriceList)
-        MTable.get(getCtx(), I_M_PriceList.Table_Name)
-            .getPO(getBasePriceList_ID(), get_TrxName());
-  }
-
-  /**
-   * Set Base Pricelist.
-   *
-   * @param BasePriceList_ID Pricelist to be used, if product not found on this pricelist
-   */
-  public void setBasePriceList_ID(int BasePriceList_ID) {
-    if (BasePriceList_ID < 1) set_Value(COLUMNNAME_BasePriceList_ID, null);
-    else set_Value(COLUMNNAME_BasePriceList_ID, Integer.valueOf(BasePriceList_ID));
+        MTable.get(getCtx(), I_M_PriceList.Table_Name).getPO(getBasePriceList_ID(), get_TrxName());
   }
 
   /**
@@ -78,20 +66,19 @@ public abstract class X_M_PriceList extends PO implements I_M_PriceList, I_Persi
     return ii;
   }
 
-  public I_C_Currency getC_Currency() throws RuntimeException {
-    return (I_C_Currency)
-        MTable.get(getCtx(), I_C_Currency.Table_Name)
-            .getPO(getC_Currency_ID(), get_TrxName());
+  /**
+   * Set Base Pricelist.
+   *
+   * @param BasePriceList_ID Pricelist to be used, if product not found on this pricelist
+   */
+  public void setBasePriceList_ID(int BasePriceList_ID) {
+    if (BasePriceList_ID < 1) set_Value(COLUMNNAME_BasePriceList_ID, null);
+    else set_Value(COLUMNNAME_BasePriceList_ID, Integer.valueOf(BasePriceList_ID));
   }
 
-  /**
-   * Set Currency.
-   *
-   * @param C_Currency_ID The Currency for this record
-   */
-  public void setC_Currency_ID(int C_Currency_ID) {
-    if (C_Currency_ID < 1) set_Value(COLUMNNAME_C_Currency_ID, null);
-    else set_Value(COLUMNNAME_C_Currency_ID, C_Currency_ID);
+  public I_C_Currency getC_Currency() throws RuntimeException {
+    return (I_C_Currency)
+        MTable.get(getCtx(), I_C_Currency.Table_Name).getPO(getC_Currency_ID(), get_TrxName());
   }
 
   /**
@@ -106,12 +93,13 @@ public abstract class X_M_PriceList extends PO implements I_M_PriceList, I_Persi
   }
 
   /**
-   * Set Description.
+   * Set Currency.
    *
-   * @param Description Optional short description of the record
+   * @param C_Currency_ID The Currency for this record
    */
-  public void setDescription(String Description) {
-    set_Value(COLUMNNAME_Description, Description);
+  public void setC_Currency_ID(int C_Currency_ID) {
+    if (C_Currency_ID < 1) set_Value(COLUMNNAME_C_Currency_ID, null);
+    else set_Value(COLUMNNAME_C_Currency_ID, C_Currency_ID);
   }
 
   /**
@@ -124,12 +112,12 @@ public abstract class X_M_PriceList extends PO implements I_M_PriceList, I_Persi
   }
 
   /**
-   * Set Enforce price limit.
+   * Set Description.
    *
-   * @param EnforcePriceLimit Do not allow prices below the limit price
+   * @param Description Optional short description of the record
    */
-  public void setEnforcePriceLimit(boolean EnforcePriceLimit) {
-    set_Value(COLUMNNAME_EnforcePriceLimit, Boolean.valueOf(EnforcePriceLimit));
+  public void setDescription(String Description) {
+    set_Value(COLUMNNAME_Description, Description);
   }
 
   /**
@@ -144,6 +132,15 @@ public abstract class X_M_PriceList extends PO implements I_M_PriceList, I_Persi
       return "Y".equals(oo);
     }
     return false;
+  }
+
+  /**
+   * Set Enforce price limit.
+   *
+   * @param EnforcePriceLimit Do not allow prices below the limit price
+   */
+  public void setEnforcePriceLimit(boolean EnforcePriceLimit) {
+    set_Value(COLUMNNAME_EnforcePriceLimit, Boolean.valueOf(EnforcePriceLimit));
   }
 
   /**
@@ -262,16 +259,6 @@ public abstract class X_M_PriceList extends PO implements I_M_PriceList, I_Persi
   }
 
   /**
-   * Set Price List.
-   *
-   * @param M_PriceList_ID Unique identifier of a Price List
-   */
-  public void setM_PriceList_ID(int M_PriceList_ID) {
-    if (M_PriceList_ID < 1) set_ValueNoCheck(COLUMNNAME_M_PriceList_ID, null);
-    else set_ValueNoCheck(COLUMNNAME_M_PriceList_ID, Integer.valueOf(M_PriceList_ID));
-  }
-
-  /**
    * Get Price List.
    *
    * @return Unique identifier of a Price List
@@ -283,12 +270,13 @@ public abstract class X_M_PriceList extends PO implements I_M_PriceList, I_Persi
   }
 
   /**
-   * Set M_PriceList_UU.
+   * Set Price List.
    *
-   * @param M_PriceList_UU M_PriceList_UU
+   * @param M_PriceList_ID Unique identifier of a Price List
    */
-  public void setM_PriceList_UU(String M_PriceList_UU) {
-    set_Value(COLUMNNAME_M_PriceList_UU, M_PriceList_UU);
+  public void setM_PriceList_ID(int M_PriceList_ID) {
+    if (M_PriceList_ID < 1) set_ValueNoCheck(COLUMNNAME_M_PriceList_ID, null);
+    else set_ValueNoCheck(COLUMNNAME_M_PriceList_ID, Integer.valueOf(M_PriceList_ID));
   }
 
   /**
@@ -301,12 +289,12 @@ public abstract class X_M_PriceList extends PO implements I_M_PriceList, I_Persi
   }
 
   /**
-   * Set Name.
+   * Set M_PriceList_UU.
    *
-   * @param Name Alphanumeric identifier of the entity
+   * @param M_PriceList_UU M_PriceList_UU
    */
-  public void setName(String Name) {
-    set_Value(HasName.Companion.getCOLUMNNAME_Name(), Name);
+  public void setM_PriceList_UU(String M_PriceList_UU) {
+    set_Value(COLUMNNAME_M_PriceList_UU, M_PriceList_UU);
   }
 
   /**
@@ -319,21 +307,21 @@ public abstract class X_M_PriceList extends PO implements I_M_PriceList, I_Persi
   }
 
   /**
+   * Set Name.
+   *
+   * @param Name Alphanumeric identifier of the entity
+   */
+  public void setName(String Name) {
+    set_Value(HasName.Companion.getCOLUMNNAME_Name(), Name);
+  }
+
+  /**
    * Get Record ID/ColumnName
    *
    * @return ID/ColumnName pair
    */
   public KeyNamePair getKeyNamePair() {
     return new KeyNamePair(getId(), getName());
-  }
-
-  /**
-   * Set Price Precision.
-   *
-   * @param PricePrecision Precision (number of decimals) for the Price
-   */
-  public void setPricePrecision(int PricePrecision) {
-    set_Value(COLUMNNAME_PricePrecision, Integer.valueOf(PricePrecision));
   }
 
   /**
@@ -345,5 +333,14 @@ public abstract class X_M_PriceList extends PO implements I_M_PriceList, I_Persi
     Integer ii = (Integer) get_Value(COLUMNNAME_PricePrecision);
     if (ii == null) return 0;
     return ii;
+  }
+
+  /**
+   * Set Price Precision.
+   *
+   * @param PricePrecision Precision (number of decimals) for the Price
+   */
+  public void setPricePrecision(int PricePrecision) {
+    set_Value(COLUMNNAME_PricePrecision, Integer.valueOf(PricePrecision));
   }
 }

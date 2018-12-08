@@ -1,15 +1,14 @@
 package org.compiere.product;
 
+import java.math.BigDecimal;
+import java.sql.ResultSet;
+import java.util.Properties;
 import org.compiere.model.I_M_DiscountSchemaBreak;
 import org.compiere.orm.MTable;
 import org.compiere.orm.PO;
 import org.idempiere.common.util.Env;
 import org.idempiere.common.util.KeyNamePair;
 import org.idempiere.orm.I_Persistent;
-
-import java.math.BigDecimal;
-import java.sql.ResultSet;
-import java.util.Properties;
 
 /**
  * Generated Model for M_DiscountSchemaBreak
@@ -53,15 +52,6 @@ public class X_M_DiscountSchemaBreak extends PO implements I_M_DiscountSchemaBre
   }
 
   /**
-   * Set Break Discount %.
-   *
-   * @param BreakDiscount Trade Discount in Percent for the break level
-   */
-  public void setBreakDiscount(BigDecimal BreakDiscount) {
-    set_Value(COLUMNNAME_BreakDiscount, BreakDiscount);
-  }
-
-  /**
    * Get Break Discount %.
    *
    * @return Trade Discount in Percent for the break level
@@ -73,12 +63,12 @@ public class X_M_DiscountSchemaBreak extends PO implements I_M_DiscountSchemaBre
   }
 
   /**
-   * Set Break Value.
+   * Set Break Discount %.
    *
-   * @param BreakValue Low Value of trade discount break level
+   * @param BreakDiscount Trade Discount in Percent for the break level
    */
-  public void setBreakValue(BigDecimal BreakValue) {
-    set_Value(COLUMNNAME_BreakValue, BreakValue);
+  public void setBreakDiscount(BigDecimal BreakDiscount) {
+    set_Value(COLUMNNAME_BreakDiscount, BreakDiscount);
   }
 
   /**
@@ -90,6 +80,15 @@ public class X_M_DiscountSchemaBreak extends PO implements I_M_DiscountSchemaBre
     BigDecimal bd = (BigDecimal) get_Value(COLUMNNAME_BreakValue);
     if (bd == null) return Env.ZERO;
     return bd;
+  }
+
+  /**
+   * Set Break Value.
+   *
+   * @param BreakValue Low Value of trade discount break level
+   */
+  public void setBreakValue(BigDecimal BreakValue) {
+    set_Value(COLUMNNAME_BreakValue, BreakValue);
   }
 
   /**
@@ -116,6 +115,17 @@ public class X_M_DiscountSchemaBreak extends PO implements I_M_DiscountSchemaBre
   }
 
   /**
+   * Get Discount Schema Break.
+   *
+   * @return Trade Discount Break
+   */
+  public int getM_DiscountSchemaBreak_ID() {
+    Integer ii = (Integer) get_Value(COLUMNNAME_M_DiscountSchemaBreak_ID);
+    if (ii == null) return 0;
+    return ii;
+  }
+
+  /**
    * Set Discount Schema Break.
    *
    * @param M_DiscountSchemaBreak_ID Trade Discount Break
@@ -128,14 +138,12 @@ public class X_M_DiscountSchemaBreak extends PO implements I_M_DiscountSchemaBre
   }
 
   /**
-   * Get Discount Schema Break.
+   * Get M_DiscountSchemaBreak_UU.
    *
-   * @return Trade Discount Break
+   * @return M_DiscountSchemaBreak_UU
    */
-  public int getM_DiscountSchemaBreak_ID() {
-    Integer ii = (Integer) get_Value(COLUMNNAME_M_DiscountSchemaBreak_ID);
-    if (ii == null) return 0;
-    return ii;
+  public String getM_DiscountSchemaBreak_UU() {
+    return (String) get_Value(COLUMNNAME_M_DiscountSchemaBreak_UU);
   }
 
   /**
@@ -147,29 +155,10 @@ public class X_M_DiscountSchemaBreak extends PO implements I_M_DiscountSchemaBre
     set_Value(COLUMNNAME_M_DiscountSchemaBreak_UU, M_DiscountSchemaBreak_UU);
   }
 
-  /**
-   * Get M_DiscountSchemaBreak_UU.
-   *
-   * @return M_DiscountSchemaBreak_UU
-   */
-  public String getM_DiscountSchemaBreak_UU() {
-    return (String) get_Value(COLUMNNAME_M_DiscountSchemaBreak_UU);
-  }
-
   public org.compiere.model.I_M_DiscountSchema getM_DiscountSchema() throws RuntimeException {
     return (org.compiere.model.I_M_DiscountSchema)
         MTable.get(getCtx(), org.compiere.model.I_M_DiscountSchema.Table_Name)
             .getPO(getM_DiscountSchema_ID(), get_TrxName());
-  }
-
-  /**
-   * Set Discount Schema.
-   *
-   * @param M_DiscountSchema_ID Schema to calculate the trade discount percentage
-   */
-  public void setM_DiscountSchema_ID(int M_DiscountSchema_ID) {
-    if (M_DiscountSchema_ID < 1) set_ValueNoCheck(COLUMNNAME_M_DiscountSchema_ID, null);
-    else set_ValueNoCheck(COLUMNNAME_M_DiscountSchema_ID, Integer.valueOf(M_DiscountSchema_ID));
   }
 
   /**
@@ -183,20 +172,20 @@ public class X_M_DiscountSchemaBreak extends PO implements I_M_DiscountSchemaBre
     return ii;
   }
 
+  /**
+   * Set Discount Schema.
+   *
+   * @param M_DiscountSchema_ID Schema to calculate the trade discount percentage
+   */
+  public void setM_DiscountSchema_ID(int M_DiscountSchema_ID) {
+    if (M_DiscountSchema_ID < 1) set_ValueNoCheck(COLUMNNAME_M_DiscountSchema_ID, null);
+    else set_ValueNoCheck(COLUMNNAME_M_DiscountSchema_ID, Integer.valueOf(M_DiscountSchema_ID));
+  }
+
   public org.compiere.model.I_M_Product_Category getM_Product_Category() throws RuntimeException {
     return (org.compiere.model.I_M_Product_Category)
         MTable.get(getCtx(), org.compiere.model.I_M_Product_Category.Table_Name)
             .getPO(getM_Product_Category_ID(), get_TrxName());
-  }
-
-  /**
-   * Set Product Category.
-   *
-   * @param M_Product_Category_ID Category of a Product
-   */
-  public void setM_Product_Category_ID(int M_Product_Category_ID) {
-    if (M_Product_Category_ID < 1) set_Value(COLUMNNAME_M_Product_Category_ID, null);
-    else set_Value(COLUMNNAME_M_Product_Category_ID, Integer.valueOf(M_Product_Category_ID));
   }
 
   /**
@@ -210,20 +199,20 @@ public class X_M_DiscountSchemaBreak extends PO implements I_M_DiscountSchemaBre
     return ii;
   }
 
+  /**
+   * Set Product Category.
+   *
+   * @param M_Product_Category_ID Category of a Product
+   */
+  public void setM_Product_Category_ID(int M_Product_Category_ID) {
+    if (M_Product_Category_ID < 1) set_Value(COLUMNNAME_M_Product_Category_ID, null);
+    else set_Value(COLUMNNAME_M_Product_Category_ID, Integer.valueOf(M_Product_Category_ID));
+  }
+
   public org.compiere.model.I_M_Product getM_Product() throws RuntimeException {
     return (org.compiere.model.I_M_Product)
         MTable.get(getCtx(), org.compiere.model.I_M_Product.Table_Name)
             .getPO(getM_Product_ID(), get_TrxName());
-  }
-
-  /**
-   * Set Product.
-   *
-   * @param M_Product_ID Product, Service, Item
-   */
-  public void setM_Product_ID(int M_Product_ID) {
-    if (M_Product_ID < 1) set_Value(COLUMNNAME_M_Product_ID, null);
-    else set_Value(COLUMNNAME_M_Product_ID, Integer.valueOf(M_Product_ID));
   }
 
   /**
@@ -238,12 +227,13 @@ public class X_M_DiscountSchemaBreak extends PO implements I_M_DiscountSchemaBre
   }
 
   /**
-   * Set Sequence.
+   * Set Product.
    *
-   * @param SeqNo Method of ordering records; lowest number comes first
+   * @param M_Product_ID Product, Service, Item
    */
-  public void setSeqNo(int SeqNo) {
-    set_Value(COLUMNNAME_SeqNo, Integer.valueOf(SeqNo));
+  public void setM_Product_ID(int M_Product_ID) {
+    if (M_Product_ID < 1) set_Value(COLUMNNAME_M_Product_ID, null);
+    else set_Value(COLUMNNAME_M_Product_ID, Integer.valueOf(M_Product_ID));
   }
 
   /**
@@ -255,6 +245,15 @@ public class X_M_DiscountSchemaBreak extends PO implements I_M_DiscountSchemaBre
     Integer ii = (Integer) get_Value(COLUMNNAME_SeqNo);
     if (ii == null) return 0;
     return ii;
+  }
+
+  /**
+   * Set Sequence.
+   *
+   * @param SeqNo Method of ordering records; lowest number comes first
+   */
+  public void setSeqNo(int SeqNo) {
+    set_Value(COLUMNNAME_SeqNo, Integer.valueOf(SeqNo));
   }
 
   /**

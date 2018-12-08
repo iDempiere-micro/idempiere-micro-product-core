@@ -18,6 +18,10 @@ import org.compiere.util.DisplayType;
 public class MPriceListVersion extends X_M_PriceList_Version {
   /** */
   private static final long serialVersionUID = -3607494586575155059L;
+  /** Product Prices */
+  private MProductPrice[] m_pp = null;
+  /** Price List */
+  private MPriceList m_pl = null;
 
   /**
    * Standard Constructor
@@ -46,7 +50,6 @@ public class MPriceListVersion extends X_M_PriceList_Version {
   public MPriceListVersion(Properties ctx, ResultSet rs, String trxName) {
     super(ctx, rs, trxName);
   } //	MPriceListVersion
-
   /**
    * Parent Constructor
    *
@@ -57,11 +60,6 @@ public class MPriceListVersion extends X_M_PriceList_Version {
     setClientOrg(pl);
     setM_PriceList_ID(pl.getM_PriceList_ID());
   } //	MPriceListVersion
-
-  /** Product Prices */
-  private MProductPrice[] m_pp = null;
-  /** Price List */
-  private MPriceList m_pl = null;
 
   /**
    * Get Parent PriceList

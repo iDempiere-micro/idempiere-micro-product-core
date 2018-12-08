@@ -1,9 +1,6 @@
 package org.compiere.product;
 
-import org.compiere.orm.TimeUtil;
-import org.compiere.util.DisplayType;
-import org.idempiere.common.util.CLogger;
-import org.idempiere.common.util.KeyNamePair;
+import static software.hsharp.core.util.DBKt.*;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,20 +9,65 @@ import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.util.Properties;
 import java.util.logging.Level;
-
-import static software.hsharp.core.util.DBKt.*;
+import org.compiere.orm.TimeUtil;
+import org.compiere.util.DisplayType;
+import org.idempiere.common.util.CLogger;
+import org.idempiere.common.util.KeyNamePair;
 
 /**
  * Product Attribute Set Instance
  *
  * @author Jorg Janke
- * @version $Id: MAttributeSetInstance.java,v 1.3 2006/07/30 00:51:03 jjanke Exp $
  * @author Teo Sarca, www.arhipac.ro
  *     <li>BF [ 2675699 ] MAttributeSetInstance.create should create Lot/Serial/Guaran
+ * @version $Id: MAttributeSetInstance.java,v 1.3 2006/07/30 00:51:03 jjanke Exp $
  */
 public class MAttributeSetInstance extends X_M_AttributeSetInstance {
   /** */
   private static final long serialVersionUID = -7870720973216607658L;
+
+  private static CLogger s_log = CLogger.getCLogger(MAttributeSetInstance.class);
+  /** Attribute Set */
+  private MAttributeSet m_mas = null;
+  /** Date Format */
+  private DateFormat m_dateFormat = DisplayType.getDateFormat(DisplayType.Date);
+
+  /**
+   * ************************************************************************ Standard Constructor
+   *
+   * @param ctx context
+   * @param M_AttributeSetInstance_ID id
+   * @param trxName transaction
+   */
+  public MAttributeSetInstance(Properties ctx, int M_AttributeSetInstance_ID, String trxName) {
+    super(ctx, M_AttributeSetInstance_ID, trxName);
+    if (M_AttributeSetInstance_ID == 0) {}
+  } //	MAttributeSetInstance
+
+  /**
+   * Load Constructor
+   *
+   * @param ctx context
+   * @param rs result set
+   * @param trxName transaction
+   */
+  public MAttributeSetInstance(Properties ctx, ResultSet rs, String trxName) {
+    super(ctx, rs, trxName);
+  } //	MAttributeSetInstance
+
+  /**
+   * Standard Constructor
+   *
+   * @param ctx context
+   * @param M_AttributeSetInstance_ID id
+   * @param M_AttributeSet_ID attribute set
+   * @param trxName transaction
+   */
+  public MAttributeSetInstance(
+      Properties ctx, int M_AttributeSetInstance_ID, int M_AttributeSet_ID, String trxName) {
+    this(ctx, M_AttributeSetInstance_ID, trxName);
+    setM_AttributeSet_ID(M_AttributeSet_ID);
+  } //	MAttributeSetInstance
 
   /**
    * Get Attribute Set Instance from ID or Product
@@ -75,59 +117,52 @@ public class MAttributeSetInstance extends X_M_AttributeSetInstance {
     return retValue;
   } //	get
 
-  private static CLogger s_log = CLogger.getCLogger(MAttributeSetInstance.class);
+  /**
+   * Create & save a new ASI for given product. Automatically creates Lot#, Serial# and Guarantee
+   * Date.
+   *
+   * @param ctx
+   * @param product
+   * @param trxName
+   * @return newly created ASI
+   */
+  public static MAttributeSetInstance create(Properties ctx, MProduct product, String trxName) {
+    MAttributeSetInstance asi = new MAttributeSetInstance(ctx, 0, trxName);
+    asi.setClientOrg(product.getClientId(), 0);
+    asi.setM_AttributeSet_ID(product.getMAttributeSet_ID());
+    // Create new Lot, Serial# and Guarantee Date
+    if (asi.getMAttributeSet_ID() > 0) {
+      asi.getLot(true, product.getId());
+      asi.getSerNo(true);
+      asi.getGuaranteeDate(true);
+    }
+    //
+    asi.saveEx();
+    return asi;
+  }
 
   /**
-   * ************************************************************************ Standard Constructor
+   * AutoGerate & save a new ASI for given product. Automatically creates Lot#
    *
-   * @param ctx context
-   * @param M_AttributeSetInstance_ID id
-   * @param trxName transaction
+   * @param ctx
+   * @param product
+   * @param trxName
+   * @return newly created ASI
    */
-  public MAttributeSetInstance(Properties ctx, int M_AttributeSetInstance_ID, String trxName) {
-    super(ctx, M_AttributeSetInstance_ID, trxName);
-    if (M_AttributeSetInstance_ID == 0) {}
-  } //	MAttributeSetInstance
-
-  /**
-   * Load Constructor
-   *
-   * @param ctx context
-   * @param rs result set
-   * @param trxName transaction
-   */
-  public MAttributeSetInstance(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
-  } //	MAttributeSetInstance
-
-  /**
-   * Standard Constructor
-   *
-   * @param ctx context
-   * @param M_AttributeSetInstance_ID id
-   * @param M_AttributeSet_ID attribute set
-   * @param trxName transaction
-   */
-  public MAttributeSetInstance(
-      Properties ctx, int M_AttributeSetInstance_ID, int M_AttributeSet_ID, String trxName) {
-    this(ctx, M_AttributeSetInstance_ID, trxName);
-    setM_AttributeSet_ID(M_AttributeSet_ID);
-  } //	MAttributeSetInstance
-
-  /** Attribute Set */
-  private MAttributeSet m_mas = null;
-  /** Date Format */
-  private DateFormat m_dateFormat = DisplayType.getDateFormat(DisplayType.Date);
-
-  /**
-   * Set Attribute Set
-   *
-   * @param mas attribute set
-   */
-  public void setMAttributeSet(MAttributeSet mas) {
-    m_mas = mas;
-    setM_AttributeSet_ID(mas.getMAttributeSet_ID());
-  } //	setAttributeSet
+  public static MAttributeSetInstance generateLot(
+      Properties ctx, MProduct product, String trxName) {
+    MAttributeSetInstance asi = new MAttributeSetInstance(ctx, 0, trxName);
+    asi.setClientOrg(product.getClientId(), 0);
+    asi.setM_AttributeSet_ID(product.getMAttributeSet_ID());
+    // Create new Lot
+    if (asi.getMAttributeSet_ID() > 0) {
+      asi.getLot(true, product.getId());
+    }
+    //
+    asi.setDescription();
+    asi.saveEx();
+    return asi;
+  }
 
   /**
    * Get Attribute Set
@@ -139,6 +174,16 @@ public class MAttributeSetInstance extends X_M_AttributeSetInstance {
       m_mas = new MAttributeSet(getCtx(), getMAttributeSet_ID(), get_TrxName());
     return m_mas;
   } //	getMAttributeSet
+
+  /**
+   * Set Attribute Set
+   *
+   * @param mas attribute set
+   */
+  public void setMAttributeSet(MAttributeSet mas) {
+    m_mas = mas;
+    setM_AttributeSet_ID(mas.getMAttributeSet_ID());
+  } //	setAttributeSet
 
   /**
    * Set Description. - Product Values - Instance Values - SerNo = #123 - Lot = \u00ab123\u00bb -
@@ -323,52 +368,5 @@ public class MAttributeSetInstance extends X_M_AttributeSetInstance {
     }
 
     return false;
-  }
-
-  /**
-   * Create & save a new ASI for given product. Automatically creates Lot#, Serial# and Guarantee
-   * Date.
-   *
-   * @param ctx
-   * @param product
-   * @param trxName
-   * @return newly created ASI
-   */
-  public static MAttributeSetInstance create(Properties ctx, MProduct product, String trxName) {
-    MAttributeSetInstance asi = new MAttributeSetInstance(ctx, 0, trxName);
-    asi.setClientOrg(product.getClientId(), 0);
-    asi.setM_AttributeSet_ID(product.getMAttributeSet_ID());
-    // Create new Lot, Serial# and Guarantee Date
-    if (asi.getMAttributeSet_ID() > 0) {
-      asi.getLot(true, product.getId());
-      asi.getSerNo(true);
-      asi.getGuaranteeDate(true);
-    }
-    //
-    asi.saveEx();
-    return asi;
-  }
-
-  /**
-   * AutoGerate & save a new ASI for given product. Automatically creates Lot#
-   *
-   * @param ctx
-   * @param product
-   * @param trxName
-   * @return newly created ASI
-   */
-  public static MAttributeSetInstance generateLot(
-      Properties ctx, MProduct product, String trxName) {
-    MAttributeSetInstance asi = new MAttributeSetInstance(ctx, 0, trxName);
-    asi.setClientOrg(product.getClientId(), 0);
-    asi.setM_AttributeSet_ID(product.getMAttributeSet_ID());
-    // Create new Lot
-    if (asi.getMAttributeSet_ID() > 0) {
-      asi.getLot(true, product.getId());
-    }
-    //
-    asi.setDescription();
-    asi.saveEx();
-    return asi;
   }
 } //	MAttributeSetInstance

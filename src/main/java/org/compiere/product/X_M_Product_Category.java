@@ -1,14 +1,13 @@
 package org.compiere.product;
 
+import java.math.BigDecimal;
+import java.sql.ResultSet;
+import java.util.Properties;
 import org.compiere.model.I_M_Product_Category;
 import org.compiere.orm.BasePONameValue;
 import org.compiere.orm.MTable;
 import org.idempiere.common.util.Env;
 import org.idempiere.orm.I_Persistent;
-
-import java.math.BigDecimal;
-import java.sql.ResultSet;
-import java.util.Properties;
 
 /**
  * Generated Model for M_Product_Category
@@ -19,6 +18,12 @@ import java.util.Properties;
 public class X_M_Product_Category extends BasePONameValue
     implements I_M_Product_Category, I_Persistent {
 
+  /** MMPolicy AD_Reference_ID=335 */
+  public static final int MMPOLICY_AD_Reference_ID = 335;
+  /** LiFo = L */
+  public static final String MMPOLICY_LiFo = "L";
+  /** FiFo = F */
+  public static final String MMPOLICY_FiFo = "F";
   /** */
   private static final long serialVersionUID = 20171031L;
 
@@ -53,16 +58,6 @@ public class X_M_Product_Category extends BasePONameValue
   }
 
   /**
-   * Set Asset Group.
-   *
-   * @param A_Asset_Group_ID Group of Assets
-   */
-  public void setA_Asset_Group_ID(int A_Asset_Group_ID) {
-    if (A_Asset_Group_ID < 1) set_Value(COLUMNNAME_A_Asset_Group_ID, null);
-    else set_Value(COLUMNNAME_A_Asset_Group_ID, Integer.valueOf(A_Asset_Group_ID));
-  }
-
-  /**
    * Get Asset Group.
    *
    * @return Group of Assets
@@ -73,20 +68,20 @@ public class X_M_Product_Category extends BasePONameValue
     return ii;
   }
 
+  /**
+   * Set Asset Group.
+   *
+   * @param A_Asset_Group_ID Group of Assets
+   */
+  public void setA_Asset_Group_ID(int A_Asset_Group_ID) {
+    if (A_Asset_Group_ID < 1) set_Value(COLUMNNAME_A_Asset_Group_ID, null);
+    else set_Value(COLUMNNAME_A_Asset_Group_ID, Integer.valueOf(A_Asset_Group_ID));
+  }
+
   public org.compiere.model.I_AD_PrintColor getAD_PrintColor() throws RuntimeException {
     return (org.compiere.model.I_AD_PrintColor)
         MTable.get(getCtx(), org.compiere.model.I_AD_PrintColor.Table_Name)
             .getPO(getAD_PrintColor_ID(), get_TrxName());
-  }
-
-  /**
-   * Set Print Color.
-   *
-   * @param AD_PrintColor_ID Color used for printing and display
-   */
-  public void setAD_PrintColor_ID(int AD_PrintColor_ID) {
-    if (AD_PrintColor_ID < 1) set_Value(COLUMNNAME_AD_PrintColor_ID, null);
-    else set_Value(COLUMNNAME_AD_PrintColor_ID, Integer.valueOf(AD_PrintColor_ID));
   }
 
   /**
@@ -101,12 +96,13 @@ public class X_M_Product_Category extends BasePONameValue
   }
 
   /**
-   * Set Description.
+   * Set Print Color.
    *
-   * @param Description Optional short description of the record
+   * @param AD_PrintColor_ID Color used for printing and display
    */
-  public void setDescription(String Description) {
-    set_Value(COLUMNNAME_Description, Description);
+  public void setAD_PrintColor_ID(int AD_PrintColor_ID) {
+    if (AD_PrintColor_ID < 1) set_Value(COLUMNNAME_AD_PrintColor_ID, null);
+    else set_Value(COLUMNNAME_AD_PrintColor_ID, Integer.valueOf(AD_PrintColor_ID));
   }
 
   /**
@@ -116,6 +112,15 @@ public class X_M_Product_Category extends BasePONameValue
    */
   public String getDescription() {
     return (String) get_Value(COLUMNNAME_Description);
+  }
+
+  /**
+   * Set Description.
+   *
+   * @param Description Optional short description of the record
+   */
+  public void setDescription(String Description) {
+    set_Value(COLUMNNAME_Description, Description);
   }
 
   /**
@@ -164,22 +169,6 @@ public class X_M_Product_Category extends BasePONameValue
     return false;
   }
 
-  /** MMPolicy AD_Reference_ID=335 */
-  public static final int MMPOLICY_AD_Reference_ID = 335;
-  /** LiFo = L */
-  public static final String MMPOLICY_LiFo = "L";
-  /** FiFo = F */
-  public static final String MMPOLICY_FiFo = "F";
-  /**
-   * Set Material Policy.
-   *
-   * @param MMPolicy Material Movement Policy
-   */
-  public void setMMPolicy(String MMPolicy) {
-
-    set_Value(COLUMNNAME_MMPolicy, MMPolicy);
-  }
-
   /**
    * Get Material Policy.
    *
@@ -190,13 +179,13 @@ public class X_M_Product_Category extends BasePONameValue
   }
 
   /**
-   * Set Product Category.
+   * Set Material Policy.
    *
-   * @param M_Product_Category_ID Category of a Product
+   * @param MMPolicy Material Movement Policy
    */
-  public void setM_Product_Category_ID(int M_Product_Category_ID) {
-    if (M_Product_Category_ID < 1) set_ValueNoCheck(COLUMNNAME_M_Product_Category_ID, null);
-    else set_ValueNoCheck(COLUMNNAME_M_Product_Category_ID, Integer.valueOf(M_Product_Category_ID));
+  public void setMMPolicy(String MMPolicy) {
+
+    set_Value(COLUMNNAME_MMPolicy, MMPolicy);
   }
 
   /**
@@ -210,11 +199,32 @@ public class X_M_Product_Category extends BasePONameValue
     return ii;
   }
 
+  /**
+   * Set Product Category.
+   *
+   * @param M_Product_Category_ID Category of a Product
+   */
+  public void setM_Product_Category_ID(int M_Product_Category_ID) {
+    if (M_Product_Category_ID < 1) set_ValueNoCheck(COLUMNNAME_M_Product_Category_ID, null);
+    else set_ValueNoCheck(COLUMNNAME_M_Product_Category_ID, Integer.valueOf(M_Product_Category_ID));
+  }
+
   public org.compiere.model.I_M_Product_Category getM_Product_Category_Parent()
       throws RuntimeException {
     return (org.compiere.model.I_M_Product_Category)
         MTable.get(getCtx(), org.compiere.model.I_M_Product_Category.Table_Name)
             .getPO(getM_Product_Category_Parent_ID(), get_TrxName());
+  }
+
+  /**
+   * Get Parent Product Category.
+   *
+   * @return Parent Product Category
+   */
+  public int getM_Product_Category_Parent_ID() {
+    Integer ii = (Integer) get_Value(COLUMNNAME_M_Product_Category_Parent_ID);
+    if (ii == null) return 0;
+    return ii;
   }
 
   /**
@@ -230,14 +240,12 @@ public class X_M_Product_Category extends BasePONameValue
   }
 
   /**
-   * Get Parent Product Category.
+   * Get M_Product_Category_UU.
    *
-   * @return Parent Product Category
+   * @return M_Product_Category_UU
    */
-  public int getM_Product_Category_Parent_ID() {
-    Integer ii = (Integer) get_Value(COLUMNNAME_M_Product_Category_Parent_ID);
-    if (ii == null) return 0;
-    return ii;
+  public String getM_Product_Category_UU() {
+    return (String) get_Value(COLUMNNAME_M_Product_Category_UU);
   }
 
   /**
@@ -250,12 +258,14 @@ public class X_M_Product_Category extends BasePONameValue
   }
 
   /**
-   * Get M_Product_Category_UU.
+   * Get Planned Margin %.
    *
-   * @return M_Product_Category_UU
+   * @return Project's planned margin as a percentage
    */
-  public String getM_Product_Category_UU() {
-    return (String) get_Value(COLUMNNAME_M_Product_Category_UU);
+  public BigDecimal getPlannedMargin() {
+    BigDecimal bd = (BigDecimal) get_Value(COLUMNNAME_PlannedMargin);
+    if (bd == null) return Env.ZERO;
+    return bd;
   }
 
   /**
@@ -265,17 +275,6 @@ public class X_M_Product_Category extends BasePONameValue
    */
   public void setPlannedMargin(BigDecimal PlannedMargin) {
     set_Value(COLUMNNAME_PlannedMargin, PlannedMargin);
-  }
-
-  /**
-   * Get Planned Margin %.
-   *
-   * @return Project's planned margin as a percentage
-   */
-  public BigDecimal getPlannedMargin() {
-    BigDecimal bd = (BigDecimal) get_Value(COLUMNNAME_PlannedMargin);
-    if (bd == null) return Env.ZERO;
-    return bd;
   }
 
   @Override

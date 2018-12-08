@@ -1,13 +1,12 @@
 package org.compiere.product;
 
+import java.sql.ResultSet;
+import java.sql.Timestamp;
+import java.util.Properties;
 import org.compiere.model.I_S_ResourceType;
 import org.compiere.orm.BasePONameValue;
 import org.compiere.orm.MTable;
 import org.idempiere.orm.I_Persistent;
-
-import java.sql.ResultSet;
-import java.sql.Timestamp;
-import java.util.Properties;
 
 /**
  * Generated Model for S_ResourceType
@@ -52,15 +51,6 @@ public class X_S_ResourceType extends BasePONameValue implements I_S_ResourceTyp
   }
 
   /**
-   * Set Allow UoM Fractions.
-   *
-   * @param AllowUoMFractions Allow Unit of Measure Fractions
-   */
-  public void setAllowUoMFractions(boolean AllowUoMFractions) {
-    set_Value(COLUMNNAME_AllowUoMFractions, Boolean.valueOf(AllowUoMFractions));
-  }
-
-  /**
    * Get Allow UoM Fractions.
    *
    * @return Allow Unit of Measure Fractions
@@ -75,12 +65,12 @@ public class X_S_ResourceType extends BasePONameValue implements I_S_ResourceTyp
   }
 
   /**
-   * Set Chargeable Quantity.
+   * Set Allow UoM Fractions.
    *
-   * @param ChargeableQty Chargeable Quantity
+   * @param AllowUoMFractions Allow Unit of Measure Fractions
    */
-  public void setChargeableQty(int ChargeableQty) {
-    set_Value(COLUMNNAME_ChargeableQty, Integer.valueOf(ChargeableQty));
+  public void setAllowUoMFractions(boolean AllowUoMFractions) {
+    set_Value(COLUMNNAME_AllowUoMFractions, Boolean.valueOf(AllowUoMFractions));
   }
 
   /**
@@ -94,20 +84,19 @@ public class X_S_ResourceType extends BasePONameValue implements I_S_ResourceTyp
     return ii;
   }
 
+  /**
+   * Set Chargeable Quantity.
+   *
+   * @param ChargeableQty Chargeable Quantity
+   */
+  public void setChargeableQty(int ChargeableQty) {
+    set_Value(COLUMNNAME_ChargeableQty, Integer.valueOf(ChargeableQty));
+  }
+
   public org.compiere.model.I_C_TaxCategory getC_TaxCategory() throws RuntimeException {
     return (org.compiere.model.I_C_TaxCategory)
         MTable.get(getCtx(), org.compiere.model.I_C_TaxCategory.Table_Name)
             .getPO(getC_TaxCategory_ID(), get_TrxName());
-  }
-
-  /**
-   * Set Tax Category.
-   *
-   * @param C_TaxCategory_ID Tax Category
-   */
-  public void setC_TaxCategory_ID(int C_TaxCategory_ID) {
-    if (C_TaxCategory_ID < 1) set_Value(COLUMNNAME_C_TaxCategory_ID, null);
-    else set_Value(COLUMNNAME_C_TaxCategory_ID, Integer.valueOf(C_TaxCategory_ID));
   }
 
   /**
@@ -121,20 +110,20 @@ public class X_S_ResourceType extends BasePONameValue implements I_S_ResourceTyp
     return ii;
   }
 
+  /**
+   * Set Tax Category.
+   *
+   * @param C_TaxCategory_ID Tax Category
+   */
+  public void setC_TaxCategory_ID(int C_TaxCategory_ID) {
+    if (C_TaxCategory_ID < 1) set_Value(COLUMNNAME_C_TaxCategory_ID, null);
+    else set_Value(COLUMNNAME_C_TaxCategory_ID, Integer.valueOf(C_TaxCategory_ID));
+  }
+
   public org.compiere.model.I_C_UOM getC_UOM() throws RuntimeException {
     return (org.compiere.model.I_C_UOM)
         MTable.get(getCtx(), org.compiere.model.I_C_UOM.Table_Name)
             .getPO(getC_UOM_ID(), get_TrxName());
-  }
-
-  /**
-   * Set UOM.
-   *
-   * @param C_UOM_ID Unit of Measure
-   */
-  public void setC_UOM_ID(int C_UOM_ID) {
-    if (C_UOM_ID < 1) set_Value(COLUMNNAME_C_UOM_ID, null);
-    else set_Value(COLUMNNAME_C_UOM_ID, Integer.valueOf(C_UOM_ID));
   }
 
   /**
@@ -149,12 +138,13 @@ public class X_S_ResourceType extends BasePONameValue implements I_S_ResourceTyp
   }
 
   /**
-   * Set Description.
+   * Set UOM.
    *
-   * @param Description Optional short description of the record
+   * @param C_UOM_ID Unit of Measure
    */
-  public void setDescription(String Description) {
-    set_Value(COLUMNNAME_Description, Description);
+  public void setC_UOM_ID(int C_UOM_ID) {
+    if (C_UOM_ID < 1) set_Value(COLUMNNAME_C_UOM_ID, null);
+    else set_Value(COLUMNNAME_C_UOM_ID, Integer.valueOf(C_UOM_ID));
   }
 
   /**
@@ -164,6 +154,15 @@ public class X_S_ResourceType extends BasePONameValue implements I_S_ResourceTyp
    */
   public String getDescription() {
     return (String) get_Value(COLUMNNAME_Description);
+  }
+
+  /**
+   * Set Description.
+   *
+   * @param Description Optional short description of the record
+   */
+  public void setDescription(String Description) {
+    set_Value(COLUMNNAME_Description, Description);
   }
 
   /**
@@ -242,16 +241,6 @@ public class X_S_ResourceType extends BasePONameValue implements I_S_ResourceTyp
   }
 
   /**
-   * Set Product Category.
-   *
-   * @param M_Product_Category_ID Category of a Product
-   */
-  public void setM_Product_Category_ID(int M_Product_Category_ID) {
-    if (M_Product_Category_ID < 1) set_Value(COLUMNNAME_M_Product_Category_ID, null);
-    else set_Value(COLUMNNAME_M_Product_Category_ID, Integer.valueOf(M_Product_Category_ID));
-  }
-
-  /**
    * Get Product Category.
    *
    * @return Category of a Product
@@ -263,12 +252,13 @@ public class X_S_ResourceType extends BasePONameValue implements I_S_ResourceTyp
   }
 
   /**
-   * Set Friday.
+   * Set Product Category.
    *
-   * @param OnFriday Available on Fridays
+   * @param M_Product_Category_ID Category of a Product
    */
-  public void setOnFriday(boolean OnFriday) {
-    set_Value(COLUMNNAME_OnFriday, Boolean.valueOf(OnFriday));
+  public void setM_Product_Category_ID(int M_Product_Category_ID) {
+    if (M_Product_Category_ID < 1) set_Value(COLUMNNAME_M_Product_Category_ID, null);
+    else set_Value(COLUMNNAME_M_Product_Category_ID, Integer.valueOf(M_Product_Category_ID));
   }
 
   /**
@@ -286,12 +276,12 @@ public class X_S_ResourceType extends BasePONameValue implements I_S_ResourceTyp
   }
 
   /**
-   * Set Monday.
+   * Set Friday.
    *
-   * @param OnMonday Available on Mondays
+   * @param OnFriday Available on Fridays
    */
-  public void setOnMonday(boolean OnMonday) {
-    set_Value(COLUMNNAME_OnMonday, Boolean.valueOf(OnMonday));
+  public void setOnFriday(boolean OnFriday) {
+    set_Value(COLUMNNAME_OnFriday, Boolean.valueOf(OnFriday));
   }
 
   /**
@@ -309,12 +299,12 @@ public class X_S_ResourceType extends BasePONameValue implements I_S_ResourceTyp
   }
 
   /**
-   * Set Saturday.
+   * Set Monday.
    *
-   * @param OnSaturday Available on Saturday
+   * @param OnMonday Available on Mondays
    */
-  public void setOnSaturday(boolean OnSaturday) {
-    set_Value(COLUMNNAME_OnSaturday, Boolean.valueOf(OnSaturday));
+  public void setOnMonday(boolean OnMonday) {
+    set_Value(COLUMNNAME_OnMonday, Boolean.valueOf(OnMonday));
   }
 
   /**
@@ -332,12 +322,12 @@ public class X_S_ResourceType extends BasePONameValue implements I_S_ResourceTyp
   }
 
   /**
-   * Set Sunday.
+   * Set Saturday.
    *
-   * @param OnSunday Available on Sundays
+   * @param OnSaturday Available on Saturday
    */
-  public void setOnSunday(boolean OnSunday) {
-    set_Value(COLUMNNAME_OnSunday, Boolean.valueOf(OnSunday));
+  public void setOnSaturday(boolean OnSaturday) {
+    set_Value(COLUMNNAME_OnSaturday, Boolean.valueOf(OnSaturday));
   }
 
   /**
@@ -355,12 +345,12 @@ public class X_S_ResourceType extends BasePONameValue implements I_S_ResourceTyp
   }
 
   /**
-   * Set Thursday.
+   * Set Sunday.
    *
-   * @param OnThursday Available on Thursdays
+   * @param OnSunday Available on Sundays
    */
-  public void setOnThursday(boolean OnThursday) {
-    set_Value(COLUMNNAME_OnThursday, Boolean.valueOf(OnThursday));
+  public void setOnSunday(boolean OnSunday) {
+    set_Value(COLUMNNAME_OnSunday, Boolean.valueOf(OnSunday));
   }
 
   /**
@@ -378,12 +368,12 @@ public class X_S_ResourceType extends BasePONameValue implements I_S_ResourceTyp
   }
 
   /**
-   * Set Tuesday.
+   * Set Thursday.
    *
-   * @param OnTuesday Available on Tuesdays
+   * @param OnThursday Available on Thursdays
    */
-  public void setOnTuesday(boolean OnTuesday) {
-    set_Value(COLUMNNAME_OnTuesday, Boolean.valueOf(OnTuesday));
+  public void setOnThursday(boolean OnThursday) {
+    set_Value(COLUMNNAME_OnThursday, Boolean.valueOf(OnThursday));
   }
 
   /**
@@ -401,12 +391,12 @@ public class X_S_ResourceType extends BasePONameValue implements I_S_ResourceTyp
   }
 
   /**
-   * Set Wednesday.
+   * Set Tuesday.
    *
-   * @param OnWednesday Available on Wednesdays
+   * @param OnTuesday Available on Tuesdays
    */
-  public void setOnWednesday(boolean OnWednesday) {
-    set_Value(COLUMNNAME_OnWednesday, Boolean.valueOf(OnWednesday));
+  public void setOnTuesday(boolean OnTuesday) {
+    set_Value(COLUMNNAME_OnTuesday, Boolean.valueOf(OnTuesday));
   }
 
   /**
@@ -424,13 +414,12 @@ public class X_S_ResourceType extends BasePONameValue implements I_S_ResourceTyp
   }
 
   /**
-   * Set Resource Type.
+   * Set Wednesday.
    *
-   * @param S_ResourceType_ID Resource Type
+   * @param OnWednesday Available on Wednesdays
    */
-  public void setS_ResourceType_ID(int S_ResourceType_ID) {
-    if (S_ResourceType_ID < 1) set_ValueNoCheck(COLUMNNAME_S_ResourceType_ID, null);
-    else set_ValueNoCheck(COLUMNNAME_S_ResourceType_ID, Integer.valueOf(S_ResourceType_ID));
+  public void setOnWednesday(boolean OnWednesday) {
+    set_Value(COLUMNNAME_OnWednesday, Boolean.valueOf(OnWednesday));
   }
 
   /**
@@ -445,12 +434,13 @@ public class X_S_ResourceType extends BasePONameValue implements I_S_ResourceTyp
   }
 
   /**
-   * Set S_ResourceType_UU.
+   * Set Resource Type.
    *
-   * @param S_ResourceType_UU S_ResourceType_UU
+   * @param S_ResourceType_ID Resource Type
    */
-  public void setS_ResourceType_UU(String S_ResourceType_UU) {
-    set_Value(COLUMNNAME_S_ResourceType_UU, S_ResourceType_UU);
+  public void setS_ResourceType_ID(int S_ResourceType_ID) {
+    if (S_ResourceType_ID < 1) set_ValueNoCheck(COLUMNNAME_S_ResourceType_ID, null);
+    else set_ValueNoCheck(COLUMNNAME_S_ResourceType_ID, Integer.valueOf(S_ResourceType_ID));
   }
 
   /**
@@ -463,12 +453,12 @@ public class X_S_ResourceType extends BasePONameValue implements I_S_ResourceTyp
   }
 
   /**
-   * Set Slot End.
+   * Set S_ResourceType_UU.
    *
-   * @param TimeSlotEnd Time when timeslot ends
+   * @param S_ResourceType_UU S_ResourceType_UU
    */
-  public void setTimeSlotEnd(Timestamp TimeSlotEnd) {
-    set_Value(COLUMNNAME_TimeSlotEnd, TimeSlotEnd);
+  public void setS_ResourceType_UU(String S_ResourceType_UU) {
+    set_Value(COLUMNNAME_S_ResourceType_UU, S_ResourceType_UU);
   }
 
   /**
@@ -481,12 +471,12 @@ public class X_S_ResourceType extends BasePONameValue implements I_S_ResourceTyp
   }
 
   /**
-   * Set Slot Start.
+   * Set Slot End.
    *
-   * @param TimeSlotStart Time when timeslot starts
+   * @param TimeSlotEnd Time when timeslot ends
    */
-  public void setTimeSlotStart(Timestamp TimeSlotStart) {
-    set_Value(COLUMNNAME_TimeSlotStart, TimeSlotStart);
+  public void setTimeSlotEnd(Timestamp TimeSlotEnd) {
+    set_Value(COLUMNNAME_TimeSlotEnd, TimeSlotEnd);
   }
 
   /**
@@ -496,6 +486,15 @@ public class X_S_ResourceType extends BasePONameValue implements I_S_ResourceTyp
    */
   public Timestamp getTimeSlotStart() {
     return (Timestamp) get_Value(COLUMNNAME_TimeSlotStart);
+  }
+
+  /**
+   * Set Slot Start.
+   *
+   * @param TimeSlotStart Time when timeslot starts
+   */
+  public void setTimeSlotStart(Timestamp TimeSlotStart) {
+    set_Value(COLUMNNAME_TimeSlotStart, TimeSlotStart);
   }
 
   @Override

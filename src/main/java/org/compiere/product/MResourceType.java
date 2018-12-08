@@ -1,27 +1,26 @@
 package org.compiere.product;
 
-import org.compiere.model.I_S_ResourceType;
-import org.compiere.orm.TimeUtil;
-import org.idempiere.common.exceptions.AdempiereException;
-import org.idempiere.common.exceptions.FillMandatoryException;
-import org.idempiere.common.util.CCache;
-
 import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Properties;
+import org.compiere.model.I_S_ResourceType;
+import org.compiere.orm.TimeUtil;
+import org.idempiere.common.exceptions.AdempiereException;
+import org.idempiere.common.exceptions.FillMandatoryException;
+import org.idempiere.common.util.CCache;
 
 /**
  * Resource Type Model
  *
  * @author Jorg Janke
- * @version $Id: MResourceType.java,v 1.2 2006/07/30 00:51:03 jjanke Exp $
  * @author Teo Sarca, www.arhipac.ro
  *     <li>FR [ 2051056 ] MResource[Type] should be cached
  *     <li>added manufacturing related methods (getDayStart, getDayEnd etc)
  *     <li>BF [ 2431049 ] If Time Slot then Time Slot Start/End should be mandatory
+ * @version $Id: MResourceType.java,v 1.2 2006/07/30 00:51:03 jjanke Exp $
  */
 public class MResourceType extends X_S_ResourceType {
   /** */
@@ -29,26 +28,6 @@ public class MResourceType extends X_S_ResourceType {
   /** Cache */
   private static CCache<Integer, MResourceType> s_cache =
       new CCache<Integer, MResourceType>(I_S_ResourceType.Table_Name, 20);
-
-  /**
-   * Get from Cache
-   *
-   * @param ctx
-   * @param S_ResourceType_ID
-   * @return MResourceType
-   */
-  public static MResourceType get(Properties ctx, int S_ResourceType_ID) {
-    if (S_ResourceType_ID <= 0) return null;
-
-    MResourceType type = s_cache.get(S_ResourceType_ID);
-    if (type == null) {
-      type = new MResourceType(ctx, S_ResourceType_ID, null);
-      if (type.getId() == S_ResourceType_ID) {
-        s_cache.put(S_ResourceType_ID, type);
-      }
-    }
-    return type;
-  }
 
   /**
    * Standard Constructor
@@ -69,6 +48,26 @@ public class MResourceType extends X_S_ResourceType {
   public MResourceType(Properties ctx, ResultSet rs, String trxName) {
     super(ctx, rs, trxName);
   } //	MResourceType
+
+  /**
+   * Get from Cache
+   *
+   * @param ctx
+   * @param S_ResourceType_ID
+   * @return MResourceType
+   */
+  public static MResourceType get(Properties ctx, int S_ResourceType_ID) {
+    if (S_ResourceType_ID <= 0) return null;
+
+    MResourceType type = s_cache.get(S_ResourceType_ID);
+    if (type == null) {
+      type = new MResourceType(ctx, S_ResourceType_ID, null);
+      if (type.getId() == S_ResourceType_ID) {
+        s_cache.put(S_ResourceType_ID, type);
+      }
+    }
+    return type;
+  }
 
   @Override
   protected boolean beforeSave(boolean newRecord) {

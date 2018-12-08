@@ -1,16 +1,15 @@
 package org.compiere.product;
 
+import java.math.BigDecimal;
+import java.sql.ResultSet;
+import java.sql.Timestamp;
+import java.util.Properties;
 import org.compiere.model.I_M_DiscountSchemaLine;
 import org.compiere.orm.MTable;
 import org.compiere.orm.PO;
 import org.idempiere.common.util.Env;
 import org.idempiere.common.util.KeyNamePair;
 import org.idempiere.orm.I_Persistent;
-
-import java.math.BigDecimal;
-import java.sql.ResultSet;
-import java.sql.Timestamp;
-import java.util.Properties;
 
 /**
  * Generated Model for M_DiscountSchemaLine
@@ -20,6 +19,96 @@ import java.util.Properties;
  */
 public class X_M_DiscountSchemaLine extends PO implements I_M_DiscountSchemaLine, I_Persistent {
 
+  /** Limit_Base AD_Reference_ID=194 */
+  public static final int LIMIT_BASE_AD_Reference_ID = 194;
+  /** List Price = L */
+  public static final String LIMIT_BASE_ListPrice = "L";
+  /** Standard Price = S */
+  public static final String LIMIT_BASE_StandardPrice = "S";
+  /** Limit (PO) Price = X */
+  public static final String LIMIT_BASE_LimitPOPrice = "X";
+  /** Fixed Price = F */
+  public static final String LIMIT_BASE_FixedPrice = "F";
+  /** Product Cost = P */
+  public static final String LIMIT_BASE_ProductCost = "P";
+  /** Limit_Rounding AD_Reference_ID=155 */
+  public static final int LIMIT_ROUNDING_AD_Reference_ID = 155;
+  /** Whole Number .00 = 0 */
+  public static final String LIMIT_ROUNDING_WholeNumber00 = "0";
+  /** No Rounding = N */
+  public static final String LIMIT_ROUNDING_NoRounding = "N";
+  /** Quarter .25 .50 .75 = Q */
+  public static final String LIMIT_ROUNDING_Quarter255075 = "Q";
+  /** Dime .10, .20, .30, ... = D */
+  public static final String LIMIT_ROUNDING_Dime102030 = "D";
+  /** Nickel .05, .10, .15, ... = 5 */
+  public static final String LIMIT_ROUNDING_Nickel051015 = "5";
+  /** Ten 10.00, 20.00, .. = T */
+  public static final String LIMIT_ROUNDING_Ten10002000 = "T";
+  /** Currency Precision = C */
+  public static final String LIMIT_ROUNDING_CurrencyPrecision = "C";
+  /** Ending in 9/5 = 9 */
+  public static final String LIMIT_ROUNDING_EndingIn95 = "9";
+  /** List_Base AD_Reference_ID=194 */
+  public static final int LIST_BASE_AD_Reference_ID = 194;
+  /** List Price = L */
+  public static final String LIST_BASE_ListPrice = "L";
+  /** Standard Price = S */
+  public static final String LIST_BASE_StandardPrice = "S";
+  /** Limit (PO) Price = X */
+  public static final String LIST_BASE_LimitPOPrice = "X";
+  /** Fixed Price = F */
+  public static final String LIST_BASE_FixedPrice = "F";
+  /** Product Cost = P */
+  public static final String LIST_BASE_ProductCost = "P";
+  /** List_Rounding AD_Reference_ID=155 */
+  public static final int LIST_ROUNDING_AD_Reference_ID = 155;
+  /** Whole Number .00 = 0 */
+  public static final String LIST_ROUNDING_WholeNumber00 = "0";
+  /** No Rounding = N */
+  public static final String LIST_ROUNDING_NoRounding = "N";
+  /** Quarter .25 .50 .75 = Q */
+  public static final String LIST_ROUNDING_Quarter255075 = "Q";
+  /** Dime .10, .20, .30, ... = D */
+  public static final String LIST_ROUNDING_Dime102030 = "D";
+  /** Nickel .05, .10, .15, ... = 5 */
+  public static final String LIST_ROUNDING_Nickel051015 = "5";
+  /** Ten 10.00, 20.00, .. = T */
+  public static final String LIST_ROUNDING_Ten10002000 = "T";
+  /** Currency Precision = C */
+  public static final String LIST_ROUNDING_CurrencyPrecision = "C";
+  /** Ending in 9/5 = 9 */
+  public static final String LIST_ROUNDING_EndingIn95 = "9";
+  /** Std_Base AD_Reference_ID=194 */
+  public static final int STD_BASE_AD_Reference_ID = 194;
+  /** List Price = L */
+  public static final String STD_BASE_ListPrice = "L";
+  /** Standard Price = S */
+  public static final String STD_BASE_StandardPrice = "S";
+  /** Limit (PO) Price = X */
+  public static final String STD_BASE_LimitPOPrice = "X";
+  /** Fixed Price = F */
+  public static final String STD_BASE_FixedPrice = "F";
+  /** Product Cost = P */
+  public static final String STD_BASE_ProductCost = "P";
+  /** Std_Rounding AD_Reference_ID=155 */
+  public static final int STD_ROUNDING_AD_Reference_ID = 155;
+  /** Whole Number .00 = 0 */
+  public static final String STD_ROUNDING_WholeNumber00 = "0";
+  /** No Rounding = N */
+  public static final String STD_ROUNDING_NoRounding = "N";
+  /** Quarter .25 .50 .75 = Q */
+  public static final String STD_ROUNDING_Quarter255075 = "Q";
+  /** Dime .10, .20, .30, ... = D */
+  public static final String STD_ROUNDING_Dime102030 = "D";
+  /** Nickel .05, .10, .15, ... = 5 */
+  public static final String STD_ROUNDING_Nickel051015 = "5";
+  /** Ten 10.00, 20.00, .. = T */
+  public static final String STD_ROUNDING_Ten10002000 = "T";
+  /** Currency Precision = C */
+  public static final String STD_ROUNDING_CurrencyPrecision = "C";
+  /** Ending in 9/5 = 9 */
+  public static final String STD_ROUNDING_EndingIn95 = "9";
   /** */
   private static final long serialVersionUID = 20171031L;
 
@@ -65,16 +154,6 @@ public class X_M_DiscountSchemaLine extends PO implements I_M_DiscountSchemaLine
   }
 
   /**
-   * Set Business Partner .
-   *
-   * @param C_BPartner_ID Identifies a Business Partner
-   */
-  public void setC_BPartner_ID(int C_BPartner_ID) {
-    if (C_BPartner_ID < 1) set_Value(COLUMNNAME_C_BPartner_ID, null);
-    else set_Value(COLUMNNAME_C_BPartner_ID, Integer.valueOf(C_BPartner_ID));
-  }
-
-  /**
    * Get Business Partner .
    *
    * @return Identifies a Business Partner
@@ -85,20 +164,20 @@ public class X_M_DiscountSchemaLine extends PO implements I_M_DiscountSchemaLine
     return ii;
   }
 
+  /**
+   * Set Business Partner .
+   *
+   * @param C_BPartner_ID Identifies a Business Partner
+   */
+  public void setC_BPartner_ID(int C_BPartner_ID) {
+    if (C_BPartner_ID < 1) set_Value(COLUMNNAME_C_BPartner_ID, null);
+    else set_Value(COLUMNNAME_C_BPartner_ID, Integer.valueOf(C_BPartner_ID));
+  }
+
   public org.compiere.model.I_C_ConversionType getC_ConversionType() throws RuntimeException {
     return (org.compiere.model.I_C_ConversionType)
         MTable.get(getCtx(), org.compiere.model.I_C_ConversionType.Table_Name)
             .getPO(getC_ConversionType_ID(), get_TrxName());
-  }
-
-  /**
-   * Set Currency Type.
-   *
-   * @param C_ConversionType_ID Currency Conversion Rate Type
-   */
-  public void setC_ConversionType_ID(int C_ConversionType_ID) {
-    if (C_ConversionType_ID < 1) set_Value(COLUMNNAME_C_ConversionType_ID, null);
-    else set_Value(COLUMNNAME_C_ConversionType_ID, Integer.valueOf(C_ConversionType_ID));
   }
 
   /**
@@ -113,12 +192,13 @@ public class X_M_DiscountSchemaLine extends PO implements I_M_DiscountSchemaLine
   }
 
   /**
-   * Set Classification.
+   * Set Currency Type.
    *
-   * @param Classification Classification for grouping
+   * @param C_ConversionType_ID Currency Conversion Rate Type
    */
-  public void setClassification(String Classification) {
-    set_Value(COLUMNNAME_Classification, Classification);
+  public void setC_ConversionType_ID(int C_ConversionType_ID) {
+    if (C_ConversionType_ID < 1) set_Value(COLUMNNAME_C_ConversionType_ID, null);
+    else set_Value(COLUMNNAME_C_ConversionType_ID, Integer.valueOf(C_ConversionType_ID));
   }
 
   /**
@@ -131,12 +211,12 @@ public class X_M_DiscountSchemaLine extends PO implements I_M_DiscountSchemaLine
   }
 
   /**
-   * Set Conversion Date.
+   * Set Classification.
    *
-   * @param ConversionDate Date for selecting conversion rate
+   * @param Classification Classification for grouping
    */
-  public void setConversionDate(Timestamp ConversionDate) {
-    set_Value(COLUMNNAME_ConversionDate, ConversionDate);
+  public void setClassification(String Classification) {
+    set_Value(COLUMNNAME_Classification, Classification);
   }
 
   /**
@@ -149,12 +229,12 @@ public class X_M_DiscountSchemaLine extends PO implements I_M_DiscountSchemaLine
   }
 
   /**
-   * Set Group1.
+   * Set Conversion Date.
    *
-   * @param Group1 Group1
+   * @param ConversionDate Date for selecting conversion rate
    */
-  public void setGroup1(String Group1) {
-    set_Value(COLUMNNAME_Group1, Group1);
+  public void setConversionDate(Timestamp ConversionDate) {
+    set_Value(COLUMNNAME_ConversionDate, ConversionDate);
   }
 
   /**
@@ -167,12 +247,12 @@ public class X_M_DiscountSchemaLine extends PO implements I_M_DiscountSchemaLine
   }
 
   /**
-   * Set Group2.
+   * Set Group1.
    *
-   * @param Group2 Group2
+   * @param Group1 Group1
    */
-  public void setGroup2(String Group2) {
-    set_Value(COLUMNNAME_Group2, Group2);
+  public void setGroup1(String Group1) {
+    set_Value(COLUMNNAME_Group1, Group1);
   }
 
   /**
@@ -185,12 +265,12 @@ public class X_M_DiscountSchemaLine extends PO implements I_M_DiscountSchemaLine
   }
 
   /**
-   * Set Limit price Surcharge Amount.
+   * Set Group2.
    *
-   * @param Limit_AddAmt Amount added to the converted/copied price before multiplying
+   * @param Group2 Group2
    */
-  public void setLimit_AddAmt(BigDecimal Limit_AddAmt) {
-    set_Value(COLUMNNAME_Limit_AddAmt, Limit_AddAmt);
+  public void setGroup2(String Group2) {
+    set_Value(COLUMNNAME_Group2, Group2);
   }
 
   /**
@@ -204,26 +284,13 @@ public class X_M_DiscountSchemaLine extends PO implements I_M_DiscountSchemaLine
     return bd;
   }
 
-  /** Limit_Base AD_Reference_ID=194 */
-  public static final int LIMIT_BASE_AD_Reference_ID = 194;
-  /** List Price = L */
-  public static final String LIMIT_BASE_ListPrice = "L";
-  /** Standard Price = S */
-  public static final String LIMIT_BASE_StandardPrice = "S";
-  /** Limit (PO) Price = X */
-  public static final String LIMIT_BASE_LimitPOPrice = "X";
-  /** Fixed Price = F */
-  public static final String LIMIT_BASE_FixedPrice = "F";
-  /** Product Cost = P */
-  public static final String LIMIT_BASE_ProductCost = "P";
   /**
-   * Set Limit price Base.
+   * Set Limit price Surcharge Amount.
    *
-   * @param Limit_Base Base price for calculation of the new price
+   * @param Limit_AddAmt Amount added to the converted/copied price before multiplying
    */
-  public void setLimit_Base(String Limit_Base) {
-
-    set_Value(COLUMNNAME_Limit_Base, Limit_Base);
+  public void setLimit_AddAmt(BigDecimal Limit_AddAmt) {
+    set_Value(COLUMNNAME_Limit_AddAmt, Limit_AddAmt);
   }
 
   /**
@@ -236,13 +303,13 @@ public class X_M_DiscountSchemaLine extends PO implements I_M_DiscountSchemaLine
   }
 
   /**
-   * Set Limit price Discount %.
+   * Set Limit price Base.
    *
-   * @param Limit_Discount Discount in percent to be subtracted from base, if negative it will be
-   *     added to base price
+   * @param Limit_Base Base price for calculation of the new price
    */
-  public void setLimit_Discount(BigDecimal Limit_Discount) {
-    set_Value(COLUMNNAME_Limit_Discount, Limit_Discount);
+  public void setLimit_Base(String Limit_Base) {
+
+    set_Value(COLUMNNAME_Limit_Base, Limit_Base);
   }
 
   /**
@@ -258,12 +325,13 @@ public class X_M_DiscountSchemaLine extends PO implements I_M_DiscountSchemaLine
   }
 
   /**
-   * Set Fixed Limit Price.
+   * Set Limit price Discount %.
    *
-   * @param Limit_Fixed Fixed Limit Price (not calculated)
+   * @param Limit_Discount Discount in percent to be subtracted from base, if negative it will be
+   *     added to base price
    */
-  public void setLimit_Fixed(BigDecimal Limit_Fixed) {
-    set_Value(COLUMNNAME_Limit_Fixed, Limit_Fixed);
+  public void setLimit_Discount(BigDecimal Limit_Discount) {
+    set_Value(COLUMNNAME_Limit_Discount, Limit_Discount);
   }
 
   /**
@@ -278,12 +346,12 @@ public class X_M_DiscountSchemaLine extends PO implements I_M_DiscountSchemaLine
   }
 
   /**
-   * Set Limit price max Margin.
+   * Set Fixed Limit Price.
    *
-   * @param Limit_MaxAmt Maximum difference to original limit price; ignored if zero
+   * @param Limit_Fixed Fixed Limit Price (not calculated)
    */
-  public void setLimit_MaxAmt(BigDecimal Limit_MaxAmt) {
-    set_Value(COLUMNNAME_Limit_MaxAmt, Limit_MaxAmt);
+  public void setLimit_Fixed(BigDecimal Limit_Fixed) {
+    set_Value(COLUMNNAME_Limit_Fixed, Limit_Fixed);
   }
 
   /**
@@ -298,12 +366,12 @@ public class X_M_DiscountSchemaLine extends PO implements I_M_DiscountSchemaLine
   }
 
   /**
-   * Set Limit price min Margin.
+   * Set Limit price max Margin.
    *
-   * @param Limit_MinAmt Minimum difference to original limit price; ignored if zero
+   * @param Limit_MaxAmt Maximum difference to original limit price; ignored if zero
    */
-  public void setLimit_MinAmt(BigDecimal Limit_MinAmt) {
-    set_Value(COLUMNNAME_Limit_MinAmt, Limit_MinAmt);
+  public void setLimit_MaxAmt(BigDecimal Limit_MaxAmt) {
+    set_Value(COLUMNNAME_Limit_MaxAmt, Limit_MaxAmt);
   }
 
   /**
@@ -317,32 +385,13 @@ public class X_M_DiscountSchemaLine extends PO implements I_M_DiscountSchemaLine
     return bd;
   }
 
-  /** Limit_Rounding AD_Reference_ID=155 */
-  public static final int LIMIT_ROUNDING_AD_Reference_ID = 155;
-  /** Whole Number .00 = 0 */
-  public static final String LIMIT_ROUNDING_WholeNumber00 = "0";
-  /** No Rounding = N */
-  public static final String LIMIT_ROUNDING_NoRounding = "N";
-  /** Quarter .25 .50 .75 = Q */
-  public static final String LIMIT_ROUNDING_Quarter255075 = "Q";
-  /** Dime .10, .20, .30, ... = D */
-  public static final String LIMIT_ROUNDING_Dime102030 = "D";
-  /** Nickel .05, .10, .15, ... = 5 */
-  public static final String LIMIT_ROUNDING_Nickel051015 = "5";
-  /** Ten 10.00, 20.00, .. = T */
-  public static final String LIMIT_ROUNDING_Ten10002000 = "T";
-  /** Currency Precision = C */
-  public static final String LIMIT_ROUNDING_CurrencyPrecision = "C";
-  /** Ending in 9/5 = 9 */
-  public static final String LIMIT_ROUNDING_EndingIn95 = "9";
   /**
-   * Set Limit price Rounding.
+   * Set Limit price min Margin.
    *
-   * @param Limit_Rounding Rounding of the final result
+   * @param Limit_MinAmt Minimum difference to original limit price; ignored if zero
    */
-  public void setLimit_Rounding(String Limit_Rounding) {
-
-    set_Value(COLUMNNAME_Limit_Rounding, Limit_Rounding);
+  public void setLimit_MinAmt(BigDecimal Limit_MinAmt) {
+    set_Value(COLUMNNAME_Limit_MinAmt, Limit_MinAmt);
   }
 
   /**
@@ -355,12 +404,13 @@ public class X_M_DiscountSchemaLine extends PO implements I_M_DiscountSchemaLine
   }
 
   /**
-   * Set List price Surcharge Amount.
+   * Set Limit price Rounding.
    *
-   * @param List_AddAmt List Price Surcharge Amount
+   * @param Limit_Rounding Rounding of the final result
    */
-  public void setList_AddAmt(BigDecimal List_AddAmt) {
-    set_Value(COLUMNNAME_List_AddAmt, List_AddAmt);
+  public void setLimit_Rounding(String Limit_Rounding) {
+
+    set_Value(COLUMNNAME_Limit_Rounding, Limit_Rounding);
   }
 
   /**
@@ -374,26 +424,13 @@ public class X_M_DiscountSchemaLine extends PO implements I_M_DiscountSchemaLine
     return bd;
   }
 
-  /** List_Base AD_Reference_ID=194 */
-  public static final int LIST_BASE_AD_Reference_ID = 194;
-  /** List Price = L */
-  public static final String LIST_BASE_ListPrice = "L";
-  /** Standard Price = S */
-  public static final String LIST_BASE_StandardPrice = "S";
-  /** Limit (PO) Price = X */
-  public static final String LIST_BASE_LimitPOPrice = "X";
-  /** Fixed Price = F */
-  public static final String LIST_BASE_FixedPrice = "F";
-  /** Product Cost = P */
-  public static final String LIST_BASE_ProductCost = "P";
   /**
-   * Set List price Base.
+   * Set List price Surcharge Amount.
    *
-   * @param List_Base Price used as the basis for price list calculations
+   * @param List_AddAmt List Price Surcharge Amount
    */
-  public void setList_Base(String List_Base) {
-
-    set_Value(COLUMNNAME_List_Base, List_Base);
+  public void setList_AddAmt(BigDecimal List_AddAmt) {
+    set_Value(COLUMNNAME_List_AddAmt, List_AddAmt);
   }
 
   /**
@@ -406,12 +443,13 @@ public class X_M_DiscountSchemaLine extends PO implements I_M_DiscountSchemaLine
   }
 
   /**
-   * Set List price Discount %.
+   * Set List price Base.
    *
-   * @param List_Discount Discount from list price as a percentage
+   * @param List_Base Price used as the basis for price list calculations
    */
-  public void setList_Discount(BigDecimal List_Discount) {
-    set_Value(COLUMNNAME_List_Discount, List_Discount);
+  public void setList_Base(String List_Base) {
+
+    set_Value(COLUMNNAME_List_Base, List_Base);
   }
 
   /**
@@ -426,12 +464,12 @@ public class X_M_DiscountSchemaLine extends PO implements I_M_DiscountSchemaLine
   }
 
   /**
-   * Set Fixed List Price.
+   * Set List price Discount %.
    *
-   * @param List_Fixed Fixes List Price (not calculated)
+   * @param List_Discount Discount from list price as a percentage
    */
-  public void setList_Fixed(BigDecimal List_Fixed) {
-    set_Value(COLUMNNAME_List_Fixed, List_Fixed);
+  public void setList_Discount(BigDecimal List_Discount) {
+    set_Value(COLUMNNAME_List_Discount, List_Discount);
   }
 
   /**
@@ -446,12 +484,12 @@ public class X_M_DiscountSchemaLine extends PO implements I_M_DiscountSchemaLine
   }
 
   /**
-   * Set List price max Margin.
+   * Set Fixed List Price.
    *
-   * @param List_MaxAmt Maximum margin for a product
+   * @param List_Fixed Fixes List Price (not calculated)
    */
-  public void setList_MaxAmt(BigDecimal List_MaxAmt) {
-    set_Value(COLUMNNAME_List_MaxAmt, List_MaxAmt);
+  public void setList_Fixed(BigDecimal List_Fixed) {
+    set_Value(COLUMNNAME_List_Fixed, List_Fixed);
   }
 
   /**
@@ -466,12 +504,12 @@ public class X_M_DiscountSchemaLine extends PO implements I_M_DiscountSchemaLine
   }
 
   /**
-   * Set List price min Margin.
+   * Set List price max Margin.
    *
-   * @param List_MinAmt Minimum margin for a product
+   * @param List_MaxAmt Maximum margin for a product
    */
-  public void setList_MinAmt(BigDecimal List_MinAmt) {
-    set_Value(COLUMNNAME_List_MinAmt, List_MinAmt);
+  public void setList_MaxAmt(BigDecimal List_MaxAmt) {
+    set_Value(COLUMNNAME_List_MaxAmt, List_MaxAmt);
   }
 
   /**
@@ -485,32 +523,13 @@ public class X_M_DiscountSchemaLine extends PO implements I_M_DiscountSchemaLine
     return bd;
   }
 
-  /** List_Rounding AD_Reference_ID=155 */
-  public static final int LIST_ROUNDING_AD_Reference_ID = 155;
-  /** Whole Number .00 = 0 */
-  public static final String LIST_ROUNDING_WholeNumber00 = "0";
-  /** No Rounding = N */
-  public static final String LIST_ROUNDING_NoRounding = "N";
-  /** Quarter .25 .50 .75 = Q */
-  public static final String LIST_ROUNDING_Quarter255075 = "Q";
-  /** Dime .10, .20, .30, ... = D */
-  public static final String LIST_ROUNDING_Dime102030 = "D";
-  /** Nickel .05, .10, .15, ... = 5 */
-  public static final String LIST_ROUNDING_Nickel051015 = "5";
-  /** Ten 10.00, 20.00, .. = T */
-  public static final String LIST_ROUNDING_Ten10002000 = "T";
-  /** Currency Precision = C */
-  public static final String LIST_ROUNDING_CurrencyPrecision = "C";
-  /** Ending in 9/5 = 9 */
-  public static final String LIST_ROUNDING_EndingIn95 = "9";
   /**
-   * Set List price Rounding.
+   * Set List price min Margin.
    *
-   * @param List_Rounding Rounding rule for final list price
+   * @param List_MinAmt Minimum margin for a product
    */
-  public void setList_Rounding(String List_Rounding) {
-
-    set_Value(COLUMNNAME_List_Rounding, List_Rounding);
+  public void setList_MinAmt(BigDecimal List_MinAmt) {
+    set_Value(COLUMNNAME_List_MinAmt, List_MinAmt);
   }
 
   /**
@@ -522,10 +541,31 @@ public class X_M_DiscountSchemaLine extends PO implements I_M_DiscountSchemaLine
     return (String) get_Value(COLUMNNAME_List_Rounding);
   }
 
+  /**
+   * Set List price Rounding.
+   *
+   * @param List_Rounding Rounding rule for final list price
+   */
+  public void setList_Rounding(String List_Rounding) {
+
+    set_Value(COLUMNNAME_List_Rounding, List_Rounding);
+  }
+
   public org.compiere.model.I_M_DiscountSchema getM_DiscountSchema() throws RuntimeException {
     return (org.compiere.model.I_M_DiscountSchema)
         MTable.get(getCtx(), org.compiere.model.I_M_DiscountSchema.Table_Name)
             .getPO(getM_DiscountSchema_ID(), get_TrxName());
+  }
+
+  /**
+   * Get Discount Schema.
+   *
+   * @return Schema to calculate the trade discount percentage
+   */
+  public int getM_DiscountSchema_ID() {
+    Integer ii = (Integer) get_Value(COLUMNNAME_M_DiscountSchema_ID);
+    if (ii == null) return 0;
+    return ii;
   }
 
   /**
@@ -539,12 +579,12 @@ public class X_M_DiscountSchemaLine extends PO implements I_M_DiscountSchemaLine
   }
 
   /**
-   * Get Discount Schema.
+   * Get Discount Pricelist.
    *
-   * @return Schema to calculate the trade discount percentage
+   * @return Line of the pricelist trade discount schema
    */
-  public int getM_DiscountSchema_ID() {
-    Integer ii = (Integer) get_Value(COLUMNNAME_M_DiscountSchema_ID);
+  public int getM_DiscountSchemaLine_ID() {
+    Integer ii = (Integer) get_Value(COLUMNNAME_M_DiscountSchemaLine_ID);
     if (ii == null) return 0;
     return ii;
   }
@@ -562,14 +602,12 @@ public class X_M_DiscountSchemaLine extends PO implements I_M_DiscountSchemaLine
   }
 
   /**
-   * Get Discount Pricelist.
+   * Get M_DiscountSchemaLine_UU.
    *
-   * @return Line of the pricelist trade discount schema
+   * @return M_DiscountSchemaLine_UU
    */
-  public int getM_DiscountSchemaLine_ID() {
-    Integer ii = (Integer) get_Value(COLUMNNAME_M_DiscountSchemaLine_ID);
-    if (ii == null) return 0;
-    return ii;
+  public String getM_DiscountSchemaLine_UU() {
+    return (String) get_Value(COLUMNNAME_M_DiscountSchemaLine_UU);
   }
 
   /**
@@ -581,29 +619,10 @@ public class X_M_DiscountSchemaLine extends PO implements I_M_DiscountSchemaLine
     set_Value(COLUMNNAME_M_DiscountSchemaLine_UU, M_DiscountSchemaLine_UU);
   }
 
-  /**
-   * Get M_DiscountSchemaLine_UU.
-   *
-   * @return M_DiscountSchemaLine_UU
-   */
-  public String getM_DiscountSchemaLine_UU() {
-    return (String) get_Value(COLUMNNAME_M_DiscountSchemaLine_UU);
-  }
-
   public org.compiere.model.I_M_Product_Category getM_Product_Category() throws RuntimeException {
     return (org.compiere.model.I_M_Product_Category)
         MTable.get(getCtx(), org.compiere.model.I_M_Product_Category.Table_Name)
             .getPO(getM_Product_Category_ID(), get_TrxName());
-  }
-
-  /**
-   * Set Product Category.
-   *
-   * @param M_Product_Category_ID Category of a Product
-   */
-  public void setM_Product_Category_ID(int M_Product_Category_ID) {
-    if (M_Product_Category_ID < 1) set_Value(COLUMNNAME_M_Product_Category_ID, null);
-    else set_Value(COLUMNNAME_M_Product_Category_ID, Integer.valueOf(M_Product_Category_ID));
   }
 
   /**
@@ -617,20 +636,20 @@ public class X_M_DiscountSchemaLine extends PO implements I_M_DiscountSchemaLine
     return ii;
   }
 
+  /**
+   * Set Product Category.
+   *
+   * @param M_Product_Category_ID Category of a Product
+   */
+  public void setM_Product_Category_ID(int M_Product_Category_ID) {
+    if (M_Product_Category_ID < 1) set_Value(COLUMNNAME_M_Product_Category_ID, null);
+    else set_Value(COLUMNNAME_M_Product_Category_ID, Integer.valueOf(M_Product_Category_ID));
+  }
+
   public org.compiere.model.I_M_Product getM_Product() throws RuntimeException {
     return (org.compiere.model.I_M_Product)
         MTable.get(getCtx(), org.compiere.model.I_M_Product.Table_Name)
             .getPO(getM_Product_ID(), get_TrxName());
-  }
-
-  /**
-   * Set Product.
-   *
-   * @param M_Product_ID Product, Service, Item
-   */
-  public void setM_Product_ID(int M_Product_ID) {
-    if (M_Product_ID < 1) set_Value(COLUMNNAME_M_Product_ID, null);
-    else set_Value(COLUMNNAME_M_Product_ID, Integer.valueOf(M_Product_ID));
   }
 
   /**
@@ -645,12 +664,13 @@ public class X_M_DiscountSchemaLine extends PO implements I_M_DiscountSchemaLine
   }
 
   /**
-   * Set Sequence.
+   * Set Product.
    *
-   * @param SeqNo Method of ordering records; lowest number comes first
+   * @param M_Product_ID Product, Service, Item
    */
-  public void setSeqNo(int SeqNo) {
-    set_Value(COLUMNNAME_SeqNo, Integer.valueOf(SeqNo));
+  public void setM_Product_ID(int M_Product_ID) {
+    if (M_Product_ID < 1) set_Value(COLUMNNAME_M_Product_ID, null);
+    else set_Value(COLUMNNAME_M_Product_ID, Integer.valueOf(M_Product_ID));
   }
 
   /**
@@ -665,21 +685,21 @@ public class X_M_DiscountSchemaLine extends PO implements I_M_DiscountSchemaLine
   }
 
   /**
+   * Set Sequence.
+   *
+   * @param SeqNo Method of ordering records; lowest number comes first
+   */
+  public void setSeqNo(int SeqNo) {
+    set_Value(COLUMNNAME_SeqNo, Integer.valueOf(SeqNo));
+  }
+
+  /**
    * Get Record ID/ColumnName
    *
    * @return ID/ColumnName pair
    */
   public KeyNamePair getKeyNamePair() {
     return new KeyNamePair(getId(), String.valueOf(getSeqNo()));
-  }
-
-  /**
-   * Set Standard price Surcharge Amount.
-   *
-   * @param Std_AddAmt Amount added to a price as a surcharge
-   */
-  public void setStd_AddAmt(BigDecimal Std_AddAmt) {
-    set_Value(COLUMNNAME_Std_AddAmt, Std_AddAmt);
   }
 
   /**
@@ -693,26 +713,13 @@ public class X_M_DiscountSchemaLine extends PO implements I_M_DiscountSchemaLine
     return bd;
   }
 
-  /** Std_Base AD_Reference_ID=194 */
-  public static final int STD_BASE_AD_Reference_ID = 194;
-  /** List Price = L */
-  public static final String STD_BASE_ListPrice = "L";
-  /** Standard Price = S */
-  public static final String STD_BASE_StandardPrice = "S";
-  /** Limit (PO) Price = X */
-  public static final String STD_BASE_LimitPOPrice = "X";
-  /** Fixed Price = F */
-  public static final String STD_BASE_FixedPrice = "F";
-  /** Product Cost = P */
-  public static final String STD_BASE_ProductCost = "P";
   /**
-   * Set Standard price Base.
+   * Set Standard price Surcharge Amount.
    *
-   * @param Std_Base Base price for calculating new standard price
+   * @param Std_AddAmt Amount added to a price as a surcharge
    */
-  public void setStd_Base(String Std_Base) {
-
-    set_Value(COLUMNNAME_Std_Base, Std_Base);
+  public void setStd_AddAmt(BigDecimal Std_AddAmt) {
+    set_Value(COLUMNNAME_Std_AddAmt, Std_AddAmt);
   }
 
   /**
@@ -725,12 +732,13 @@ public class X_M_DiscountSchemaLine extends PO implements I_M_DiscountSchemaLine
   }
 
   /**
-   * Set Standard price Discount %.
+   * Set Standard price Base.
    *
-   * @param Std_Discount Discount percentage to subtract from base price
+   * @param Std_Base Base price for calculating new standard price
    */
-  public void setStd_Discount(BigDecimal Std_Discount) {
-    set_Value(COLUMNNAME_Std_Discount, Std_Discount);
+  public void setStd_Base(String Std_Base) {
+
+    set_Value(COLUMNNAME_Std_Base, Std_Base);
   }
 
   /**
@@ -745,12 +753,12 @@ public class X_M_DiscountSchemaLine extends PO implements I_M_DiscountSchemaLine
   }
 
   /**
-   * Set Fixed Standard Price.
+   * Set Standard price Discount %.
    *
-   * @param Std_Fixed Fixed Standard Price (not calculated)
+   * @param Std_Discount Discount percentage to subtract from base price
    */
-  public void setStd_Fixed(BigDecimal Std_Fixed) {
-    set_Value(COLUMNNAME_Std_Fixed, Std_Fixed);
+  public void setStd_Discount(BigDecimal Std_Discount) {
+    set_Value(COLUMNNAME_Std_Discount, Std_Discount);
   }
 
   /**
@@ -765,12 +773,12 @@ public class X_M_DiscountSchemaLine extends PO implements I_M_DiscountSchemaLine
   }
 
   /**
-   * Set Standard max Margin.
+   * Set Fixed Standard Price.
    *
-   * @param Std_MaxAmt Maximum margin allowed for a product
+   * @param Std_Fixed Fixed Standard Price (not calculated)
    */
-  public void setStd_MaxAmt(BigDecimal Std_MaxAmt) {
-    set_Value(COLUMNNAME_Std_MaxAmt, Std_MaxAmt);
+  public void setStd_Fixed(BigDecimal Std_Fixed) {
+    set_Value(COLUMNNAME_Std_Fixed, Std_Fixed);
   }
 
   /**
@@ -785,12 +793,12 @@ public class X_M_DiscountSchemaLine extends PO implements I_M_DiscountSchemaLine
   }
 
   /**
-   * Set Standard price min Margin.
+   * Set Standard max Margin.
    *
-   * @param Std_MinAmt Minimum margin allowed for a product
+   * @param Std_MaxAmt Maximum margin allowed for a product
    */
-  public void setStd_MinAmt(BigDecimal Std_MinAmt) {
-    set_Value(COLUMNNAME_Std_MinAmt, Std_MinAmt);
+  public void setStd_MaxAmt(BigDecimal Std_MaxAmt) {
+    set_Value(COLUMNNAME_Std_MaxAmt, Std_MaxAmt);
   }
 
   /**
@@ -804,32 +812,13 @@ public class X_M_DiscountSchemaLine extends PO implements I_M_DiscountSchemaLine
     return bd;
   }
 
-  /** Std_Rounding AD_Reference_ID=155 */
-  public static final int STD_ROUNDING_AD_Reference_ID = 155;
-  /** Whole Number .00 = 0 */
-  public static final String STD_ROUNDING_WholeNumber00 = "0";
-  /** No Rounding = N */
-  public static final String STD_ROUNDING_NoRounding = "N";
-  /** Quarter .25 .50 .75 = Q */
-  public static final String STD_ROUNDING_Quarter255075 = "Q";
-  /** Dime .10, .20, .30, ... = D */
-  public static final String STD_ROUNDING_Dime102030 = "D";
-  /** Nickel .05, .10, .15, ... = 5 */
-  public static final String STD_ROUNDING_Nickel051015 = "5";
-  /** Ten 10.00, 20.00, .. = T */
-  public static final String STD_ROUNDING_Ten10002000 = "T";
-  /** Currency Precision = C */
-  public static final String STD_ROUNDING_CurrencyPrecision = "C";
-  /** Ending in 9/5 = 9 */
-  public static final String STD_ROUNDING_EndingIn95 = "9";
   /**
-   * Set Standard price Rounding.
+   * Set Standard price min Margin.
    *
-   * @param Std_Rounding Rounding rule for calculated price
+   * @param Std_MinAmt Minimum margin allowed for a product
    */
-  public void setStd_Rounding(String Std_Rounding) {
-
-    set_Value(COLUMNNAME_Std_Rounding, Std_Rounding);
+  public void setStd_MinAmt(BigDecimal Std_MinAmt) {
+    set_Value(COLUMNNAME_Std_MinAmt, Std_MinAmt);
   }
 
   /**
@@ -839,6 +828,16 @@ public class X_M_DiscountSchemaLine extends PO implements I_M_DiscountSchemaLine
    */
   public String getStd_Rounding() {
     return (String) get_Value(COLUMNNAME_Std_Rounding);
+  }
+
+  /**
+   * Set Standard price Rounding.
+   *
+   * @param Std_Rounding Rounding rule for calculated price
+   */
+  public void setStd_Rounding(String Std_Rounding) {
+
+    set_Value(COLUMNNAME_Std_Rounding, Std_Rounding);
   }
 
   @Override

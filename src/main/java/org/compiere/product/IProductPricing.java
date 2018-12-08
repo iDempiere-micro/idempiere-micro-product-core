@@ -2,11 +2,7 @@ package org.compiere.product;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
-import org.compiere.model.I_C_InvoiceLine;
-import org.compiere.model.I_C_OrderLine;
-import org.compiere.model.I_C_ProjectLine;
-import org.compiere.model.I_M_RMALine;
-import org.compiere.model.I_M_RequisitionLine;
+import org.compiere.model.*;
 
 /** Product Price Calculations */
 public interface IProductPricing {
