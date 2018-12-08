@@ -1,4 +1,3 @@
-import company.bigger.test.support.BaseComponentTest
 import company.bigger.test.support.randomString
 import org.compiere.model.I_M_Product
 import org.compiere.product.test.BaseProductTest
