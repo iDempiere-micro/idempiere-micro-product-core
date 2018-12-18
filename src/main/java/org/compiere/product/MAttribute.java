@@ -1,6 +1,11 @@
 package org.compiere.product;
 
-import static software.hsharp.core.util.DBKt.executeUpdate;
+import org.compiere.model.I_M_Attribute;
+import org.compiere.model.I_M_AttributeInstance;
+import org.compiere.model.I_M_AttributeValue;
+import org.compiere.orm.Query;
+import org.idempiere.common.util.CLogger;
+import org.idempiere.common.util.Env;
 
 import java.math.BigDecimal;
 import java.sql.ResultSet;
@@ -8,12 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
-import org.compiere.model.I_M_Attribute;
-import org.compiere.model.I_M_AttributeInstance;
-import org.compiere.model.I_M_AttributeValue;
-import org.compiere.orm.Query;
-import org.idempiere.common.util.CLogger;
-import org.idempiere.common.util.Env;
+
+import static software.hsharp.core.util.DBKt.executeUpdate;
 
 /**
  * Product Attribute
@@ -66,7 +67,7 @@ public class MAttribute extends X_M_Attribute {
    */
   public static MAttribute[] getOfClient(
       Properties ctx, boolean onlyProductAttributes, boolean onlyListAttributes) {
-    int AD_Client_ID = Env.getADClientID(ctx);
+    int AD_Client_ID = Env.getClientId(ctx);
     String sql = "";
     ArrayList<Object> params = new ArrayList<Object>();
     params.add(AD_Client_ID);

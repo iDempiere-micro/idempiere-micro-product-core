@@ -1,15 +1,16 @@
 package org.compiere.product;
 
-import java.sql.ResultSet;
-import java.sql.Timestamp;
-import java.util.Iterator;
-import java.util.Properties;
-import java.util.logging.Level;
 import org.compiere.model.I_M_PriceList;
 import org.compiere.model.I_M_PriceList_Version;
 import org.compiere.orm.Query;
 import org.idempiere.common.util.CCache;
 import org.idempiere.common.util.Env;
+
+import java.sql.ResultSet;
+import java.sql.Timestamp;
+import java.util.Iterator;
+import java.util.Properties;
+import java.util.logging.Level;
 
 /**
  * Price List Model
@@ -106,7 +107,7 @@ public class MPriceList extends X_M_PriceList {
    * @return PriceList or null
    */
   public static MPriceList getDefault(Properties ctx, boolean IsSOPriceList) {
-    int AD_Client_ID = Env.getADClientID(ctx);
+    int AD_Client_ID = Env.getClientId(ctx);
     MPriceList retValue = null;
     //	Search for it in cache
     Iterator<MPriceList> it = s_cache.values().iterator();
@@ -144,7 +145,7 @@ public class MPriceList extends X_M_PriceList {
    * @return PriceList or null
    */
   public static MPriceList getDefault(Properties ctx, boolean IsSOPriceList, String ISOCurrency) {
-    int AD_Client_ID = Env.getADClientID(ctx);
+    int AD_Client_ID = Env.getClientId(ctx);
     MCurrency currency = MCurrency.get(ctx, ISOCurrency);
     // If currency is null, return the default without looking at currency
     if (currency == null) return (getDefault(ctx, IsSOPriceList));
