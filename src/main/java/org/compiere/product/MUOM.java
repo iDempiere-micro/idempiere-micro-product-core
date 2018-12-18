@@ -1,17 +1,18 @@
 package org.compiere.product;
 
-import static software.hsharp.core.util.DBKt.getSQLValue;
-
-import java.math.BigDecimal;
-import java.sql.ResultSet;
-import java.util.List;
-import java.util.Properties;
 import org.compiere.model.I_C_UOM;
 import org.compiere.orm.MRole;
 import org.compiere.orm.MTable;
 import org.compiere.orm.Query;
 import org.idempiere.common.util.CCache;
 import org.idempiere.common.util.Env;
+
+import java.math.BigDecimal;
+import java.sql.ResultSet;
+import java.util.List;
+import java.util.Properties;
+
+import static software.hsharp.core.util.DBKt.getSQLValue;
 
 /**
  * Unit Of Measure Model
@@ -98,7 +99,7 @@ public class MUOM extends X_C_UOM {
             + "FROM C_UOM "
             + "WHERE AD_Client_ID IN (0,?) "
             + "ORDER BY IsDefault DESC, AD_Client_ID DESC, C_UOM_ID";
-    return getSQLValue(null, sql, Env.getADClientID(ctx));
+    return getSQLValue(null, sql, Env.getClientId(ctx));
   } //	getDefault_UOM_ID
 
   /**

@@ -74,11 +74,11 @@ public class MResource extends X_S_Resource {
    */
   public MResourceType getResourceType() {
     // Use cache if we are outside transaction:
-    if (get_TrxName() == null && getS_ResourceType_ID() > 0)
+    if (null == null && getS_ResourceType_ID() > 0)
       return MResourceType.get(getCtx(), getS_ResourceType_ID());
     //
     if (m_resourceType == null && getS_ResourceType_ID() != 0) {
-      m_resourceType = new MResourceType(getCtx(), getS_ResourceType_ID(), get_TrxName());
+      m_resourceType = new MResourceType(getCtx(), getS_ResourceType_ID(), null);
     }
     return m_resourceType;
   } //	getResourceType
@@ -90,9 +90,9 @@ public class MResource extends X_S_Resource {
    */
   public MProduct getProduct() {
     if (m_product == null) {
-      m_product = MProduct.forS_Resource_ID(getCtx(), getS_Resource_ID(), get_TrxName());
+      m_product = MProduct.forS_Resource_ID(getCtx(), getS_Resource_ID(), null);
     } else {
-      m_product.set_TrxName(get_TrxName());
+      m_product.set_TrxName(null);
     }
     return m_product;
   } //	getProduct
@@ -106,7 +106,7 @@ public class MResource extends X_S_Resource {
     if (newRecord) {
       if (getValue() == null || getValue().length() == 0) setValue(getName());
       m_product = new MProduct(this, getResourceType());
-      m_product.saveEx(get_TrxName());
+      m_product.saveEx(null);
     }
     //
     // Validate Manufacturing Resource
@@ -123,7 +123,7 @@ public class MResource extends X_S_Resource {
     if (!success) return success;
 
     MProduct prod = getProduct();
-    if (prod.setResource(this)) prod.saveEx(get_TrxName());
+    if (prod.setResource(this)) prod.saveEx(null);
 
     return success;
   } //	afterSave

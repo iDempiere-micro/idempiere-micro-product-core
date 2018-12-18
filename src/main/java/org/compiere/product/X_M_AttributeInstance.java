@@ -51,7 +51,7 @@ public class X_M_AttributeInstance extends PO implements I_M_AttributeInstance, 
   public org.compiere.model.I_M_Attribute getMAttribute() throws RuntimeException {
     return (org.compiere.model.I_M_Attribute)
         MTable.get(getCtx(), org.compiere.model.I_M_Attribute.Table_Name)
-            .getPO(getMAttribute_ID(), get_TrxName());
+            .getPO(getMAttribute_ID(), null);
   }
 
   /**
@@ -96,7 +96,7 @@ public class X_M_AttributeInstance extends PO implements I_M_AttributeInstance, 
   public I_M_AttributeSetInstance getMAttributeSetInstance() throws RuntimeException {
     return (I_M_AttributeSetInstance)
         MTable.get(getCtx(), I_M_AttributeSetInstance.Table_Name)
-            .getPO(getMAttributeSetInstance_ID(), get_TrxName());
+            .getPO(getMAttributeSetInstance_ID(), null);
   }
 
   /**
@@ -125,7 +125,7 @@ public class X_M_AttributeInstance extends PO implements I_M_AttributeInstance, 
   public org.compiere.model.I_M_AttributeValue getMAttributeValue() throws RuntimeException {
     return (org.compiere.model.I_M_AttributeValue)
         MTable.get(getCtx(), org.compiere.model.I_M_AttributeValue.Table_Name)
-            .getPO(getMAttributeValue_ID(), get_TrxName());
+            .getPO(getMAttributeValue_ID(), null);
   }
 
   /**

@@ -1,13 +1,14 @@
 package org.compiere.product;
 
-import java.sql.ResultSet;
-import java.util.List;
-import java.util.Properties;
 import org.compiere.model.I_M_PriceList;
 import org.compiere.model.I_M_ProductPrice;
 import org.compiere.orm.Query;
 import org.compiere.orm.TimeUtil;
 import org.compiere.util.DisplayType;
+
+import java.sql.ResultSet;
+import java.util.List;
+import java.util.Properties;
 
 /**
  * Price List Version Model
@@ -56,7 +57,7 @@ public class MPriceListVersion extends X_M_PriceList_Version {
    * @param pl parent
    */
   public MPriceListVersion(I_M_PriceList pl) {
-    this(pl.getCtx(), 0, pl.get_TrxName());
+    this(pl.getCtx(), 0, null);
     setClientOrg(pl);
     setM_PriceList_ID(pl.getM_PriceList_ID());
   } //	MPriceListVersion
@@ -94,7 +95,7 @@ public class MPriceListVersion extends X_M_PriceList_Version {
     String localWhereClause = I_M_ProductPrice.COLUMNNAME_M_PriceList_Version_ID + "=?";
     if (whereClause != null) localWhereClause += " " + whereClause;
     List<MProductPrice> list =
-        new Query(getCtx(), I_M_ProductPrice.Table_Name, localWhereClause, get_TrxName())
+        new Query(getCtx(), I_M_ProductPrice.Table_Name, localWhereClause, null)
             .setParameters(getM_PriceList_Version_ID())
             .list();
     MProductPrice[] pp = new MProductPrice[list.size()];

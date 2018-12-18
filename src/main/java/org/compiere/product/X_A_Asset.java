@@ -106,7 +106,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset, I_Persistent {
   public org.compiere.model.I_A_Asset_Class getA_Asset_Class() throws RuntimeException {
     return (org.compiere.model.I_A_Asset_Class)
         MTable.get(getCtx(), org.compiere.model.I_A_Asset_Class.Table_Name)
-            .getPO(getA_Asset_Class_ID(), get_TrxName());
+            .getPO(getA_Asset_Class_ID(), null);
   }
 
   /**
@@ -151,7 +151,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset, I_Persistent {
   public org.compiere.model.I_A_Asset_Group getA_Asset_Group() throws RuntimeException {
     return (org.compiere.model.I_A_Asset_Group)
         MTable.get(getCtx(), org.compiere.model.I_A_Asset_Group.Table_Name)
-            .getPO(getA_Asset_Group_ID(), get_TrxName());
+            .getPO(getA_Asset_Group_ID(), null);
   }
 
   /**
@@ -254,7 +254,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset, I_Persistent {
   public org.compiere.model.I_A_Asset_Type getA_Asset_Type() throws RuntimeException {
     return (org.compiere.model.I_A_Asset_Type)
         MTable.get(getCtx(), org.compiere.model.I_A_Asset_Type.Table_Name)
-            .getPO(getA_Asset_Type_ID(), get_TrxName());
+            .getPO(getA_Asset_Type_ID(), null);
   }
 
   /**
@@ -299,7 +299,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset, I_Persistent {
   public org.compiere.model.I_A_Asset getA_Parent_Asset() throws RuntimeException {
     return (org.compiere.model.I_A_Asset)
         MTable.get(getCtx(), org.compiere.model.I_A_Asset.Table_Name)
-            .getPO(getA_Parent_Asset_ID(), get_TrxName());
+            .getPO(getA_Parent_Asset_ID(), null);
   }
 
   /**
@@ -438,7 +438,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset, I_Persistent {
   public org.compiere.model.I_C_Activity getC_Activity() throws RuntimeException {
     return (org.compiere.model.I_C_Activity)
         MTable.get(getCtx(), org.compiere.model.I_C_Activity.Table_Name)
-            .getPO(getC_Activity_ID(), get_TrxName());
+            .getPO(getC_Activity_ID(), null);
   }
 
   /**
@@ -465,7 +465,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset, I_Persistent {
   public org.compiere.model.I_C_BPartner getC_BPartner() throws RuntimeException {
     return (org.compiere.model.I_C_BPartner)
         MTable.get(getCtx(), org.compiere.model.I_C_BPartner.Table_Name)
-            .getPO(getC_BPartner_ID(), get_TrxName());
+            .getPO(getC_BPartner_ID(), null);
   }
 
   /**
@@ -492,7 +492,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset, I_Persistent {
   public org.compiere.model.I_C_BPartner_Location getC_BPartner_Location() throws RuntimeException {
     return (org.compiere.model.I_C_BPartner_Location)
         MTable.get(getCtx(), org.compiere.model.I_C_BPartner_Location.Table_Name)
-            .getPO(getC_BPartner_Location_ID(), get_TrxName());
+            .getPO(getC_BPartner_Location_ID(), null);
   }
 
   /**
@@ -519,7 +519,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset, I_Persistent {
   public org.compiere.model.I_C_BPartner getC_BPartnerSR() throws RuntimeException {
     return (org.compiere.model.I_C_BPartner)
         MTable.get(getCtx(), org.compiere.model.I_C_BPartner.Table_Name)
-            .getPO(getC_BPartnerSR_ID(), get_TrxName());
+            .getPO(getC_BPartnerSR_ID(), null);
   }
 
   /**
@@ -545,7 +545,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset, I_Persistent {
 
   public I_C_Location getC_Location() throws RuntimeException {
     return (I_C_Location)
-        MTable.get(getCtx(), I_C_Location.Table_Name).getPO(getC_Location_ID(), get_TrxName());
+        MTable.get(getCtx(), I_C_Location.Table_Name).getPO(getC_Location_ID(), null);
   }
 
   /**
@@ -572,7 +572,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset, I_Persistent {
   public org.compiere.model.I_C_Project getC_Project() throws RuntimeException {
     return (org.compiere.model.I_C_Project)
         MTable.get(getCtx(), org.compiere.model.I_C_Project.Table_Name)
-            .getPO(getC_Project_ID(), get_TrxName());
+            .getPO(getC_Project_ID(), null);
   }
 
   /**
@@ -842,7 +842,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset, I_Persistent {
   public org.compiere.model.I_C_BPartner getLease_BPartner() throws RuntimeException {
     return (org.compiere.model.I_C_BPartner)
         MTable.get(getCtx(), org.compiere.model.I_C_BPartner.Table_Name)
-            .getPO(getLease_BPartner_ID(), get_TrxName());
+            .getPO(getLease_BPartner_ID(), null);
   }
 
   /**
@@ -981,7 +981,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset, I_Persistent {
   public I_M_AttributeSetInstance getMAttributeSetInstance() throws RuntimeException {
     return (I_M_AttributeSetInstance)
         MTable.get(getCtx(), I_M_AttributeSetInstance.Table_Name)
-            .getPO(getMAttributeSetInstance_ID(), get_TrxName());
+            .getPO(getMAttributeSetInstance_ID(), null);
   }
 
   /**
@@ -1010,7 +1010,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset, I_Persistent {
   public org.compiere.model.I_M_InOutLine getM_InOutLine() throws RuntimeException {
     return (org.compiere.model.I_M_InOutLine)
         MTable.get(getCtx(), org.compiere.model.I_M_InOutLine.Table_Name)
-            .getPO(getM_InOutLine_ID(), get_TrxName());
+            .getPO(getM_InOutLine_ID(), null);
   }
 
   /**
@@ -1036,7 +1036,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset, I_Persistent {
 
   public I_M_Locator getM_Locator() throws RuntimeException {
     return (I_M_Locator)
-        MTable.get(getCtx(), I_M_Locator.Table_Name).getPO(getM_Locator_ID(), get_TrxName());
+        MTable.get(getCtx(), I_M_Locator.Table_Name).getPO(getM_Locator_ID(), null);
   }
 
   /**
@@ -1063,7 +1063,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset, I_Persistent {
   public org.compiere.model.I_M_Product getM_Product() throws RuntimeException {
     return (org.compiere.model.I_M_Product)
         MTable.get(getCtx(), org.compiere.model.I_M_Product.Table_Name)
-            .getPO(getM_Product_ID(), get_TrxName());
+            .getPO(getM_Product_ID(), null);
   }
 
   /**

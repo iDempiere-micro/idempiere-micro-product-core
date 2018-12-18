@@ -97,7 +97,7 @@ public class MProductPrice extends X_M_ProductPrice {
       BigDecimal PriceList,
       BigDecimal PriceStd,
       BigDecimal PriceLimit) {
-    this(plv.getCtx(), 0, plv.get_TrxName());
+    this(plv.getCtx(), 0, null);
     setClientOrg(plv);
     setM_PriceList_Version_ID(plv.getM_PriceList_Version_ID());
     setM_Product_ID(M_Product_ID);

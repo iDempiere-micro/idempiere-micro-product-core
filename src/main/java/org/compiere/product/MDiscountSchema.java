@@ -93,10 +93,10 @@ public class MDiscountSchema extends X_M_DiscountSchema {
     PreparedStatement pstmt = null;
     ResultSet rs = null;
     try {
-      pstmt = prepareStatement(sql, get_TrxName());
+      pstmt = prepareStatement(sql, null);
       pstmt.setInt(1, getM_DiscountSchema_ID());
       rs = pstmt.executeQuery();
-      while (rs.next()) list.add(new MDiscountSchemaBreak(getCtx(), rs, get_TrxName()));
+      while (rs.next()) list.add(new MDiscountSchemaBreak(getCtx(), rs, null));
     } catch (Exception e) {
       log.log(Level.SEVERE, sql, e);
     } finally {
@@ -117,7 +117,7 @@ public class MDiscountSchema extends X_M_DiscountSchema {
    */
   public MDiscountSchemaLine[] getLines(boolean reload) {
     if (m_lines != null && !reload) {
-      PO.set_TrxName(m_lines, get_TrxName());
+      PO.set_TrxName(m_lines, null);
       return m_lines;
     }
 
@@ -126,10 +126,10 @@ public class MDiscountSchema extends X_M_DiscountSchema {
     PreparedStatement pstmt = null;
     ResultSet rs = null;
     try {
-      pstmt = prepareStatement(sql, get_TrxName());
+      pstmt = prepareStatement(sql, null);
       pstmt.setInt(1, getM_DiscountSchema_ID());
       rs = pstmt.executeQuery();
-      while (rs.next()) list.add(new MDiscountSchemaLine(getCtx(), rs, get_TrxName()));
+      while (rs.next()) list.add(new MDiscountSchemaLine(getCtx(), rs, null));
     } catch (Exception e) {
       log.log(Level.SEVERE, sql, e);
     } finally {

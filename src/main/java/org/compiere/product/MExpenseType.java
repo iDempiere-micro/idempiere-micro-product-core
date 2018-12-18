@@ -46,7 +46,7 @@ public class MExpenseType extends X_S_ExpenseType {
   public MProduct getProduct() {
     if (m_product == null) {
       StringBuilder msgmp = new StringBuilder("S_ExpenseType_ID=").append(getS_ExpenseType_ID());
-      MProduct[] products = MProduct.get(getCtx(), msgmp.toString(), get_TrxName());
+      MProduct[] products = MProduct.get(getCtx(), msgmp.toString(), null);
       if (products.length > 0) m_product = products[0];
     }
     return m_product;
@@ -63,7 +63,7 @@ public class MExpenseType extends X_S_ExpenseType {
     if (newRecord) {
       if (getValue() == null || getValue().length() == 0) setValue(getName());
       m_product = new MProduct(this);
-      return m_product.save(get_TrxName());
+      return m_product.save(null);
     }
     return true;
   } //	beforeSave
@@ -79,7 +79,7 @@ public class MExpenseType extends X_S_ExpenseType {
     if (!success) return success;
 
     MProduct prod = getProduct();
-    if (prod.setExpenseType(this)) prod.saveEx(get_TrxName());
+    if (prod.setExpenseType(this)) prod.saveEx(null);
 
     return success;
   } //	afterSave

@@ -49,7 +49,7 @@ public class X_M_LotCtlExclude extends PO implements I_M_LotCtlExclude, I_Persis
   public org.compiere.model.I_AD_Table getAD_Table() throws RuntimeException {
     return (org.compiere.model.I_AD_Table)
         MTable.get(getCtx(), org.compiere.model.I_AD_Table.Table_Name)
-            .getPO(getAD_Table_ID(), get_TrxName());
+            .getPO(getAD_Table_ID(), null);
   }
 
   /**
@@ -138,7 +138,7 @@ public class X_M_LotCtlExclude extends PO implements I_M_LotCtlExclude, I_Persis
   public org.compiere.model.I_M_LotCtl getM_LotCtl() throws RuntimeException {
     return (org.compiere.model.I_M_LotCtl)
         MTable.get(getCtx(), org.compiere.model.I_M_LotCtl.Table_Name)
-            .getPO(getM_LotCtl_ID(), get_TrxName());
+            .getPO(getM_LotCtl_ID(), null);
   }
 
   /**

@@ -52,7 +52,7 @@ public abstract class X_M_PriceList extends PO implements I_M_PriceList, I_Persi
 
   public I_M_PriceList getBasePriceList() throws RuntimeException {
     return (I_M_PriceList)
-        MTable.get(getCtx(), I_M_PriceList.Table_Name).getPO(getBasePriceList_ID(), get_TrxName());
+        MTable.get(getCtx(), I_M_PriceList.Table_Name).getPO(getBasePriceList_ID(), null);
   }
 
   /**
@@ -78,7 +78,7 @@ public abstract class X_M_PriceList extends PO implements I_M_PriceList, I_Persi
 
   public I_C_Currency getC_Currency() throws RuntimeException {
     return (I_C_Currency)
-        MTable.get(getCtx(), I_C_Currency.Table_Name).getPO(getC_Currency_ID(), get_TrxName());
+        MTable.get(getCtx(), I_C_Currency.Table_Name).getPO(getC_Currency_ID(), null);
   }
 
   /**

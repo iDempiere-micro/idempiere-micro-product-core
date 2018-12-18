@@ -68,7 +68,7 @@ public class MPriceList extends X_M_PriceList {
    * @param impPL import
    */
   public MPriceList(X_I_PriceList impPL) {
-    this(impPL.getCtx(), 0, impPL.get_TrxName());
+    this(impPL.getCtx(), 0, null);
     setClientOrg(impPL);
     setUpdatedBy(impPL.getUpdatedBy());
     //
@@ -217,7 +217,7 @@ public class MPriceList extends X_M_PriceList {
 
     final String whereClause = "M_PriceList_ID=? AND TRUNC(ValidFrom)<=?";
     m_plv =
-        new Query(getCtx(), I_M_PriceList_Version.Table_Name, whereClause, get_TrxName())
+        new Query(getCtx(), I_M_PriceList_Version.Table_Name, whereClause, null)
             .setParameters(getM_PriceList_ID(), valid)
             .setOnlyActiveRecords(true)
             .setOrderBy("ValidFrom DESC")

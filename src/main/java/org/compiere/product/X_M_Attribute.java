@@ -157,7 +157,7 @@ public class X_M_Attribute extends BasePOName implements I_M_Attribute, I_Persis
   public org.compiere.model.I_M_AttributeSearch getMAttributeSearch() throws RuntimeException {
     return (org.compiere.model.I_M_AttributeSearch)
         MTable.get(getCtx(), org.compiere.model.I_M_AttributeSearch.Table_Name)
-            .getPO(getMAttributeSearch_ID(), get_TrxName());
+            .getPO(getMAttributeSearch_ID(), null);
   }
 
   /**

@@ -71,7 +71,7 @@ public class X_M_PriceList_Version extends PO implements I_M_PriceList_Version, 
   public org.compiere.model.I_M_DiscountSchema getM_DiscountSchema() throws RuntimeException {
     return (org.compiere.model.I_M_DiscountSchema)
         MTable.get(getCtx(), org.compiere.model.I_M_DiscountSchema.Table_Name)
-            .getPO(getM_DiscountSchema_ID(), get_TrxName());
+            .getPO(getM_DiscountSchema_ID(), null);
   }
 
   /**
@@ -98,7 +98,7 @@ public class X_M_PriceList_Version extends PO implements I_M_PriceList_Version, 
   public org.compiere.model.I_M_PriceList getM_PriceList() throws RuntimeException {
     return (org.compiere.model.I_M_PriceList)
         MTable.get(getCtx(), org.compiere.model.I_M_PriceList.Table_Name)
-            .getPO(getM_PriceList_ID(), get_TrxName());
+            .getPO(getM_PriceList_ID(), null);
   }
 
   /**
@@ -126,7 +126,7 @@ public class X_M_PriceList_Version extends PO implements I_M_PriceList_Version, 
       throws RuntimeException {
     return (org.compiere.model.I_M_PriceList_Version)
         MTable.get(getCtx(), org.compiere.model.I_M_PriceList_Version.Table_Name)
-            .getPO(getM_Pricelist_Version_Base_ID(), get_TrxName());
+            .getPO(getM_Pricelist_Version_Base_ID(), null);
   }
 
   /**

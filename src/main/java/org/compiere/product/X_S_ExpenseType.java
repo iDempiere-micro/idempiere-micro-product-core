@@ -48,7 +48,7 @@ public class X_S_ExpenseType extends BasePONameValue implements I_S_ExpenseType,
   public org.compiere.model.I_C_TaxCategory getC_TaxCategory() throws RuntimeException {
     return (org.compiere.model.I_C_TaxCategory)
         MTable.get(getCtx(), org.compiere.model.I_C_TaxCategory.Table_Name)
-            .getPO(getC_TaxCategory_ID(), get_TrxName());
+            .getPO(getC_TaxCategory_ID(), null);
   }
 
   /**
@@ -75,7 +75,7 @@ public class X_S_ExpenseType extends BasePONameValue implements I_S_ExpenseType,
   public org.compiere.model.I_C_UOM getC_UOM() throws RuntimeException {
     return (org.compiere.model.I_C_UOM)
         MTable.get(getCtx(), org.compiere.model.I_C_UOM.Table_Name)
-            .getPO(getC_UOM_ID(), get_TrxName());
+            .getPO(getC_UOM_ID(), null);
   }
 
   /**
@@ -143,7 +143,7 @@ public class X_S_ExpenseType extends BasePONameValue implements I_S_ExpenseType,
   public org.compiere.model.I_M_Product_Category getM_Product_Category() throws RuntimeException {
     return (org.compiere.model.I_M_Product_Category)
         MTable.get(getCtx(), org.compiere.model.I_M_Product_Category.Table_Name)
-            .getPO(getM_Product_Category_ID(), get_TrxName());
+            .getPO(getM_Product_Category_ID(), null);
   }
 
   /**

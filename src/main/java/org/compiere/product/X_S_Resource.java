@@ -186,7 +186,7 @@ public class X_S_Resource extends BasePOUser implements I_S_Resource, I_Persiste
   public org.compiere.model.I_M_Warehouse getM_Warehouse() throws RuntimeException {
     return (org.compiere.model.I_M_Warehouse)
         MTable.get(getCtx(), org.compiere.model.I_M_Warehouse.Table_Name)
-            .getPO(getM_Warehouse_ID(), get_TrxName());
+            .getPO(getM_Warehouse_ID(), null);
   }
 
   /**
@@ -323,7 +323,7 @@ public class X_S_Resource extends BasePOUser implements I_S_Resource, I_Persiste
   public org.compiere.model.I_S_ResourceType getS_ResourceType() throws RuntimeException {
     return (org.compiere.model.I_S_ResourceType)
         MTable.get(getCtx(), org.compiere.model.I_S_ResourceType.Table_Name)
-            .getPO(getS_ResourceType_ID(), get_TrxName());
+            .getPO(getS_ResourceType_ID(), null);
   }
 
   /**

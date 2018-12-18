@@ -158,7 +158,7 @@ public class X_M_DiscountSchemaBreak extends PO implements I_M_DiscountSchemaBre
   public org.compiere.model.I_M_DiscountSchema getM_DiscountSchema() throws RuntimeException {
     return (org.compiere.model.I_M_DiscountSchema)
         MTable.get(getCtx(), org.compiere.model.I_M_DiscountSchema.Table_Name)
-            .getPO(getM_DiscountSchema_ID(), get_TrxName());
+            .getPO(getM_DiscountSchema_ID(), null);
   }
 
   /**
@@ -185,7 +185,7 @@ public class X_M_DiscountSchemaBreak extends PO implements I_M_DiscountSchemaBre
   public org.compiere.model.I_M_Product_Category getM_Product_Category() throws RuntimeException {
     return (org.compiere.model.I_M_Product_Category)
         MTable.get(getCtx(), org.compiere.model.I_M_Product_Category.Table_Name)
-            .getPO(getM_Product_Category_ID(), get_TrxName());
+            .getPO(getM_Product_Category_ID(), null);
   }
 
   /**
@@ -212,7 +212,7 @@ public class X_M_DiscountSchemaBreak extends PO implements I_M_DiscountSchemaBre
   public org.compiere.model.I_M_Product getM_Product() throws RuntimeException {
     return (org.compiere.model.I_M_Product)
         MTable.get(getCtx(), org.compiere.model.I_M_Product.Table_Name)
-            .getPO(getM_Product_ID(), get_TrxName());
+            .getPO(getM_Product_ID(), null);
   }
 
   /**
