@@ -1,6 +1,5 @@
 package org.compiere.product.test
 
-import kotliquery.HikariCP
 import org.compiere.model.I_M_Product
 import org.compiere.orm.DefaultModelFactory
 import org.compiere.orm.IModelFactory
@@ -9,6 +8,7 @@ import org.compiere.product.MUOM
 import org.idempiere.common.util.Env
 import org.idempiere.icommon.model.IPO
 import software.hsharp.core.orm.DummyEventManager
+import software.hsharp.core.util.HikariCPI
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 
@@ -16,7 +16,7 @@ internal val sessionUrl = System.getenv("SESSION_URL") ?: "jdbc:postgresql://loc
 
 abstract class BaseProductTest {
     init {
-        HikariCP.default(sessionUrl, "adempiere", "adempiere")
+        HikariCPI.default(sessionUrl, "adempiere", "adempiere")
         DummyEventManager()
     }
 
