@@ -1,5 +1,6 @@
 package org.compiere.product;
 
+import kotliquery.Row;
 import org.compiere.model.I_C_UOM;
 import org.compiere.orm.MRole;
 import org.compiere.orm.MTable;
@@ -73,6 +74,9 @@ public class MUOM extends X_C_UOM {
    */
   public MUOM(Properties ctx, ResultSet rs, String trxName) {
     super(ctx, rs, trxName);
+  } //	UOM
+  public MUOM(Properties ctx, Row row) {
+    super(ctx, row);
   } //	UOM
 
   /**
