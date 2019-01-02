@@ -1,7 +1,6 @@
 package org.compiere.product;
 
-import java.sql.ResultSet;
-import java.util.Properties;
+import kotliquery.Row;
 import org.compiere.model.HasName;
 import org.compiere.model.I_C_Currency;
 import org.compiere.model.I_M_PriceList;
@@ -9,6 +8,9 @@ import org.compiere.orm.MTable;
 import org.compiere.orm.PO;
 import org.idempiere.common.util.KeyNamePair;
 import org.idempiere.orm.I_Persistent;
+
+import java.sql.ResultSet;
+import java.util.Properties;
 
 /**
  * Generated Model for M_PriceList
@@ -35,6 +37,9 @@ public abstract class X_M_PriceList extends PO implements I_M_PriceList, I_Persi
   public X_M_PriceList(Properties ctx, ResultSet rs, String trxName) {
     super(ctx, rs, trxName);
   }
+  public X_M_PriceList(Properties ctx, Row row) {
+    super(ctx, row);
+  } //	MPriceList
 
   /**
    * AccessLevel

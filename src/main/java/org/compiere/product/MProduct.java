@@ -4,6 +4,7 @@ import org.compiere.model.HasName;
 import org.compiere.model.I_M_Product;
 import org.compiere.model.I_M_ProductDownload;
 import org.compiere.orm.*;
+import org.idempiere.common.base.IServiceLocator;
 import org.idempiere.common.base.IServicesHolder;
 import org.idempiere.common.base.Service;
 import org.idempiere.common.exceptions.AdempiereException;
@@ -252,16 +253,18 @@ public class MProduct extends X_M_Product implements I_M_Product {
    * @return instance of the IProductPricing or null
    */
   public static IProductPricing getProductPricing() {
-
-    IServicesHolder<IProductPricingFactory> metaFactory =
-        Service.Companion.locator().list(IProductPricingFactory.class);
-    if (metaFactory != null) {
-      List<IProductPricingFactory> factoryList = metaFactory.getServices();
-      if (factoryList != null) {
-        for (IProductPricingFactory factory : factoryList) {
-          IProductPricing myProductPricing = factory.newProductPricingInstance();
-          if (myProductPricing != null) {
-            return myProductPricing;
+    IServiceLocator locator = Service.Companion.locator();
+    if (locator!=null) {
+      IServicesHolder<IProductPricingFactory> metaFactory =
+              locator.list(IProductPricingFactory.class);
+      if (metaFactory != null) {
+        List<IProductPricingFactory> factoryList = metaFactory.getServices();
+        if (factoryList != null) {
+          for (IProductPricingFactory factory : factoryList) {
+            IProductPricing myProductPricing = factory.newProductPricingInstance();
+            if (myProductPricing != null) {
+              return myProductPricing;
+            }
           }
         }
       }

@@ -1,5 +1,6 @@
 package org.compiere.product;
 
+import kotliquery.Row;
 import org.compiere.model.I_M_PriceList;
 import org.compiere.model.I_M_ProductPrice;
 import org.compiere.orm.Query;
@@ -51,6 +52,11 @@ public class MPriceListVersion extends X_M_PriceList_Version {
   public MPriceListVersion(Properties ctx, ResultSet rs, String trxName) {
     super(ctx, rs, trxName);
   } //	MPriceListVersion
+  public MPriceListVersion(Properties ctx, Row row) {
+    super(ctx, row);
+  }
+
+
   /**
    * Parent Constructor
    *
