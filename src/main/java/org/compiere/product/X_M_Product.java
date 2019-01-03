@@ -1,9 +1,6 @@
 package org.compiere.product;
 
-import java.math.BigDecimal;
-import java.sql.ResultSet;
-import java.sql.Timestamp;
-import java.util.Properties;
+import kotliquery.Row;
 import org.compiere.model.HasName;
 import org.compiere.model.I_M_AttributeSetInstance;
 import org.compiere.model.I_M_Locator;
@@ -13,6 +10,11 @@ import org.compiere.orm.PO;
 import org.idempiere.common.util.Env;
 import org.idempiere.common.util.KeyNamePair;
 import org.idempiere.orm.I_Persistent;
+
+import java.math.BigDecimal;
+import java.sql.ResultSet;
+import java.sql.Timestamp;
+import java.util.Properties;
 
 /**
  * Generated Model for M_Product
@@ -46,6 +48,9 @@ public class X_M_Product extends PO implements I_Persistent {
   public X_M_Product(Properties ctx, ResultSet rs, String trxName) {
     super(ctx, rs, trxName);
   }
+  public X_M_Product(Properties ctx, Row row) {
+    super(ctx, row);
+  } //	MProduct
 
   /**
    * AccessLevel

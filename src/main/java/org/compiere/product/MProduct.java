@@ -1,5 +1,6 @@
 package org.compiere.product;
 
+import kotliquery.Row;
 import org.compiere.model.HasName;
 import org.compiere.model.I_M_Product;
 import org.compiere.model.I_M_ProductDownload;
@@ -87,6 +88,9 @@ public class MProduct extends X_M_Product implements I_M_Product {
    */
   public MProduct(Properties ctx, ResultSet rs, String trxName) {
     super(ctx, rs, trxName);
+  } //	MProduct
+  public MProduct(Properties ctx, Row row) {
+    super(ctx, row);
   } //	MProduct
 
   /**
