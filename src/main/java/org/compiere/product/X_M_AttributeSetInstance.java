@@ -105,7 +105,7 @@ public class X_M_AttributeSetInstance extends PO implements I_M_AttributeSetInst
   public org.compiere.model.I_M_AttributeSet getMAttributeSet() throws RuntimeException {
     return (org.compiere.model.I_M_AttributeSet)
         MTable.get(getCtx(), org.compiere.model.I_M_AttributeSet.Table_Name)
-            .getPO(getMAttributeSet_ID(), get_TrxName());
+            .getPO(getMAttributeSet_ID(), null);
   }
 
   /**
@@ -182,7 +182,7 @@ public class X_M_AttributeSetInstance extends PO implements I_M_AttributeSetInst
   public org.compiere.model.I_M_Lot getM_Lot() throws RuntimeException {
     return (org.compiere.model.I_M_Lot)
         MTable.get(getCtx(), org.compiere.model.I_M_Lot.Table_Name)
-            .getPO(getM_Lot_ID(), get_TrxName());
+            .getPO(getM_Lot_ID(), null);
   }
 
   /**

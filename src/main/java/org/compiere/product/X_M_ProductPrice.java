@@ -51,7 +51,7 @@ public class X_M_ProductPrice extends PO implements I_M_ProductPrice, I_Persiste
   public org.compiere.model.I_M_PriceList_Version getM_PriceList_Version() throws RuntimeException {
     return (org.compiere.model.I_M_PriceList_Version)
         MTable.get(getCtx(), org.compiere.model.I_M_PriceList_Version.Table_Name)
-            .getPO(getM_PriceList_Version_ID(), get_TrxName());
+            .getPO(getM_PriceList_Version_ID(), null);
   }
 
   /**
@@ -79,7 +79,7 @@ public class X_M_ProductPrice extends PO implements I_M_ProductPrice, I_Persiste
   public org.compiere.model.I_M_Product getM_Product() throws RuntimeException {
     return (org.compiere.model.I_M_Product)
         MTable.get(getCtx(), org.compiere.model.I_M_Product.Table_Name)
-            .getPO(getM_Product_ID(), get_TrxName());
+            .getPO(getM_Product_ID(), null);
   }
 
   /**

@@ -1,11 +1,13 @@
 package org.compiere.product;
 
-import java.math.BigDecimal;
-import java.sql.ResultSet;
-import java.util.Properties;
+import org.compiere.model.I_M_PriceList_Version;
 import org.compiere.model.I_M_ProductPrice;
 import org.compiere.orm.Query;
 import org.idempiere.common.util.CLogger;
+
+import java.math.BigDecimal;
+import java.sql.ResultSet;
+import java.util.Properties;
 
 /**
  * Product Price
@@ -90,12 +92,12 @@ public class MProductPrice extends X_M_ProductPrice {
    * @param PriceLimit limit price
    */
   public MProductPrice(
-      MPriceListVersion plv,
+      I_M_PriceList_Version plv,
       int M_Product_ID,
       BigDecimal PriceList,
       BigDecimal PriceStd,
       BigDecimal PriceLimit) {
-    this(plv.getCtx(), 0, plv.get_TrxName());
+    this(plv.getCtx(), 0, null);
     setClientOrg(plv);
     setM_PriceList_Version_ID(plv.getM_PriceList_Version_ID());
     setM_Product_ID(M_Product_ID);

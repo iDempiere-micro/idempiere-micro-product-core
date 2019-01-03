@@ -1,21 +1,24 @@
 package org.compiere.product;
 
-import static software.hsharp.core.util.DBKt.executeUpdate;
-import static software.hsharp.core.util.DBKt.getSQLValueEx;
-
-import java.sql.ResultSet;
-import java.util.List;
-import java.util.Properties;
-import java.util.logging.Level;
+import kotliquery.Row;
 import org.compiere.model.HasName;
 import org.compiere.model.I_M_Product;
 import org.compiere.model.I_M_ProductDownload;
 import org.compiere.orm.*;
+import org.idempiere.common.base.IServiceLocator;
 import org.idempiere.common.base.IServicesHolder;
 import org.idempiere.common.base.Service;
 import org.idempiere.common.exceptions.AdempiereException;
 import org.idempiere.common.util.CCache;
 import org.idempiere.common.util.Env;
+
+import java.sql.ResultSet;
+import java.util.List;
+import java.util.Properties;
+import java.util.logging.Level;
+
+import static software.hsharp.core.util.DBKt.executeUpdate;
+import static software.hsharp.core.util.DBKt.getSQLValueEx;
 
 /**
  * Product Model
@@ -86,6 +89,9 @@ public class MProduct extends X_M_Product implements I_M_Product {
   public MProduct(Properties ctx, ResultSet rs, String trxName) {
     super(ctx, rs, trxName);
   } //	MProduct
+  public MProduct(Properties ctx, Row row) {
+    super(ctx, row);
+  } //	MProduct
 
   /**
    * Parent Constructor
@@ -93,7 +99,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
    * @param et parent
    */
   public MProduct(MExpenseType et) {
-    this(et.getCtx(), 0, et.get_TrxName());
+    this(et.getCtx(), 0, null);
     setProductType(I_M_Product.PRODUCTTYPE_ExpenseType);
     setExpenseType(et);
   } //	MProduct
@@ -105,7 +111,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
    * @param resourceType resource type
    */
   public MProduct(MResource resource, MResourceType resourceType) {
-    this(resource.getCtx(), 0, resource.get_TrxName());
+    this(resource.getCtx(), 0, null);
     setAD_Org_ID(resource.getOrgId());
     setProductType(I_M_Product.PRODUCTTYPE_Resource);
     setResource(resource);
@@ -118,7 +124,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
    * @param impP import
    */
   public MProduct(X_I_Product impP) {
-    this(impP.getCtx(), 0, impP.get_TrxName());
+    this(impP.getCtx(), 0, null);
     setClientOrg(impP);
     setUpdatedBy(impP.getUpdatedBy());
     //
@@ -251,16 +257,18 @@ public class MProduct extends X_M_Product implements I_M_Product {
    * @return instance of the IProductPricing or null
    */
   public static IProductPricing getProductPricing() {
-
-    IServicesHolder<IProductPricingFactory> metaFactory =
-        Service.Companion.locator().list(IProductPricingFactory.class);
-    if (metaFactory != null) {
-      List<IProductPricingFactory> factoryList = metaFactory.getServices();
-      if (factoryList != null) {
-        for (IProductPricingFactory factory : factoryList) {
-          IProductPricing myProductPricing = factory.newProductPricingInstance();
-          if (myProductPricing != null) {
-            return myProductPricing;
+    IServiceLocator locator = Service.Companion.locator();
+    if (locator!=null) {
+      IServicesHolder<IProductPricingFactory> metaFactory =
+              locator.list(IProductPricingFactory.class);
+      if (metaFactory != null) {
+        List<IProductPricingFactory> factoryList = metaFactory.getServices();
+        if (factoryList != null) {
+          for (IProductPricingFactory factory : factoryList) {
+            IProductPricing myProductPricing = factory.newProductPricingInstance();
+            if (myProductPricing != null) {
+              return myProductPricing;
+            }
           }
         }
       }
@@ -503,7 +511,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
     if (m_downloads != null && !requery) return m_downloads;
     //
     List<MProductDownload> list =
-        new Query(getCtx(), I_M_ProductDownload.Table_Name, "M_Product_ID=?", get_TrxName())
+        new Query(getCtx(), I_M_ProductDownload.Table_Name, "M_Product_ID=?", null)
             .setOnlyActiveRecords(true)
             .setOrderBy(HasName.Companion.getCOLUMNNAME_Name())
             .setParameters(getId())
@@ -543,7 +551,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
     if (getMAttributeSetInstance_ID() > 0
         && is_ValueChanged(I_M_Product.COLUMNNAME_M_AttributeSet_ID)) {
       MAttributeSetInstance asi =
-          new MAttributeSetInstance(getCtx(), getMAttributeSetInstance_ID(), get_TrxName());
+          new MAttributeSetInstance(getCtx(), getMAttributeSetInstance_ID(), null);
       if (asi.getMAttributeSet_ID() != getMAttributeSet_ID()) setM_AttributeSetInstance_ID(0);
     }
     if (!newRecord && is_ValueChanged(I_M_Product.COLUMNNAME_M_AttributeSetInstance_ID)) {
@@ -554,16 +562,16 @@ public class MProduct extends X_M_Product implements I_M_Product {
             new MAttributeSetInstance(
                 getCtx(),
                 get_ValueOldAsInt(I_M_Product.COLUMNNAME_M_AttributeSetInstance_ID),
-                get_TrxName());
+                null);
         int cnt =
             getSQLValueEx(
-                get_TrxName(),
+                null,
                 "SELECT COUNT(*) FROM M_Product WHERE M_AttributeSetInstance_ID=?",
                 oldasi.getMAttributeSetInstance_ID());
         if (cnt == 1) {
           // Delete the old m_attributesetinstance
           try {
-            oldasi.deleteEx(true, get_TrxName());
+            oldasi.deleteEx(true, null);
           } catch (AdempiereException ex) {
             log.saveError("Error", "Error deleting the AttributeSetInstance");
             return false;
@@ -591,7 +599,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
               //	+ " AND GuaranteeDate > SysDate"
               + "  AND M_Product_ID="
               + getM_Product_ID();
-      int no = executeUpdate(sql, get_TrxName());
+      int no = executeUpdate(sql, null);
       if (log.isLoggable(Level.FINE)) log.fine("Asset Description updated #" + no);
     }
 
@@ -616,7 +624,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
     }
 
     // [ 1674225 ] Delete Product: Costing deletion error
-    /*MAcctSchema[] mass = MAcctSchema.getClientAcctSchema(getCtx(),getADClientID(), get_TrxName());
+    /*MAcctSchema[] mass = MAcctSchema.getClientAcctSchema(getCtx(),getADClientID(), null);
     for(int i=0; i<mass.length; i++)
     {
     	// Get Cost Elements
@@ -635,7 +643,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
     		continue;
 
     	MCost mcost = MCost.get(this, 0, mass[i], 0, ce.getM_CostElement_ID());
-    	mcost.delete(true, get_TrxName());
+    	mcost.delete(true, null);
     }*/
 
     //

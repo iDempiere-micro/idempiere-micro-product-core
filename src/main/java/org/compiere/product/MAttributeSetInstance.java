@@ -171,7 +171,7 @@ public class MAttributeSetInstance extends X_M_AttributeSetInstance {
    */
   public MAttributeSet getMAttributeSet() {
     if (m_mas == null && getMAttributeSet_ID() != 0)
-      m_mas = new MAttributeSet(getCtx(), getMAttributeSet_ID(), get_TrxName());
+      m_mas = new MAttributeSet(getCtx(), getMAttributeSet_ID(), null);
     return m_mas;
   } //	getMAttributeSet
 
@@ -293,7 +293,7 @@ public class MAttributeSetInstance extends X_M_AttributeSetInstance {
    */
   public void setLot(String Lot, int M_Product_ID) {
     //	Try to find it
-    MLot mLot = MLot.getProductLot(getCtx(), M_Product_ID, Lot, get_TrxName());
+    MLot mLot = MLot.getProductLot(getCtx(), M_Product_ID, Lot, null);
     if (mLot != null) setM_Lot_ID(mLot.getM_Lot_ID());
     setLot(Lot);
   } //	setLot
@@ -321,7 +321,7 @@ public class MAttributeSetInstance extends X_M_AttributeSetInstance {
     if (getNew) {
       int M_SerNoCtl_ID = getMAttributeSet().getM_SerNoCtl_ID();
       if (M_SerNoCtl_ID != 0) {
-        MSerNoCtl ctl = new MSerNoCtl(getCtx(), M_SerNoCtl_ID, get_TrxName());
+        MSerNoCtl ctl = new MSerNoCtl(getCtx(), M_SerNoCtl_ID, null);
         setSerNo(ctl.createSerNo());
       }
     }
@@ -357,7 +357,7 @@ public class MAttributeSetInstance extends X_M_AttributeSetInstance {
                   new Object[] {
                     Integer.toString(getMAttributeSetInstance_ID()), getMAttributeSetInstance_ID()
                   },
-                  get_TrxName());
+                  null);
           if (no <= 0) {
             log.log(Level.SEVERE, "Failed to update description.");
             return false;

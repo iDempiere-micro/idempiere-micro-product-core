@@ -118,7 +118,7 @@ public class X_M_Lot extends BasePOName implements I_M_Lot, I_Persistent {
   public org.compiere.model.I_M_LotCtl getM_LotCtl() throws RuntimeException {
     return (org.compiere.model.I_M_LotCtl)
         MTable.get(getCtx(), org.compiere.model.I_M_LotCtl.Table_Name)
-            .getPO(getM_LotCtl_ID(), get_TrxName());
+            .getPO(getM_LotCtl_ID(), null);
   }
 
   /**
@@ -184,7 +184,7 @@ public class X_M_Lot extends BasePOName implements I_M_Lot, I_Persistent {
   public org.compiere.model.I_M_Product getM_Product() throws RuntimeException {
     return (org.compiere.model.I_M_Product)
         MTable.get(getCtx(), org.compiere.model.I_M_Product.Table_Name)
-            .getPO(getM_Product_ID(), get_TrxName());
+            .getPO(getM_Product_ID(), null);
   }
 
   /**

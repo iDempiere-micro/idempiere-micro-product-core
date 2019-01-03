@@ -68,7 +68,7 @@ public class X_M_AttributeValue extends BasePONameValue
   public org.compiere.model.I_M_Attribute getMAttribute() throws RuntimeException {
     return (org.compiere.model.I_M_Attribute)
         MTable.get(getCtx(), org.compiere.model.I_M_Attribute.Table_Name)
-            .getPO(getMAttribute_ID(), get_TrxName());
+            .getPO(getMAttribute_ID(), null);
   }
 
   /**

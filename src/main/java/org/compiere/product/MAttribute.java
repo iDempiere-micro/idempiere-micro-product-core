@@ -1,6 +1,11 @@
 package org.compiere.product;
 
-import static software.hsharp.core.util.DBKt.executeUpdate;
+import org.compiere.model.I_M_Attribute;
+import org.compiere.model.I_M_AttributeInstance;
+import org.compiere.model.I_M_AttributeValue;
+import org.compiere.orm.Query;
+import org.idempiere.common.util.CLogger;
+import org.idempiere.common.util.Env;
 
 import java.math.BigDecimal;
 import java.sql.ResultSet;
@@ -8,12 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
-import org.compiere.model.I_M_Attribute;
-import org.compiere.model.I_M_AttributeInstance;
-import org.compiere.model.I_M_AttributeValue;
-import org.compiere.orm.Query;
-import org.idempiere.common.util.CLogger;
-import org.idempiere.common.util.Env;
+
+import static software.hsharp.core.util.DBKt.executeUpdate;
 
 /**
  * Product Attribute
@@ -66,7 +67,7 @@ public class MAttribute extends X_M_Attribute {
    */
   public static MAttribute[] getOfClient(
       Properties ctx, boolean onlyProductAttributes, boolean onlyListAttributes) {
-    int AD_Client_ID = Env.getADClientID(ctx);
+    int AD_Client_ID = Env.getClientId(ctx);
     String sql = "";
     ArrayList<Object> params = new ArrayList<Object>();
     params.add(AD_Client_ID);
@@ -128,7 +129,7 @@ public class MAttribute extends X_M_Attribute {
             + I_M_AttributeInstance.COLUMNNAME_M_AttributeSetInstance_ID
             + "=?";
     MAttributeInstance retValue =
-        new Query(getCtx(), I_M_AttributeInstance.Table_Name, whereClause, get_TrxName())
+        new Query(getCtx(), I_M_AttributeInstance.Table_Name, whereClause, null)
             .setParameters(getMAttribute_ID(), M_AttributeSetInstance_ID)
             .first();
 
@@ -152,11 +153,11 @@ public class MAttribute extends X_M_Attribute {
                 M_AttributeSetInstance_ID,
                 value.getMAttributeValue_ID(),
                 value.getName(),
-                get_TrxName()); //	Cached !!
+                null); //	Cached !!
       else
         instance =
             new MAttributeInstance(
-                getCtx(), getMAttribute_ID(), M_AttributeSetInstance_ID, 0, null, get_TrxName());
+                getCtx(), getMAttribute_ID(), M_AttributeSetInstance_ID, 0, null, null);
     } else {
       if (value != null) {
         instance.setM_AttributeValue_ID(value.getMAttributeValue_ID());
@@ -180,7 +181,7 @@ public class MAttribute extends X_M_Attribute {
     if (instance == null)
       instance =
           new MAttributeInstance(
-              getCtx(), getMAttribute_ID(), M_AttributeSetInstance_ID, value, get_TrxName());
+              getCtx(), getMAttribute_ID(), M_AttributeSetInstance_ID, value, null);
     else instance.setValue(value);
     instance.saveEx();
   } //	setAttributeInstance
@@ -196,7 +197,7 @@ public class MAttribute extends X_M_Attribute {
     if (instance == null)
       instance =
           new MAttributeInstance(
-              getCtx(), getMAttribute_ID(), M_AttributeSetInstance_ID, value, get_TrxName());
+              getCtx(), getMAttribute_ID(), M_AttributeSetInstance_ID, value, null);
     else instance.setValueNumber(value);
     instance.saveEx();
   } //	setAttributeInstance
@@ -239,7 +240,7 @@ public class MAttribute extends X_M_Attribute {
               .append(" AND mau.M_Attribute_ID=")
               .append(getMAttribute_ID())
               .append(")");
-      int no = executeUpdate(sql.toString(), get_TrxName());
+      int no = executeUpdate(sql.toString(), null);
       if (log.isLoggable(Level.FINE)) log.fine("AttributeSet Instance set #" + no);
     }
     return success;

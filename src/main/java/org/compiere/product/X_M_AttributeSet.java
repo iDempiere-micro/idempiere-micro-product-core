@@ -371,7 +371,7 @@ public class X_M_AttributeSet extends BasePOName implements I_M_AttributeSet, I_
   public org.compiere.model.I_M_LotCtl getM_LotCtl() throws RuntimeException {
     return (org.compiere.model.I_M_LotCtl)
         MTable.get(getCtx(), org.compiere.model.I_M_LotCtl.Table_Name)
-            .getPO(getM_LotCtl_ID(), get_TrxName());
+            .getPO(getM_LotCtl_ID(), null);
   }
 
   /**
@@ -398,7 +398,7 @@ public class X_M_AttributeSet extends BasePOName implements I_M_AttributeSet, I_
   public org.compiere.model.I_M_SerNoCtl getM_SerNoCtl() throws RuntimeException {
     return (org.compiere.model.I_M_SerNoCtl)
         MTable.get(getCtx(), org.compiere.model.I_M_SerNoCtl.Table_Name)
-            .getPO(getM_SerNoCtl_ID(), get_TrxName());
+            .getPO(getM_SerNoCtl_ID(), null);
   }
 
   /**

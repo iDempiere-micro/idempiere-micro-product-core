@@ -107,12 +107,12 @@ public class MAttributeSet extends X_M_AttributeSet {
       PreparedStatement pstmt = null;
       ResultSet rs = null;
       try {
-        pstmt = prepareStatement(sql, get_TrxName());
+        pstmt = prepareStatement(sql, null);
         pstmt.setInt(1, getMAttributeSet_ID());
         pstmt.setString(2, instanceAttributes ? "Y" : "N");
         rs = pstmt.executeQuery();
         while (rs.next()) {
-          MAttribute ma = new MAttribute(getCtx(), rs.getInt(1), get_TrxName());
+          MAttribute ma = new MAttribute(getCtx(), rs.getInt(1), null);
           list.add(ma);
         }
       } catch (SQLException ex) {
@@ -357,7 +357,7 @@ public class MAttributeSet extends X_M_AttributeSet {
               .append(" AND mau.IsActive='Y' AND ma.IsActive='Y'")
               .append(" AND ma.IsInstanceAttribute='Y')")
               .append(")");
-      int no = executeUpdate(sql.toString(), get_TrxName());
+      int no = executeUpdate(sql.toString(), null);
       if (no != 0) {
         log.warning("Set Instance Attribute");
         setIsInstanceAttribute(true);
@@ -377,7 +377,7 @@ public class MAttributeSet extends X_M_AttributeSet {
               .append("WHERE mau.M_AttributeSet_ID=mas.M_AttributeSet_ID")
               .append(" AND mau.IsActive='Y' AND ma.IsActive='Y'")
               .append(" AND ma.IsInstanceAttribute='Y')");
-      int no = executeUpdate(sql.toString(), get_TrxName());
+      int no = executeUpdate(sql.toString(), null);
       if (no != 0) {
         log.warning("Reset Instance Attribute");
         setIsInstanceAttribute(false);

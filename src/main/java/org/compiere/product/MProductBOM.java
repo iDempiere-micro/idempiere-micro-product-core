@@ -1,14 +1,15 @@
 package org.compiere.product;
 
-import static software.hsharp.core.util.DBKt.getSQLValue;
-
-import java.sql.ResultSet;
-import java.util.List;
-import java.util.Properties;
 import org.compiere.model.I_M_Product_BOM;
 import org.compiere.orm.Query;
 import org.idempiere.common.util.CLogger;
 import org.idempiere.common.util.Env;
+
+import java.sql.ResultSet;
+import java.util.List;
+import java.util.Properties;
+
+import static software.hsharp.core.util.DBKt.getSQLValue;
 
 /**
  * Product BOM Model (old). M_Product_ID = the parent M_Product_BOM_ID = the BOM line
@@ -62,7 +63,7 @@ public class MProductBOM extends X_M_Product_BOM {
    * @return array of BOMs
    */
   public static MProductBOM[] getBOMLines(MProduct product) {
-    return getBOMLines(product.getCtx(), product.getM_Product_ID(), product.get_TrxName());
+    return getBOMLines(product.getCtx(), product.getM_Product_ID(), null);
   } //	getBOMLines
 
   /**
@@ -138,8 +139,8 @@ public class MProductBOM extends X_M_Product_BOM {
    */
   protected boolean afterSave(boolean newRecord, boolean success) {
     if (!success) return success;
-    MProduct product = new MProduct(getCtx(), getM_Product_ID(), get_TrxName());
-    if (get_TrxName() != null) product.load(get_TrxName());
+    MProduct product = new MProduct(getCtx(), getM_Product_ID(), null);
+    if (null != null) product.load(null);
     if (product.isVerified()) {
       if (newRecord
           || is_ValueChanged("M_ProductBOM_ID") // 	Product Line was changed
@@ -147,14 +148,14 @@ public class MProductBOM extends X_M_Product_BOM {
       {
         //	Invalidate BOM
         product.setIsVerified(false);
-        product.saveEx(get_TrxName());
+        product.saveEx(null);
       }
       if (product.isVerified()
           && is_ValueChanged("IsActive")
           && !isActive()) { // line was inactivated
         if (!hasActiveComponents(getM_Product_ID())) {
           product.setIsVerified(false);
-          product.saveEx(get_TrxName());
+          product.saveEx(null);
         }
       }
     }
@@ -164,12 +165,12 @@ public class MProductBOM extends X_M_Product_BOM {
   @Override
   protected boolean afterDelete(boolean success) {
     if (!success) return success;
-    MProduct product = new MProduct(getCtx(), getM_Product_ID(), get_TrxName());
-    if (get_TrxName() != null) product.load(get_TrxName());
+    MProduct product = new MProduct(getCtx(), getM_Product_ID(), null);
+    if (null != null) product.load(null);
     if (product.isVerified()) {
       if (!hasActiveComponents(getM_Product_ID())) {
         product.setIsVerified(false);
-        product.saveEx(get_TrxName());
+        product.saveEx(null);
       }
     }
     return success;
@@ -178,7 +179,7 @@ public class MProductBOM extends X_M_Product_BOM {
   private boolean hasActiveComponents(int productID) {
     int cnt =
         getSQLValue(
-            get_TrxName(),
+            null,
             "SELECT COUNT(*) FROM M_Product_BOM WHERE IsActive='Y' AND M_Product_ID=? AND M_Product_BOM_ID!=?",
             productID,
             getM_Product_BOM_ID());

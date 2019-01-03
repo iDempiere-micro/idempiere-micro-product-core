@@ -68,7 +68,7 @@ public class X_M_ProductPriceVendorBreak extends PO
   public org.compiere.model.I_C_BPartner getC_BPartner() throws RuntimeException {
     return (org.compiere.model.I_C_BPartner)
         MTable.get(getCtx(), org.compiere.model.I_C_BPartner.Table_Name)
-            .getPO(getC_BPartner_ID(), get_TrxName());
+            .getPO(getC_BPartner_ID(), null);
   }
 
   /**
@@ -95,7 +95,7 @@ public class X_M_ProductPriceVendorBreak extends PO
   public org.compiere.model.I_M_PriceList_Version getM_PriceList_Version() throws RuntimeException {
     return (org.compiere.model.I_M_PriceList_Version)
         MTable.get(getCtx(), org.compiere.model.I_M_PriceList_Version.Table_Name)
-            .getPO(getM_PriceList_Version_ID(), get_TrxName());
+            .getPO(getM_PriceList_Version_ID(), null);
   }
 
   /**
@@ -123,7 +123,7 @@ public class X_M_ProductPriceVendorBreak extends PO
   public org.compiere.model.I_M_Product getM_Product() throws RuntimeException {
     return (org.compiere.model.I_M_Product)
         MTable.get(getCtx(), org.compiere.model.I_M_Product.Table_Name)
-            .getPO(getM_Product_ID(), get_TrxName());
+            .getPO(getM_Product_ID(), null);
   }
 
   /**

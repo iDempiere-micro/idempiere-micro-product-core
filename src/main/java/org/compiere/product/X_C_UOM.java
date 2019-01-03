@@ -1,10 +1,12 @@
 package org.compiere.product;
 
-import java.sql.ResultSet;
-import java.util.Properties;
+import kotliquery.Row;
 import org.compiere.model.I_C_UOM;
 import org.compiere.orm.BasePOName;
 import org.idempiere.orm.I_Persistent;
+
+import java.sql.ResultSet;
+import java.util.Properties;
 
 /**
  * Generated Model for C_UOM
@@ -68,6 +70,9 @@ public class X_C_UOM extends BasePOName implements I_C_UOM, I_Persistent {
   public X_C_UOM(Properties ctx, ResultSet rs, String trxName) {
     super(ctx, rs, trxName);
   }
+  public X_C_UOM(Properties ctx, Row row) {
+    super(ctx, row);
+  } //	UOM
 
   /**
    * AccessLevel

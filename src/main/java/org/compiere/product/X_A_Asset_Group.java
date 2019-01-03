@@ -45,7 +45,7 @@ public class X_A_Asset_Group extends BasePOName implements I_A_Asset_Group, I_Pe
   public org.compiere.model.I_A_Asset_Class getA_Asset_Class() throws RuntimeException {
     return (org.compiere.model.I_A_Asset_Class)
         MTable.get(getCtx(), org.compiere.model.I_A_Asset_Class.Table_Name)
-            .getPO(getA_Asset_Class_ID(), get_TrxName());
+            .getPO(getA_Asset_Class_ID(), null);
   }
 
   /**
@@ -111,7 +111,7 @@ public class X_A_Asset_Group extends BasePOName implements I_A_Asset_Group, I_Pe
   public org.compiere.model.I_A_Asset_Type getA_Asset_Type() throws RuntimeException {
     return (org.compiere.model.I_A_Asset_Type)
         MTable.get(getCtx(), org.compiere.model.I_A_Asset_Type.Table_Name)
-            .getPO(getA_Asset_Type_ID(), get_TrxName());
+            .getPO(getA_Asset_Type_ID(), null);
   }
 
   /**

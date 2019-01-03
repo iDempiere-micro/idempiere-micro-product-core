@@ -1,15 +1,17 @@
 package org.compiere.product;
 
-import java.sql.ResultSet;
-import java.sql.Timestamp;
-import java.util.Iterator;
-import java.util.Properties;
-import java.util.logging.Level;
+import kotliquery.Row;
 import org.compiere.model.I_M_PriceList;
 import org.compiere.model.I_M_PriceList_Version;
 import org.compiere.orm.Query;
 import org.idempiere.common.util.CCache;
 import org.idempiere.common.util.Env;
+
+import java.sql.ResultSet;
+import java.sql.Timestamp;
+import java.util.Iterator;
+import java.util.Properties;
+import java.util.logging.Level;
 
 /**
  * Price List Model
@@ -60,6 +62,9 @@ public class MPriceList extends X_M_PriceList {
   public MPriceList(Properties ctx, ResultSet rs, String trxName) {
     super(ctx, rs, trxName);
   } //	MPriceList
+  public MPriceList(Properties ctx, Row row) {
+    super(ctx, row);
+  } //	MPriceList
 
   /**
    * Import Constructor
@@ -67,7 +72,7 @@ public class MPriceList extends X_M_PriceList {
    * @param impPL import
    */
   public MPriceList(X_I_PriceList impPL) {
-    this(impPL.getCtx(), 0, impPL.get_TrxName());
+    this(impPL.getCtx(), 0, null);
     setClientOrg(impPL);
     setUpdatedBy(impPL.getUpdatedBy());
     //
@@ -106,7 +111,7 @@ public class MPriceList extends X_M_PriceList {
    * @return PriceList or null
    */
   public static MPriceList getDefault(Properties ctx, boolean IsSOPriceList) {
-    int AD_Client_ID = Env.getADClientID(ctx);
+    int AD_Client_ID = Env.getClientId(ctx);
     MPriceList retValue = null;
     //	Search for it in cache
     Iterator<MPriceList> it = s_cache.values().iterator();
@@ -144,7 +149,7 @@ public class MPriceList extends X_M_PriceList {
    * @return PriceList or null
    */
   public static MPriceList getDefault(Properties ctx, boolean IsSOPriceList, String ISOCurrency) {
-    int AD_Client_ID = Env.getADClientID(ctx);
+    int AD_Client_ID = Env.getClientId(ctx);
     MCurrency currency = MCurrency.get(ctx, ISOCurrency);
     // If currency is null, return the default without looking at currency
     if (currency == null) return (getDefault(ctx, IsSOPriceList));
@@ -216,7 +221,7 @@ public class MPriceList extends X_M_PriceList {
 
     final String whereClause = "M_PriceList_ID=? AND TRUNC(ValidFrom)<=?";
     m_plv =
-        new Query(getCtx(), I_M_PriceList_Version.Table_Name, whereClause, get_TrxName())
+        new Query(getCtx(), I_M_PriceList_Version.Table_Name, whereClause, null)
             .setParameters(getM_PriceList_ID(), valid)
             .setOnlyActiveRecords(true)
             .setOrderBy("ValidFrom DESC")

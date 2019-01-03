@@ -54,7 +54,7 @@ public class X_M_Product_Category extends BasePONameValue
   public org.compiere.model.I_A_Asset_Group getA_Asset_Group() throws RuntimeException {
     return (org.compiere.model.I_A_Asset_Group)
         MTable.get(getCtx(), org.compiere.model.I_A_Asset_Group.Table_Name)
-            .getPO(getA_Asset_Group_ID(), get_TrxName());
+            .getPO(getA_Asset_Group_ID(), null);
   }
 
   /**
@@ -81,7 +81,7 @@ public class X_M_Product_Category extends BasePONameValue
   public org.compiere.model.I_AD_PrintColor getAD_PrintColor() throws RuntimeException {
     return (org.compiere.model.I_AD_PrintColor)
         MTable.get(getCtx(), org.compiere.model.I_AD_PrintColor.Table_Name)
-            .getPO(getAD_PrintColor_ID(), get_TrxName());
+            .getPO(getAD_PrintColor_ID(), null);
   }
 
   /**
@@ -213,7 +213,7 @@ public class X_M_Product_Category extends BasePONameValue
       throws RuntimeException {
     return (org.compiere.model.I_M_Product_Category)
         MTable.get(getCtx(), org.compiere.model.I_M_Product_Category.Table_Name)
-            .getPO(getM_Product_Category_Parent_ID(), get_TrxName());
+            .getPO(getM_Product_Category_Parent_ID(), null);
   }
 
   /**

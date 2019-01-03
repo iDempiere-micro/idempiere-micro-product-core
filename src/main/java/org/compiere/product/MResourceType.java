@@ -97,10 +97,10 @@ public class MResourceType extends X_S_ResourceType {
                   + "(SELECT S_Resource_ID FROM S_Resource WHERE S_ResourceType_ID="
                   + getS_ResourceType_ID()
                   + ")",
-              get_TrxName());
+              null);
       for (MProduct product : products) {
         if (product.setResource(this)) {
-          product.saveEx(get_TrxName());
+          product.saveEx(null);
         }
       }
     }

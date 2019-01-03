@@ -48,7 +48,7 @@ public class X_M_AttributeSetExclude extends PO implements I_M_AttributeSetExclu
   public org.compiere.model.I_AD_Table getAD_Table() throws RuntimeException {
     return (org.compiere.model.I_AD_Table)
         MTable.get(getCtx(), org.compiere.model.I_AD_Table.Table_Name)
-            .getPO(getAD_Table_ID(), get_TrxName());
+            .getPO(getAD_Table_ID(), null);
   }
 
   /**
@@ -137,7 +137,7 @@ public class X_M_AttributeSetExclude extends PO implements I_M_AttributeSetExclu
   public org.compiere.model.I_M_AttributeSet getMAttributeSet() throws RuntimeException {
     return (org.compiere.model.I_M_AttributeSet)
         MTable.get(getCtx(), org.compiere.model.I_M_AttributeSet.Table_Name)
-            .getPO(getMAttributeSet_ID(), get_TrxName());
+            .getPO(getMAttributeSet_ID(), null);
   }
 
   /**

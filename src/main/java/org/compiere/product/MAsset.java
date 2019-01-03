@@ -185,7 +185,7 @@ public class MAsset extends X_A_Asset
     if (getM_Product_ID() > 0 && getMAttributeSetInstance_ID() <= 0) {
       MProduct product = MProduct.get(getCtx(), getM_Product_ID());
       MAttributeSetInstance asi =
-          new MAttributeSetInstance(getCtx(), 0, product.getMAttributeSet_ID(), get_TrxName());
+          new MAttributeSetInstance(getCtx(), 0, product.getMAttributeSet_ID(), null);
       asi.setSerNo(getSerNo());
       asi.setDescription();
       asi.saveEx();
@@ -193,14 +193,14 @@ public class MAsset extends X_A_Asset
     }
     // TODO: With the lines below, after creating the asset, the whole system goes much slower ???
     //		else if (is_ValueChanged(COLUMNNAME_SerNo) && getMAttributeSetInstance_ID() > 0) {
-    //			asi = new MAttributeSetInstance(getCtx(), getMAttributeSetInstance_ID(), get_TrxName());
+    //			asi = new MAttributeSetInstance(getCtx(), getMAttributeSetInstance_ID(), null);
     //			asi.setSerNo(getSerNo());
     //			asi.setDescription();
     //			asi.saveEx();
     //		}
     //		else if ((newRecord || is_ValueChanged(COLUMNNAME_M_AttributeSetInstance_ID)) &&
     // getMAttributeSetInstance_ID() > 0) {
-    //			asi = new MAttributeSetInstance(getCtx(), getMAttributeSetInstance_ID(), get_TrxName());
+    //			asi = new MAttributeSetInstance(getCtx(), getMAttributeSetInstance_ID(), null);
     //			setASI(asi);
     //		}
     //
@@ -229,7 +229,7 @@ public class MAsset extends X_A_Asset
       setA_Parent_Asset_ID(A_Asset_ID);
       executeUpdateEx(
           "UPDATE A_Asset SET A_Parent_Asset_ID=A_Asset_ID WHERE A_Asset_ID=" + A_Asset_ID,
-          get_TrxName());
+          null);
       if (log.isLoggable(Level.FINE)) log.fine("A_Parent_Asset_ID=" + getA_Parent_Asset_ID());
     }
 
@@ -244,14 +244,14 @@ public class MAsset extends X_A_Asset
               + TO_STRING(invNo)
               + " WHERE A_Asset_ID="
               + getA_Asset_ID(),
-          get_TrxName());
+          null);
       if (log.isLoggable(Level.FINE)) log.fine("InventoryNo=" + getInventoryNo());
     }
 
     // If new record, create accounting and workfile
     if (newRecord) {
       // @win: set value at asset group as default value for asset
-      MAssetGroup assetgroup = new MAssetGroup(getCtx(), getA_Asset_Group_ID(), get_TrxName());
+      MAssetGroup assetgroup = new MAssetGroup(getCtx(), getA_Asset_Group_ID(), null);
       String isDepreciated = (assetgroup.isDepreciated()) ? "Y" : "N";
       String isOwned = (assetgroup.isOwned()) ? "Y" : "N";
       setIsDepreciated(assetgroup.isDepreciated());
@@ -263,7 +263,7 @@ public class MAsset extends X_A_Asset
               + isOwned
               + "' WHERE A_Asset_ID="
               + getA_Asset_ID(),
-          get_TrxName());
+          null);
       // end @win
 
     } else {

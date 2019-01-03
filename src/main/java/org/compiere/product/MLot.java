@@ -1,7 +1,9 @@
 package org.compiere.product;
 
-import static software.hsharp.core.util.DBKt.close;
-import static software.hsharp.core.util.DBKt.prepareStatement;
+import org.compiere.model.I_M_Lot;
+import org.compiere.orm.Query;
+import org.idempiere.common.util.CLogger;
+import org.idempiere.common.util.KeyNamePair;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,10 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
-import org.compiere.model.I_M_Lot;
-import org.compiere.orm.Query;
-import org.idempiere.common.util.CLogger;
-import org.idempiere.common.util.KeyNamePair;
+
+import static software.hsharp.core.util.DBKt.close;
+import static software.hsharp.core.util.DBKt.prepareStatement;
 
 /**
  * Product Lot
@@ -59,7 +60,7 @@ public class MLot extends X_M_Lot {
    * @param Name name
    */
   public MLot(MLotCtl ctl, int M_Product_ID, String Name) {
-    this(ctl.getCtx(), 0, ctl.get_TrxName());
+    this(ctl.getCtx(), 0, null);
     setClientOrg(ctl);
     setM_LotCtl_ID(ctl.getM_LotCtl_ID());
     setM_Product_ID(M_Product_ID);

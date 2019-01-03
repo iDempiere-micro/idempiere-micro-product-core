@@ -49,7 +49,7 @@ public class X_M_SerNoCtlExclude extends PO implements I_M_SerNoCtlExclude, I_Pe
   public org.compiere.model.I_AD_Table getAD_Table() throws RuntimeException {
     return (org.compiere.model.I_AD_Table)
         MTable.get(getCtx(), org.compiere.model.I_AD_Table.Table_Name)
-            .getPO(getAD_Table_ID(), get_TrxName());
+            .getPO(getAD_Table_ID(), null);
   }
 
   /**
@@ -138,7 +138,7 @@ public class X_M_SerNoCtlExclude extends PO implements I_M_SerNoCtlExclude, I_Pe
   public org.compiere.model.I_M_SerNoCtl getM_SerNoCtl() throws RuntimeException {
     return (org.compiere.model.I_M_SerNoCtl)
         MTable.get(getCtx(), org.compiere.model.I_M_SerNoCtl.Table_Name)
-            .getPO(getM_SerNoCtl_ID(), get_TrxName());
+            .getPO(getM_SerNoCtl_ID(), null);
   }
 
   /**
