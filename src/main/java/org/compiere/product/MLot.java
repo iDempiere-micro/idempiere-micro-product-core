@@ -2,16 +2,9 @@ package org.compiere.product;
 
 import org.compiere.model.I_M_Lot;
 import org.compiere.orm.Query;
-import org.idempiere.common.util.CLogger;
-import org.idempiere.common.util.KeyNamePair;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Properties;
-import java.util.logging.Level;
 
 import static software.hsharp.core.util.DBKt.close;
 import static software.hsharp.core.util.DBKt.prepareStatement;
@@ -26,10 +19,8 @@ import static software.hsharp.core.util.DBKt.prepareStatement;
 public class MLot extends X_M_Lot {
   /** */
   private static final long serialVersionUID = -2238962371935615958L;
-  /** Logger */
-  private static CLogger s_log = CLogger.getCLogger(MLot.class);
 
-  /**
+    /**
    * ************************************************************************ Standard Constructor
    *
    * @param ctx context
@@ -67,26 +58,7 @@ public class MLot extends X_M_Lot {
     setName(Name);
   } //	MLot
 
-  /**
-   * Get Lots for Product
-   *
-   * @param ctx context
-   * @param M_Product_ID product
-   * @param trxName transaction
-   * @return Array of Lots for Product
-   */
-  public static MLot[] getProductLots(Properties ctx, int M_Product_ID, String trxName) {
-    // FR: [ 2214883 ] Remove SQL code and Replace for Query - red1
-    final String whereClause = "M_Product_ID=?";
-    List<MLot> list =
-        new Query(ctx, I_M_Lot.Table_Name, whereClause, trxName).setParameters(M_Product_ID).list();
-    //
-    MLot[] retValue = new MLot[list.size()];
-    list.toArray(retValue);
-    return retValue;
-  } //	getProductLots
-
-  /**
+    /**
    * Get Lot for Product
    *
    * @param ctx context
@@ -105,37 +77,7 @@ public class MLot extends X_M_Lot {
     return retValue;
   } //	getProductLot
 
-  /**
-   * Get Lot Key Name Pairs for Product
-   *
-   * @param M_Product_ID product
-   * @param trxName transaction
-   * @return Array of Lot Key Name Pairs for Product
-   */
-  public static KeyNamePair[] getProductLotPairs(int M_Product_ID, String trxName) {
-    String sql = "SELECT M_Lot_ID, Name FROM M_Lot WHERE M_Product_ID=?";
-    ArrayList<KeyNamePair> list = new ArrayList<KeyNamePair>();
-    PreparedStatement pstmt = null;
-    ResultSet rs = null;
-    try {
-      pstmt = prepareStatement(sql, trxName);
-      pstmt.setInt(1, M_Product_ID);
-      rs = pstmt.executeQuery();
-      while (rs.next()) list.add(new KeyNamePair(rs.getInt(1), rs.getString(2)));
-    } catch (SQLException ex) {
-      s_log.log(Level.SEVERE, sql, ex);
-    } finally {
-      close(rs, pstmt);
-      rs = null;
-      pstmt = null;
-    }
-    //
-    KeyNamePair[] retValue = new KeyNamePair[list.size()];
-    list.toArray(retValue);
-    return retValue;
-  } //	getProductLotPairs
-
-  /**
+    /**
    * String Representation
    *
    * @return info

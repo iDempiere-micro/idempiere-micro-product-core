@@ -65,25 +65,7 @@ public class X_M_SerNoCtl extends BasePOName implements I_M_SerNoCtl, I_Persiste
     set_Value(COLUMNNAME_CurrentNext, Integer.valueOf(CurrentNext));
   }
 
-  /**
-   * Get Description.
-   *
-   * @return Optional short description of the record
-   */
-  public String getDescription() {
-    return (String) get_Value(COLUMNNAME_Description);
-  }
-
-  /**
-   * Set Description.
-   *
-   * @param Description Optional short description of the record
-   */
-  public void setDescription(String Description) {
-    set_Value(COLUMNNAME_Description, Description);
-  }
-
-  /**
+    /**
    * Get Increment.
    *
    * @return The number to increment the last document number by
@@ -103,46 +85,7 @@ public class X_M_SerNoCtl extends BasePOName implements I_M_SerNoCtl, I_Persiste
     set_Value(COLUMNNAME_IncrementNo, Integer.valueOf(IncrementNo));
   }
 
-  /**
-   * Get Serial No Control.
-   *
-   * @return Product Serial Number Control
-   */
-  public int getM_SerNoCtl_ID() {
-    Integer ii = (Integer) get_Value(COLUMNNAME_M_SerNoCtl_ID);
-    if (ii == null) return 0;
-    return ii;
-  }
-
-  /**
-   * Set Serial No Control.
-   *
-   * @param M_SerNoCtl_ID Product Serial Number Control
-   */
-  public void setM_SerNoCtl_ID(int M_SerNoCtl_ID) {
-    if (M_SerNoCtl_ID < 1) set_ValueNoCheck(COLUMNNAME_M_SerNoCtl_ID, null);
-    else set_ValueNoCheck(COLUMNNAME_M_SerNoCtl_ID, Integer.valueOf(M_SerNoCtl_ID));
-  }
-
-  /**
-   * Get M_SerNoCtl_UU.
-   *
-   * @return M_SerNoCtl_UU
-   */
-  public String getM_SerNoCtl_UU() {
-    return (String) get_Value(COLUMNNAME_M_SerNoCtl_UU);
-  }
-
-  /**
-   * Set M_SerNoCtl_UU.
-   *
-   * @param M_SerNoCtl_UU M_SerNoCtl_UU
-   */
-  public void setM_SerNoCtl_UU(String M_SerNoCtl_UU) {
-    set_Value(COLUMNNAME_M_SerNoCtl_UU, M_SerNoCtl_UU);
-  }
-
-  /**
+    /**
    * Get Prefix.
    *
    * @return Prefix before the sequence number
@@ -151,27 +94,7 @@ public class X_M_SerNoCtl extends BasePOName implements I_M_SerNoCtl, I_Persiste
     return (String) get_Value(COLUMNNAME_Prefix);
   }
 
-  /**
-   * Set Prefix.
-   *
-   * @param Prefix Prefix before the sequence number
-   */
-  public void setPrefix(String Prefix) {
-    set_Value(COLUMNNAME_Prefix, Prefix);
-  }
-
-  /**
-   * Get Start No.
-   *
-   * @return Starting number/position
-   */
-  public int getStartNo() {
-    Integer ii = (Integer) get_Value(COLUMNNAME_StartNo);
-    if (ii == null) return 0;
-    return ii;
-  }
-
-  /**
+    /**
    * Set Start No.
    *
    * @param StartNo Starting number/position
@@ -189,16 +112,7 @@ public class X_M_SerNoCtl extends BasePOName implements I_M_SerNoCtl, I_Persiste
     return (String) get_Value(COLUMNNAME_Suffix);
   }
 
-  /**
-   * Set Suffix.
-   *
-   * @param Suffix Suffix after the number
-   */
-  public void setSuffix(String Suffix) {
-    set_Value(COLUMNNAME_Suffix, Suffix);
-  }
-
-  @Override
+    @Override
   public int getTableId() {
     return I_M_SerNoCtl.Table_ID;
   }

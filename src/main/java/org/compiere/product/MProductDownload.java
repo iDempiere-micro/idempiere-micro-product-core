@@ -20,10 +20,7 @@ public class MProductDownload extends X_M_ProductDownload {
   /** */
   private static final long serialVersionUID = -2388247976802030211L;
 
-  /** Logger */
-  private static CLogger s_log = CLogger.getCLogger(MProductDownload.class);
-
-  /**
+    /**
    * ************************************************************************ Standard Constructor
    *
    * @param ctx context
@@ -67,44 +64,7 @@ public class MProductDownload extends X_M_ProductDownload {
     return sb.toString();
   } //	toString
 
-  /**
-   * Get Download Name
-   *
-   * @return download name (last part of name)
-   */
-  public String getDownloadName() {
-    String url = getDownloadURL();
-    if (url == null || !isActive()) return null;
-    int pos = Math.max(url.lastIndexOf('/'), url.lastIndexOf('\\'));
-    if (pos != -1) return url.substring(pos + 1);
-    return url;
-  } //	getDownloadName
-
-  /**
-   * Get Download URL
-   *
-   * @param directory optional directory
-   * @return url
-   */
-  public URI getDownloadURL(String directory) {
-    String dl_url = getDownloadURL();
-    if (dl_url == null || !isActive()) return null;
-
-    URI url = null;
-    try {
-      if (dl_url.contains("://")) url = new URI(dl_url);
-      else {
-        File f = getDownloadFile(directory);
-        if (f != null) url = f.toURI();
-      }
-    } catch (Exception ex) {
-      log.log(Level.SEVERE, dl_url, ex);
-      return null;
-    }
-    return url;
-  } //	getDownloadURL
-
-  /**
+    /**
    * Find download url
    *
    * @param directory optional directory
@@ -127,31 +87,4 @@ public class MProductDownload extends X_M_ProductDownload {
     return null;
   } //	getDownloadFile
 
-  /**
-   * Get Download Stream
-   *
-   * @param directory optional directory
-   * @return input stream
-   */
-  public InputStream getDownloadStream(String directory) {
-    String dl_url = getDownloadURL();
-    if (dl_url == null || !isActive()) return null;
-
-    InputStream in = null;
-    try {
-      if (dl_url.contains("://")) {
-        URI url = new URI(dl_url);
-        in = url.toURL().openStream();
-      } else //	file
-      {
-        File file = getDownloadFile(directory);
-        if (file == null) return null;
-        in = new FileInputStream(file);
-      }
-    } catch (Exception ex) {
-      log.log(Level.SEVERE, dl_url, ex);
-      return null;
-    }
-    return in;
-  } //	getDownloadStream
 } //	MProductDownload

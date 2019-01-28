@@ -589,16 +589,7 @@ public class MProductPricing extends AbstractProductPricing {
     }
   } //	setBaseInfo
 
-  /**
-   * Is Tax Included
-   *
-   * @return tax included
-   */
-  public boolean isTaxIncluded() {
-    return m_isTaxIncluded;
-  } //	isTaxIncluded
-
-  /**
+    /**
    * ************************************************************************ Calculate (Business
    * Partner) Discount
    */
@@ -673,26 +664,7 @@ public class MProductPricing extends AbstractProductPricing {
     m_calculated = false;
   } //	setM_PriceList_ID
 
-  /**
-   * Get PriceList Version
-   *
-   * @return plv
-   */
-  public int getM_PriceList_Version_ID() {
-    return m_M_PriceList_Version_ID;
-  } //	getM_PriceList_Version_ID
-
-  /**
-   * Set PriceList Version
-   *
-   * @param M_PriceList_Version_ID plv
-   */
-  public void setM_PriceList_Version_ID(int M_PriceList_Version_ID) {
-    super.setM_PriceList_Version_ID(M_PriceList_Version_ID);
-    m_calculated = false;
-  } //	setM_PriceList_Version_ID
-
-  /**
+    /**
    * Set Price Date
    *
    * @param priceDate date
@@ -708,16 +680,7 @@ public class MProductPricing extends AbstractProductPricing {
       m_precision = MPriceList.getPricePrecision(Env.getCtx(), getM_PriceList_ID());
   } //	setPrecision
 
-  /**
-   * Get Precision
-   *
-   * @return precision - -1 = no rounding
-   */
-  public int getPrecision() {
-    return m_precision;
-  } //	getPrecision
-
-  /**
+    /**
    * Round
    *
    * @param bd number
@@ -769,36 +732,7 @@ public class MProductPricing extends AbstractProductPricing {
     return round(m_PriceLimit);
   }
 
-  /**
-   * Get Price List Currency
-   *
-   * @return currency
-   */
-  public int getC_Currency_ID() {
-    if (!m_calculated) calculatePrice();
-    return m_C_Currency_ID;
-  }
-
-  /**
-   * Is Price List enforded?
-   *
-   * @return enforce limit
-   */
-  public boolean isEnforcePriceLimit() {
-    if (!m_calculated) calculatePrice();
-    return m_enforcePriceLimit;
-  } //	isEnforcePriceLimit
-
-  /**
-   * Is a DiscountSchema active?
-   *
-   * @return active Discount Schema
-   */
-  public boolean isDiscountSchema() {
-    return m_discountSchema || m_useVendorBreak;
-  } //	isDiscountSchema
-
-  /**
+    /**
    * Is the Price Calculated (i.e. found)?
    *
    * @return calculated
@@ -831,9 +765,4 @@ public class MProductPricing extends AbstractProductPricing {
     checkVendorBreak();
   }
 
-  @Override
-  public void setRMALine(I_M_RMALine rmaLine, String trxName) {
-    super.setRMALine(rmaLine, trxName);
-    checkVendorBreak();
-  }
 } //	MProductPrice

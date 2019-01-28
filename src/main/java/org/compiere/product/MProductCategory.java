@@ -156,16 +156,7 @@ public class MProductCategory extends X_M_Product_Category {
     return success;
   } //	afterSave
 
-  /**
-   * FiFo Material Movement Policy
-   *
-   * @return true if FiFo
-   */
-  public boolean isFiFo() {
-    return MMPOLICY_FiFo.equals(getMMPolicy());
-  } //	isFiFo
-
-  /**
+    /**
    * Loop detection of product category tree.
    *
    * @param productCategoryId

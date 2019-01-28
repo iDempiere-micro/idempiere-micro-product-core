@@ -1,16 +1,13 @@
 package org.compiere.product;
 
 import kotliquery.Row;
-import org.compiere.model.HasName;
 import org.compiere.model.I_M_Product;
-import org.compiere.model.I_M_ProductDownload;
 import org.compiere.orm.*;
 import org.idempiere.common.base.IServiceLocator;
 import org.idempiere.common.base.IServicesHolder;
 import org.idempiere.common.base.Service;
 import org.idempiere.common.exceptions.AdempiereException;
 import org.idempiere.common.util.CCache;
-import org.idempiere.common.util.Env;
 
 import java.sql.ResultSet;
 import java.util.List;
@@ -181,21 +178,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
     return list.toArray(new MProduct[list.size()]);
   } //	get
 
-  /**
-   * Get MProduct using UPC/EAN (case sensitive)
-   *
-   * @param ctx Context
-   * @param upc The upc to look for
-   * @return List of MProduct
-   */
-  public static List<MProduct> getByUPC(Properties ctx, String upc, String trxName) {
-    final String whereClause = "UPC=?";
-    Query q = new Query(ctx, I_M_Product.Table_Name, whereClause, trxName);
-    q.setParameters(upc).setClient_ID();
-    return (q.list());
-  }
-
-  /**
+    /**
    * Get Product from Cache
    *
    * @param ctx context
@@ -239,19 +222,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
     return p;
   }
 
-  /**
-   * Is Product Stocked
-   *
-   * @param ctx context
-   * @param M_Product_ID id
-   * @return true if found and stocked - false otherwise
-   */
-  public static boolean isProductStocked(Properties ctx, int M_Product_ID) {
-    MProduct product = get(ctx, M_Product_ID);
-    return product.isStocked();
-  } //	isProductStocked
-
-  /**
+    /**
    * get ProductPricing instance
    *
    * @return instance of the IProductPricing or null
@@ -490,46 +461,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
     return !isItem(); //
   } //	isService
 
-  /**
-   * Get UOM Symbol
-   *
-   * @return UOM Symbol
-   */
-  public String getUOMSymbol() {
-    int C_UOM_ID = getC_UOM_ID();
-    if (C_UOM_ID == 0) return "";
-    return MUOM.get(getCtx(), C_UOM_ID).getUOMSymbol();
-  } //	getUOMSymbol
-
-  /**
-   * Get Active(!) Product Downloads
-   *
-   * @param requery requery
-   * @return array of downloads
-   */
-  public MProductDownload[] getProductDownloads(boolean requery) {
-    if (m_downloads != null && !requery) return m_downloads;
-    //
-    List<MProductDownload> list =
-        new Query(getCtx(), I_M_ProductDownload.Table_Name, "M_Product_ID=?", null)
-            .setOnlyActiveRecords(true)
-            .setOrderBy(HasName.Companion.getCOLUMNNAME_Name())
-            .setParameters(getId())
-            .list();
-    m_downloads = list.toArray(new MProductDownload[list.size()]);
-    return m_downloads;
-  } //	getProductDownloads
-
-  /**
-   * Does the product have downloads
-   *
-   * @return true if downloads exists
-   */
-  public boolean hasDownloads() {
-    return getProductDownloads(false).length > 0;
-  } //	hasDownloads
-
-  @Override
+    @Override
   public String toString() {
     StringBuilder sb = new StringBuilder("MProduct[");
     sb.append(getId()).append("-").append(getValue()).append("]");
@@ -656,34 +588,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
     return success;
   } //	afterDelete
 
-  /**
-   * Get attribute instance for this product by attribute name
-   *
-   * @param name
-   * @param trxName
-   * @return
-   */
-  public MAttributeInstance getAttributeInstance(String name, String trxName) {
-    MAttributeInstance instance = null;
-
-    MTable table = MTable.get(Env.getCtx(), MAttribute.Table_ID);
-    MAttribute attribute = (MAttribute) table.getPO("Name = ?", new Object[] {name}, trxName);
-    if (attribute == null) return null;
-    table = MTable.get(Env.getCtx(), MAttributeInstance.Table_ID);
-    instance =
-        (MAttributeInstance)
-            table.getPO(
-                MAttributeInstance.COLUMNNAME_M_AttributeSetInstance_ID
-                    + "=?"
-                    + " and "
-                    + MAttributeInstance.COLUMNNAME_M_Attribute_ID
-                    + "=?",
-                new Object[] {getMAttributeSetInstance_ID(), attribute.getMAttribute_ID()},
-                trxName);
-    return instance;
-  }
-
-  /**
+    /**
    * Gets Material Management Policy. Tries: Product Category, Client (in this order)
    *
    * @return Material Management Policy

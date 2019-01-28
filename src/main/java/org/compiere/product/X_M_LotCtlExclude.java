@@ -3,7 +3,6 @@ package org.compiere.product;
 import java.sql.ResultSet;
 import java.util.Properties;
 import org.compiere.model.I_M_LotCtlExclude;
-import org.compiere.orm.MTable;
 import org.compiere.orm.PO;
 import org.idempiere.orm.I_Persistent;
 
@@ -46,13 +45,7 @@ public class X_M_LotCtlExclude extends PO implements I_M_LotCtlExclude, I_Persis
     return sb.toString();
   }
 
-  public org.compiere.model.I_AD_Table getAD_Table() throws RuntimeException {
-    return (org.compiere.model.I_AD_Table)
-        MTable.get(getCtx(), org.compiere.model.I_AD_Table.Table_Name)
-            .getPO(getAD_Table_ID(), null);
-  }
-
-  /**
+    /**
    * Get Table.
    *
    * @return Database Table information
@@ -63,26 +56,7 @@ public class X_M_LotCtlExclude extends PO implements I_M_LotCtlExclude, I_Persis
     return ii;
   }
 
-  /**
-   * Set Table.
-   *
-   * @param AD_Table_ID Database Table information
-   */
-  public void setAD_Table_ID(int AD_Table_ID) {
-    if (AD_Table_ID < 1) set_Value(COLUMNNAME_AD_Table_ID, null);
-    else set_Value(COLUMNNAME_AD_Table_ID, Integer.valueOf(AD_Table_ID));
-  }
-
-  /**
-   * Set Sales Transaction.
-   *
-   * @param IsSOTrx This is a Sales Transaction
-   */
-  public void setIsSOTrx(boolean IsSOTrx) {
-    set_Value(COLUMNNAME_IsSOTrx, Boolean.valueOf(IsSOTrx));
-  }
-
-  /**
+    /**
    * Get Sales Transaction.
    *
    * @return This is a Sales Transaction
@@ -96,52 +70,7 @@ public class X_M_LotCtlExclude extends PO implements I_M_LotCtlExclude, I_Persis
     return false;
   }
 
-  /**
-   * Get Exclude Lot.
-   *
-   * @return Exclude the ability to create Lots in Attribute Sets
-   */
-  public int getM_LotCtlExclude_ID() {
-    Integer ii = (Integer) get_Value(COLUMNNAME_M_LotCtlExclude_ID);
-    if (ii == null) return 0;
-    return ii;
-  }
-
-  /**
-   * Set Exclude Lot.
-   *
-   * @param M_LotCtlExclude_ID Exclude the ability to create Lots in Attribute Sets
-   */
-  public void setM_LotCtlExclude_ID(int M_LotCtlExclude_ID) {
-    if (M_LotCtlExclude_ID < 1) set_ValueNoCheck(COLUMNNAME_M_LotCtlExclude_ID, null);
-    else set_ValueNoCheck(COLUMNNAME_M_LotCtlExclude_ID, Integer.valueOf(M_LotCtlExclude_ID));
-  }
-
-  /**
-   * Get M_LotCtlExclude_UU.
-   *
-   * @return M_LotCtlExclude_UU
-   */
-  public String getM_LotCtlExclude_UU() {
-    return (String) get_Value(COLUMNNAME_M_LotCtlExclude_UU);
-  }
-
-  /**
-   * Set M_LotCtlExclude_UU.
-   *
-   * @param M_LotCtlExclude_UU M_LotCtlExclude_UU
-   */
-  public void setM_LotCtlExclude_UU(String M_LotCtlExclude_UU) {
-    set_Value(COLUMNNAME_M_LotCtlExclude_UU, M_LotCtlExclude_UU);
-  }
-
-  public org.compiere.model.I_M_LotCtl getM_LotCtl() throws RuntimeException {
-    return (org.compiere.model.I_M_LotCtl)
-        MTable.get(getCtx(), org.compiere.model.I_M_LotCtl.Table_Name)
-            .getPO(getM_LotCtl_ID(), null);
-  }
-
-  /**
+    /**
    * Get Lot Control.
    *
    * @return Product Lot Control
@@ -152,17 +81,7 @@ public class X_M_LotCtlExclude extends PO implements I_M_LotCtlExclude, I_Persis
     return ii;
   }
 
-  /**
-   * Set Lot Control.
-   *
-   * @param M_LotCtl_ID Product Lot Control
-   */
-  public void setM_LotCtl_ID(int M_LotCtl_ID) {
-    if (M_LotCtl_ID < 1) set_ValueNoCheck(COLUMNNAME_M_LotCtl_ID, null);
-    else set_ValueNoCheck(COLUMNNAME_M_LotCtl_ID, Integer.valueOf(M_LotCtl_ID));
-  }
-
-  @Override
+    @Override
   public int getTableId() {
     return I_M_LotCtlExclude.Table_ID;
   }

@@ -2,9 +2,7 @@ package org.compiere.product;
 
 import kotliquery.Row;
 import org.compiere.model.HasName;
-import org.compiere.model.I_C_Currency;
 import org.compiere.model.I_M_PriceList;
-import org.compiere.orm.MTable;
 import org.compiere.orm.PO;
 import org.idempiere.common.util.KeyNamePair;
 import org.idempiere.orm.I_Persistent;
@@ -55,12 +53,7 @@ public abstract class X_M_PriceList extends PO implements I_M_PriceList, I_Persi
     return sb.toString();
   }
 
-  public I_M_PriceList getBasePriceList() throws RuntimeException {
-    return (I_M_PriceList)
-        MTable.get(getCtx(), I_M_PriceList.Table_Name).getPO(getBasePriceList_ID(), null);
-  }
-
-  /**
+    /**
    * Get Base Pricelist.
    *
    * @return Pricelist to be used, if product not found on this pricelist
@@ -71,22 +64,7 @@ public abstract class X_M_PriceList extends PO implements I_M_PriceList, I_Persi
     return ii;
   }
 
-  /**
-   * Set Base Pricelist.
-   *
-   * @param BasePriceList_ID Pricelist to be used, if product not found on this pricelist
-   */
-  public void setBasePriceList_ID(int BasePriceList_ID) {
-    if (BasePriceList_ID < 1) set_Value(COLUMNNAME_BasePriceList_ID, null);
-    else set_Value(COLUMNNAME_BasePriceList_ID, Integer.valueOf(BasePriceList_ID));
-  }
-
-  public I_C_Currency getC_Currency() throws RuntimeException {
-    return (I_C_Currency)
-        MTable.get(getCtx(), I_C_Currency.Table_Name).getPO(getC_Currency_ID(), null);
-  }
-
-  /**
+    /**
    * Get Currency.
    *
    * @return The Currency for this record
@@ -107,16 +85,7 @@ public abstract class X_M_PriceList extends PO implements I_M_PriceList, I_Persi
     else set_Value(COLUMNNAME_C_Currency_ID, C_Currency_ID);
   }
 
-  /**
-   * Get Description.
-   *
-   * @return Optional short description of the record
-   */
-  public String getDescription() {
-    return (String) get_Value(COLUMNNAME_Description);
-  }
-
-  /**
+    /**
    * Set Description.
    *
    * @param Description Optional short description of the record
@@ -171,53 +140,7 @@ public abstract class X_M_PriceList extends PO implements I_M_PriceList, I_Persi
     return false;
   }
 
-  /**
-   * Set Mandatory.
-   *
-   * @param IsMandatory Data entry is required in this column
-   */
-  public void setIsMandatory(boolean IsMandatory) {
-    set_Value(COLUMNNAME_IsMandatory, Boolean.valueOf(IsMandatory));
-  }
-
-  /**
-   * Get Mandatory.
-   *
-   * @return Data entry is required in this column
-   */
-  public boolean isMandatory() {
-    Object oo = get_Value(COLUMNNAME_IsMandatory);
-    if (oo != null) {
-      if (oo instanceof Boolean) return ((Boolean) oo).booleanValue();
-      return "Y".equals(oo);
-    }
-    return false;
-  }
-
-  /**
-   * Set isPresentForProduct.
-   *
-   * @param isPresentForProduct isPresentForProduct
-   */
-  public void setisPresentForProduct(boolean isPresentForProduct) {
-    set_Value(COLUMNNAME_isPresentForProduct, Boolean.valueOf(isPresentForProduct));
-  }
-
-  /**
-   * Get isPresentForProduct.
-   *
-   * @return isPresentForProduct
-   */
-  public boolean isPresentForProduct() {
-    Object oo = get_Value(COLUMNNAME_isPresentForProduct);
-    if (oo != null) {
-      if (oo instanceof Boolean) return ((Boolean) oo).booleanValue();
-      return "Y".equals(oo);
-    }
-    return false;
-  }
-
-  /**
+    /**
    * Set Sales Price list.
    *
    * @param IsSOPriceList This is a Sales Price List
@@ -274,35 +197,7 @@ public abstract class X_M_PriceList extends PO implements I_M_PriceList, I_Persi
     return ii;
   }
 
-  /**
-   * Set Price List.
-   *
-   * @param M_PriceList_ID Unique identifier of a Price List
-   */
-  public void setM_PriceList_ID(int M_PriceList_ID) {
-    if (M_PriceList_ID < 1) set_ValueNoCheck(COLUMNNAME_M_PriceList_ID, null);
-    else set_ValueNoCheck(COLUMNNAME_M_PriceList_ID, Integer.valueOf(M_PriceList_ID));
-  }
-
-  /**
-   * Get M_PriceList_UU.
-   *
-   * @return M_PriceList_UU
-   */
-  public String getM_PriceList_UU() {
-    return (String) get_Value(COLUMNNAME_M_PriceList_UU);
-  }
-
-  /**
-   * Set M_PriceList_UU.
-   *
-   * @param M_PriceList_UU M_PriceList_UU
-   */
-  public void setM_PriceList_UU(String M_PriceList_UU) {
-    set_Value(COLUMNNAME_M_PriceList_UU, M_PriceList_UU);
-  }
-
-  /**
+    /**
    * Get Name.
    *
    * @return Alphanumeric identifier of the entity
@@ -320,16 +215,7 @@ public abstract class X_M_PriceList extends PO implements I_M_PriceList, I_Persi
     set_Value(HasName.Companion.getCOLUMNNAME_Name(), Name);
   }
 
-  /**
-   * Get Record ID/ColumnName
-   *
-   * @return ID/ColumnName pair
-   */
-  public KeyNamePair getKeyNamePair() {
-    return new KeyNamePair(getId(), getName());
-  }
-
-  /**
+    /**
    * Get Price Precision.
    *
    * @return Precision (number of decimals) for the Price

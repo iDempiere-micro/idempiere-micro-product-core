@@ -164,28 +164,7 @@ public class MAttributeSet extends X_M_AttributeSet {
     return X_M_AttributeSet.MANDATORYTYPE_AlwaysMandatory.equals(getMandatoryType());
   } //	isMandatoryAlways
 
-  /**
-   * Is Mandatory when Shipping
-   *
-   * @return true if required for shipping
-   */
-  public boolean isMandatoryShipping() {
-    return X_M_AttributeSet.MANDATORYTYPE_WhenShipping.equals(getMandatoryType());
-  } //	isMandatoryShipping
-
-  /**
-   * Exclude column entry
-   *
-   * @param AD_Column_ID column
-   * @param isSOTrx sales order
-   * @return true if excluded
-   */
-  public boolean excludeEntry(int AD_Column_ID, boolean isSOTrx) {
-    MColumn column = MColumn.get(getCtx(), AD_Column_ID);
-    return excludeTableEntry(column.getAD_Table_ID(), isSOTrx);
-  } //	excludeEntry
-
-  /**
+    /**
    * Exclude table entry
    *
    * @param AD_Table_ID column
