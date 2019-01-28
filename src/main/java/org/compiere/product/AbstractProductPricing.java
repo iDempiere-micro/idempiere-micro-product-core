@@ -11,10 +11,8 @@ public abstract class AbstractProductPricing implements IProductPricing {
   protected int m_C_BPartner_ID;
   protected BigDecimal m_Qty = Env.ONE;
   protected boolean m_isSOTrx = true;
-  protected String trxName = null;
 
-  protected int m_M_PriceList_Version_ID = 0;
-  protected int m_M_PriceList_ID = 0;
+    protected int m_M_PriceList_ID = 0;
   protected Timestamp m_PriceDate;
 
   public AbstractProductPricing() {}
@@ -22,8 +20,7 @@ public abstract class AbstractProductPricing implements IProductPricing {
   @Override
   public void setInitialValues(
       int M_Product_ID, int C_BPartner_ID, BigDecimal qty, boolean isSOTrx, String trxName) {
-    this.trxName = trxName;
-    m_M_Product_ID = M_Product_ID;
+      m_M_Product_ID = M_Product_ID;
     m_C_BPartner_ID = C_BPartner_ID;
 
     if (qty != null && Env.ZERO.compareTo(qty) != 0) m_Qty = qty;
@@ -45,17 +42,7 @@ public abstract class AbstractProductPricing implements IProductPricing {
     m_M_PriceList_ID = M_PriceList_ID;
   }
 
-  @Override
-  public void setM_PriceList_Version_ID(int M_PriceList_Version_ID) {
-    m_M_PriceList_Version_ID = M_PriceList_Version_ID;
-  }
-
-  @Override
-  public void setQty(BigDecimal qty) {
-    m_Qty = qty;
-  }
-
-  @Override
+    @Override
   public Timestamp getPriceDate() {
     return m_PriceDate;
   }
@@ -73,7 +60,6 @@ public abstract class AbstractProductPricing implements IProductPricing {
     if (qty != null && Env.ZERO.compareTo(qty) != 0) m_Qty = qty;
     m_isSOTrx = orderLine.getC_Order().isSOTrx();
     m_PriceDate = orderLine.getDateOrdered();
-    this.trxName = trxName;
   }
 
   @Override
@@ -87,7 +73,6 @@ public abstract class AbstractProductPricing implements IProductPricing {
     if (qty != null && Env.ZERO.compareTo(qty) != 0) m_Qty = qty;
     m_isSOTrx = invoiceLine.getC_Invoice().isSOTrx();
     m_PriceDate = invoiceLine.getC_Invoice().getDateInvoiced();
-    this.trxName = trxName;
   }
 
   @Override
@@ -97,7 +82,6 @@ public abstract class AbstractProductPricing implements IProductPricing {
     BigDecimal qty = projectLine.getPlannedQty();
     if (qty != null && Env.ZERO.compareTo(qty) != 0) m_Qty = qty;
     m_isSOTrx = true;
-    this.trxName = trxName;
   }
 
   @Override
@@ -107,15 +91,6 @@ public abstract class AbstractProductPricing implements IProductPricing {
     BigDecimal qty = reqLine.getQty();
     if (qty != null && Env.ZERO.compareTo(qty) != 0) m_Qty = qty;
     m_isSOTrx = false;
-    this.trxName = trxName;
   }
 
-  @Override
-  public void setRMALine(I_M_RMALine rmaLine, String trxName) {
-    m_M_Product_ID = rmaLine.getM_Product_ID();
-    m_C_BPartner_ID = rmaLine.getM_RMA().getC_BPartner_ID();
-    m_Qty = Env.ONE;
-    m_isSOTrx = rmaLine.getM_RMA().isSOTrx();
-    this.trxName = trxName;
-  }
 }

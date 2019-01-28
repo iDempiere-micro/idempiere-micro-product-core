@@ -4,10 +4,7 @@ import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.util.Properties;
 import org.compiere.model.I_M_AttributeInstance;
-import org.compiere.model.I_M_AttributeSetInstance;
-import org.compiere.orm.MTable;
 import org.compiere.orm.PO;
-import org.idempiere.common.util.Env;
 import org.idempiere.common.util.KeyNamePair;
 import org.idempiere.orm.I_Persistent;
 
@@ -48,13 +45,7 @@ public class X_M_AttributeInstance extends PO implements I_M_AttributeInstance, 
     return "X_M_AttributeInstance[" + getId() + "]";
   }
 
-  public org.compiere.model.I_M_Attribute getMAttribute() throws RuntimeException {
-    return (org.compiere.model.I_M_Attribute)
-        MTable.get(getCtx(), org.compiere.model.I_M_Attribute.Table_Name)
-            .getPO(getMAttribute_ID(), null);
-  }
-
-  /**
+    /**
    * Set Attribute.
    *
    * @param M_Attribute_ID Product Attribute
@@ -75,31 +66,7 @@ public class X_M_AttributeInstance extends PO implements I_M_AttributeInstance, 
     return ii;
   }
 
-  /**
-   * Set M_AttributeInstance_UU.
-   *
-   * @param M_AttributeInstance_UU M_AttributeInstance_UU
-   */
-  public void setM_AttributeInstance_UU(String M_AttributeInstance_UU) {
-    set_Value(COLUMNNAME_M_AttributeInstance_UU, M_AttributeInstance_UU);
-  }
-
-  /**
-   * Get M_AttributeInstance_UU.
-   *
-   * @return M_AttributeInstance_UU
-   */
-  public String getMAttributeInstance_UU() {
-    return (String) get_Value(COLUMNNAME_M_AttributeInstance_UU);
-  }
-
-  public I_M_AttributeSetInstance getMAttributeSetInstance() throws RuntimeException {
-    return (I_M_AttributeSetInstance)
-        MTable.get(getCtx(), I_M_AttributeSetInstance.Table_Name)
-            .getPO(getMAttributeSetInstance_ID(), null);
-  }
-
-  /**
+    /**
    * Set Attribute Set Instance.
    *
    * @param M_AttributeSetInstance_ID Product Attribute Set Instance
@@ -122,13 +89,7 @@ public class X_M_AttributeInstance extends PO implements I_M_AttributeInstance, 
     return ii;
   }
 
-  public org.compiere.model.I_M_AttributeValue getMAttributeValue() throws RuntimeException {
-    return (org.compiere.model.I_M_AttributeValue)
-        MTable.get(getCtx(), org.compiere.model.I_M_AttributeValue.Table_Name)
-            .getPO(getMAttributeValue_ID(), null);
-  }
-
-  /**
+    /**
    * Set Attribute Value.
    *
    * @param M_AttributeValue_ID Product Attribute Value
@@ -149,16 +110,7 @@ public class X_M_AttributeInstance extends PO implements I_M_AttributeInstance, 
     return ii;
   }
 
-  /**
-   * Get Record ID/ColumnName
-   *
-   * @return ID/ColumnName pair
-   */
-  public KeyNamePair getKeyNamePair() {
-    return new KeyNamePair(getId(), String.valueOf(getMAttributeValue_ID()));
-  }
-
-  /**
+    /**
    * Get Search Key.
    *
    * @return Search key for the record in the format required - must be unique
@@ -176,18 +128,7 @@ public class X_M_AttributeInstance extends PO implements I_M_AttributeInstance, 
     set_Value(COLUMNNAME_Value, Value);
   }
 
-  /**
-   * Get Value.
-   *
-   * @return Numeric Value
-   */
-  public BigDecimal getValueNumber() {
-    BigDecimal bd = (BigDecimal) get_Value(COLUMNNAME_ValueNumber);
-    if (bd == null) return Env.ZERO;
-    return bd;
-  }
-
-  /**
+    /**
    * Set Value.
    *
    * @param ValueNumber Numeric Value

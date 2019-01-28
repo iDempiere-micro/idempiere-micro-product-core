@@ -2,13 +2,10 @@ package org.compiere.product;
 
 import kotliquery.Row;
 import org.compiere.model.I_M_PriceList;
-import org.compiere.model.I_M_ProductPrice;
-import org.compiere.orm.Query;
 import org.compiere.orm.TimeUtil;
 import org.compiere.util.DisplayType;
 
 import java.sql.ResultSet;
-import java.util.List;
 import java.util.Properties;
 
 /**
@@ -20,12 +17,8 @@ import java.util.Properties;
 public class MPriceListVersion extends X_M_PriceList_Version {
   /** */
   private static final long serialVersionUID = -3607494586575155059L;
-  /** Product Prices */
-  private MProductPrice[] m_pp = null;
-  /** Price List */
-  private MPriceList m_pl = null;
 
-  /**
+    /**
    * Standard Constructor
    *
    * @param ctx context
@@ -68,48 +61,7 @@ public class MPriceListVersion extends X_M_PriceList_Version {
     setM_PriceList_ID(pl.getM_PriceList_ID());
   } //	MPriceListVersion
 
-  /**
-   * Get Parent PriceList
-   *
-   * @return price List
-   */
-  public MPriceList getPriceList() {
-    if (m_pl == null && getM_PriceList_ID() != 0)
-      m_pl = MPriceList.get(getCtx(), getM_PriceList_ID(), null);
-    return m_pl;
-  } //	PriceList
-
-  /**
-   * Get Product Price
-   *
-   * @param refresh true if refresh
-   * @return product price
-   */
-  public MProductPrice[] getProductPrice(boolean refresh) {
-    if (m_pp != null && !refresh) return m_pp;
-    m_pp = getProductPrice(null);
-    return m_pp;
-  } //	getProductPrice
-
-  /**
-   * Get Product Price
-   *
-   * @param whereClause optional where clause
-   * @return product price
-   */
-  public MProductPrice[] getProductPrice(String whereClause) {
-    String localWhereClause = I_M_ProductPrice.COLUMNNAME_M_PriceList_Version_ID + "=?";
-    if (whereClause != null) localWhereClause += " " + whereClause;
-    List<MProductPrice> list =
-        new Query(getCtx(), I_M_ProductPrice.Table_Name, localWhereClause, null)
-            .setParameters(getM_PriceList_Version_ID())
-            .list();
-    MProductPrice[] pp = new MProductPrice[list.size()];
-    list.toArray(pp);
-    return pp;
-  } //	getProductPrice
-
-  /** Set Name to Valid From Date. If valid from not set, use today */
+    /** Set Name to Valid From Date. If valid from not set, use today */
   public void setName() {
     if (getValidFrom() == null) setValidFrom(TimeUtil.getDay(null));
     if (getName() == null) {

@@ -89,18 +89,7 @@ public class MProductBOM extends X_M_Product_BOM {
     return retValue;
   } //	getBOMLines
 
-  /**
-   * Get BOM Product
-   *
-   * @return product
-   */
-  public MProduct getProduct() {
-    if (m_product == null && getM_ProductBOM_ID() != 0)
-      m_product = MProduct.get(getCtx(), getM_ProductBOM_ID());
-    return m_product;
-  } //	getProduct
-
-  /**
+    /**
    * Set included Product
    *
    * @param M_ProductBOM_ID product ID

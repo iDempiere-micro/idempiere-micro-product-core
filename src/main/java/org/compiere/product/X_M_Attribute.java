@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.util.Properties;
 import org.compiere.model.I_M_Attribute;
 import org.compiere.orm.BasePOName;
-import org.compiere.orm.MTable;
 import org.idempiere.orm.I_Persistent;
 
 /**
@@ -15,13 +14,9 @@ import org.idempiere.orm.I_Persistent;
  */
 public class X_M_Attribute extends BasePOName implements I_M_Attribute, I_Persistent {
 
-  /** AttributeValueType AD_Reference_ID=326 */
-  public static final int ATTRIBUTEVALUETYPE_AD_Reference_ID = 326;
-  /** String (max 40) = S */
+    /** String (max 40) = S */
   public static final String ATTRIBUTEVALUETYPE_StringMax40 = "S";
-  /** Number = N */
-  public static final String ATTRIBUTEVALUETYPE_Number = "N";
-  /** List = L */
+    /** List = L */
   public static final String ATTRIBUTEVALUETYPE_List = "L";
   /** */
   private static final long serialVersionUID = 20171031L;
@@ -67,25 +62,7 @@ public class X_M_Attribute extends BasePOName implements I_M_Attribute, I_Persis
     set_Value(COLUMNNAME_AttributeValueType, AttributeValueType);
   }
 
-  /**
-   * Get Description.
-   *
-   * @return Optional short description of the record
-   */
-  public String getDescription() {
-    return (String) get_Value(COLUMNNAME_Description);
-  }
-
-  /**
-   * Set Description.
-   *
-   * @param Description Optional short description of the record
-   */
-  public void setDescription(String Description) {
-    set_Value(COLUMNNAME_Description, Description);
-  }
-
-  /**
+    /**
    * Set Instance Attribute.
    *
    * @param IsInstanceAttribute The product attribute is specific to the instance (like Serial No,
@@ -133,17 +110,7 @@ public class X_M_Attribute extends BasePOName implements I_M_Attribute, I_Persis
     return false;
   }
 
-  /**
-   * Set Attribute.
-   *
-   * @param M_Attribute_ID Product Attribute
-   */
-  public void setMAttributeID(int M_Attribute_ID) {
-    if (M_Attribute_ID < 1) set_ValueNoCheck(COLUMNNAME_M_Attribute_ID, null);
-    else set_ValueNoCheck(COLUMNNAME_M_Attribute_ID, M_Attribute_ID);
-  }
-
-  /**
+    /**
    * Get Attribute.
    *
    * @return Product Attribute
@@ -154,23 +121,7 @@ public class X_M_Attribute extends BasePOName implements I_M_Attribute, I_Persis
     return ii;
   }
 
-  public org.compiere.model.I_M_AttributeSearch getMAttributeSearch() throws RuntimeException {
-    return (org.compiere.model.I_M_AttributeSearch)
-        MTable.get(getCtx(), org.compiere.model.I_M_AttributeSearch.Table_Name)
-            .getPO(getMAttributeSearch_ID(), null);
-  }
-
-  /**
-   * Set Attribute Search.
-   *
-   * @param M_AttributeSearch_ID Common Search Attribute
-   */
-  public void setM_AttributeSearch_ID(int M_AttributeSearch_ID) {
-    if (M_AttributeSearch_ID < 1) set_Value(COLUMNNAME_M_AttributeSearch_ID, null);
-    else set_Value(COLUMNNAME_M_AttributeSearch_ID, M_AttributeSearch_ID);
-  }
-
-  /**
+    /**
    * Get Attribute Search.
    *
    * @return Common Search Attribute
@@ -181,25 +132,7 @@ public class X_M_Attribute extends BasePOName implements I_M_Attribute, I_Persis
     return ii;
   }
 
-  /**
-   * Set M_Attribute_UU.
-   *
-   * @param M_Attribute_UU M_Attribute_UU
-   */
-  public void setM_Attribute_UU(String M_Attribute_UU) {
-    set_Value(COLUMNNAME_M_Attribute_UU, M_Attribute_UU);
-  }
-
-  /**
-   * Get M_Attribute_UU.
-   *
-   * @return M_Attribute_UU
-   */
-  public String getMAttribute_UU() {
-    return (String) get_Value(COLUMNNAME_M_Attribute_UU);
-  }
-
-  @Override
+    @Override
   public int getTableId() {
     return I_M_Attribute.Table_ID;
   }

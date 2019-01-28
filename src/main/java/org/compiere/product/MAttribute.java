@@ -1,16 +1,9 @@
 package org.compiere.product;
 
-import org.compiere.model.I_M_Attribute;
 import org.compiere.model.I_M_AttributeInstance;
-import org.compiere.model.I_M_AttributeValue;
 import org.compiere.orm.Query;
-import org.idempiere.common.util.CLogger;
-import org.idempiere.common.util.Env;
 
-import java.math.BigDecimal;
 import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
 
@@ -25,12 +18,8 @@ import static software.hsharp.core.util.DBKt.executeUpdate;
 public class MAttribute extends X_M_Attribute {
   /** */
   private static final long serialVersionUID = 7869800574413317999L;
-  /** Logger */
-  private static CLogger s_log = CLogger.getCLogger(MAttribute.class);
-  /** Values */
-  private MAttributeValue[] m_values = null;
 
-  /**
+    /**
    * Standard Constructor
    *
    * @param ctx context
@@ -57,66 +46,7 @@ public class MAttribute extends X_M_Attribute {
     super(ctx, rs, trxName);
   } //	MAttribute
 
-  /**
-   * Get Attributes Of Client
-   *
-   * @param ctx Properties
-   * @param onlyProductAttributes only Product Attributes
-   * @param onlyListAttributes only List Attributes
-   * @return array of attributes
-   */
-  public static MAttribute[] getOfClient(
-      Properties ctx, boolean onlyProductAttributes, boolean onlyListAttributes) {
-    int AD_Client_ID = Env.getClientId(ctx);
-    String sql = "";
-    ArrayList<Object> params = new ArrayList<Object>();
-    params.add(AD_Client_ID);
-    if (onlyProductAttributes) {
-      sql += " AND IsInstanceAttribute=?";
-      params.add(false);
-    }
-    if (onlyListAttributes) {
-      sql += " AND AttributeValueType=?";
-      params.add(MAttribute.ATTRIBUTEVALUETYPE_List);
-    }
-    StringBuilder whereClause = new StringBuilder("AD_Client_ID=?").append(sql);
-
-    List<MAttribute> list =
-        new Query(ctx, I_M_Attribute.Table_Name, whereClause.toString(), null)
-            .setParameters(params)
-            .setOnlyActiveRecords(true)
-            .setOrderBy("Name")
-            .list();
-
-    MAttribute[] retValue = new MAttribute[list.size()];
-    list.toArray(retValue);
-    if (s_log.isLoggable(Level.FINE))
-      s_log.fine("AD_Client_ID=" + AD_Client_ID + " - #" + list.size());
-    return retValue;
-  } //	getOfClient
-
-  /**
-   * Get Values if List
-   *
-   * @return Values or null if not list
-   */
-  public MAttributeValue[] getMAttributeValues() {
-    if (m_values == null && X_M_Attribute.ATTRIBUTEVALUETYPE_List.equals(getAttributeValueType())) {
-      final String whereClause = I_M_AttributeValue.COLUMNNAME_M_Attribute_ID + "=?";
-      List<MAttributeValue> list = new ArrayList<MAttributeValue>();
-      if (!isMandatory()) list.add(null);
-      list =
-          new Query(getCtx(), I_M_AttributeValue.Table_Name, whereClause, null)
-              .setParameters(getMAttribute_ID())
-              .setOrderBy("Value")
-              .list();
-      m_values = new MAttributeValue[list.size()];
-      list.toArray(m_values);
-    }
-    return m_values;
-  } //	getValues
-
-  /**
+    /**
    * ************************************************************************ Get Attribute Instance
    *
    * @param M_AttributeSetInstance_ID attribute set instance
@@ -136,73 +66,7 @@ public class MAttribute extends X_M_Attribute {
     return retValue;
   } //	getAttributeInstance
 
-  /**
-   * Set Attribute Instance
-   *
-   * @param value value
-   * @param M_AttributeSetInstance_ID id
-   */
-  public void setMAttributeInstance(int M_AttributeSetInstance_ID, MAttributeValue value) {
-    MAttributeInstance instance = getMAttributeInstance(M_AttributeSetInstance_ID);
-    if (instance == null) {
-      if (value != null)
-        instance =
-            new MAttributeInstance(
-                getCtx(),
-                getMAttribute_ID(),
-                M_AttributeSetInstance_ID,
-                value.getMAttributeValue_ID(),
-                value.getName(),
-                null); //	Cached !!
-      else
-        instance =
-            new MAttributeInstance(
-                getCtx(), getMAttribute_ID(), M_AttributeSetInstance_ID, 0, null, null);
-    } else {
-      if (value != null) {
-        instance.setM_AttributeValue_ID(value.getMAttributeValue_ID());
-        instance.setValue(value.getName()); // 	Cached !!
-      } else {
-        instance.setM_AttributeValue_ID(0);
-        instance.setValue(null);
-      }
-    }
-    instance.saveEx();
-  } //	setAttributeInstance
-
-  /**
-   * Set Attribute Instance
-   *
-   * @param value string value
-   * @param M_AttributeSetInstance_ID id
-   */
-  public void setMAttributeInstance(int M_AttributeSetInstance_ID, String value) {
-    MAttributeInstance instance = getMAttributeInstance(M_AttributeSetInstance_ID);
-    if (instance == null)
-      instance =
-          new MAttributeInstance(
-              getCtx(), getMAttribute_ID(), M_AttributeSetInstance_ID, value, null);
-    else instance.setValue(value);
-    instance.saveEx();
-  } //	setAttributeInstance
-
-  /**
-   * Set Attribute Instance
-   *
-   * @param value number value
-   * @param M_AttributeSetInstance_ID id
-   */
-  public void setMAttributeInstance(int M_AttributeSetInstance_ID, BigDecimal value) {
-    MAttributeInstance instance = getMAttributeInstance(M_AttributeSetInstance_ID);
-    if (instance == null)
-      instance =
-          new MAttributeInstance(
-              getCtx(), getMAttribute_ID(), M_AttributeSetInstance_ID, value, null);
-    else instance.setValueNumber(value);
-    instance.saveEx();
-  } //	setAttributeInstance
-
-  /**
+    /**
    * String Representation
    *
    * @return info
