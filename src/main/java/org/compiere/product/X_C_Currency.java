@@ -1,12 +1,9 @@
 package org.compiere.product;
 
-import java.math.BigDecimal;
 import java.sql.ResultSet;
-import java.sql.Timestamp;
 import java.util.Properties;
 import org.compiere.model.I_C_Currency;
 import org.compiere.orm.PO;
-import org.idempiere.common.util.Env;
 import org.idempiere.common.util.KeyNamePair;
 import org.idempiere.orm.I_Persistent;
 
@@ -61,35 +58,7 @@ public class X_C_Currency extends PO implements I_C_Currency, I_Persistent {
     return ii;
   }
 
-  /**
-   * Set Currency.
-   *
-   * @param C_Currency_ID The Currency for this record
-   */
-  public void setC_Currency_ID(int C_Currency_ID) {
-    if (C_Currency_ID < 1) set_ValueNoCheck(COLUMNNAME_C_Currency_ID, null);
-    else set_ValueNoCheck(COLUMNNAME_C_Currency_ID, Integer.valueOf(C_Currency_ID));
-  }
-
-  /**
-   * Get C_Currency_UU.
-   *
-   * @return C_Currency_UU
-   */
-  public String getC_Currency_UU() {
-    return (String) get_Value(COLUMNNAME_C_Currency_UU);
-  }
-
-  /**
-   * Set C_Currency_UU.
-   *
-   * @param C_Currency_UU C_Currency_UU
-   */
-  public void setC_Currency_UU(String C_Currency_UU) {
-    set_Value(COLUMNNAME_C_Currency_UU, C_Currency_UU);
-  }
-
-  /**
+    /**
    * Get Costing Precision.
    *
    * @return Rounding used costing calculations
@@ -145,45 +114,7 @@ public class X_C_Currency extends PO implements I_C_Currency, I_Persistent {
     set_Value(COLUMNNAME_Description, Description);
   }
 
-  /**
-   * Get EMU Entry Date.
-   *
-   * @return Date when the currency joined / will join the EMU
-   */
-  public Timestamp getEMUEntryDate() {
-    return (Timestamp) get_Value(COLUMNNAME_EMUEntryDate);
-  }
-
-  /**
-   * Set EMU Entry Date.
-   *
-   * @param EMUEntryDate Date when the currency joined / will join the EMU
-   */
-  public void setEMUEntryDate(Timestamp EMUEntryDate) {
-    set_Value(COLUMNNAME_EMUEntryDate, EMUEntryDate);
-  }
-
-  /**
-   * Get EMU Rate.
-   *
-   * @return Official rate to the Euro
-   */
-  public BigDecimal getEMURate() {
-    BigDecimal bd = (BigDecimal) get_Value(COLUMNNAME_EMURate);
-    if (bd == null) return Env.ZERO;
-    return bd;
-  }
-
-  /**
-   * Set EMU Rate.
-   *
-   * @param EMURate Official rate to the Euro
-   */
-  public void setEMURate(BigDecimal EMURate) {
-    set_Value(COLUMNNAME_EMURate, EMURate);
-  }
-
-  /**
+    /**
    * Set EMU Member.
    *
    * @param IsEMUMember This currency is member if the European Monetary Union
@@ -192,21 +123,7 @@ public class X_C_Currency extends PO implements I_C_Currency, I_Persistent {
     set_Value(COLUMNNAME_IsEMUMember, Boolean.valueOf(IsEMUMember));
   }
 
-  /**
-   * Get EMU Member.
-   *
-   * @return This currency is member if the European Monetary Union
-   */
-  public boolean isEMUMember() {
-    Object oo = get_Value(COLUMNNAME_IsEMUMember);
-    if (oo != null) {
-      if (oo instanceof Boolean) return ((Boolean) oo).booleanValue();
-      return "Y".equals(oo);
-    }
-    return false;
-  }
-
-  /**
+    /**
    * Set The Euro Currency.
    *
    * @param IsEuro This currency is the Euro
@@ -215,21 +132,7 @@ public class X_C_Currency extends PO implements I_C_Currency, I_Persistent {
     set_Value(COLUMNNAME_IsEuro, Boolean.valueOf(IsEuro));
   }
 
-  /**
-   * Get The Euro Currency.
-   *
-   * @return This currency is the Euro
-   */
-  public boolean isEuro() {
-    Object oo = get_Value(COLUMNNAME_IsEuro);
-    if (oo != null) {
-      if (oo instanceof Boolean) return ((Boolean) oo).booleanValue();
-      return "Y".equals(oo);
-    }
-    return false;
-  }
-
-  /**
+    /**
    * Get ISO Currency Code.
    *
    * @return Three letter ISO 4217 Code of the Currency
@@ -256,27 +159,7 @@ public class X_C_Currency extends PO implements I_C_Currency, I_Persistent {
     return new KeyNamePair(getId(), getISO_Code());
   }
 
-  /**
-   * Get Round Off Factor.
-   *
-   * @return Used to Round Off Payment Amount
-   */
-  public BigDecimal getRoundOffFactor() {
-    BigDecimal bd = (BigDecimal) get_Value(COLUMNNAME_RoundOffFactor);
-    if (bd == null) return Env.ZERO;
-    return bd;
-  }
-
-  /**
-   * Set Round Off Factor.
-   *
-   * @param RoundOffFactor Used to Round Off Payment Amount
-   */
-  public void setRoundOffFactor(BigDecimal RoundOffFactor) {
-    set_Value(COLUMNNAME_RoundOffFactor, RoundOffFactor);
-  }
-
-  /**
+    /**
    * Get Standard Precision.
    *
    * @return Rule for rounding calculated amounts

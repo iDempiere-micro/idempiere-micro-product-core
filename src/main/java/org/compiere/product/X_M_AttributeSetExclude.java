@@ -3,7 +3,6 @@ package org.compiere.product;
 import java.sql.ResultSet;
 import java.util.Properties;
 import org.compiere.model.I_M_AttributeSetExclude;
-import org.compiere.orm.MTable;
 import org.compiere.orm.PO;
 import org.idempiere.orm.I_Persistent;
 
@@ -45,13 +44,7 @@ public class X_M_AttributeSetExclude extends PO implements I_M_AttributeSetExclu
     return "X_M_AttributeSetExclude[" + getId() + "]";
   }
 
-  public org.compiere.model.I_AD_Table getAD_Table() throws RuntimeException {
-    return (org.compiere.model.I_AD_Table)
-        MTable.get(getCtx(), org.compiere.model.I_AD_Table.Table_Name)
-            .getPO(getAD_Table_ID(), null);
-  }
-
-  /**
+    /**
    * Get Table.
    *
    * @return Database Table information
@@ -62,26 +55,7 @@ public class X_M_AttributeSetExclude extends PO implements I_M_AttributeSetExclu
     return ii;
   }
 
-  /**
-   * Set Table.
-   *
-   * @param AD_Table_ID Database Table information
-   */
-  public void setAD_Table_ID(int AD_Table_ID) {
-    if (AD_Table_ID < 1) set_Value(COLUMNNAME_AD_Table_ID, null);
-    else set_Value(COLUMNNAME_AD_Table_ID, AD_Table_ID);
-  }
-
-  /**
-   * Set Sales Transaction.
-   *
-   * @param IsSOTrx This is a Sales Transaction
-   */
-  public void setIsSOTrx(boolean IsSOTrx) {
-    set_Value(COLUMNNAME_IsSOTrx, IsSOTrx);
-  }
-
-  /**
+    /**
    * Get Sales Transaction.
    *
    * @return This is a Sales Transaction
@@ -95,62 +69,7 @@ public class X_M_AttributeSetExclude extends PO implements I_M_AttributeSetExclu
     return false;
   }
 
-  /**
-   * Set Exclude Attribute Set.
-   *
-   * @param M_AttributeSetExclude_ID Exclude the ability to enter Attribute Sets
-   */
-  public void setM_AttributeSetExclude_ID(int M_AttributeSetExclude_ID) {
-    if (M_AttributeSetExclude_ID < 1) set_ValueNoCheck(COLUMNNAME_M_AttributeSetExclude_ID, null);
-    else set_ValueNoCheck(COLUMNNAME_M_AttributeSetExclude_ID, M_AttributeSetExclude_ID);
-  }
-
-  /**
-   * Get Exclude Attribute Set.
-   *
-   * @return Exclude the ability to enter Attribute Sets
-   */
-  public int getMAttributeSetExclude_ID() {
-    Integer ii = (Integer) get_Value(COLUMNNAME_M_AttributeSetExclude_ID);
-    if (ii == null) return 0;
-    return ii;
-  }
-
-  /**
-   * Set M_AttributeSetExclude_UU.
-   *
-   * @param M_AttributeSetExclude_UU M_AttributeSetExclude_UU
-   */
-  public void setM_AttributeSetExclude_UU(String M_AttributeSetExclude_UU) {
-    set_Value(COLUMNNAME_M_AttributeSetExclude_UU, M_AttributeSetExclude_UU);
-  }
-
-  /**
-   * Get M_AttributeSetExclude_UU.
-   *
-   * @return M_AttributeSetExclude_UU
-   */
-  public String getMAttributeSetExclude_UU() {
-    return (String) get_Value(COLUMNNAME_M_AttributeSetExclude_UU);
-  }
-
-  public org.compiere.model.I_M_AttributeSet getMAttributeSet() throws RuntimeException {
-    return (org.compiere.model.I_M_AttributeSet)
-        MTable.get(getCtx(), org.compiere.model.I_M_AttributeSet.Table_Name)
-            .getPO(getMAttributeSet_ID(), null);
-  }
-
-  /**
-   * Set Attribute Set.
-   *
-   * @param M_AttributeSet_ID Product Attribute Set
-   */
-  public void setM_AttributeSet_ID(int M_AttributeSet_ID) {
-    if (M_AttributeSet_ID < 0) set_ValueNoCheck(COLUMNNAME_M_AttributeSet_ID, null);
-    else set_ValueNoCheck(COLUMNNAME_M_AttributeSet_ID, M_AttributeSet_ID);
-  }
-
-  /**
+    /**
    * Get Attribute Set.
    *
    * @return Product Attribute Set

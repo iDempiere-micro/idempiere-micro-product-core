@@ -129,19 +129,7 @@ public class X_M_AttributeSetInstance extends PO implements I_M_AttributeSetInst
     return ii;
   }
 
-  /**
-   * Set Attribute Set Instance.
-   *
-   * @param M_AttributeSetInstance_ID Product Attribute Set Instance
-   */
-  public void setM_AttributeSetInstance_ID(int M_AttributeSetInstance_ID) {
-    if (M_AttributeSetInstance_ID < 0) set_ValueNoCheck(COLUMNNAME_M_AttributeSetInstance_ID, null);
-    else
-      set_ValueNoCheck(
-          COLUMNNAME_M_AttributeSetInstance_ID, Integer.valueOf(M_AttributeSetInstance_ID));
-  }
-
-  /**
+    /**
    * Get Attribute Set Instance.
    *
    * @return Product Attribute Set Instance
@@ -161,31 +149,7 @@ public class X_M_AttributeSetInstance extends PO implements I_M_AttributeSetInst
     return new KeyNamePair(getId(), String.valueOf(getMAttributeSetInstance_ID()));
   }
 
-  /**
-   * Set M_AttributeSetInstance_UU.
-   *
-   * @param M_AttributeSetInstance_UU M_AttributeSetInstance_UU
-   */
-  public void setM_AttributeSetInstance_UU(String M_AttributeSetInstance_UU) {
-    set_Value(COLUMNNAME_M_AttributeSetInstance_UU, M_AttributeSetInstance_UU);
-  }
-
-  /**
-   * Get M_AttributeSetInstance_UU.
-   *
-   * @return M_AttributeSetInstance_UU
-   */
-  public String getMAttributeSetInstance_UU() {
-    return (String) get_Value(COLUMNNAME_M_AttributeSetInstance_UU);
-  }
-
-  public org.compiere.model.I_M_Lot getM_Lot() throws RuntimeException {
-    return (org.compiere.model.I_M_Lot)
-        MTable.get(getCtx(), org.compiere.model.I_M_Lot.Table_Name)
-            .getPO(getM_Lot_ID(), null);
-  }
-
-  /**
+    /**
    * Get Lot.
    *
    * @return Product Lot Definition

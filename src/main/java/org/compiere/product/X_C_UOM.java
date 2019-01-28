@@ -119,53 +119,7 @@ public class X_C_UOM extends BasePOName implements I_C_UOM, I_Persistent {
     return ii;
   }
 
-  /**
-   * Set UOM.
-   *
-   * @param C_UOM_ID Unit of Measure
-   */
-  public void setC_UOM_ID(int C_UOM_ID) {
-    if (C_UOM_ID < 1) set_ValueNoCheck(COLUMNNAME_C_UOM_ID, null);
-    else set_ValueNoCheck(COLUMNNAME_C_UOM_ID, Integer.valueOf(C_UOM_ID));
-  }
-
-  /**
-   * Get C_UOM_UU.
-   *
-   * @return C_UOM_UU
-   */
-  public String getC_UOM_UU() {
-    return (String) get_Value(COLUMNNAME_C_UOM_UU);
-  }
-
-  /**
-   * Set C_UOM_UU.
-   *
-   * @param C_UOM_UU C_UOM_UU
-   */
-  public void setC_UOM_UU(String C_UOM_UU) {
-    set_Value(COLUMNNAME_C_UOM_UU, C_UOM_UU);
-  }
-
-  /**
-   * Get Description.
-   *
-   * @return Optional short description of the record
-   */
-  public String getDescription() {
-    return (String) get_Value(COLUMNNAME_Description);
-  }
-
-  /**
-   * Set Description.
-   *
-   * @param Description Optional short description of the record
-   */
-  public void setDescription(String Description) {
-    set_Value(COLUMNNAME_Description, Description);
-  }
-
-  /**
+    /**
    * Set Default.
    *
    * @param IsDefault Default value
@@ -174,21 +128,7 @@ public class X_C_UOM extends BasePOName implements I_C_UOM, I_Persistent {
     set_Value(COLUMNNAME_IsDefault, Boolean.valueOf(IsDefault));
   }
 
-  /**
-   * Get Default.
-   *
-   * @return Default value
-   */
-  public boolean isDefault() {
-    Object oo = get_Value(COLUMNNAME_IsDefault);
-    if (oo != null) {
-      if (oo instanceof Boolean) return ((Boolean) oo).booleanValue();
-      return "Y".equals(oo);
-    }
-    return false;
-  }
-
-  /**
+    /**
    * Get Standard Precision.
    *
    * @return Rule for rounding calculated amounts
@@ -217,35 +157,7 @@ public class X_C_UOM extends BasePOName implements I_C_UOM, I_Persistent {
     return (String) get_Value(COLUMNNAME_UOMSymbol);
   }
 
-  /**
-   * Set Symbol.
-   *
-   * @param UOMSymbol Symbol for a Unit of Measure
-   */
-  public void setUOMSymbol(String UOMSymbol) {
-    set_Value(COLUMNNAME_UOMSymbol, UOMSymbol);
-  }
-
-  /**
-   * Get UOM Type.
-   *
-   * @return UOM Type
-   */
-  public String getUOMType() {
-    return (String) get_Value(COLUMNNAME_UOMType);
-  }
-
-  /**
-   * Set UOM Type.
-   *
-   * @param UOMType UOM Type
-   */
-  public void setUOMType(String UOMType) {
-
-    set_Value(COLUMNNAME_UOMType, UOMType);
-  }
-
-  /**
+    /**
    * Get UOM Code.
    *
    * @return UOM EDI X12 Code
@@ -254,16 +166,7 @@ public class X_C_UOM extends BasePOName implements I_C_UOM, I_Persistent {
     return (String) get_Value(COLUMNNAME_X12DE355);
   }
 
-  /**
-   * Set UOM Code.
-   *
-   * @param X12DE355 UOM EDI X12 Code
-   */
-  public void setX12DE355(String X12DE355) {
-    set_Value(COLUMNNAME_X12DE355, X12DE355);
-  }
-
-  @Override
+    @Override
   public int getTableId() {
     return I_C_UOM.Table_ID;
   }

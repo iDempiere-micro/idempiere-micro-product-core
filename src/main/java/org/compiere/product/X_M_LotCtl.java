@@ -64,25 +64,7 @@ public class X_M_LotCtl extends BasePOName implements I_M_LotCtl, I_Persistent {
     set_Value(COLUMNNAME_CurrentNext, Integer.valueOf(CurrentNext));
   }
 
-  /**
-   * Get Description.
-   *
-   * @return Optional short description of the record
-   */
-  public String getDescription() {
-    return (String) get_Value(COLUMNNAME_Description);
-  }
-
-  /**
-   * Set Description.
-   *
-   * @param Description Optional short description of the record
-   */
-  public void setDescription(String Description) {
-    set_Value(COLUMNNAME_Description, Description);
-  }
-
-  /**
+    /**
    * Get Increment.
    *
    * @return The number to increment the last document number by
@@ -113,35 +95,7 @@ public class X_M_LotCtl extends BasePOName implements I_M_LotCtl, I_Persistent {
     return ii;
   }
 
-  /**
-   * Set Lot Control.
-   *
-   * @param M_LotCtl_ID Product Lot Control
-   */
-  public void setM_LotCtl_ID(int M_LotCtl_ID) {
-    if (M_LotCtl_ID < 1) set_ValueNoCheck(COLUMNNAME_M_LotCtl_ID, null);
-    else set_ValueNoCheck(COLUMNNAME_M_LotCtl_ID, Integer.valueOf(M_LotCtl_ID));
-  }
-
-  /**
-   * Get M_LotCtl_UU.
-   *
-   * @return M_LotCtl_UU
-   */
-  public String getM_LotCtl_UU() {
-    return (String) get_Value(COLUMNNAME_M_LotCtl_UU);
-  }
-
-  /**
-   * Set M_LotCtl_UU.
-   *
-   * @param M_LotCtl_UU M_LotCtl_UU
-   */
-  public void setM_LotCtl_UU(String M_LotCtl_UU) {
-    set_Value(COLUMNNAME_M_LotCtl_UU, M_LotCtl_UU);
-  }
-
-  /**
+    /**
    * Get Prefix.
    *
    * @return Prefix before the sequence number
@@ -150,27 +104,7 @@ public class X_M_LotCtl extends BasePOName implements I_M_LotCtl, I_Persistent {
     return (String) get_Value(COLUMNNAME_Prefix);
   }
 
-  /**
-   * Set Prefix.
-   *
-   * @param Prefix Prefix before the sequence number
-   */
-  public void setPrefix(String Prefix) {
-    set_Value(COLUMNNAME_Prefix, Prefix);
-  }
-
-  /**
-   * Get Start No.
-   *
-   * @return Starting number/position
-   */
-  public int getStartNo() {
-    Integer ii = (Integer) get_Value(COLUMNNAME_StartNo);
-    if (ii == null) return 0;
-    return ii;
-  }
-
-  /**
+    /**
    * Set Start No.
    *
    * @param StartNo Starting number/position
@@ -188,16 +122,7 @@ public class X_M_LotCtl extends BasePOName implements I_M_LotCtl, I_Persistent {
     return (String) get_Value(COLUMNNAME_Suffix);
   }
 
-  /**
-   * Set Suffix.
-   *
-   * @param Suffix Suffix after the number
-   */
-  public void setSuffix(String Suffix) {
-    set_Value(COLUMNNAME_Suffix, Suffix);
-  }
-
-  @Override
+    @Override
   public int getTableId() {
     return I_M_LotCtl.Table_ID;
   }

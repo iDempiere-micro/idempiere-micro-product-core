@@ -76,13 +76,7 @@ public class X_M_ProductPrice extends PO implements I_M_ProductPrice, I_Persiste
       set_ValueNoCheck(COLUMNNAME_M_PriceList_Version_ID, Integer.valueOf(M_PriceList_Version_ID));
   }
 
-  public org.compiere.model.I_M_Product getM_Product() throws RuntimeException {
-    return (org.compiere.model.I_M_Product)
-        MTable.get(getCtx(), org.compiere.model.I_M_Product.Table_Name)
-            .getPO(getM_Product_ID(), null);
-  }
-
-  /**
+    /**
    * Get Product.
    *
    * @return Product, Service, Item
@@ -103,46 +97,7 @@ public class X_M_ProductPrice extends PO implements I_M_ProductPrice, I_Persiste
     else set_ValueNoCheck(COLUMNNAME_M_Product_ID, Integer.valueOf(M_Product_ID));
   }
 
-  /**
-   * Get Product Price.
-   *
-   * @return Intersection between a Product and a Price List Version
-   */
-  public int getM_ProductPrice_ID() {
-    Integer ii = (Integer) get_Value(COLUMNNAME_M_ProductPrice_ID);
-    if (ii == null) return 0;
-    return ii;
-  }
-
-  /**
-   * Set Product Price.
-   *
-   * @param M_ProductPrice_ID Intersection between a Product and a Price List Version
-   */
-  public void setM_ProductPrice_ID(int M_ProductPrice_ID) {
-    if (M_ProductPrice_ID < 1) set_ValueNoCheck(COLUMNNAME_M_ProductPrice_ID, null);
-    else set_ValueNoCheck(COLUMNNAME_M_ProductPrice_ID, Integer.valueOf(M_ProductPrice_ID));
-  }
-
-  /**
-   * Get M_ProductPrice_UU.
-   *
-   * @return M_ProductPrice_UU
-   */
-  public String getM_ProductPrice_UU() {
-    return (String) get_Value(COLUMNNAME_M_ProductPrice_UU);
-  }
-
-  /**
-   * Set M_ProductPrice_UU.
-   *
-   * @param M_ProductPrice_UU M_ProductPrice_UU
-   */
-  public void setM_ProductPrice_UU(String M_ProductPrice_UU) {
-    set_Value(COLUMNNAME_M_ProductPrice_UU, M_ProductPrice_UU);
-  }
-
-  /**
+    /**
    * Get Limit Price.
    *
    * @return Lowest price for a product

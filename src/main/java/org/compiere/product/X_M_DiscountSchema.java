@@ -77,25 +77,7 @@ public class X_M_DiscountSchema extends BasePOName implements I_M_DiscountSchema
     set_Value(COLUMNNAME_CumulativeLevel, CumulativeLevel);
   }
 
-  /**
-   * Get Description.
-   *
-   * @return Optional short description of the record
-   */
-  public String getDescription() {
-    return (String) get_Value(COLUMNNAME_Description);
-  }
-
-  /**
-   * Set Description.
-   *
-   * @param Description Optional short description of the record
-   */
-  public void setDescription(String Description) {
-    set_Value(COLUMNNAME_Description, Description);
-  }
-
-  /**
+    /**
    * Get Discount Type.
    *
    * @return Type of trade discount calculation
@@ -191,76 +173,7 @@ public class X_M_DiscountSchema extends BasePOName implements I_M_DiscountSchema
     return ii;
   }
 
-  /**
-   * Set Discount Schema.
-   *
-   * @param M_DiscountSchema_ID Schema to calculate the trade discount percentage
-   */
-  public void setM_DiscountSchema_ID(int M_DiscountSchema_ID) {
-    if (M_DiscountSchema_ID < 1) set_ValueNoCheck(COLUMNNAME_M_DiscountSchema_ID, null);
-    else set_ValueNoCheck(COLUMNNAME_M_DiscountSchema_ID, Integer.valueOf(M_DiscountSchema_ID));
-  }
-
-  /**
-   * Get M_DiscountSchema_UU.
-   *
-   * @return M_DiscountSchema_UU
-   */
-  public String getM_DiscountSchema_UU() {
-    return (String) get_Value(COLUMNNAME_M_DiscountSchema_UU);
-  }
-
-  /**
-   * Set M_DiscountSchema_UU.
-   *
-   * @param M_DiscountSchema_UU M_DiscountSchema_UU
-   */
-  public void setM_DiscountSchema_UU(String M_DiscountSchema_UU) {
-    set_Value(COLUMNNAME_M_DiscountSchema_UU, M_DiscountSchema_UU);
-  }
-
-  /**
-   * Get Process Now.
-   *
-   * @return Process Now
-   */
-  public boolean isProcessing() {
-    Object oo = get_Value(COLUMNNAME_Processing);
-    if (oo != null) {
-      if (oo instanceof Boolean) return (Boolean) oo;
-      return "Y".equals(oo);
-    }
-    return false;
-  }
-
-  /**
-   * Set Process Now.
-   *
-   * @param Processing Process Now
-   */
-  public void setProcessing(boolean Processing) {
-    set_Value(COLUMNNAME_Processing, Boolean.valueOf(Processing));
-  }
-
-  /**
-   * Get Script.
-   *
-   * @return Dynamic Java Language Script to calculate result
-   */
-  public String getScript() {
-    return (String) get_Value(COLUMNNAME_Script);
-  }
-
-  /**
-   * Set Script.
-   *
-   * @param Script Dynamic Java Language Script to calculate result
-   */
-  public void setScript(String Script) {
-    set_Value(COLUMNNAME_Script, Script);
-  }
-
-  /**
+    /**
    * Get Valid from.
    *
    * @return Valid from including this date (first day)
