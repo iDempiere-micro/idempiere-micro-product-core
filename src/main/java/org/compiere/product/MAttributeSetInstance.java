@@ -175,17 +175,7 @@ public class MAttributeSetInstance extends X_M_AttributeSetInstance {
     return m_mas;
   } //	getMAttributeSet
 
-  /**
-   * Set Attribute Set
-   *
-   * @param mas attribute set
-   */
-  public void setMAttributeSet(MAttributeSet mas) {
-    m_mas = mas;
-    setM_AttributeSet_ID(mas.getMAttributeSet_ID());
-  } //	setAttributeSet
-
-  /**
+    /**
    * Set Description. - Product Values - Instance Values - SerNo = #123 - Lot = \u00ab123\u00bb -
    * GuaranteeDate = 10/25/2003
    */
@@ -298,20 +288,7 @@ public class MAttributeSetInstance extends X_M_AttributeSetInstance {
     setLot(Lot);
   } //	setLot
 
-  /**
-   * Exclude Lot creation
-   *
-   * @param AD_Column_ID column
-   * @param isSOTrx SO
-   * @return true if excluded
-   */
-  public boolean isExcludeLot(int AD_Column_ID, boolean isSOTrx) {
-    getMAttributeSet();
-    if (m_mas != null) return m_mas.isExcludeLot(AD_Column_ID, isSOTrx);
-    return false;
-  } //	isExcludeLot
-
-  /**
+    /**
    * Get Serial No
    *
    * @param getNew if true create/set new Ser No
@@ -328,20 +305,7 @@ public class MAttributeSetInstance extends X_M_AttributeSetInstance {
     return getSerNo();
   } //	getSerNo
 
-  /**
-   * Exclude SerNo creation
-   *
-   * @param AD_Column_ID column
-   * @param isSOTrx SO
-   * @return true if excluded
-   */
-  public boolean isExcludeSerNo(int AD_Column_ID, boolean isSOTrx) {
-    getMAttributeSet();
-    if (m_mas != null) return m_mas.isExcludeSerNo(AD_Column_ID, isSOTrx);
-    return false;
-  } //	isExcludeSerNo
-
-  @Override
+    @Override
   protected boolean afterSave(boolean newRecord, boolean success) {
     if (super.afterSave(newRecord, success)) {
       if (newRecord && success) {

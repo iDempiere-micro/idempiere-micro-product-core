@@ -3,7 +3,6 @@ package org.compiere.product;
 import kotliquery.Row;
 import org.compiere.model.I_C_UOM;
 import org.compiere.orm.MRole;
-import org.compiere.orm.MTable;
 import org.compiere.orm.Query;
 import org.idempiere.common.util.CCache;
 import org.idempiere.common.util.Env;
@@ -22,9 +21,7 @@ import static software.hsharp.core.util.DBKt.getSQLValue;
  * @version $Id: MUOM.java,v 1.3 2006/07/30 00:51:05 jjanke Exp $
  */
 public class MUOM extends X_C_UOM {
-  /** X12 Element 355 Code Second */
-  public static final String X12_SECOND = "03";
-  /** X12 Element 355 Code Minute */
+    /** X12 Element 355 Code Minute */
   public static final String X12_MINUTE = "MJ";
   /** X12 Element 355 Code Hour */
   public static final String X12_HOUR = "HR";
@@ -124,22 +121,7 @@ public class MUOM extends X_C_UOM {
     return uom;
   } //	get
 
-  /**
-   * Get UOM by name
-   *
-   * @param ctx
-   * @param name
-   * @param trxName
-   * @return MUOM if found, null if not found
-   */
-  public static MUOM get(Properties ctx, String name, String trxName) {
-    MTable table = MTable.get(Env.getCtx(), I_C_UOM.Table_ID);
-    MUOM uom = (MUOM) table.getPO("Name = ?", new Object[] {name}, trxName);
-
-    return uom;
-  }
-
-  /**
+    /**
    * Get Precision
    *
    * @param ctx context
@@ -192,16 +174,7 @@ public class MUOM extends X_C_UOM {
     return qty;
   } //	round
 
-  /**
-   * Second
-   *
-   * @return true if UOM is second
-   */
-  public boolean isSecond() {
-    return X12_SECOND.equals(getX12DE355());
-  }
-
-  /**
+    /**
    * Minute
    *
    * @return true if UOM is minute

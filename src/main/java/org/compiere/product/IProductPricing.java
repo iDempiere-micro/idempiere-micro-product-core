@@ -39,11 +39,7 @@ public interface IProductPricing {
 
   void setM_PriceList_ID(int M_PriceList_ID);
 
-  void setM_PriceList_Version_ID(int M_PriceList_Version_ID);
-
-  void setQty(BigDecimal qty);
-
-  /**
+    /**
    * Get Price Date
    *
    * @return date
@@ -85,28 +81,7 @@ public interface IProductPricing {
    */
   BigDecimal getPriceLimit();
 
-  /**
-   * Get Price List Currency
-   *
-   * @return currency
-   */
-  int getC_Currency_ID();
-
-  /**
-   * Is Price List enforced?
-   *
-   * @return enforce limit
-   */
-  boolean isEnforcePriceLimit();
-
-  /**
-   * Is a DiscountSchema active?
-   *
-   * @return active Discount Schema
-   */
-  boolean isDiscountSchema();
-
-  /**
+    /**
    * Is the Price Calculated (i.e. found)?
    *
    * @return calculated
@@ -145,11 +120,4 @@ public interface IProductPricing {
    */
   void setRequisitionLine(I_M_RequisitionLine reqLine, String trxName);
 
-  /**
-   * Set rma line and calculate the parameters from it
-   *
-   * @param rmaLine
-   * @param trxName
-   */
-  void setRMALine(I_M_RMALine rmaLine, String trxName);
 }

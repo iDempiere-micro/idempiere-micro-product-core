@@ -17,13 +17,9 @@ import org.idempiere.orm.I_Persistent;
  */
 public class X_M_DiscountSchema extends BasePOName implements I_M_DiscountSchema, I_Persistent {
 
-  /** CumulativeLevel AD_Reference_ID=246 */
-  public static final int CUMULATIVELEVEL_AD_Reference_ID = 246;
-  /** Line = L */
+    /** Line = L */
   public static final String CUMULATIVELEVEL_Line = "L";
-  /** DiscountType AD_Reference_ID=247 */
-  public static final int DISCOUNTTYPE_AD_Reference_ID = 247;
-  /** Flat Percent = F */
+    /** Flat Percent = F */
   public static final String DISCOUNTTYPE_FlatPercent = "F";
   /** Formula = S */
   public static final String DISCOUNTTYPE_Formula = "S";

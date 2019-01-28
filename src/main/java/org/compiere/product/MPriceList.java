@@ -141,52 +141,6 @@ public class MPriceList extends X_M_PriceList {
   } //	getDefault
 
   /**
-   * Get Default Price List for Client (cached) with given currency
-   *
-   * @param ctx context
-   * @param IsSOPriceList SO or PO
-   * @param ISOCurrency
-   * @return PriceList or null
-   */
-  public static MPriceList getDefault(Properties ctx, boolean IsSOPriceList, String ISOCurrency) {
-    int AD_Client_ID = Env.getClientId(ctx);
-    MCurrency currency = MCurrency.get(ctx, ISOCurrency);
-    // If currency is null, return the default without looking at currency
-    if (currency == null) return (getDefault(ctx, IsSOPriceList));
-
-    int M_Currency_ID = currency.getId();
-
-    MPriceList retValue = null;
-    //	Search for it in cache
-    Iterator<MPriceList> it = s_cache.values().iterator();
-    while (it.hasNext()) {
-      retValue = it.next();
-      if (retValue.isDefault()
-          && retValue.getClientId() == AD_Client_ID
-          && retValue.isSOPriceList() == IsSOPriceList
-          && retValue.getC_Currency_ID() == M_Currency_ID) {
-        return retValue;
-      }
-    }
-
-    //	Get from DB
-    final String whereClause =
-        "AD_Client_ID=? AND IsDefault=? AND IsSOPriceList=? AND C_Currency_ID=?";
-    retValue =
-        new Query(ctx, I_M_PriceList.Table_Name, whereClause, null)
-            .setParameters(AD_Client_ID, "Y", IsSOPriceList ? "Y" : "N", M_Currency_ID)
-            .setOnlyActiveRecords(true)
-            .setOrderBy("M_PriceList_ID")
-            .first();
-
-    //	Return value
-    if (retValue != null) {
-      s_cache.put(retValue.getId(), retValue);
-    }
-    return retValue;
-  }
-
-  /**
    * Get Standard Currency Precision
    *
    * @param ctx context

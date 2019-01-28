@@ -149,16 +149,7 @@ public class X_M_DiscountSchemaBreak extends PO implements I_M_DiscountSchemaBre
     set_Value(COLUMNNAME_SeqNo, Integer.valueOf(SeqNo));
   }
 
-  /**
-   * Get Record ID/ColumnName
-   *
-   * @return ID/ColumnName pair
-   */
-  public KeyNamePair getKeyNamePair() {
-    return new KeyNamePair(getId(), String.valueOf(getSeqNo()));
-  }
-
-  @Override
+    @Override
   public int getTableId() {
     return I_M_DiscountSchemaBreak.Table_ID;
   }

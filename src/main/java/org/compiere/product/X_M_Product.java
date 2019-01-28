@@ -21,9 +21,7 @@ import java.util.Properties;
  */
 public class X_M_Product extends PO implements I_Persistent {
 
-  /** ProductType AD_Reference_ID=270 */
-  public static final int PRODUCTTYPE_AD_Reference_ID = 270;
-  /** */
+    /** */
   private static final long serialVersionUID = 20171031L;
 
   /** Standard Constructor */
@@ -69,17 +67,6 @@ public class X_M_Product extends PO implements I_Persistent {
    */
   public int getC_RevenueRecognition_ID() {
     Integer ii = (Integer) get_Value(I_M_Product.COLUMNNAME_C_RevenueRecognition_ID);
-    if (ii == null) return 0;
-    return ii;
-  }
-
-    /**
-   * Get Subscription Type.
-   *
-   * @return Type of subscription
-   */
-    private int getC_SubscriptionType_ID() {
-    Integer ii = (Integer) get_Value(I_M_Product.COLUMNNAME_C_SubscriptionType_ID);
     if (ii == null) return 0;
     return ii;
   }
@@ -438,34 +425,12 @@ public class X_M_Product extends PO implements I_Persistent {
   }
 
     /**
-   * Get Freight Category.
-   *
-   * @return Category of the Freight
-   */
-    private int getM_FreightCategory_ID() {
-    Integer ii = (Integer) get_Value(I_M_Product.COLUMNNAME_M_FreightCategory_ID);
-    if (ii == null) return 0;
-    return ii;
-  }
-
-    /**
    * Get Locator.
    *
    * @return Warehouse Locator
    */
   public int getM_Locator_ID() {
     Integer ii = (Integer) get_Value(I_M_Product.COLUMNNAME_M_Locator_ID);
-    if (ii == null) return 0;
-    return ii;
-  }
-
-    /**
-   * Get Part Type.
-   *
-   * @return Part Type
-   */
-    private int getM_PartType_ID() {
-    Integer ii = (Integer) get_Value(I_M_Product.COLUMNNAME_M_PartType_ID);
     if (ii == null) return 0;
     return ii;
   }
@@ -554,28 +519,6 @@ public class X_M_Product extends PO implements I_Persistent {
   public void setProductType(String ProductType) {
 
     set_Value(I_M_Product.COLUMNNAME_ProductType, ProductType);
-  }
-
-    /**
-   * Get Mail Template.
-   *
-   * @return Text templates for mailings
-   */
-    private int getR_MailText_ID() {
-    Integer ii = (Integer) get_Value(I_M_Product.COLUMNNAME_R_MailText_ID);
-    if (ii == null) return 0;
-    return ii;
-  }
-
-    /**
-   * Get Sales Representative.
-   *
-   * @return Sales Representative or Company Agent
-   */
-    private int getSalesRep_ID() {
-    Integer ii = (Integer) get_Value(I_M_Product.COLUMNNAME_SalesRep_ID);
-    if (ii == null) return 0;
-    return ii;
   }
 
     /**
@@ -690,16 +633,7 @@ public class X_M_Product extends PO implements I_Persistent {
     set_Value(I_M_Product.COLUMNNAME_Value, Value);
   }
 
-  /**
-   * Get Record ID/ColumnName
-   *
-   * @return ID/ColumnName pair
-   */
-  public KeyNamePair getKeyNamePair() {
-    return new KeyNamePair(getId(), getValue());
-  }
-
-  /**
+    /**
    * Get Version No.
    *
    * @return Version Number

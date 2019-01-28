@@ -215,16 +215,7 @@ public abstract class X_M_PriceList extends PO implements I_M_PriceList, I_Persi
     set_Value(HasName.Companion.getCOLUMNNAME_Name(), Name);
   }
 
-  /**
-   * Get Record ID/ColumnName
-   *
-   * @return ID/ColumnName pair
-   */
-  public KeyNamePair getKeyNamePair() {
-    return new KeyNamePair(getId(), getName());
-  }
-
-  /**
+    /**
    * Get Price Precision.
    *
    * @return Precision (number of decimals) for the Price

@@ -15,63 +15,7 @@ import org.idempiere.orm.I_Persistent;
  */
 public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persistent {
 
-  /** A_Depreciation_Manual_Period AD_Reference_ID=53256 */
-  public static final int A_DEPRECIATION_MANUAL_PERIOD_AD_Reference_ID = 53256;
-  /** Period = PR */
-  public static final String A_DEPRECIATION_MANUAL_PERIOD_Period = "PR";
-  /** Yearly = YR */
-  public static final String A_DEPRECIATION_MANUAL_PERIOD_Yearly = "YR";
-  /** A_Reval_Cal_Method AD_Reference_ID=53259 */
-  public static final int A_REVAL_CAL_METHOD_AD_Reference_ID = 53259;
-  /** Default = DFT */
-  public static final String A_REVAL_CAL_METHOD_Default = "DFT";
-  /** Inception to date = IDF */
-  public static final String A_REVAL_CAL_METHOD_InceptionToDate = "IDF";
-  /** Year Balances = YBF */
-  public static final String A_REVAL_CAL_METHOD_YearBalances = "YBF";
-  /** ChangeType AD_Reference_ID=53273 */
-  public static final int CHANGETYPE_AD_Reference_ID = 53273;
-  /** Addition = ADD */
-  public static final String CHANGETYPE_Addition = "ADD";
-  /** Balance = BAL */
-  public static final String CHANGETYPE_Balance = "BAL";
-  /** Create = CRT */
-  public static final String CHANGETYPE_Create = "CRT";
-  /** Depreciation = DEP */
-  public static final String CHANGETYPE_Depreciation = "DEP";
-  /** Disposal = DIS */
-  public static final String CHANGETYPE_Disposal = "DIS";
-  /** Expense = EXP */
-  public static final String CHANGETYPE_Expense = "EXP";
-  /** Forecast = FOR */
-  public static final String CHANGETYPE_Forecast = "FOR";
-  /** Import = IMP */
-  public static final String CHANGETYPE_Import = "IMP";
-  /** Revaluation = RVL */
-  public static final String CHANGETYPE_Revaluation = "RVL";
-  /** Setup = SET */
-  public static final String CHANGETYPE_Setup = "SET";
-  /** Split = SPL */
-  public static final String CHANGETYPE_Split = "SPL";
-  /** Transfer = TRN */
-  public static final String CHANGETYPE_Transfer = "TRN";
-  /** Update = UPD */
-  public static final String CHANGETYPE_Update = "UPD";
-  /** Usage = USE */
-  public static final String CHANGETYPE_Usage = "USE";
-  /** PostingType AD_Reference_ID=125 */
-  public static final int POSTINGTYPE_AD_Reference_ID = 125;
-  /** Actual = A */
-  public static final String POSTINGTYPE_Actual = "A";
-  /** Budget = B */
-  public static final String POSTINGTYPE_Budget = "B";
-  /** Commitment = E */
-  public static final String POSTINGTYPE_Commitment = "E";
-  /** Statistical = S */
-  public static final String POSTINGTYPE_Statistical = "S";
-  /** Reservation = R */
-  public static final String POSTINGTYPE_Reservation = "R";
-  /** */
+    /** */
   private static final long serialVersionUID = 20171031L;
 
   /** Standard Constructor */
@@ -133,15 +77,6 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
     Integer ii = (Integer) get_Value(COLUMNNAME_A_Asset_Change_ID);
     if (ii == null) return 0;
     return ii;
-  }
-
-    /**
-   * Get Record ID/ColumnName
-   *
-   * @return ID/ColumnName pair
-   */
-  public KeyNamePair getKeyNamePair() {
-    return new KeyNamePair(getId(), String.valueOf(getA_Asset_Change_ID()));
   }
 
     /**

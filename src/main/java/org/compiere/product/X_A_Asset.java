@@ -17,25 +17,7 @@ import org.idempiere.orm.I_Persistent;
  */
 public class X_A_Asset extends BasePOUser implements I_A_Asset, I_Persistent {
 
-  /** A_Asset_Action AD_Reference_ID=53360 */
-  public static final int A_ASSET_ACTION_AD_Reference_ID = 53360;
-  /** Dispose = DI */
-  public static final String A_ASSET_ACTION_Dispose = "DI";
-  /** Inbound = IB */
-  public static final String A_ASSET_ACTION_Inbound = "IB";
-  /** Modify = MD */
-  public static final String A_ASSET_ACTION_Modify = "MD";
-  /** Outbound = OB */
-  public static final String A_ASSET_ACTION_Outbound = "OB";
-  /** Reevaluate = RE */
-  public static final String A_ASSET_ACTION_Reevaluate = "RE";
-  /** Retire = RT */
-  public static final String A_ASSET_ACTION_Retire = "RT";
-  /** Transfer = TR */
-  public static final String A_ASSET_ACTION_Transfer = "TR";
-  /** A_Asset_Status AD_Reference_ID=53359 */
-  public static final int A_ASSET_STATUS_AD_Reference_ID = 53359;
-  /** Activated = AC */
+    /** Activated = AC */
   public static final String A_ASSET_STATUS_Activated = "AC";
   /** Disposed = DI */
   public static final String A_ASSET_STATUS_Disposed = "DI";
@@ -45,11 +27,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset, I_Persistent {
   public static final String A_ASSET_STATUS_New = "NW";
   /** Preservation = PR */
   public static final String A_ASSET_STATUS_Preservation = "PR";
-  /** Retired = RE */
-  public static final String A_ASSET_STATUS_Retired = "RE";
-  /** Sold = SO */
-  public static final String A_ASSET_STATUS_Sold = "SO";
-  /** */
+    /** */
   private static final long serialVersionUID = 20171031L;
 
   /** Standard Constructor */

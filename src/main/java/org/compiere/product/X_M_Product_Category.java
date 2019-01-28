@@ -18,11 +18,7 @@ import org.idempiere.orm.I_Persistent;
 public class X_M_Product_Category extends BasePONameValue
     implements I_M_Product_Category, I_Persistent {
 
-  /** MMPolicy AD_Reference_ID=335 */
-  public static final int MMPOLICY_AD_Reference_ID = 335;
-  /** LiFo = L */
-  public static final String MMPOLICY_LiFo = "L";
-  /** FiFo = F */
+    /** FiFo = F */
   public static final String MMPOLICY_FiFo = "F";
   /** */
   private static final long serialVersionUID = 20171031L;

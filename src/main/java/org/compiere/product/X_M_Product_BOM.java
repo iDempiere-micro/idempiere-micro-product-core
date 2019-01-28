@@ -17,31 +17,7 @@ import org.idempiere.orm.I_Persistent;
  */
 public class X_M_Product_BOM extends PO implements I_M_Product_BOM, I_Persistent {
 
-  /** BOMType AD_Reference_ID=279 */
-  public static final int BOMTYPE_AD_Reference_ID = 279;
-  /** Standard Part = P */
-  public static final String BOMTYPE_StandardPart = "P";
-  /** Optional Part = O */
-  public static final String BOMTYPE_OptionalPart = "O";
-  /** In alternative Group 1 = 1 */
-  public static final String BOMTYPE_InAlternativeGroup1 = "1";
-  /** In alternative Group 2 = 2 */
-  public static final String BOMTYPE_InAlternativeGroup2 = "2";
-  /** In alternaltve Group 3 = 3 */
-  public static final String BOMTYPE_InAlternaltveGroup3 = "3";
-  /** In alternative Group 4 = 4 */
-  public static final String BOMTYPE_InAlternativeGroup4 = "4";
-  /** In alternative Group 5 = 5 */
-  public static final String BOMTYPE_InAlternativeGroup5 = "5";
-  /** In alternative Group 6 = 6 */
-  public static final String BOMTYPE_InAlternativeGroup6 = "6";
-  /** In alternative Group 7 = 7 */
-  public static final String BOMTYPE_InAlternativeGroup7 = "7";
-  /** In alternative Group 8 = 8 */
-  public static final String BOMTYPE_InAlternativeGroup8 = "8";
-  /** In alternative Group 9 = 9 */
-  public static final String BOMTYPE_InAlternativeGroup9 = "9";
-  /** */
+    /** */
   private static final long serialVersionUID = 20171031L;
   /** Standard Constructor */
   public X_M_Product_BOM(Properties ctx, int M_Product_BOM_ID, String trxName) {
@@ -170,15 +146,6 @@ public class X_M_Product_BOM extends PO implements I_M_Product_BOM, I_Persistent
   public void setM_ProductBOM_ID(int M_ProductBOM_ID) {
     if (M_ProductBOM_ID < 1) set_Value(COLUMNNAME_M_ProductBOM_ID, null);
     else set_Value(COLUMNNAME_M_ProductBOM_ID, Integer.valueOf(M_ProductBOM_ID));
-  }
-
-  /**
-   * Get Record ID/ColumnName
-   *
-   * @return ID/ColumnName pair
-   */
-  public KeyNamePair getKeyNamePair() {
-    return new KeyNamePair(getId(), String.valueOf(getM_ProductBOM_ID()));
   }
 
     /**

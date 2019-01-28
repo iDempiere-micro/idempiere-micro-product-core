@@ -97,11 +97,7 @@ public class MResource extends X_S_Resource {
     return m_product;
   } //	getProduct
 
-  public int getC_UOM_ID() {
-    return getProduct().getC_UOM_ID();
-  }
-
-  @Override
+    @Override
   protected boolean beforeSave(boolean newRecord) {
     if (newRecord) {
       if (getValue() == null || getValue().length() == 0) setValue(getName());

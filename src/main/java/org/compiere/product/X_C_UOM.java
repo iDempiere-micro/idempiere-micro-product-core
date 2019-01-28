@@ -16,51 +16,7 @@ import java.util.Properties;
  */
 public class X_C_UOM extends BasePOName implements I_C_UOM, I_Persistent {
 
-  /** UOMType AD_Reference_ID=53323 */
-  public static final int UOMTYPE_AD_Reference_ID = 53323;
-  /** Angle = AN */
-  public static final String UOMTYPE_Angle = "AN";
-  /** Area = AR */
-  public static final String UOMTYPE_Area = "AR";
-  /** Data Storage = DS */
-  public static final String UOMTYPE_DataStorage = "DS";
-  /** Density = DE */
-  public static final String UOMTYPE_Density = "DE";
-  /** Energy = EN */
-  public static final String UOMTYPE_Energy = "EN";
-  /** Force = FO */
-  public static final String UOMTYPE_Force = "FO";
-  /** Kitchen Measures = KI */
-  public static final String UOMTYPE_KitchenMeasures = "KI";
-  /** Length = LE */
-  public static final String UOMTYPE_Length = "LE";
-  /** Power = PO */
-  public static final String UOMTYPE_Power = "PO";
-  /** Pressure = PR */
-  public static final String UOMTYPE_Pressure = "PR";
-  /** Temperature = TE */
-  public static final String UOMTYPE_Temperature = "TE";
-  /** Time = TM */
-  public static final String UOMTYPE_Time = "TM";
-  /** Torque = TO */
-  public static final String UOMTYPE_Torque = "TO";
-  /** Velocity = VE */
-  public static final String UOMTYPE_Velocity = "VE";
-  /** Volume Liquid = VL */
-  public static final String UOMTYPE_VolumeLiquid = "VL";
-  /** Volume Dry = VD */
-  public static final String UOMTYPE_VolumeDry = "VD";
-  /** Weight = WE */
-  public static final String UOMTYPE_Weight = "WE";
-  /** Currency = CU */
-  public static final String UOMTYPE_Currency = "CU";
-  /** Data Speed = DV */
-  public static final String UOMTYPE_DataSpeed = "DV";
-  /** Frequency = FR */
-  public static final String UOMTYPE_Frequency = "FR";
-  /** Other = OT */
-  public static final String UOMTYPE_Other = "OT";
-  /** */
+    /** */
   private static final long serialVersionUID = 20171031L;
   /** Standard Constructor */
   public X_C_UOM(Properties ctx, int C_UOM_ID, String trxName) {

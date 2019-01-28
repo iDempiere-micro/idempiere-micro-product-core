@@ -15,97 +15,13 @@ import org.idempiere.orm.I_Persistent;
  */
 public class X_M_DiscountSchemaLine extends PO implements I_M_DiscountSchemaLine, I_Persistent {
 
-  /** Limit_Base AD_Reference_ID=194 */
-  public static final int LIMIT_BASE_AD_Reference_ID = 194;
-  /** List Price = L */
-  public static final String LIMIT_BASE_ListPrice = "L";
-  /** Standard Price = S */
-  public static final String LIMIT_BASE_StandardPrice = "S";
-  /** Limit (PO) Price = X */
-  public static final String LIMIT_BASE_LimitPOPrice = "X";
-  /** Fixed Price = F */
-  public static final String LIMIT_BASE_FixedPrice = "F";
-  /** Product Cost = P */
+    /** Product Cost = P */
   public static final String LIMIT_BASE_ProductCost = "P";
-  /** Limit_Rounding AD_Reference_ID=155 */
-  public static final int LIMIT_ROUNDING_AD_Reference_ID = 155;
-  /** Whole Number .00 = 0 */
-  public static final String LIMIT_ROUNDING_WholeNumber00 = "0";
-  /** No Rounding = N */
-  public static final String LIMIT_ROUNDING_NoRounding = "N";
-  /** Quarter .25 .50 .75 = Q */
-  public static final String LIMIT_ROUNDING_Quarter255075 = "Q";
-  /** Dime .10, .20, .30, ... = D */
-  public static final String LIMIT_ROUNDING_Dime102030 = "D";
-  /** Nickel .05, .10, .15, ... = 5 */
-  public static final String LIMIT_ROUNDING_Nickel051015 = "5";
-  /** Ten 10.00, 20.00, .. = T */
-  public static final String LIMIT_ROUNDING_Ten10002000 = "T";
-  /** Currency Precision = C */
-  public static final String LIMIT_ROUNDING_CurrencyPrecision = "C";
-  /** Ending in 9/5 = 9 */
-  public static final String LIMIT_ROUNDING_EndingIn95 = "9";
-  /** List_Base AD_Reference_ID=194 */
-  public static final int LIST_BASE_AD_Reference_ID = 194;
-  /** List Price = L */
-  public static final String LIST_BASE_ListPrice = "L";
-  /** Standard Price = S */
-  public static final String LIST_BASE_StandardPrice = "S";
-  /** Limit (PO) Price = X */
-  public static final String LIST_BASE_LimitPOPrice = "X";
-  /** Fixed Price = F */
-  public static final String LIST_BASE_FixedPrice = "F";
-  /** Product Cost = P */
+    /** Product Cost = P */
   public static final String LIST_BASE_ProductCost = "P";
-  /** List_Rounding AD_Reference_ID=155 */
-  public static final int LIST_ROUNDING_AD_Reference_ID = 155;
-  /** Whole Number .00 = 0 */
-  public static final String LIST_ROUNDING_WholeNumber00 = "0";
-  /** No Rounding = N */
-  public static final String LIST_ROUNDING_NoRounding = "N";
-  /** Quarter .25 .50 .75 = Q */
-  public static final String LIST_ROUNDING_Quarter255075 = "Q";
-  /** Dime .10, .20, .30, ... = D */
-  public static final String LIST_ROUNDING_Dime102030 = "D";
-  /** Nickel .05, .10, .15, ... = 5 */
-  public static final String LIST_ROUNDING_Nickel051015 = "5";
-  /** Ten 10.00, 20.00, .. = T */
-  public static final String LIST_ROUNDING_Ten10002000 = "T";
-  /** Currency Precision = C */
-  public static final String LIST_ROUNDING_CurrencyPrecision = "C";
-  /** Ending in 9/5 = 9 */
-  public static final String LIST_ROUNDING_EndingIn95 = "9";
-  /** Std_Base AD_Reference_ID=194 */
-  public static final int STD_BASE_AD_Reference_ID = 194;
-  /** List Price = L */
-  public static final String STD_BASE_ListPrice = "L";
-  /** Standard Price = S */
-  public static final String STD_BASE_StandardPrice = "S";
-  /** Limit (PO) Price = X */
-  public static final String STD_BASE_LimitPOPrice = "X";
-  /** Fixed Price = F */
-  public static final String STD_BASE_FixedPrice = "F";
-  /** Product Cost = P */
+    /** Product Cost = P */
   public static final String STD_BASE_ProductCost = "P";
-  /** Std_Rounding AD_Reference_ID=155 */
-  public static final int STD_ROUNDING_AD_Reference_ID = 155;
-  /** Whole Number .00 = 0 */
-  public static final String STD_ROUNDING_WholeNumber00 = "0";
-  /** No Rounding = N */
-  public static final String STD_ROUNDING_NoRounding = "N";
-  /** Quarter .25 .50 .75 = Q */
-  public static final String STD_ROUNDING_Quarter255075 = "Q";
-  /** Dime .10, .20, .30, ... = D */
-  public static final String STD_ROUNDING_Dime102030 = "D";
-  /** Nickel .05, .10, .15, ... = 5 */
-  public static final String STD_ROUNDING_Nickel051015 = "5";
-  /** Ten 10.00, 20.00, .. = T */
-  public static final String STD_ROUNDING_Ten10002000 = "T";
-  /** Currency Precision = C */
-  public static final String STD_ROUNDING_CurrencyPrecision = "C";
-  /** Ending in 9/5 = 9 */
-  public static final String STD_ROUNDING_EndingIn95 = "9";
-  /** */
+    /** */
   private static final long serialVersionUID = 20171031L;
 
   /** Standard Constructor */
@@ -216,15 +132,6 @@ public class X_M_DiscountSchemaLine extends PO implements I_M_DiscountSchemaLine
    */
   public void setSeqNo(int SeqNo) {
     set_Value(COLUMNNAME_SeqNo, Integer.valueOf(SeqNo));
-  }
-
-  /**
-   * Get Record ID/ColumnName
-   *
-   * @return ID/ColumnName pair
-   */
-  public KeyNamePair getKeyNamePair() {
-    return new KeyNamePair(getId(), String.valueOf(getSeqNo()));
   }
 
     @Override

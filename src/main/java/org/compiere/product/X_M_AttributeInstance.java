@@ -110,16 +110,7 @@ public class X_M_AttributeInstance extends PO implements I_M_AttributeInstance, 
     return ii;
   }
 
-  /**
-   * Get Record ID/ColumnName
-   *
-   * @return ID/ColumnName pair
-   */
-  public KeyNamePair getKeyNamePair() {
-    return new KeyNamePair(getId(), String.valueOf(getMAttributeValue_ID()));
-  }
-
-  /**
+    /**
    * Get Search Key.
    *
    * @return Search key for the record in the format required - must be unique

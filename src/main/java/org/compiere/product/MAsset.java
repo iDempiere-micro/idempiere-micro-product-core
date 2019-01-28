@@ -27,9 +27,7 @@ import org.idempiere.common.util.Env;
 public class MAsset extends X_A_Asset
 // implements MAssetType.Model //commented by @win
 {
-  /** ChangeType - Asset Group changed */
-  public static final int CHANGETYPE_setAssetGroup = I_A_Asset.Table_ID * 100 + 1;
-  /** */
+    /** */
   private int m_UseLifeMonths_F = 0;
   /** */
   private int m_A_Current_Period = 0;
@@ -69,51 +67,9 @@ public class MAsset extends X_A_Asset
     super(ctx, rs, trxName);
   } //	MAsset
 
-  /**
-   * Get Asset
-   *
-   * @param ctx context
-   * @param A_Asset_ID asset
-   * @param trxName
-   */
-  public static MAsset get(Properties ctx, int A_Asset_ID, String trxName) {
-    return (MAsset) MTable.get(ctx, MAsset.Table_Name).getPO(A_Asset_ID, trxName);
-  } //	get
+    // Temporary used variables:
 
-  /**
-   * Get Assets from given M_Product_ID and M_ASI_ID.
-   *
-   * <p>Note: The A_Asset_Product table is not checked !!!
-   *
-   * @param ctx
-   * @param M_Product_ID (optional)
-   * @param M_ASI_ID
-   * @return array of MAsset
-   */
-  public static Collection<MAsset> forASI(Properties ctx, int M_Product_ID, int M_ASI_ID) {
-    ArrayList<Object> params = new ArrayList<Object>();
-    String whereClause = I_A_Asset.COLUMNNAME_M_AttributeSetInstance_ID + "=?";
-    params.add(M_ASI_ID);
-    if (M_Product_ID > 0) {
-      whereClause += " AND " + I_A_Asset.COLUMNNAME_M_Product_ID + "=?";
-      params.add(M_Product_ID);
-    }
-    //
-    return new Query(ctx, MAsset.Table_Name, whereClause, null).setParameters(params).list();
-  }
-
-  // Temporary used variables:
-
-  public static MAsset getFromShipment(Properties ctx, int i, String trxName) {
-    // TODO Auto-generated method stub
-    return null;
-  }
-
-  public MAssetGroup getAssetGroup() {
-    return MAssetGroup.get(getCtx(), getA_Asset_Group_ID());
-  }
-
-  /**
+    /**
    * Set Asset Group; also it sets other default fields
    *
    * @param assetGroup
@@ -338,19 +294,11 @@ public class MAsset extends X_A_Asset
     return m_UseLifeMonths_F;
   }
 
-  public void setUseLifeMonths_F(int UseLifeMonths_F) {
-    m_UseLifeMonths_F = UseLifeMonths_F;
-  }
-
-  public int getA_Current_Period() {
+    public int getA_Current_Period() {
     return m_A_Current_Period;
   }
 
-  public void setA_Current_Period(int A_Current_Period) {
-    m_A_Current_Period = A_Current_Period;
-  }
-
-  public Timestamp getDateAcct() {
+    public Timestamp getDateAcct() {
     return m_DateAcct;
   }
 
@@ -362,59 +310,20 @@ public class MAsset extends X_A_Asset
     return m_A_Depreciation_ID;
   }
 
-  public void setA_Depreciation_ID(int A_Depreciation_ID) {
-    m_A_Depreciation_ID = A_Depreciation_ID;
-  }
-
-  public int getA_Depreciation_F_ID() {
+    public int getA_Depreciation_F_ID() {
     return m_A_Depreciation_F_ID;
   }
 
-  public void setA_Depreciation_F_ID(int A_Depreciation_F_ID) {
-    m_A_Depreciation_F_ID = A_Depreciation_F_ID;
-  }
-
-  public BigDecimal getA_Asset_Cost() {
+    public BigDecimal getA_Asset_Cost() {
     return m_A_Asset_Cost;
   }
 
-  public void setA_Asset_Cost(BigDecimal A_Asset_Cost) {
-    m_A_Asset_Cost = A_Asset_Cost;
-  }
-
-  public BigDecimal getA_Accumulated_Depr() {
+    public BigDecimal getA_Accumulated_Depr() {
     return m_A_Accumulated_Depr;
   }
 
-  public void setA_Accumulated_Depr(BigDecimal A_Accumulated_Depr) {
-    m_A_Accumulated_Depr = A_Accumulated_Depr;
-  }
-
-  public BigDecimal getA_Accumulated_Depr_F() {
+    public BigDecimal getA_Accumulated_Depr_F() {
     return m_A_Accumulated_Depr_F;
   }
 
-  public void setA_Accumulated_Depr_F(BigDecimal A_Accumulated_Depr_F) {
-    m_A_Accumulated_Depr_F = A_Accumulated_Depr_F;
-  }
-
-  public MProductDownload[] getProductDownloads() {
-    // TODO Auto-generated method stub
-    return null;
-  }
-
-  public int getProductR_MailText_ID() {
-    // IDEMPIERE-197 Stabilize Fixed Assets
-    // AssetDelivery is requiring this missing column
-    // TODO: Adding this method to compile correctly and future research,
-    // but the process AssetDelivery will fail with error "** Product Mail Text"
-    return 0;
-  }
-
-  public boolean isDownloadable() {
-    // IDEMPIERE-197 Stabilize Fixed Assets
-    // AssetServlet is requiring this missing column
-    // TODO: Adding this method to compile correctly and future research
-    return false;
-  }
 }

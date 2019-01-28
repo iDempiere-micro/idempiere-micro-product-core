@@ -39,11 +39,7 @@ public class MAssetChange extends X_A_Asset_Change {
     super(ctx, rs, trxName);
   } //	MInventoryLine
 
-  public static MAssetChange create(Properties ctx, String changeType, PO[] pos, String trxName) {
-    return create(ctx, changeType, pos, false, trxName);
-  }
-
-  /**
+    /**
    * TODO
    *
    * @param ctx
@@ -58,27 +54,7 @@ public class MAssetChange extends X_A_Asset_Change {
     // ~ return create(ctx, changeType, pos, true, trxName);
   }
 
-  public static MAssetChange create(
-      Properties ctx, String changeType, PO[] pos, boolean save, String trxName) {
-    if (s_log.isLoggable(Level.FINE)) s_log.fine("Entering: changeType=" + changeType);
-    if (pos == null || pos.length == 0) {
-      s_log.fine("Entering/Leaving: POs is empty");
-      return null;
-    }
-    MAssetChange change = new MAssetChange(ctx, 0, trxName);
-    change.setChangeType(changeType);
-    for (PO po : pos) {
-      change.addChanges(po);
-    }
-    if (save) {
-      change.saveEx();
-    }
-    //
-    if (s_log.isLoggable(Level.FINE)) s_log.fine("Leaving: change=" + change);
-    return change;
-  }
-
-  public void addChanges(PO po) {
+    public void addChanges(PO po) {
     if (log.isLoggable(Level.FINE)) log.fine("Entering: po=" + po);
     if (po == null) {
       return;

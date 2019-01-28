@@ -16,17 +16,9 @@ import org.idempiere.orm.I_Persistent;
  */
 public class X_S_Resource extends BasePOUser implements I_S_Resource, I_Persistent {
 
-  /** ManufacturingResourceType AD_Reference_ID=53223 */
-  public static final int MANUFACTURINGRESOURCETYPE_AD_Reference_ID = 53223;
-  /** Production Line = PL */
-  public static final String MANUFACTURINGRESOURCETYPE_ProductionLine = "PL";
-  /** Plant = PT */
+    /** Plant = PT */
   public static final String MANUFACTURINGRESOURCETYPE_Plant = "PT";
-  /** Work Center = WC */
-  public static final String MANUFACTURINGRESOURCETYPE_WorkCenter = "WC";
-  /** Work Station = WS */
-  public static final String MANUFACTURINGRESOURCETYPE_WorkStation = "WS";
-  /** */
+    /** */
   private static final long serialVersionUID = 20171031L;
 
   /** Standard Constructor */
@@ -107,15 +99,6 @@ public class X_S_Resource extends BasePOUser implements I_S_Resource, I_Persiste
    */
   public String getName() {
     return (String) get_Value(HasName.Companion.getCOLUMNNAME_Name());
-  }
-
-    /**
-   * Get Record ID/ColumnName
-   *
-   * @return ID/ColumnName pair
-   */
-  public KeyNamePair getKeyNamePair() {
-    return new KeyNamePair(getId(), getName());
   }
 
     /**

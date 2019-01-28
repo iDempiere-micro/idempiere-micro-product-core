@@ -14,13 +14,9 @@ import org.idempiere.orm.I_Persistent;
  */
 public class X_M_Attribute extends BasePOName implements I_M_Attribute, I_Persistent {
 
-  /** AttributeValueType AD_Reference_ID=326 */
-  public static final int ATTRIBUTEVALUETYPE_AD_Reference_ID = 326;
-  /** String (max 40) = S */
+    /** String (max 40) = S */
   public static final String ATTRIBUTEVALUETYPE_StringMax40 = "S";
-  /** Number = N */
-  public static final String ATTRIBUTEVALUETYPE_Number = "N";
-  /** List = L */
+    /** List = L */
   public static final String ATTRIBUTEVALUETYPE_List = "L";
   /** */
   private static final long serialVersionUID = 20171031L;

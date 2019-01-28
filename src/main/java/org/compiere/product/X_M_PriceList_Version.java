@@ -143,15 +143,6 @@ public class X_M_PriceList_Version extends PO implements I_M_PriceList_Version, 
     set_Value(HasName.Companion.getCOLUMNNAME_Name(), Name);
   }
 
-  /**
-   * Get Record ID/ColumnName
-   *
-   * @return ID/ColumnName pair
-   */
-  public KeyNamePair getKeyNamePair() {
-    return new KeyNamePair(getId(), getName());
-  }
-
     /**
    * Get Valid from.
    *

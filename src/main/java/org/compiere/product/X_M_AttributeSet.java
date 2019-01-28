@@ -14,9 +14,7 @@ import org.idempiere.orm.I_Persistent;
  */
 public class X_M_AttributeSet extends BasePOName implements I_M_AttributeSet, I_Persistent {
 
-  /** MandatoryType AD_Reference_ID=324 */
-  public static final int MANDATORYTYPE_AD_Reference_ID = 324;
-  /** Not Mandatory = N */
+    /** Not Mandatory = N */
   public static final String MANDATORYTYPE_NotMandatory = "N";
   /** Always Mandatory = Y */
   public static final String MANDATORYTYPE_AlwaysMandatory = "Y";

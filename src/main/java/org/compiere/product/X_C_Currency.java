@@ -150,15 +150,6 @@ public class X_C_Currency extends PO implements I_C_Currency, I_Persistent {
     set_Value(COLUMNNAME_ISO_Code, ISO_Code);
   }
 
-  /**
-   * Get Record ID/ColumnName
-   *
-   * @return ID/ColumnName pair
-   */
-  public KeyNamePair getKeyNamePair() {
-    return new KeyNamePair(getId(), getISO_Code());
-  }
-
     /**
    * Get Standard Precision.
    *
