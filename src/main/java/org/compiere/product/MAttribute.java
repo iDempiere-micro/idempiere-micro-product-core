@@ -104,7 +104,7 @@ public class MAttribute extends X_M_Attribute {
               .append(" AND mau.M_Attribute_ID=")
               .append(getMAttribute_ID())
               .append(")");
-      int no = executeUpdate(sql.toString(), null);
+      int no = executeUpdate(sql.toString());
       if (log.isLoggable(Level.FINE)) log.fine("AttributeSet Instance set #" + no);
     }
     return success;

@@ -80,7 +80,6 @@ public class MProductPricing extends AbstractProductPricing {
   private void checkVendorBreak() {
     int thereAreVendorBreakRecords =
         getSQLValue(
-            trxName,
             "SELECT count(M_Product_ID) FROM M_ProductPriceVendorBreak WHERE M_Product_ID=? AND (C_BPartner_ID=? OR C_BPartner_ID is NULL)",
             m_M_Product_ID,
             m_C_BPartner_ID);
@@ -157,7 +156,7 @@ public class MProductPricing extends AbstractProductPricing {
     PreparedStatement pstmt = null;
     ResultSet rs = null;
     try {
-      pstmt = prepareStatement(sql, trxName);
+      pstmt = prepareStatement(sql);
       pstmt.setInt(1, m_M_Product_ID);
       pstmt.setInt(2, m_M_PriceList_Version_ID);
       rs = pstmt.executeQuery();
@@ -184,7 +183,6 @@ public class MProductPricing extends AbstractProductPricing {
       log.log(Level.SEVERE, sql, e);
       m_calculated = false;
     } finally {
-      close(rs, pstmt);
       rs = null;
       pstmt = null;
     }
@@ -236,7 +234,7 @@ public class MProductPricing extends AbstractProductPricing {
     PreparedStatement pstmt = null;
     ResultSet rs = null;
     try {
-      pstmt = prepareStatement(sql, trxName);
+      pstmt = prepareStatement(sql);
       pstmt.setInt(1, m_M_Product_ID);
       pstmt.setInt(2, m_M_PriceList_ID);
       rs = pstmt.executeQuery();
@@ -269,7 +267,6 @@ public class MProductPricing extends AbstractProductPricing {
       log.log(Level.SEVERE, sql, e);
       m_calculated = false;
     } finally {
-      close(rs, pstmt);
       rs = null;
       pstmt = null;
     }
@@ -306,7 +303,7 @@ public class MProductPricing extends AbstractProductPricing {
     PreparedStatement pstmt = null;
     ResultSet rs = null;
     try {
-      pstmt = prepareStatement(sql, trxName);
+      pstmt = prepareStatement(sql);
       pstmt.setInt(1, m_M_Product_ID);
       pstmt.setInt(2, m_M_PriceList_ID);
       rs = pstmt.executeQuery();
@@ -340,7 +337,6 @@ public class MProductPricing extends AbstractProductPricing {
       log.log(Level.SEVERE, sql, e);
       m_calculated = false;
     } finally {
-      close(rs, pstmt);
       rs = null;
       pstmt = null;
     }
@@ -377,7 +373,7 @@ public class MProductPricing extends AbstractProductPricing {
     PreparedStatement pstmt = null;
     ResultSet rs = null;
     try {
-      pstmt = prepareStatement(sql, trxName);
+      pstmt = prepareStatement(sql);
       pstmt.setInt(1, m_M_Product_ID);
       pstmt.setInt(2, m_M_PriceList_Version_ID);
       pstmt.setInt(3, m_C_BPartner_ID);
@@ -406,7 +402,6 @@ public class MProductPricing extends AbstractProductPricing {
       log.log(Level.SEVERE, sql, e);
       m_calculated = false;
     } finally {
-      close(rs, pstmt);
       rs = null;
       pstmt = null;
     }
@@ -460,7 +455,7 @@ public class MProductPricing extends AbstractProductPricing {
     PreparedStatement pstmt = null;
     ResultSet rs = null;
     try {
-      pstmt = prepareStatement(sql, trxName);
+      pstmt = prepareStatement(sql);
       pstmt.setInt(1, m_M_Product_ID);
       pstmt.setInt(2, m_M_PriceList_ID);
       pstmt.setInt(3, m_C_BPartner_ID);
@@ -495,7 +490,6 @@ public class MProductPricing extends AbstractProductPricing {
       log.log(Level.SEVERE, sql, e);
       m_calculated = false;
     } finally {
-      close(rs, pstmt);
       rs = null;
       pstmt = null;
     }
@@ -534,7 +528,7 @@ public class MProductPricing extends AbstractProductPricing {
     PreparedStatement pstmt = null;
     ResultSet rs = null;
     try {
-      pstmt = prepareStatement(sql, trxName);
+      pstmt = prepareStatement(sql);
       pstmt.setInt(1, m_M_Product_ID);
       pstmt.setInt(2, m_M_PriceList_ID);
       pstmt.setInt(3, m_C_BPartner_ID);
@@ -570,7 +564,6 @@ public class MProductPricing extends AbstractProductPricing {
       log.log(Level.SEVERE, sql, e);
       m_calculated = false;
     } finally {
-      close(rs, pstmt);
       rs = null;
       pstmt = null;
     }
@@ -608,7 +601,7 @@ public class MProductPricing extends AbstractProductPricing {
     PreparedStatement pstmt = null;
     ResultSet rs = null;
     try {
-      pstmt = prepareStatement(sql, trxName);
+      pstmt = prepareStatement(sql);
       pstmt.setInt(1, m_C_BPartner_ID);
       rs = pstmt.executeQuery();
       if (rs.next()) {
@@ -619,7 +612,6 @@ public class MProductPricing extends AbstractProductPricing {
     } catch (Exception e) {
       log.log(Level.SEVERE, sql, e);
     } finally {
-      close(rs, pstmt);
       rs = null;
       pstmt = null;
     }

@@ -107,7 +107,7 @@ public class MAttributeSet extends X_M_AttributeSet {
       PreparedStatement pstmt = null;
       ResultSet rs = null;
       try {
-        pstmt = prepareStatement(sql, null);
+        pstmt = prepareStatement(sql);
         pstmt.setInt(1, getMAttributeSet_ID());
         pstmt.setString(2, instanceAttributes ? "Y" : "N");
         rs = pstmt.executeQuery();
@@ -118,7 +118,6 @@ public class MAttributeSet extends X_M_AttributeSet {
       } catch (SQLException ex) {
         throw new DBException(ex, sql);
       } finally {
-        close(rs, pstmt);
         rs = null;
         pstmt = null;
       }
@@ -336,7 +335,7 @@ public class MAttributeSet extends X_M_AttributeSet {
               .append(" AND mau.IsActive='Y' AND ma.IsActive='Y'")
               .append(" AND ma.IsInstanceAttribute='Y')")
               .append(")");
-      int no = executeUpdate(sql.toString(), null);
+      int no = executeUpdate(sql.toString());
       if (no != 0) {
         log.warning("Set Instance Attribute");
         setIsInstanceAttribute(true);
@@ -356,7 +355,7 @@ public class MAttributeSet extends X_M_AttributeSet {
               .append("WHERE mau.M_AttributeSet_ID=mas.M_AttributeSet_ID")
               .append(" AND mau.IsActive='Y' AND ma.IsActive='Y'")
               .append(" AND ma.IsInstanceAttribute='Y')");
-      int no = executeUpdate(sql.toString(), null);
+      int no = executeUpdate(sql.toString());
       if (no != 0) {
         log.warning("Reset Instance Attribute");
         setIsInstanceAttribute(false);

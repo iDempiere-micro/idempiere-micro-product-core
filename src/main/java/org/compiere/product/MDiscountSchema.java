@@ -1,6 +1,5 @@
 package org.compiere.product;
 
-import static software.hsharp.core.util.DBKt.close;
 import static software.hsharp.core.util.DBKt.prepareStatement;
 
 import java.math.BigDecimal;
@@ -93,14 +92,13 @@ public class MDiscountSchema extends X_M_DiscountSchema {
     PreparedStatement pstmt = null;
     ResultSet rs = null;
     try {
-      pstmt = prepareStatement(sql, null);
+      pstmt = prepareStatement(sql);
       pstmt.setInt(1, getM_DiscountSchema_ID());
       rs = pstmt.executeQuery();
       while (rs.next()) list.add(new MDiscountSchemaBreak(getCtx(), rs, null));
     } catch (Exception e) {
       log.log(Level.SEVERE, sql, e);
     } finally {
-      close(rs, pstmt);
       rs = null;
       pstmt = null;
     }
@@ -126,14 +124,13 @@ public class MDiscountSchema extends X_M_DiscountSchema {
     PreparedStatement pstmt = null;
     ResultSet rs = null;
     try {
-      pstmt = prepareStatement(sql, null);
+      pstmt = prepareStatement(sql);
       pstmt.setInt(1, getM_DiscountSchema_ID());
       rs = pstmt.executeQuery();
       while (rs.next()) list.add(new MDiscountSchemaLine(getCtx(), rs, null));
     } catch (Exception e) {
       log.log(Level.SEVERE, sql, e);
     } finally {
-      close(rs, pstmt);
       rs = null;
       pstmt = null;
     }

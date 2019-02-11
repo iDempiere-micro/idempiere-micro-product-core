@@ -85,7 +85,7 @@ public class MUOM extends X_C_UOM {
   public static int getMinute_UOM_ID(Properties ctx) {
     //	Server
     String sql = "SELECT C_UOM_ID FROM C_UOM WHERE IsActive='Y' AND X12DE355=?";
-    return getSQLValue(null, sql, X12_MINUTE);
+    return getSQLValue(sql, X12_MINUTE);
   } //	getMinute_UOM_ID
 
   /**
@@ -100,7 +100,7 @@ public class MUOM extends X_C_UOM {
             + "FROM C_UOM "
             + "WHERE AD_Client_ID IN (0,?) "
             + "ORDER BY IsDefault DESC, AD_Client_ID DESC, C_UOM_ID";
-    return getSQLValue(null, sql, Env.getClientId(ctx));
+    return getSQLValue(sql, Env.getClientId(ctx));
   } //	getDefault_UOM_ID
 
   /**

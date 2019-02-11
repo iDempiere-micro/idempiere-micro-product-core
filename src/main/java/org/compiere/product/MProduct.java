@@ -531,7 +531,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
               //	+ " AND GuaranteeDate > SysDate"
               + "  AND M_Product_ID="
               + getM_Product_ID();
-      int no = executeUpdate(sql, null);
+      int no = executeUpdate(sql);
       if (log.isLoggable(Level.FINE)) log.fine("Asset Description updated #" + no);
     }
 

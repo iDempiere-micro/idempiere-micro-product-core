@@ -96,7 +96,7 @@ public class MAttributeSetInstance extends X_M_AttributeSetInstance {
     PreparedStatement pstmt = null;
     ResultSet rs = null;
     try {
-      pstmt = prepareStatement(sql, null);
+      pstmt = prepareStatement(sql);
       pstmt.setInt(1, M_Product_ID);
       rs = pstmt.executeQuery();
       if (rs.next()) {
@@ -109,7 +109,6 @@ public class MAttributeSetInstance extends X_M_AttributeSetInstance {
       s_log.log(Level.SEVERE, sql, ex);
       retValue = null;
     } finally {
-      close(rs, pstmt);
       rs = null;
       pstmt = null;
     }
@@ -320,8 +319,8 @@ public class MAttributeSetInstance extends X_M_AttributeSetInstance {
                   sql,
                   new Object[] {
                     Integer.toString(getMAttributeSetInstance_ID()), getMAttributeSetInstance_ID()
-                  },
-                  null);
+                  }
+              );
           if (no <= 0) {
             log.log(Level.SEVERE, "Failed to update description.");
             return false;

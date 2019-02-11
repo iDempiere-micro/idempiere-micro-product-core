@@ -1,6 +1,5 @@
 package org.compiere.product;
 
-import static software.hsharp.core.util.DBKt.close;
 import static software.hsharp.core.util.DBKt.prepareStatement;
 
 import java.sql.PreparedStatement;
@@ -96,14 +95,13 @@ public class MProductCategory extends X_M_Product_Category {
     PreparedStatement pstmt = null;
     ResultSet rs = null;
     try {
-      pstmt = prepareStatement(sql, null);
+      pstmt = prepareStatement(sql);
       pstmt.setInt(1, M_Product_ID);
       rs = pstmt.executeQuery();
       if (rs.next()) category = new Integer(rs.getInt(1));
     } catch (Exception e) {
       s_log.log(Level.SEVERE, sql, e);
     } finally {
-      close(rs, pstmt);
       rs = null;
       pstmt = null;
     }
@@ -174,7 +172,7 @@ public class MProductCategory extends X_M_Product_Category {
         " SELECT M_Product_Category_ID, M_Product_Category_Parent_ID FROM M_Product_Category";
     final Vector<SimpleTreeNode> categories = new Vector<SimpleTreeNode>(100);
     try {
-      pstmt = prepareStatement(sql, null);
+      pstmt = prepareStatement(sql);
       rs = pstmt.executeQuery();
       while (rs.next()) {
         if (rs.getInt(1) == productCategoryId)
@@ -186,7 +184,6 @@ public class MProductCategory extends X_M_Product_Category {
       s_log.log(Level.SEVERE, sql, e);
       return true;
     } finally {
-      close(rs, pstmt);
       rs = null;
       pstmt = null;
     }

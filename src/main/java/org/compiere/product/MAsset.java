@@ -184,8 +184,7 @@ public class MAsset extends X_A_Asset
       int A_Asset_ID = getA_Asset_ID();
       setA_Parent_Asset_ID(A_Asset_ID);
       executeUpdateEx(
-          "UPDATE A_Asset SET A_Parent_Asset_ID=A_Asset_ID WHERE A_Asset_ID=" + A_Asset_ID,
-          null);
+          "UPDATE A_Asset SET A_Parent_Asset_ID=A_Asset_ID WHERE A_Asset_ID=" + A_Asset_ID);
       if (log.isLoggable(Level.FINE)) log.fine("A_Parent_Asset_ID=" + getA_Parent_Asset_ID());
     }
 
@@ -199,8 +198,7 @@ public class MAsset extends X_A_Asset
           "UPDATE A_Asset SET InventoryNo="
               + TO_STRING(invNo)
               + " WHERE A_Asset_ID="
-              + getA_Asset_ID(),
-          null);
+              + getA_Asset_ID());
       if (log.isLoggable(Level.FINE)) log.fine("InventoryNo=" + getInventoryNo());
     }
 
@@ -218,8 +216,7 @@ public class MAsset extends X_A_Asset
               + "', isOwned ='"
               + isOwned
               + "' WHERE A_Asset_ID="
-              + getA_Asset_ID(),
-          null);
+              + getA_Asset_ID());
       // end @win
 
     } else {

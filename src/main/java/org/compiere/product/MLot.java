@@ -6,9 +6,6 @@ import org.compiere.orm.Query;
 import java.sql.ResultSet;
 import java.util.Properties;
 
-import static software.hsharp.core.util.DBKt.close;
-import static software.hsharp.core.util.DBKt.prepareStatement;
-
 /**
  * Product Lot
  *

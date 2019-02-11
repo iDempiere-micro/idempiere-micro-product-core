@@ -129,7 +129,6 @@ public class MProductBOM extends X_M_Product_BOM {
   protected boolean afterSave(boolean newRecord, boolean success) {
     if (!success) return success;
     MProduct product = new MProduct(getCtx(), getM_Product_ID(), null);
-    if (null != null) product.load(null);
     if (product.isVerified()) {
       if (newRecord
           || is_ValueChanged("M_ProductBOM_ID") // 	Product Line was changed
@@ -155,7 +154,6 @@ public class MProductBOM extends X_M_Product_BOM {
   protected boolean afterDelete(boolean success) {
     if (!success) return success;
     MProduct product = new MProduct(getCtx(), getM_Product_ID(), null);
-    if (null != null) product.load(null);
     if (product.isVerified()) {
       if (!hasActiveComponents(getM_Product_ID())) {
         product.setIsVerified(false);
