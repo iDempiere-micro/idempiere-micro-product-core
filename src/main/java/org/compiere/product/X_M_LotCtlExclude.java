@@ -18,8 +18,8 @@ public class X_M_LotCtlExclude extends PO implements I_M_LotCtlExclude, I_Persis
   private static final long serialVersionUID = 20171031L;
 
   /** Standard Constructor */
-  public X_M_LotCtlExclude(Properties ctx, int M_LotCtlExclude_ID, String trxName) {
-    super(ctx, M_LotCtlExclude_ID, trxName);
+  public X_M_LotCtlExclude(Properties ctx, int M_LotCtlExclude_ID) {
+    super(ctx, M_LotCtlExclude_ID);
     /**
      * if (M_LotCtlExclude_ID == 0) { setAD_Table_ID (0); setIsSOTrx (false); setM_LotCtlExclude_ID
      * (0); setM_LotCtl_ID (0); }
@@ -27,8 +27,8 @@ public class X_M_LotCtlExclude extends PO implements I_M_LotCtlExclude, I_Persis
   }
 
   /** Load Constructor */
-  public X_M_LotCtlExclude(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public X_M_LotCtlExclude(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   }
 
   /**

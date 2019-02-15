@@ -31,13 +31,13 @@ public class X_M_DiscountSchema extends BasePOName implements I_M_DiscountSchema
   private static final long serialVersionUID = 20171031L;
 
   /** Standard Constructor */
-  public X_M_DiscountSchema(Properties ctx, int M_DiscountSchema_ID, String trxName) {
-    super(ctx, M_DiscountSchema_ID, trxName);
+  public X_M_DiscountSchema(Properties ctx, int M_DiscountSchema_ID) {
+    super(ctx, M_DiscountSchema_ID);
   }
 
   /** Load Constructor */
-  public X_M_DiscountSchema(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public X_M_DiscountSchema(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   }
 
   /**

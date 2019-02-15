@@ -18,8 +18,8 @@ public class X_M_AttributeSetExclude extends PO implements I_M_AttributeSetExclu
   private static final long serialVersionUID = 20171031L;
 
   /** Standard Constructor */
-  public X_M_AttributeSetExclude(Properties ctx, int M_AttributeSetExclude_ID, String trxName) {
-    super(ctx, M_AttributeSetExclude_ID, trxName);
+  public X_M_AttributeSetExclude(Properties ctx, int M_AttributeSetExclude_ID) {
+    super(ctx, M_AttributeSetExclude_ID);
     /**
      * if (M_AttributeSetExclude_ID == 0) { setAD_Table_ID (0); setIsSOTrx (false);
      * setM_AttributeSetExclude_ID (0); setM_AttributeSet_ID (0); }
@@ -27,8 +27,8 @@ public class X_M_AttributeSetExclude extends PO implements I_M_AttributeSetExclu
   }
 
   /** Load Constructor */
-  public X_M_AttributeSetExclude(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public X_M_AttributeSetExclude(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   }
 
   /**

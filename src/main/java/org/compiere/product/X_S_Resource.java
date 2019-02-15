@@ -22,8 +22,8 @@ public class X_S_Resource extends BasePOUser implements I_S_Resource, I_Persiste
   private static final long serialVersionUID = 20171031L;
 
   /** Standard Constructor */
-  public X_S_Resource(Properties ctx, int S_Resource_ID, String trxName) {
-    super(ctx, S_Resource_ID, trxName);
+  public X_S_Resource(Properties ctx, int S_Resource_ID) {
+    super(ctx, S_Resource_ID);
     /**
      * if (S_Resource_ID == 0) { setIsAvailable (true); // Y setM_Warehouse_ID (0); setName (null);
      * setPercentUtilization (Env.ZERO); // 100 setS_Resource_ID (0); setS_ResourceType_ID (0);
@@ -32,8 +32,8 @@ public class X_S_Resource extends BasePOUser implements I_S_Resource, I_Persiste
   }
 
   /** Load Constructor */
-  public X_S_Resource(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public X_S_Resource(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   }
 
   /**

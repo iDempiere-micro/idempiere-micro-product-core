@@ -46,8 +46,8 @@ public class MAttributeSet extends X_M_AttributeSet {
    * @param M_AttributeSet_ID id
    * @param trxName transaction
    */
-  public MAttributeSet(Properties ctx, int M_AttributeSet_ID, String trxName) {
-    super(ctx, M_AttributeSet_ID, trxName);
+  public MAttributeSet(Properties ctx, int M_AttributeSet_ID) {
+    super(ctx, M_AttributeSet_ID);
     if (M_AttributeSet_ID == 0) {
       //	setName (null);
       setIsGuaranteeDate(false);
@@ -67,8 +67,8 @@ public class MAttributeSet extends X_M_AttributeSet {
    * @param rs result set
    * @param trxName transaction
    */
-  public MAttributeSet(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public MAttributeSet(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   } //	MAttributeSet
 
   /**
@@ -82,7 +82,7 @@ public class MAttributeSet extends X_M_AttributeSet {
     Integer key = new Integer(M_AttributeSet_ID);
     MAttributeSet retValue = (MAttributeSet) s_cache.get(key);
     if (retValue != null) return retValue;
-    retValue = new MAttributeSet(ctx, M_AttributeSet_ID, null);
+    retValue = new MAttributeSet(ctx, M_AttributeSet_ID);
     if (retValue.getId() != 0) s_cache.put(key, retValue);
     return retValue;
   } //	get
@@ -112,7 +112,7 @@ public class MAttributeSet extends X_M_AttributeSet {
         pstmt.setString(2, instanceAttributes ? "Y" : "N");
         rs = pstmt.executeQuery();
         while (rs.next()) {
-          MAttribute ma = new MAttribute(getCtx(), rs.getInt(1), null);
+          MAttribute ma = new MAttribute(getCtx(), rs.getInt(1));
           list.add(ma);
         }
       } catch (SQLException ex) {
@@ -186,7 +186,7 @@ public class MAttributeSet extends X_M_AttributeSet {
     if (m_excludes == null) {
       final String whereClause = X_M_AttributeSetExclude.COLUMNNAME_M_AttributeSet_ID + "=?";
       List<X_M_AttributeSetExclude> list =
-          new Query(getCtx(), X_M_AttributeSetExclude.Table_Name, whereClause, null)
+          new Query(getCtx(), X_M_AttributeSetExclude.Table_Name, whereClause)
               .setParameters(getId())
               .setOnlyActiveRecords(true)
               .list();
@@ -207,7 +207,7 @@ public class MAttributeSet extends X_M_AttributeSet {
     if (m_excludeLots == null) {
       final String whereClause = X_M_LotCtlExclude.COLUMNNAME_M_LotCtl_ID + "=?";
       List<X_M_LotCtlExclude> list =
-          new Query(getCtx(), X_M_LotCtlExclude.Table_Name, whereClause, null)
+          new Query(getCtx(), X_M_LotCtlExclude.Table_Name, whereClause)
               .setParameters(getM_LotCtl_ID())
               .setOnlyActiveRecords(true)
               .list();
@@ -237,7 +237,7 @@ public class MAttributeSet extends X_M_AttributeSet {
     if (m_excludeSerNos == null) {
       final String whereClause = X_M_SerNoCtlExclude.COLUMNNAME_M_SerNoCtl_ID + "=?";
       List<X_M_SerNoCtlExclude> list =
-          new Query(getCtx(), X_M_SerNoCtlExclude.Table_Name, whereClause, null)
+          new Query(getCtx(), X_M_SerNoCtlExclude.Table_Name, whereClause)
               .setParameters(getM_SerNoCtl_ID())
               .setOnlyActiveRecords(true)
               .list();

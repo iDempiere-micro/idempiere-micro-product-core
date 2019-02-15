@@ -18,8 +18,8 @@ public class X_M_SerNoCtlExclude extends PO implements I_M_SerNoCtlExclude, I_Pe
   private static final long serialVersionUID = 20171031L;
 
   /** Standard Constructor */
-  public X_M_SerNoCtlExclude(Properties ctx, int M_SerNoCtlExclude_ID, String trxName) {
-    super(ctx, M_SerNoCtlExclude_ID, trxName);
+  public X_M_SerNoCtlExclude(Properties ctx, int M_SerNoCtlExclude_ID) {
+    super(ctx, M_SerNoCtlExclude_ID);
     /**
      * if (M_SerNoCtlExclude_ID == 0) { setAD_Table_ID (0); setIsSOTrx (false);
      * setM_SerNoCtlExclude_ID (0); setM_SerNoCtl_ID (0); }
@@ -27,8 +27,8 @@ public class X_M_SerNoCtlExclude extends PO implements I_M_SerNoCtlExclude, I_Pe
   }
 
   /** Load Constructor */
-  public X_M_SerNoCtlExclude(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public X_M_SerNoCtlExclude(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   }
 
   /**

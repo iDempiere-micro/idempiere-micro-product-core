@@ -34,8 +34,8 @@ public class MProductBOM extends X_M_Product_BOM {
    * @param M_Product_BOM_ID id
    * @param trxName transaction
    */
-  public MProductBOM(Properties ctx, int M_Product_BOM_ID, String trxName) {
-    super(ctx, M_Product_BOM_ID, trxName);
+  public MProductBOM(Properties ctx, int M_Product_BOM_ID) {
+    super(ctx, M_Product_BOM_ID);
     if (M_Product_BOM_ID == 0) {
       //	setM_Product_ID (0);	//	parent
       //	setLine (0);	// @SQL=SELECT NVL(MAX(Line),0)+10 AS DefaultValue FROM M_Product_BOM WHERE
@@ -52,8 +52,8 @@ public class MProductBOM extends X_M_Product_BOM {
    * @param rs result set
    * @param trxName transaction
    */
-  public MProductBOM(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public MProductBOM(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   } //	MProductBOM
 
   /**
@@ -63,7 +63,7 @@ public class MProductBOM extends X_M_Product_BOM {
    * @return array of BOMs
    */
   public static MProductBOM[] getBOMLines(MProduct product) {
-    return getBOMLines(product.getCtx(), product.getM_Product_ID(), null);
+    return getBOMLines(product.getCtx(), product.getM_Product_ID());
   } //	getBOMLines
 
   /**
@@ -74,11 +74,11 @@ public class MProductBOM extends X_M_Product_BOM {
    * @param trxName transaction
    * @return array of BOMs
    */
-  public static MProductBOM[] getBOMLines(Properties ctx, int M_Product_ID, String trxName) {
+  public static MProductBOM[] getBOMLines(Properties ctx, int M_Product_ID) {
     // FR: [ 2214883 ] Remove SQL code and Replace for Query - red1
     final String whereClause = "M_Product_ID=?";
     List<MProductBOM> list =
-        new Query(ctx, I_M_Product_BOM.Table_Name, whereClause, trxName)
+        new Query(ctx, I_M_Product_BOM.Table_Name, whereClause)
             .setParameters(M_Product_ID)
             .setOrderBy("Line")
             .list();
@@ -128,7 +128,7 @@ public class MProductBOM extends X_M_Product_BOM {
    */
   protected boolean afterSave(boolean newRecord, boolean success) {
     if (!success) return success;
-    MProduct product = new MProduct(getCtx(), getM_Product_ID(), null);
+    MProduct product = new MProduct(getCtx(), getM_Product_ID());
     if (product.isVerified()) {
       if (newRecord
           || is_ValueChanged("M_ProductBOM_ID") // 	Product Line was changed
@@ -136,14 +136,14 @@ public class MProductBOM extends X_M_Product_BOM {
       {
         //	Invalidate BOM
         product.setIsVerified(false);
-        product.saveEx(null);
+        product.saveEx();
       }
       if (product.isVerified()
           && is_ValueChanged("IsActive")
           && !isActive()) { // line was inactivated
         if (!hasActiveComponents(getM_Product_ID())) {
           product.setIsVerified(false);
-          product.saveEx(null);
+          product.saveEx();
         }
       }
     }
@@ -153,11 +153,11 @@ public class MProductBOM extends X_M_Product_BOM {
   @Override
   protected boolean afterDelete(boolean success) {
     if (!success) return success;
-    MProduct product = new MProduct(getCtx(), getM_Product_ID(), null);
+    MProduct product = new MProduct(getCtx(), getM_Product_ID());
     if (product.isVerified()) {
       if (!hasActiveComponents(getM_Product_ID())) {
         product.setIsVerified(false);
-        product.saveEx(null);
+        product.saveEx();
       }
     }
     return success;

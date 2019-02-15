@@ -32,8 +32,8 @@ public class MResourceType extends X_S_ResourceType {
    * @param ctx context
    * @param S_ResourceType_ID id
    */
-  public MResourceType(Properties ctx, int S_ResourceType_ID, String trxName) {
-    super(ctx, S_ResourceType_ID, trxName);
+  public MResourceType(Properties ctx, int S_ResourceType_ID) {
+    super(ctx, S_ResourceType_ID);
   } //	MResourceType
 
   /**
@@ -42,8 +42,8 @@ public class MResourceType extends X_S_ResourceType {
    * @param ctx context
    * @param rs result set
    */
-  public MResourceType(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public MResourceType(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   } //	MResourceType
 
   /**
@@ -58,7 +58,7 @@ public class MResourceType extends X_S_ResourceType {
 
     MResourceType type = s_cache.get(S_ResourceType_ID);
     if (type == null) {
-      type = new MResourceType(ctx, S_ResourceType_ID, null);
+      type = new MResourceType(ctx, S_ResourceType_ID);
       if (type.getId() == S_ResourceType_ID) {
         s_cache.put(S_ResourceType_ID, type);
       }
@@ -93,11 +93,10 @@ public class MResourceType extends X_S_ResourceType {
               "S_Resource_ID IN "
                   + "(SELECT S_Resource_ID FROM S_Resource WHERE S_ResourceType_ID="
                   + getS_ResourceType_ID()
-                  + ")",
-              null);
+                  + ")");
       for (MProduct product : products) {
         if (product.setResource(this)) {
-          product.saveEx(null);
+          product.saveEx();
         }
       }
     }

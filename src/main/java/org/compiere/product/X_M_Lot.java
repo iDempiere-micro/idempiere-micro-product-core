@@ -18,13 +18,13 @@ public class X_M_Lot extends BasePOName implements I_M_Lot, I_Persistent {
   private static final long serialVersionUID = 20171031L;
 
   /** Standard Constructor */
-  public X_M_Lot(Properties ctx, int M_Lot_ID, String trxName) {
-    super(ctx, M_Lot_ID, trxName);
+  public X_M_Lot(Properties ctx, int M_Lot_ID) {
+    super(ctx, M_Lot_ID);
   }
 
   /** Load Constructor */
-  public X_M_Lot(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public X_M_Lot(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   }
 
   /**

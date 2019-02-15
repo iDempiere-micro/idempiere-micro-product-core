@@ -39,8 +39,8 @@ public class MAttributeSetInstance extends X_M_AttributeSetInstance {
    * @param M_AttributeSetInstance_ID id
    * @param trxName transaction
    */
-  public MAttributeSetInstance(Properties ctx, int M_AttributeSetInstance_ID, String trxName) {
-    super(ctx, M_AttributeSetInstance_ID, trxName);
+  public MAttributeSetInstance(Properties ctx, int M_AttributeSetInstance_ID) {
+    super(ctx, M_AttributeSetInstance_ID);
     if (M_AttributeSetInstance_ID == 0) {}
   } //	MAttributeSetInstance
 
@@ -51,8 +51,8 @@ public class MAttributeSetInstance extends X_M_AttributeSetInstance {
    * @param rs result set
    * @param trxName transaction
    */
-  public MAttributeSetInstance(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public MAttributeSetInstance(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   } //	MAttributeSetInstance
 
   /**
@@ -64,8 +64,8 @@ public class MAttributeSetInstance extends X_M_AttributeSetInstance {
    * @param trxName transaction
    */
   public MAttributeSetInstance(
-      Properties ctx, int M_AttributeSetInstance_ID, int M_AttributeSet_ID, String trxName) {
-    this(ctx, M_AttributeSetInstance_ID, trxName);
+      Properties ctx, int M_AttributeSetInstance_ID, int M_AttributeSet_ID) {
+    this(ctx, M_AttributeSetInstance_ID);
     setM_AttributeSet_ID(M_AttributeSet_ID);
   } //	MAttributeSetInstance
 
@@ -84,7 +84,7 @@ public class MAttributeSetInstance extends X_M_AttributeSetInstance {
     if (M_AttributeSetInstance_ID != 0) {
       if (s_log.isLoggable(Level.FINE))
         s_log.fine("From M_AttributeSetInstance_ID=" + M_AttributeSetInstance_ID);
-      return new MAttributeSetInstance(ctx, M_AttributeSetInstance_ID, null);
+      return new MAttributeSetInstance(ctx, M_AttributeSetInstance_ID);
     }
     //	Get new from Product
     if (s_log.isLoggable(Level.FINE)) s_log.fine("From M_Product_ID=" + M_Product_ID);
@@ -103,7 +103,7 @@ public class MAttributeSetInstance extends X_M_AttributeSetInstance {
         int M_AttributeSet_ID = rs.getInt(1);
         //	M_AttributeSetInstance_ID = rs.getInt(2);	//	needed ?
         //
-        retValue = new MAttributeSetInstance(ctx, 0, M_AttributeSet_ID, null);
+        retValue = new MAttributeSetInstance(ctx, 0, M_AttributeSet_ID);
       }
     } catch (SQLException ex) {
       s_log.log(Level.SEVERE, sql, ex);
@@ -125,8 +125,8 @@ public class MAttributeSetInstance extends X_M_AttributeSetInstance {
    * @param trxName
    * @return newly created ASI
    */
-  public static MAttributeSetInstance create(Properties ctx, MProduct product, String trxName) {
-    MAttributeSetInstance asi = new MAttributeSetInstance(ctx, 0, trxName);
+  public static MAttributeSetInstance create(Properties ctx, MProduct product) {
+    MAttributeSetInstance asi = new MAttributeSetInstance(ctx, 0);
     asi.setClientOrg(product.getClientId(), 0);
     asi.setM_AttributeSet_ID(product.getMAttributeSet_ID());
     // Create new Lot, Serial# and Guarantee Date
@@ -149,8 +149,8 @@ public class MAttributeSetInstance extends X_M_AttributeSetInstance {
    * @return newly created ASI
    */
   public static MAttributeSetInstance generateLot(
-      Properties ctx, MProduct product, String trxName) {
-    MAttributeSetInstance asi = new MAttributeSetInstance(ctx, 0, trxName);
+      Properties ctx, MProduct product) {
+    MAttributeSetInstance asi = new MAttributeSetInstance(ctx, 0);
     asi.setClientOrg(product.getClientId(), 0);
     asi.setM_AttributeSet_ID(product.getMAttributeSet_ID());
     // Create new Lot
@@ -170,7 +170,7 @@ public class MAttributeSetInstance extends X_M_AttributeSetInstance {
    */
   public MAttributeSet getMAttributeSet() {
     if (m_mas == null && getMAttributeSet_ID() != 0)
-      m_mas = new MAttributeSet(getCtx(), getMAttributeSet_ID(), null);
+      m_mas = new MAttributeSet(getCtx(), getMAttributeSet_ID());
     return m_mas;
   } //	getMAttributeSet
 
@@ -265,7 +265,7 @@ public class MAttributeSetInstance extends X_M_AttributeSetInstance {
     KeyNamePair retValue = null;
     int M_LotCtl_ID = getMAttributeSet().getM_LotCtl_ID();
     if (M_LotCtl_ID != 0) {
-      MLotCtl ctl = new MLotCtl(getCtx(), M_LotCtl_ID, null);
+      MLotCtl ctl = new MLotCtl(getCtx(), M_LotCtl_ID);
       MLot lot = ctl.createLot(M_Product_ID);
       setM_Lot_ID(lot.getM_Lot_ID());
       setLot(lot.getName());
@@ -282,7 +282,7 @@ public class MAttributeSetInstance extends X_M_AttributeSetInstance {
    */
   public void setLot(String Lot, int M_Product_ID) {
     //	Try to find it
-    MLot mLot = MLot.getProductLot(getCtx(), M_Product_ID, Lot, null);
+    MLot mLot = MLot.getProductLot(getCtx(), M_Product_ID, Lot);
     if (mLot != null) setM_Lot_ID(mLot.getM_Lot_ID());
     setLot(Lot);
   } //	setLot
@@ -297,7 +297,7 @@ public class MAttributeSetInstance extends X_M_AttributeSetInstance {
     if (getNew) {
       int M_SerNoCtl_ID = getMAttributeSet().getM_SerNoCtl_ID();
       if (M_SerNoCtl_ID != 0) {
-        MSerNoCtl ctl = new MSerNoCtl(getCtx(), M_SerNoCtl_ID, null);
+        MSerNoCtl ctl = new MSerNoCtl(getCtx(), M_SerNoCtl_ID);
         setSerNo(ctl.createSerNo());
       }
     }

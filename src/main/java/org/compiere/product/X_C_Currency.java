@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.util.Properties;
 import org.compiere.model.I_C_Currency;
 import org.compiere.orm.PO;
-import org.idempiere.common.util.KeyNamePair;
 import org.idempiere.orm.I_Persistent;
 
 /**
@@ -19,8 +18,8 @@ public class X_C_Currency extends PO implements I_C_Currency, I_Persistent {
   private static final long serialVersionUID = 20171031L;
 
   /** Standard Constructor */
-  public X_C_Currency(Properties ctx, int C_Currency_ID, String trxName) {
-    super(ctx, C_Currency_ID, trxName);
+  public X_C_Currency(Properties ctx, int C_Currency_ID) {
+    super(ctx, C_Currency_ID);
     /**
      * if (C_Currency_ID == 0) { setC_Currency_ID (0); setCostingPrecision (0); // 4 setDescription
      * (null); setIsEMUMember (false); // N setIsEuro (false); // N setISO_Code (null);
@@ -29,8 +28,8 @@ public class X_C_Currency extends PO implements I_C_Currency, I_Persistent {
   }
 
   /** Load Constructor */
-  public X_C_Currency(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public X_C_Currency(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   }
 
   /**

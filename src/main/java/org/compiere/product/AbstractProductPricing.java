@@ -19,7 +19,7 @@ public abstract class AbstractProductPricing implements IProductPricing {
 
   @Override
   public void setInitialValues(
-      int M_Product_ID, int C_BPartner_ID, BigDecimal qty, boolean isSOTrx, String trxName) {
+      int M_Product_ID, int C_BPartner_ID, BigDecimal qty, boolean isSOTrx) {
       m_M_Product_ID = M_Product_ID;
     m_C_BPartner_ID = C_BPartner_ID;
 
@@ -53,7 +53,7 @@ public abstract class AbstractProductPricing implements IProductPricing {
   }
 
   @Override
-  public void setOrderLine(I_C_OrderLine orderLine, String trxName) {
+  public void setOrderLine(I_C_OrderLine orderLine) {
     m_M_Product_ID = orderLine.getM_Product_ID();
     m_C_BPartner_ID = orderLine.getC_BPartner_ID();
     BigDecimal qty = orderLine.getQtyOrdered();
@@ -63,7 +63,7 @@ public abstract class AbstractProductPricing implements IProductPricing {
   }
 
   @Override
-  public void setInvoiceLine(I_C_InvoiceLine invoiceLine, String trxName) {
+  public void setInvoiceLine(I_C_InvoiceLine invoiceLine) {
     m_M_Product_ID = invoiceLine.getM_Product_ID();
     m_C_BPartner_ID = invoiceLine.getC_Invoice().getC_BPartner_ID();
     BigDecimal qty =
@@ -76,7 +76,7 @@ public abstract class AbstractProductPricing implements IProductPricing {
   }
 
   @Override
-  public void setProjectLine(I_C_ProjectLine projectLine, String trxName) {
+  public void setProjectLine(I_C_ProjectLine projectLine) {
     m_M_Product_ID = projectLine.getM_Product_ID();
     m_C_BPartner_ID = projectLine.getC_Project().getC_BPartner_ID();
     BigDecimal qty = projectLine.getPlannedQty();
@@ -85,7 +85,7 @@ public abstract class AbstractProductPricing implements IProductPricing {
   }
 
   @Override
-  public void setRequisitionLine(I_M_RequisitionLine reqLine, String trxName) {
+  public void setRequisitionLine(I_M_RequisitionLine reqLine) {
     m_M_Product_ID = reqLine.getM_Product_ID();
     m_C_BPartner_ID = reqLine.getC_BPartner_ID();
     BigDecimal qty = reqLine.getQty();

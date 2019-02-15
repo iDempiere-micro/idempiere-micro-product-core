@@ -49,8 +49,8 @@ public class MUOM extends X_C_UOM {
    * @param C_UOM_ID UOM ID
    * @param trxName transaction
    */
-  public MUOM(Properties ctx, int C_UOM_ID, String trxName) {
-    super(ctx, C_UOM_ID, trxName);
+  public MUOM(Properties ctx, int C_UOM_ID) {
+    super(ctx, C_UOM_ID);
     if (C_UOM_ID == 0) {
       //	setName (null);
       //	setX12DE355 (null);
@@ -69,8 +69,8 @@ public class MUOM extends X_C_UOM {
    * @param rs result set
    * @param trxName transaction
    */
-  public MUOM(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public MUOM(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   } //	UOM
   public MUOM(Properties ctx, Row row) {
     super(ctx, row);
@@ -116,7 +116,7 @@ public class MUOM extends X_C_UOM {
     MUOM uom = s_cache.get(C_UOM_ID);
     if (uom != null) return uom;
     //
-    uom = new MUOM(ctx, C_UOM_ID, null);
+    uom = new MUOM(ctx, C_UOM_ID);
     s_cache.put(C_UOM_ID, uom);
     return uom;
   } //	get
@@ -140,7 +140,7 @@ public class MUOM extends X_C_UOM {
    */
   private static void loadUOMs(Properties ctx) {
     List<MUOM> list =
-        new Query(ctx, I_C_UOM.Table_Name, "IsActive='Y'", null)
+        new Query(ctx, I_C_UOM.Table_Name, "IsActive='Y'")
             .setApplyAccessFilter(MRole.SQL_NOTQUALIFIED, MRole.SQL_RO)
             .list();
     //

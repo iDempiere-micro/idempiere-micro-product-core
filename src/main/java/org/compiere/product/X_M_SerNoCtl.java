@@ -18,8 +18,8 @@ public class X_M_SerNoCtl extends BasePOName implements I_M_SerNoCtl, I_Persiste
   private static final long serialVersionUID = 20171031L;
 
   /** Standard Constructor */
-  public X_M_SerNoCtl(Properties ctx, int M_SerNoCtl_ID, String trxName) {
-    super(ctx, M_SerNoCtl_ID, trxName);
+  public X_M_SerNoCtl(Properties ctx, int M_SerNoCtl_ID) {
+    super(ctx, M_SerNoCtl_ID);
     /**
      * if (M_SerNoCtl_ID == 0) { setCurrentNext (0); // 100 setIncrementNo (0); // 1
      * setM_SerNoCtl_ID (0); setName (null); setStartNo (0); // 100 }
@@ -27,8 +27,8 @@ public class X_M_SerNoCtl extends BasePOName implements I_M_SerNoCtl, I_Persiste
   }
 
   /** Load Constructor */
-  public X_M_SerNoCtl(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public X_M_SerNoCtl(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   }
 
   /**

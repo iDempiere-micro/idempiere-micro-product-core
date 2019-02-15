@@ -20,8 +20,8 @@ public class MAttributeValue extends X_M_AttributeValue {
    * @param M_AttributeValue_ID id
    * @param trxName transaction
    */
-  public MAttributeValue(Properties ctx, int M_AttributeValue_ID, String trxName) {
-    super(ctx, M_AttributeValue_ID, trxName);
+  public MAttributeValue(Properties ctx, int M_AttributeValue_ID) {
+    super(ctx, M_AttributeValue_ID);
     /**
      * if (M_AttributeValue_ID == 0) { setM_AttributeValue_ID (0); setMAttributeID (0); setName
      * (null); setValue (null); }
@@ -35,8 +35,8 @@ public class MAttributeValue extends X_M_AttributeValue {
    * @param rs result set
    * @param trxName transaction
    */
-  public MAttributeValue(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public MAttributeValue(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   } //	MAttributeValue
 
   /**

@@ -24,8 +24,8 @@ public class MLot extends X_M_Lot {
    * @param M_Lot_ID ID
    * @param trxName transaction
    */
-  public MLot(Properties ctx, int M_Lot_ID, String trxName) {
-    super(ctx, M_Lot_ID, trxName);
+  public MLot(Properties ctx, int M_Lot_ID) {
+    super(ctx, M_Lot_ID);
     /** if (M_Lot_ID == 0) { setM_Lot_ID (0); setM_Product_ID (0); setName (null); } */
   } //	MLot
 
@@ -36,8 +36,8 @@ public class MLot extends X_M_Lot {
    * @param rs result set
    * @param trxName transaction
    */
-  public MLot(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public MLot(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   } //	MLot
 
   /**
@@ -48,7 +48,7 @@ public class MLot extends X_M_Lot {
    * @param Name name
    */
   public MLot(MLotCtl ctl, int M_Product_ID, String Name) {
-    this(ctl.getCtx(), 0, null);
+    this(ctl.getCtx(), 0);
     setClientOrg(ctl);
     setM_LotCtl_ID(ctl.getM_LotCtl_ID());
     setM_Product_ID(M_Product_ID);
@@ -64,10 +64,10 @@ public class MLot extends X_M_Lot {
    * @param trxName transaction
    * @return Last Lot for Product
    */
-  public static MLot getProductLot(Properties ctx, int M_Product_ID, String lot, String trxName) {
+  public static MLot getProductLot(Properties ctx, int M_Product_ID, String lot) {
     final String whereClause = "M_Product_ID=? AND Name=?";
     MLot retValue =
-        new Query(ctx, I_M_Lot.Table_Name, whereClause, trxName)
+        new Query(ctx, I_M_Lot.Table_Name, whereClause)
             .setParameters(M_Product_ID, lot)
             .setOrderBy(I_M_Lot.COLUMNNAME_M_Lot_ID + " DESC")
             .first();

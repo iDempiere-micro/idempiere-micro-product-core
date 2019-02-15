@@ -25,8 +25,8 @@ public class MAssetChange extends X_A_Asset_Change {
    * @param ctx context
    * @param M_InventoryLine_ID line
    */
-  public MAssetChange(Properties ctx, int A_Asset_Change_ID, String trxName) {
-    super(ctx, A_Asset_Change_ID, trxName);
+  public MAssetChange(Properties ctx, int A_Asset_Change_ID) {
+    super(ctx, A_Asset_Change_ID);
   } //	MAssetChange
 
   /**
@@ -35,8 +35,8 @@ public class MAssetChange extends X_A_Asset_Change {
    * @param ctx context
    * @param rs result set
    */
-  public MAssetChange(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public MAssetChange(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   } //	MInventoryLine
 
     /**
@@ -49,9 +49,9 @@ public class MAssetChange extends X_A_Asset_Change {
    * @return
    */
   public static MAssetChange createAndSave(
-      Properties ctx, String changeType, IPO[] pos, String trxName) {
+      Properties ctx, String changeType, IPO[] pos) {
     return null;
-    // ~ return create(ctx, changeType, pos, true, trxName);
+    // ~ return create(ctx, changeType, pos, true);
   }
 
     public void addChanges(PO po) {

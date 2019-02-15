@@ -29,8 +29,8 @@ public class MProductPrice extends X_M_ProductPrice {
    * @param M_ProductPrice_ID key
    * @param trxName transaction
    */
-  public MProductPrice(Properties ctx, int M_ProductPrice_ID, String trxName) {
-    super(ctx, M_ProductPrice_ID, trxName);
+  public MProductPrice(Properties ctx, int M_ProductPrice_ID) {
+    super(ctx, M_ProductPrice_ID);
   } //	MProductPrice
 
   /**
@@ -40,8 +40,8 @@ public class MProductPrice extends X_M_ProductPrice {
    * @param rs result set
    * @param trxName transaction
    */
-  public MProductPrice(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public MProductPrice(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   } //	MProductPrice
 
   /**
@@ -53,8 +53,8 @@ public class MProductPrice extends X_M_ProductPrice {
    * @param trxName transaction
    */
   public MProductPrice(
-      Properties ctx, int M_PriceList_Version_ID, int M_Product_ID, String trxName) {
-    this(ctx, 0, trxName);
+      Properties ctx, int M_PriceList_Version_ID, int M_Product_ID) {
+    this(ctx, 0);
     setM_PriceList_Version_ID(M_PriceList_Version_ID); // 	FK
     setM_Product_ID(M_Product_ID); // 	FK
   } //	MProductPrice
@@ -78,7 +78,7 @@ public class MProductPrice extends X_M_ProductPrice {
       BigDecimal PriceStd,
       BigDecimal PriceLimit,
       String trxName) {
-    this(ctx, M_PriceList_Version_ID, M_Product_ID, trxName);
+    this(ctx, M_PriceList_Version_ID, M_Product_ID);
     setPrices(PriceList, PriceStd, PriceLimit);
   } //	MProductPrice
 
@@ -97,7 +97,7 @@ public class MProductPrice extends X_M_ProductPrice {
       BigDecimal PriceList,
       BigDecimal PriceStd,
       BigDecimal PriceLimit) {
-    this(plv.getCtx(), 0, null);
+    this(plv.getCtx(), 0);
     setClientOrg(plv);
     setM_PriceList_Version_ID(plv.getM_PriceList_Version_ID());
     setM_Product_ID(M_Product_ID);
@@ -114,14 +114,14 @@ public class MProductPrice extends X_M_ProductPrice {
    * @return product price or null
    */
   public static MProductPrice get(
-      Properties ctx, int M_PriceList_Version_ID, int M_Product_ID, String trxName) {
+      Properties ctx, int M_PriceList_Version_ID, int M_Product_ID) {
     final String whereClause =
         MProductPrice.COLUMNNAME_M_PriceList_Version_ID
             + "=? AND "
             + MProductPrice.COLUMNNAME_M_Product_ID
             + "=?";
     MProductPrice retValue =
-        new Query(ctx, I_M_ProductPrice.Table_Name, whereClause, trxName)
+        new Query(ctx, I_M_ProductPrice.Table_Name, whereClause)
             .setParameters(M_PriceList_Version_ID, M_Product_ID)
             .first();
     return retValue;

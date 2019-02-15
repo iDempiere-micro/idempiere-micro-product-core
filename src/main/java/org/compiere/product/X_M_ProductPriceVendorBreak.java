@@ -15,8 +15,8 @@ public class X_M_ProductPriceVendorBreak extends PO
 
   /** Standard Constructor */
   public X_M_ProductPriceVendorBreak(
-      Properties ctx, int M_ProductPriceVendorBreak_ID, String trxName) {
-    super(ctx, M_ProductPriceVendorBreak_ID, trxName);
+      Properties ctx, int M_ProductPriceVendorBreak_ID) {
+    super(ctx, M_ProductPriceVendorBreak_ID);
     /**
      * if (M_ProductPriceVendorBreak_ID == 0) { setBreakValue (Env.ZERO); setM_PriceList_Version_ID
      * (0); setM_Product_ID (0); setM_ProductPriceVendorBreak_ID (0); setPriceLimit (Env.ZERO);
@@ -25,8 +25,8 @@ public class X_M_ProductPriceVendorBreak extends PO
   }
 
   /** Load Constructor */
-  public X_M_ProductPriceVendorBreak(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public X_M_ProductPriceVendorBreak(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   }
 
   /**

@@ -50,8 +50,8 @@ public class MProduct extends X_M_Product implements I_M_Product {
    * @param M_Product_ID id
    * @param trxName transaction
    */
-  public MProduct(Properties ctx, int M_Product_ID, String trxName) {
-    super(ctx, M_Product_ID, trxName);
+  public MProduct(Properties ctx, int M_Product_ID) {
+    super(ctx, M_Product_ID);
     if (M_Product_ID == 0) {
       //	setValue (null);
       //	setName (null);
@@ -83,8 +83,8 @@ public class MProduct extends X_M_Product implements I_M_Product {
    * @param rs result set
    * @param trxName transaction
    */
-  public MProduct(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public MProduct(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   } //	MProduct
   public MProduct(Properties ctx, Row row) {
     super(ctx, row);
@@ -96,7 +96,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
    * @param et parent
    */
   public MProduct(MExpenseType et) {
-    this(et.getCtx(), 0, null);
+    this(et.getCtx(), 0);
     setProductType(I_M_Product.PRODUCTTYPE_ExpenseType);
     setExpenseType(et);
   } //	MProduct
@@ -108,7 +108,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
    * @param resourceType resource type
    */
   public MProduct(MResource resource, MResourceType resourceType) {
-    this(resource.getCtx(), 0, null);
+    this(resource.getCtx(), 0);
     setAD_Org_ID(resource.getOrgId());
     setProductType(I_M_Product.PRODUCTTYPE_Resource);
     setResource(resource);
@@ -121,7 +121,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
    * @param impP import
    */
   public MProduct(X_I_Product impP) {
-    this(impP.getCtx(), 0, null);
+    this(impP.getCtx(), 0);
     setClientOrg(impP);
     setUpdatedBy(impP.getUpdatedBy());
     //
@@ -157,7 +157,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
     if (retValue != null) {
       return retValue;
     }
-    retValue = new MProduct(ctx, M_Product_ID, null);
+    retValue = new MProduct(ctx, M_Product_ID);
     if (retValue.getId() != 0) {
       s_cache.put(key, retValue);
     }
@@ -172,23 +172,11 @@ public class MProduct extends X_M_Product implements I_M_Product {
    * @param trxName trx
    * @return MProduct
    */
-  public static MProduct[] get(Properties ctx, String whereClause, String trxName) {
+  public static MProduct[] get(Properties ctx, String whereClause) {
     List<MProduct> list =
-        new Query(ctx, I_M_Product.Table_Name, whereClause, trxName).setClient_ID().list();
+        new Query(ctx, I_M_Product.Table_Name, whereClause).setClient_ID().list();
     return list.toArray(new MProduct[list.size()]);
   } //	get
-
-    /**
-   * Get Product from Cache
-   *
-   * @param ctx context
-   * @param S_Resource_ID resource ID
-   * @return MProduct or null if not found
-   * @deprecated Since 3.5.3a. Please use {@link #forS_Resource_ID(Properties, int, String)}
-   */
-  public static MProduct forS_Resource_ID(Properties ctx, int S_Resource_ID) {
-    return forS_Resource_ID(ctx, S_Resource_ID, null);
-  }
 
   /**
    * Get Product from Cache
@@ -198,25 +186,22 @@ public class MProduct extends X_M_Product implements I_M_Product {
    * @param trxName
    * @return MProduct or null if not found
    */
-  public static MProduct forS_Resource_ID(Properties ctx, int S_Resource_ID, String trxName) {
+  public static MProduct forS_Resource_ID(Properties ctx, int S_Resource_ID) {
     if (S_Resource_ID <= 0) {
       return null;
     }
 
-    // Try Cache
-    if (trxName == null) {
-      for (MProduct p : s_cache.values()) {
-        if (p.getS_Resource_ID() == S_Resource_ID) {
-          return p;
-        }
+    for (MProduct p : s_cache.values()) {
+      if (p.getS_Resource_ID() == S_Resource_ID) {
+        return p;
       }
     }
     // Load from DB
     MProduct p =
-        new Query(ctx, I_M_Product.Table_Name, I_M_Product.COLUMNNAME_S_Resource_ID + "=?", trxName)
+        new Query(ctx, I_M_Product.Table_Name, I_M_Product.COLUMNNAME_S_Resource_ID + "=?")
             .setParameters(new Object[] {S_Resource_ID})
             .firstOnly();
-    if (p != null && trxName == null) {
+    if (p != null) {
       s_cache.put(p.getM_Product_ID(), p);
     }
     return p;
@@ -483,7 +468,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
     if (getMAttributeSetInstance_ID() > 0
         && is_ValueChanged(I_M_Product.COLUMNNAME_M_AttributeSet_ID)) {
       MAttributeSetInstance asi =
-          new MAttributeSetInstance(getCtx(), getMAttributeSetInstance_ID(), null);
+          new MAttributeSetInstance(getCtx(), getMAttributeSetInstance_ID());
       if (asi.getMAttributeSet_ID() != getMAttributeSet_ID()) setM_AttributeSetInstance_ID(0);
     }
     if (!newRecord && is_ValueChanged(I_M_Product.COLUMNNAME_M_AttributeSetInstance_ID)) {
@@ -493,8 +478,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
         MAttributeSetInstance oldasi =
             new MAttributeSetInstance(
                 getCtx(),
-                get_ValueOldAsInt(I_M_Product.COLUMNNAME_M_AttributeSetInstance_ID),
-                null);
+                get_ValueOldAsInt(I_M_Product.COLUMNNAME_M_AttributeSetInstance_ID));
         int cnt =
             getSQLValueEx(
                 null,
@@ -503,7 +487,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
         if (cnt == 1) {
           // Delete the old m_attributesetinstance
           try {
-            oldasi.deleteEx(true, null);
+            oldasi.deleteEx(true);
           } catch (AdempiereException ex) {
             log.saveError("Error", "Error deleting the AttributeSetInstance");
             return false;

@@ -38,8 +38,8 @@ public class MDiscountSchema extends X_M_DiscountSchema {
    * @param M_DiscountSchema_ID id
    * @param trxName transaction
    */
-  public MDiscountSchema(Properties ctx, int M_DiscountSchema_ID, String trxName) {
-    super(ctx, M_DiscountSchema_ID, trxName);
+  public MDiscountSchema(Properties ctx, int M_DiscountSchema_ID) {
+    super(ctx, M_DiscountSchema_ID);
     if (M_DiscountSchema_ID == 0) {
       //	setName();
       setDiscountType(X_M_DiscountSchema.DISCOUNTTYPE_FlatPercent);
@@ -58,8 +58,8 @@ public class MDiscountSchema extends X_M_DiscountSchema {
    * @param rs result set
    * @param trxName transaction
    */
-  public MDiscountSchema(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public MDiscountSchema(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   } //	MDiscountSchema
 
   /**
@@ -73,7 +73,7 @@ public class MDiscountSchema extends X_M_DiscountSchema {
     Integer key = new Integer(M_DiscountSchema_ID);
     MDiscountSchema retValue = (MDiscountSchema) s_cache.get(key);
     if (retValue != null) return retValue;
-    retValue = new MDiscountSchema(ctx, M_DiscountSchema_ID, null);
+    retValue = new MDiscountSchema(ctx, M_DiscountSchema_ID);
     if (retValue.getId() != 0) s_cache.put(key, retValue);
     return retValue;
   } //	get
@@ -95,7 +95,7 @@ public class MDiscountSchema extends X_M_DiscountSchema {
       pstmt = prepareStatement(sql);
       pstmt.setInt(1, getM_DiscountSchema_ID());
       rs = pstmt.executeQuery();
-      while (rs.next()) list.add(new MDiscountSchemaBreak(getCtx(), rs, null));
+      while (rs.next()) list.add(new MDiscountSchemaBreak(getCtx(), rs));
     } catch (Exception e) {
       log.log(Level.SEVERE, sql, e);
     } finally {
@@ -115,7 +115,6 @@ public class MDiscountSchema extends X_M_DiscountSchema {
    */
   public MDiscountSchemaLine[] getLines(boolean reload) {
     if (m_lines != null && !reload) {
-      PO.set_TrxName(m_lines, null);
       return m_lines;
     }
 
@@ -127,7 +126,7 @@ public class MDiscountSchema extends X_M_DiscountSchema {
       pstmt = prepareStatement(sql);
       pstmt.setInt(1, getM_DiscountSchema_ID());
       rs = pstmt.executeQuery();
-      while (rs.next()) list.add(new MDiscountSchemaLine(getCtx(), rs, null));
+      while (rs.next()) list.add(new MDiscountSchemaLine(getCtx(), rs));
     } catch (Exception e) {
       log.log(Level.SEVERE, sql, e);
     } finally {

@@ -19,8 +19,8 @@ public class X_S_ResourceType extends BasePONameValue implements I_S_ResourceTyp
   private static final long serialVersionUID = 20171031L;
 
   /** Standard Constructor */
-  public X_S_ResourceType(Properties ctx, int S_ResourceType_ID, String trxName) {
-    super(ctx, S_ResourceType_ID, trxName);
+  public X_S_ResourceType(Properties ctx, int S_ResourceType_ID) {
+    super(ctx, S_ResourceType_ID);
     /**
      * if (S_ResourceType_ID == 0) { setAllowUoMFractions (false); // N setC_TaxCategory_ID (0);
      * setC_UOM_ID (0); setIsDateSlot (false); setIsSingleAssignment (false); setIsTimeSlot (false);
@@ -31,8 +31,8 @@ public class X_S_ResourceType extends BasePONameValue implements I_S_ResourceTyp
   }
 
   /** Load Constructor */
-  public X_S_ResourceType(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public X_S_ResourceType(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   }
 
   /**

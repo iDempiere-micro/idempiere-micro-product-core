@@ -24,7 +24,7 @@ abstract class BaseProductTest {
 
     fun <T : IPO> getById(id: Int, tableName: String): T {
         val modelFactory: IModelFactory = DefaultModelFactory()
-        val result = modelFactory.getPO(tableName, id, null)
+        val result = modelFactory.getPO(tableName, id)
         println(result)
         assertNotNull(result)
         val obj = result as T
@@ -35,7 +35,7 @@ abstract class BaseProductTest {
 
     protected fun getProductById(product_id: Int): I_M_Product {
         val modelFactory: IModelFactory = DefaultModelFactory()
-        val result = modelFactory.getPO(I_M_Product.Table_Name, product_id, null)
+        val result = modelFactory.getPO(I_M_Product.Table_Name, product_id)
         println(result)
         assertNotNull(result)
         val product = result as I_M_Product
@@ -47,7 +47,7 @@ abstract class BaseProductTest {
     fun createAProduct(name: String, productType: String): I_M_Product {
         val standardProduct = getProductById(someProductId)
         val ctx = Env.getCtx()
-        val product = MProduct(ctx, 0, null)
+        val product = MProduct(ctx, 0)
         product.name = name
         product.value = name
         product.c_UOM_ID = MUOM.getDefault_UOM_ID(ctx)

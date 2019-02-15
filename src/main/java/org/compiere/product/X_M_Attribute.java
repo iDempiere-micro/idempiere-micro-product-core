@@ -22,12 +22,12 @@ public class X_M_Attribute extends BasePOName implements I_M_Attribute, I_Persis
   private static final long serialVersionUID = 20171031L;
 
   /** Standard Constructor */
-  public X_M_Attribute(Properties ctx, int M_Attribute_ID, String trxName) {
-    super(ctx, M_Attribute_ID, trxName);
+  public X_M_Attribute(Properties ctx, int M_Attribute_ID) {
+    super(ctx, M_Attribute_ID);
   }
   /** Load Constructor */
-  public X_M_Attribute(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public X_M_Attribute(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   }
 
   /**

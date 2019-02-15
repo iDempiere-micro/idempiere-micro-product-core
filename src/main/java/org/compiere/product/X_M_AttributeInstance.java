@@ -5,7 +5,6 @@ import java.sql.ResultSet;
 import java.util.Properties;
 import org.compiere.model.I_M_AttributeInstance;
 import org.compiere.orm.PO;
-import org.idempiere.common.util.KeyNamePair;
 import org.idempiere.orm.I_Persistent;
 
 /**
@@ -20,16 +19,16 @@ public class X_M_AttributeInstance extends PO implements I_M_AttributeInstance, 
   private static final long serialVersionUID = 20171031L;
 
   /** Standard Constructor */
-  public X_M_AttributeInstance(Properties ctx, int M_AttributeInstance_ID, String trxName) {
-    super(ctx, M_AttributeInstance_ID, trxName);
+  public X_M_AttributeInstance(Properties ctx, int M_AttributeInstance_ID) {
+    super(ctx, M_AttributeInstance_ID);
     /**
      * if (M_AttributeInstance_ID == 0) { setMAttributeID (0); setM_AttributeSetInstance_ID (0); }
      */
   }
 
   /** Load Constructor */
-  public X_M_AttributeInstance(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public X_M_AttributeInstance(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   }
 
   /**

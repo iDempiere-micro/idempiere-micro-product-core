@@ -24,13 +24,13 @@ public class X_M_AttributeSet extends BasePOName implements I_M_AttributeSet, I_
   private static final long serialVersionUID = 20171031L;
 
   /** Standard Constructor */
-  public X_M_AttributeSet(Properties ctx, int M_AttributeSet_ID, String trxName) {
-    super(ctx, M_AttributeSet_ID, trxName);
+  public X_M_AttributeSet(Properties ctx, int M_AttributeSet_ID) {
+    super(ctx, M_AttributeSet_ID);
   }
 
   /** Load Constructor */
-  public X_M_AttributeSet(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public X_M_AttributeSet(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   }
 
   /**

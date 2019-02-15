@@ -6,7 +6,6 @@ import org.compiere.model.I_M_Product;
 import org.compiere.orm.MTable;
 import org.compiere.orm.PO;
 import org.idempiere.common.util.Env;
-import org.idempiere.common.util.KeyNamePair;
 import org.idempiere.orm.I_Persistent;
 
 import java.math.BigDecimal;
@@ -25,8 +24,8 @@ public class X_M_Product extends PO implements I_Persistent {
   private static final long serialVersionUID = 20171031L;
 
   /** Standard Constructor */
-  public X_M_Product(Properties ctx, int M_Product_ID, String trxName) {
-    super(ctx, M_Product_ID, trxName);
+  public X_M_Product(Properties ctx, int M_Product_ID) {
+    super(ctx, M_Product_ID);
     /**
      * if (M_Product_ID == 0) { setC_TaxCategory_ID (0); setC_UOM_ID (0); setIsBOM (false); // N
      * setIsDropShip (false); setIsExcludeAutoDelivery (false); // N setIsInvoicePrintDetails
@@ -40,8 +39,8 @@ public class X_M_Product extends PO implements I_Persistent {
   }
 
   /** Load Constructor */
-  public X_M_Product(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public X_M_Product(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   }
   public X_M_Product(Properties ctx, Row row) {
     super(ctx, row);
@@ -74,7 +73,7 @@ public class X_M_Product extends PO implements I_Persistent {
     public org.compiere.model.I_C_TaxCategory getC_TaxCategory() throws RuntimeException {
     return (org.compiere.model.I_C_TaxCategory)
         MTable.get(getCtx(), org.compiere.model.I_C_TaxCategory.Table_Name)
-            .getPO(getC_TaxCategory_ID(), null);
+            .getPO(getC_TaxCategory_ID());
   }
 
   /**
@@ -385,7 +384,7 @@ public class X_M_Product extends PO implements I_Persistent {
   public org.compiere.model.I_M_AttributeSet getMAttributeSet() throws RuntimeException {
     return (org.compiere.model.I_M_AttributeSet)
         MTable.get(getCtx(), org.compiere.model.I_M_AttributeSet.Table_Name)
-            .getPO(getMAttributeSet_ID(), null);
+            .getPO(getMAttributeSet_ID());
   }
 
     /**
@@ -438,7 +437,7 @@ public class X_M_Product extends PO implements I_Persistent {
     public org.compiere.model.I_M_Product_Category getM_Product_Category() throws RuntimeException {
     return (org.compiere.model.I_M_Product_Category)
         MTable.get(getCtx(), org.compiere.model.I_M_Product_Category.Table_Name)
-            .getPO(getM_Product_Category_ID(), null);
+            .getPO(getM_Product_Category_ID());
   }
 
   /**
@@ -461,7 +460,7 @@ public class X_M_Product extends PO implements I_Persistent {
     if (M_Product_Category_ID < 1) set_Value(I_M_Product.COLUMNNAME_M_Product_Category_ID, null);
     else
       set_Value(
-          I_M_Product.COLUMNNAME_M_Product_Category_ID, Integer.valueOf(M_Product_Category_ID));
+          I_M_Product.COLUMNNAME_M_Product_Category_ID, M_Product_Category_ID);
   }
 
   /**

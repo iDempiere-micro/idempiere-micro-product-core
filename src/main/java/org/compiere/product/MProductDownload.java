@@ -27,8 +27,8 @@ public class MProductDownload extends X_M_ProductDownload {
    * @param M_ProductDownload_ID id
    * @param trxName trx
    */
-  public MProductDownload(Properties ctx, int M_ProductDownload_ID, String trxName) {
-    super(ctx, M_ProductDownload_ID, trxName);
+  public MProductDownload(Properties ctx, int M_ProductDownload_ID) {
+    super(ctx, M_ProductDownload_ID);
     if (M_ProductDownload_ID == 0) {
       //	setM_Product_ID (0);
       //	setName (null);
@@ -43,8 +43,8 @@ public class MProductDownload extends X_M_ProductDownload {
    * @param rs result set
    * @param trxName trx
    */
-  public MProductDownload(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public MProductDownload(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   } //	MProductDownload
 
   /**

@@ -18,8 +18,8 @@ public class X_S_ExpenseType extends BasePONameValue implements I_S_ExpenseType,
   private static final long serialVersionUID = 20171031L;
 
   /** Standard Constructor */
-  public X_S_ExpenseType(Properties ctx, int S_ExpenseType_ID, String trxName) {
-    super(ctx, S_ExpenseType_ID, trxName);
+  public X_S_ExpenseType(Properties ctx, int S_ExpenseType_ID) {
+    super(ctx, S_ExpenseType_ID);
     /**
      * if (S_ExpenseType_ID == 0) { setC_TaxCategory_ID (0); setC_UOM_ID (0); setIsInvoiced (false);
      * setM_Product_Category_ID (0); setName (null); setS_ExpenseType_ID (0); setValue (null); }
@@ -27,8 +27,8 @@ public class X_S_ExpenseType extends BasePONameValue implements I_S_ExpenseType,
   }
 
   /** Load Constructor */
-  public X_S_ExpenseType(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public X_S_ExpenseType(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   }
 
   /**

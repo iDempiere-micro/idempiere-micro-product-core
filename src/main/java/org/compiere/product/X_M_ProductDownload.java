@@ -18,8 +18,8 @@ public class X_M_ProductDownload extends BasePOName implements I_M_ProductDownlo
   private static final long serialVersionUID = 20171031L;
 
   /** Standard Constructor */
-  public X_M_ProductDownload(Properties ctx, int M_ProductDownload_ID, String trxName) {
-    super(ctx, M_ProductDownload_ID, trxName);
+  public X_M_ProductDownload(Properties ctx, int M_ProductDownload_ID) {
+    super(ctx, M_ProductDownload_ID);
     /**
      * if (M_ProductDownload_ID == 0) { setDownloadURL (null); setM_ProductDownload_ID (0);
      * setM_Product_ID (0); setName (null); }
@@ -27,8 +27,8 @@ public class X_M_ProductDownload extends BasePOName implements I_M_ProductDownlo
   }
 
   /** Load Constructor */
-  public X_M_ProductDownload(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public X_M_ProductDownload(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   }
 
   /**

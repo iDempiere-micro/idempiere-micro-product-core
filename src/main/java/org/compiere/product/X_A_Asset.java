@@ -31,8 +31,8 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset, I_Persistent {
   private static final long serialVersionUID = 20171031L;
 
   /** Standard Constructor */
-  public X_A_Asset(Properties ctx, int A_Asset_ID, String trxName) {
-    super(ctx, A_Asset_ID, trxName);
+  public X_A_Asset(Properties ctx, int A_Asset_ID) {
+    super(ctx, A_Asset_ID);
     /**
      * if (A_Asset_ID == 0) { setA_Asset_Action (null); // 'MD' setA_Asset_Group_ID (0);
      * setA_Asset_ID (0); setA_Asset_Status (null); // 'NW' setIsDepreciated (false); setIsDisposed
@@ -43,8 +43,8 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset, I_Persistent {
   }
 
   /** Load Constructor */
-  public X_A_Asset(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public X_A_Asset(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   }
 
   /**
@@ -135,7 +135,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset, I_Persistent {
     public org.compiere.model.I_A_Asset_Type getA_Asset_Type() throws RuntimeException {
     return (org.compiere.model.I_A_Asset_Type)
         MTable.get(getCtx(), org.compiere.model.I_A_Asset_Type.Table_Name)
-            .getPO(getA_Asset_Type_ID(), null);
+            .getPO(getA_Asset_Type_ID());
   }
 
   /**

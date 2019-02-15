@@ -19,12 +19,12 @@ public class X_C_UOM extends BasePOName implements I_C_UOM, I_Persistent {
     /** */
   private static final long serialVersionUID = 20171031L;
   /** Standard Constructor */
-  public X_C_UOM(Properties ctx, int C_UOM_ID, String trxName) {
-    super(ctx, C_UOM_ID, trxName);
+  public X_C_UOM(Properties ctx, int C_UOM_ID) {
+    super(ctx, C_UOM_ID);
   }
   /** Load Constructor */
-  public X_C_UOM(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public X_C_UOM(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   }
   public X_C_UOM(Properties ctx, Row row) {
     super(ctx, row);

@@ -20,8 +20,8 @@ public class MSerNoCtl extends X_M_SerNoCtl {
    * @param M_SerNoCtl_ID id
    * @param trxName transaction
    */
-  public MSerNoCtl(Properties ctx, int M_SerNoCtl_ID, String trxName) {
-    super(ctx, M_SerNoCtl_ID, trxName);
+  public MSerNoCtl(Properties ctx, int M_SerNoCtl_ID) {
+    super(ctx, M_SerNoCtl_ID);
     if (M_SerNoCtl_ID == 0) {
       //	setM_SerNoCtl_ID (0);
       setStartNo(1);
@@ -38,8 +38,8 @@ public class MSerNoCtl extends X_M_SerNoCtl {
    * @param rs result set
    * @param trxName transaction
    */
-  public MSerNoCtl(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public MSerNoCtl(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   } //	MSerNoCtl
 
   /**

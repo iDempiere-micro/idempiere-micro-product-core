@@ -18,13 +18,13 @@ public class X_A_Asset_Group extends BasePOName implements I_A_Asset_Group, I_Pe
   private static final long serialVersionUID = 20171031L;
 
   /** Standard Constructor */
-  public X_A_Asset_Group(Properties ctx, int A_Asset_Group_ID, String trxName) {
-    super(ctx, A_Asset_Group_ID, trxName);
+  public X_A_Asset_Group(Properties ctx, int A_Asset_Group_ID) {
+    super(ctx, A_Asset_Group_ID);
   }
 
   /** Load Constructor */
-  public X_A_Asset_Group(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public X_A_Asset_Group(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   }
 
   /**

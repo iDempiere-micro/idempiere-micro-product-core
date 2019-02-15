@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.util.Properties;
 import org.compiere.model.I_M_DiscountSchemaLine;
 import org.compiere.orm.PO;
-import org.idempiere.common.util.KeyNamePair;
 import org.idempiere.orm.I_Persistent;
 
 /**
@@ -25,8 +24,8 @@ public class X_M_DiscountSchemaLine extends PO implements I_M_DiscountSchemaLine
   private static final long serialVersionUID = 20171031L;
 
   /** Standard Constructor */
-  public X_M_DiscountSchemaLine(Properties ctx, int M_DiscountSchemaLine_ID, String trxName) {
-    super(ctx, M_DiscountSchemaLine_ID, trxName);
+  public X_M_DiscountSchemaLine(Properties ctx, int M_DiscountSchemaLine_ID) {
+    super(ctx, M_DiscountSchemaLine_ID);
     /**
      * if (M_DiscountSchemaLine_ID == 0) { setC_ConversionType_ID (0); setConversionDate (new
      * Timestamp( System.currentTimeMillis() )); // @#Date@ setLimit_AddAmt (Env.ZERO);
@@ -42,8 +41,8 @@ public class X_M_DiscountSchemaLine extends PO implements I_M_DiscountSchemaLine
   }
 
   /** Load Constructor */
-  public X_M_DiscountSchemaLine(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public X_M_DiscountSchemaLine(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   }
 
   /**

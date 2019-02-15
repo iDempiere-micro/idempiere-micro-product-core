@@ -28,8 +28,8 @@ public class MAssetGroup extends X_A_Asset_Group {
    * @param ctx context
    * @param A_Asset_Group_ID
    */
-  public MAssetGroup(Properties ctx, int A_Asset_Group_ID, String trxName) {
-    super(ctx, A_Asset_Group_ID, trxName);
+  public MAssetGroup(Properties ctx, int A_Asset_Group_ID) {
+    super(ctx, A_Asset_Group_ID);
   } //	MAssetGroup
 
   /**
@@ -38,8 +38,8 @@ public class MAssetGroup extends X_A_Asset_Group {
    * @param ctx context
    * @param rs result set
    */
-  public MAssetGroup(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public MAssetGroup(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   } //	MAssetGroup
 
   /**
@@ -55,7 +55,7 @@ public class MAssetGroup extends X_A_Asset_Group {
     MAssetGroup ag = s_cache.get(A_Asset_Group_ID);
     if (ag != null) return ag;
     // Load
-    ag = new MAssetGroup(ctx, A_Asset_Group_ID, null);
+    ag = new MAssetGroup(ctx, A_Asset_Group_ID);
     if (ag != null && ag.getId() != A_Asset_Group_ID) ag = null;
     else s_cache.put(A_Asset_Group_ID, ag);
     //

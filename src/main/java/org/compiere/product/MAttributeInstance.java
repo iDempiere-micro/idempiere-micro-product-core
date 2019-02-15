@@ -21,8 +21,8 @@ public class MAttributeInstance extends X_M_AttributeInstance {
    * @param ignored ignored
    * @param trxName transaction
    */
-  public MAttributeInstance(Properties ctx, int ignored, String trxName) {
-    super(ctx, 0, trxName);
+  public MAttributeInstance(Properties ctx, int ignored) {
+    super(ctx, 0);
     if (ignored != 0) throw new IllegalArgumentException("Multi-Key");
   } //	MAttributeInstance
 
@@ -33,8 +33,8 @@ public class MAttributeInstance extends X_M_AttributeInstance {
    * @param rs result set
    * @param trxName transaction
    */
-  public MAttributeInstance(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public MAttributeInstance(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   } //	MAttributeInstance
 
   /**
@@ -52,7 +52,7 @@ public class MAttributeInstance extends X_M_AttributeInstance {
       int M_AttributeSetInstance_ID,
       String Value,
       String trxName) {
-    super(ctx, 0, trxName);
+    super(ctx, 0);
     setMAttributeID(M_Attribute_ID);
     setM_AttributeSetInstance_ID(M_AttributeSetInstance_ID);
     setValue(Value);
@@ -73,7 +73,7 @@ public class MAttributeInstance extends X_M_AttributeInstance {
       int M_AttributeSetInstance_ID,
       BigDecimal BDValue,
       String trxName) {
-    super(ctx, 0, trxName);
+    super(ctx, 0);
     setMAttributeID(M_Attribute_ID);
     setM_AttributeSetInstance_ID(M_AttributeSetInstance_ID);
     setValueNumber(BDValue);
@@ -96,7 +96,7 @@ public class MAttributeInstance extends X_M_AttributeInstance {
       int M_AttributeValue_ID,
       String Value,
       String trxName) {
-    super(ctx, 0, trxName);
+    super(ctx, 0);
     setMAttributeID(M_Attribute_ID);
     setM_AttributeSetInstance_ID(M_AttributeSetInstance_ID);
     setM_AttributeValue_ID(M_AttributeValue_ID);

@@ -18,8 +18,8 @@ public class X_M_LotCtl extends BasePOName implements I_M_LotCtl, I_Persistent {
   private static final long serialVersionUID = 20171031L;
 
   /** Standard Constructor */
-  public X_M_LotCtl(Properties ctx, int M_LotCtl_ID, String trxName) {
-    super(ctx, M_LotCtl_ID, trxName);
+  public X_M_LotCtl(Properties ctx, int M_LotCtl_ID) {
+    super(ctx, M_LotCtl_ID);
     /**
      * if (M_LotCtl_ID == 0) { setCurrentNext (0); // 100 setIncrementNo (0); // 1 setM_LotCtl_ID
      * (0); setName (null); setStartNo (0); // 100 }
@@ -27,8 +27,8 @@ public class X_M_LotCtl extends BasePOName implements I_M_LotCtl, I_Persistent {
   }
 
   /** Load Constructor */
-  public X_M_LotCtl(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public X_M_LotCtl(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   }
 
   /**

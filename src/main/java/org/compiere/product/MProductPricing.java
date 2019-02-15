@@ -54,26 +54,14 @@ public class MProductPricing extends AbstractProductPricing {
    * @param trxName the transaction
    */
   public MProductPricing(
-      int M_Product_ID, int C_BPartner_ID, BigDecimal Qty, boolean isSOTrx, String trxName) {
-    setInitialValues(M_Product_ID, C_BPartner_ID, Qty, isSOTrx, trxName);
+      int M_Product_ID, int C_BPartner_ID, BigDecimal Qty, boolean isSOTrx) {
+    setInitialValues(M_Product_ID, C_BPartner_ID, Qty, isSOTrx);
   }
-  /**
-   * Constructor
-   *
-   * @param M_Product_ID product
-   * @param C_BPartner_ID partner
-   * @param Qty quantity
-   * @param isSOTrx SO or PO
-   * @deprecated Use constructor with explicit trxName parameter
-   */
-  public MProductPricing(int M_Product_ID, int C_BPartner_ID, BigDecimal Qty, boolean isSOTrx) {
-    this(M_Product_ID, C_BPartner_ID, Qty, isSOTrx, null);
-  } //	MProductPricing
 
   @Override
   public void setInitialValues(
-      int M_Product_ID, int C_BPartner_ID, BigDecimal qty, boolean isSOTrx, String trxName) {
-    super.setInitialValues(M_Product_ID, C_BPartner_ID, qty, isSOTrx, trxName);
+      int M_Product_ID, int C_BPartner_ID, BigDecimal qty, boolean isSOTrx) {
+    super.setInitialValues(M_Product_ID, C_BPartner_ID, qty, isSOTrx);
     checkVendorBreak();
   }
 
@@ -734,26 +722,26 @@ public class MProductPricing extends AbstractProductPricing {
   } //	isCalculated
 
   @Override
-  public void setOrderLine(I_C_OrderLine orderLine, String trxName) {
-    super.setOrderLine(orderLine, trxName);
+  public void setOrderLine(I_C_OrderLine orderLine) {
+    super.setOrderLine(orderLine);
     checkVendorBreak();
   }
 
   @Override
-  public void setInvoiceLine(I_C_InvoiceLine invoiceLine, String trxName) {
-    super.setInvoiceLine(invoiceLine, trxName);
+  public void setInvoiceLine(I_C_InvoiceLine invoiceLine) {
+    super.setInvoiceLine(invoiceLine);
     checkVendorBreak();
   }
 
   @Override
-  public void setProjectLine(I_C_ProjectLine projectLine, String trxName) {
-    super.setProjectLine(projectLine, trxName);
+  public void setProjectLine(I_C_ProjectLine projectLine) {
+    super.setProjectLine(projectLine);
     checkVendorBreak();
   }
 
   @Override
-  public void setRequisitionLine(I_M_RequisitionLine reqLine, String trxName) {
-    super.setRequisitionLine(reqLine, trxName);
+  public void setRequisitionLine(I_M_RequisitionLine reqLine) {
+    super.setRequisitionLine(reqLine);
     checkVendorBreak();
   }
 

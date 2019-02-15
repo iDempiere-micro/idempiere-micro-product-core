@@ -26,8 +26,8 @@ public class MDiscountSchemaBreak extends X_M_DiscountSchemaBreak {
    * @param M_DiscountSchemaBreak_ID id
    * @param trxName transaction
    */
-  public MDiscountSchemaBreak(Properties ctx, int M_DiscountSchemaBreak_ID, String trxName) {
-    super(ctx, M_DiscountSchemaBreak_ID, trxName);
+  public MDiscountSchemaBreak(Properties ctx, int M_DiscountSchemaBreak_ID) {
+    super(ctx, M_DiscountSchemaBreak_ID);
   } //	MDiscountSchemaBreak
 
   /**
@@ -37,8 +37,8 @@ public class MDiscountSchemaBreak extends X_M_DiscountSchemaBreak {
    * @param rs result set
    * @param trxName transaction
    */
-  public MDiscountSchemaBreak(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public MDiscountSchemaBreak(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   } //	MDiscountSchemaBreak
 
   /**

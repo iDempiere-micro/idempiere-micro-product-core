@@ -34,8 +34,8 @@ public class MResource extends X_S_Resource {
    * @param ctx context
    * @param S_Resource_ID id
    */
-  public MResource(Properties ctx, int S_Resource_ID, String trxName) {
-    super(ctx, S_Resource_ID, trxName);
+  public MResource(Properties ctx, int S_Resource_ID) {
+    super(ctx, S_Resource_ID);
   } //	MResource
 
   /**
@@ -44,8 +44,8 @@ public class MResource extends X_S_Resource {
    * @param ctx context
    * @param rs result set
    */
-  public MResource(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public MResource(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   } //	MResource
 
   /**
@@ -59,7 +59,7 @@ public class MResource extends X_S_Resource {
     if (S_Resource_ID <= 0) return null;
     MResource r = s_cache.get(S_Resource_ID);
     if (r == null) {
-      r = new MResource(ctx, S_Resource_ID, null);
+      r = new MResource(ctx, S_Resource_ID);
       if (r.getId() == S_Resource_ID) {
         s_cache.put(S_Resource_ID, r);
       }
@@ -78,7 +78,7 @@ public class MResource extends X_S_Resource {
       return MResourceType.get(getCtx(), getS_ResourceType_ID());
     //
     if (m_resourceType == null && getS_ResourceType_ID() != 0) {
-      m_resourceType = new MResourceType(getCtx(), getS_ResourceType_ID(), null);
+      m_resourceType = new MResourceType(getCtx(), getS_ResourceType_ID());
     }
     return m_resourceType;
   } //	getResourceType
@@ -90,9 +90,8 @@ public class MResource extends X_S_Resource {
    */
   public MProduct getProduct() {
     if (m_product == null) {
-      m_product = MProduct.forS_Resource_ID(getCtx(), getS_Resource_ID(), null);
+      m_product = MProduct.forS_Resource_ID(getCtx(), getS_Resource_ID());
     } else {
-      m_product.set_TrxName(null);
     }
     return m_product;
   } //	getProduct
@@ -102,7 +101,7 @@ public class MResource extends X_S_Resource {
     if (newRecord) {
       if (getValue() == null || getValue().length() == 0) setValue(getName());
       m_product = new MProduct(this, getResourceType());
-      m_product.saveEx(null);
+      m_product.saveEx();
     }
     //
     // Validate Manufacturing Resource
@@ -119,7 +118,7 @@ public class MResource extends X_S_Resource {
     if (!success) return success;
 
     MProduct prod = getProduct();
-    if (prod.setResource(this)) prod.saveEx(null);
+    if (prod.setResource(this)) prod.saveEx();
 
     return success;
   } //	afterSave

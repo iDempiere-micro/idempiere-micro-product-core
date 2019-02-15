@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.util.Properties;
 import org.compiere.model.I_A_Asset_Change;
 import org.compiere.orm.PO;
-import org.idempiere.common.util.KeyNamePair;
 import org.idempiere.orm.I_Persistent;
 
 /**
@@ -19,8 +18,8 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
   private static final long serialVersionUID = 20171031L;
 
   /** Standard Constructor */
-  public X_A_Asset_Change(Properties ctx, int A_Asset_Change_ID, String trxName) {
-    super(ctx, A_Asset_Change_ID, trxName);
+  public X_A_Asset_Change(Properties ctx, int A_Asset_Change_ID) {
+    super(ctx, A_Asset_Change_ID);
     /**
      * if (A_Asset_Change_ID == 0) { setA_Asset_Change_ID (0); setA_Asset_ID (0); setAssetValueAmt
      * (Env.ZERO); // 0 setChangeType (null); setTextDetails (null); }
@@ -28,8 +27,8 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change, I_Persiste
   }
 
   /** Load Constructor */
-  public X_A_Asset_Change(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public X_A_Asset_Change(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   }
 
   /**

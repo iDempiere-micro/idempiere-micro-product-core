@@ -5,7 +5,6 @@ import org.compiere.model.HasName;
 import org.compiere.model.I_M_PriceList_Version;
 import org.compiere.orm.MTable;
 import org.compiere.orm.PO;
-import org.idempiere.common.util.KeyNamePair;
 import org.idempiere.orm.I_Persistent;
 
 import java.sql.ResultSet;
@@ -24,8 +23,8 @@ public class X_M_PriceList_Version extends PO implements I_M_PriceList_Version, 
   private static final long serialVersionUID = 20171031L;
 
   /** Standard Constructor */
-  public X_M_PriceList_Version(Properties ctx, int M_PriceList_Version_ID, String trxName) {
-    super(ctx, M_PriceList_Version_ID, trxName);
+  public X_M_PriceList_Version(Properties ctx, int M_PriceList_Version_ID) {
+    super(ctx, M_PriceList_Version_ID);
     /**
      * if (M_PriceList_Version_ID == 0) { setM_DiscountSchema_ID (0); setM_PriceList_ID (0);
      * setM_PriceList_Version_ID (0); setName (null); // @#Date@ setValidFrom (new Timestamp(
@@ -34,8 +33,8 @@ public class X_M_PriceList_Version extends PO implements I_M_PriceList_Version, 
   }
 
   /** Load Constructor */
-  public X_M_PriceList_Version(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public X_M_PriceList_Version(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   }
   public X_M_PriceList_Version(Properties ctx, Row row) {
     super(ctx, row);
@@ -79,7 +78,7 @@ public class X_M_PriceList_Version extends PO implements I_M_PriceList_Version, 
   public org.compiere.model.I_M_PriceList getM_PriceList() throws RuntimeException {
     return (org.compiere.model.I_M_PriceList)
         MTable.get(getCtx(), org.compiere.model.I_M_PriceList.Table_Name)
-            .getPO(getM_PriceList_ID(), null);
+            .getPO(getM_PriceList_ID());
   }
 
   /**
@@ -100,7 +99,7 @@ public class X_M_PriceList_Version extends PO implements I_M_PriceList_Version, 
    */
   public void setM_PriceList_ID(int M_PriceList_ID) {
     if (M_PriceList_ID < 1) set_ValueNoCheck(COLUMNNAME_M_PriceList_ID, null);
-    else set_ValueNoCheck(COLUMNNAME_M_PriceList_ID, Integer.valueOf(M_PriceList_ID));
+    else set_ValueNoCheck(COLUMNNAME_M_PriceList_ID, M_PriceList_ID);
   }
 
     /**

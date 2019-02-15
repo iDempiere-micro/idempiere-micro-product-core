@@ -17,7 +17,7 @@ public interface IProductPricing {
    * @param trxName
    */
   void setInitialValues(
-      int M_Product_ID, int C_BPartner_ID, BigDecimal qty, boolean isSOTrx, String trxName);
+      int M_Product_ID, int C_BPartner_ID, BigDecimal qty, boolean isSOTrx);
 
   /**
    * Calculate Price
@@ -94,7 +94,7 @@ public interface IProductPricing {
    * @param orderLine
    * @param trxName
    */
-  void setOrderLine(I_C_OrderLine orderLine, String trxName);
+  void setOrderLine(I_C_OrderLine orderLine);
 
   /**
    * Set invoice line and calculate the parameters from it
@@ -102,7 +102,7 @@ public interface IProductPricing {
    * @param invoiceLine
    * @param trxName
    */
-  void setInvoiceLine(I_C_InvoiceLine invoiceLine, String trxName);
+  void setInvoiceLine(I_C_InvoiceLine invoiceLine);
 
   /**
    * Set project line and calculate the parameters from it
@@ -110,7 +110,7 @@ public interface IProductPricing {
    * @param projectLine
    * @param trxName
    */
-  void setProjectLine(I_C_ProjectLine projectLine, String trxName);
+  void setProjectLine(I_C_ProjectLine projectLine);
 
   /**
    * Set requisition line and calculate the parameters from it
@@ -118,6 +118,6 @@ public interface IProductPricing {
    * @param reqLine
    * @param trxName
    */
-  void setRequisitionLine(I_M_RequisitionLine reqLine, String trxName);
+  void setRequisitionLine(I_M_RequisitionLine reqLine);
 
 }

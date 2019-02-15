@@ -21,8 +21,8 @@ public class X_M_ProductPrice extends PO implements I_M_ProductPrice, I_Persiste
   private static final long serialVersionUID = 20171031L;
 
   /** Standard Constructor */
-  public X_M_ProductPrice(Properties ctx, int M_ProductPrice_ID, String trxName) {
-    super(ctx, M_ProductPrice_ID, trxName);
+  public X_M_ProductPrice(Properties ctx, int M_ProductPrice_ID) {
+    super(ctx, M_ProductPrice_ID);
     /**
      * if (M_ProductPrice_ID == 0) { setM_PriceList_Version_ID (0); setM_Product_ID (0);
      * setPriceLimit (Env.ZERO); setPriceList (Env.ZERO); setPriceStd (Env.ZERO); }
@@ -30,8 +30,8 @@ public class X_M_ProductPrice extends PO implements I_M_ProductPrice, I_Persiste
   }
 
   /** Load Constructor */
-  public X_M_ProductPrice(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public X_M_ProductPrice(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   }
 
   /**
@@ -51,7 +51,7 @@ public class X_M_ProductPrice extends PO implements I_M_ProductPrice, I_Persiste
   public org.compiere.model.I_M_PriceList_Version getM_PriceList_Version() throws RuntimeException {
     return (org.compiere.model.I_M_PriceList_Version)
         MTable.get(getCtx(), org.compiere.model.I_M_PriceList_Version.Table_Name)
-            .getPO(getM_PriceList_Version_ID(), null);
+            .getPO(getM_PriceList_Version_ID());
   }
 
   /**
@@ -73,7 +73,7 @@ public class X_M_ProductPrice extends PO implements I_M_ProductPrice, I_Persiste
   public void setM_PriceList_Version_ID(int M_PriceList_Version_ID) {
     if (M_PriceList_Version_ID < 1) set_ValueNoCheck(COLUMNNAME_M_PriceList_Version_ID, null);
     else
-      set_ValueNoCheck(COLUMNNAME_M_PriceList_Version_ID, Integer.valueOf(M_PriceList_Version_ID));
+      set_ValueNoCheck(COLUMNNAME_M_PriceList_Version_ID, M_PriceList_Version_ID);
   }
 
     /**
@@ -94,7 +94,7 @@ public class X_M_ProductPrice extends PO implements I_M_ProductPrice, I_Persiste
    */
   public void setM_Product_ID(int M_Product_ID) {
     if (M_Product_ID < 1) set_ValueNoCheck(COLUMNNAME_M_Product_ID, null);
-    else set_ValueNoCheck(COLUMNNAME_M_Product_ID, Integer.valueOf(M_Product_ID));
+    else set_ValueNoCheck(COLUMNNAME_M_Product_ID, M_Product_ID);
   }
 
     /**

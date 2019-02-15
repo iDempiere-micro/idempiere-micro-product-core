@@ -39,8 +39,8 @@ public class MProductCategory extends X_M_Product_Category {
    * @param M_Product_Category_ID id
    * @param trxName transaction
    */
-  public MProductCategory(Properties ctx, int M_Product_Category_ID, String trxName) {
-    super(ctx, M_Product_Category_ID, trxName);
+  public MProductCategory(Properties ctx, int M_Product_Category_ID) {
+    super(ctx, M_Product_Category_ID);
     if (M_Product_Category_ID == 0) {
       //	setName (null);
       //	setValue (null);
@@ -57,8 +57,8 @@ public class MProductCategory extends X_M_Product_Category {
    * @param rs result set
    * @param trxName transaction
    */
-  public MProductCategory(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public MProductCategory(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   } //	MProductCategory
 
   /**
@@ -69,10 +69,10 @@ public class MProductCategory extends X_M_Product_Category {
    * @return category
    */
   public static MProductCategory get(Properties ctx, int M_Product_Category_ID) {
-    Integer ii = new Integer(M_Product_Category_ID);
+    Integer ii = M_Product_Category_ID;
     MProductCategory retValue = (MProductCategory) s_cache.get(ii);
     if (retValue != null) return retValue;
-    retValue = new MProductCategory(ctx, M_Product_Category_ID, null);
+    retValue = new MProductCategory(ctx, M_Product_Category_ID);
     if (retValue.getId() != 0) s_cache.put(M_Product_Category_ID, retValue);
     return retValue;
   } //	get

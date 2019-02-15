@@ -20,8 +20,8 @@ public class MLotCtl extends X_M_LotCtl {
    * @param M_LotCtl_ID id
    * @param trxName transaction
    */
-  public MLotCtl(Properties ctx, int M_LotCtl_ID, String trxName) {
-    super(ctx, M_LotCtl_ID, trxName);
+  public MLotCtl(Properties ctx, int M_LotCtl_ID) {
+    super(ctx, M_LotCtl_ID);
     if (M_LotCtl_ID == 0) {
       //	setM_LotCtl_ID (0);
       setStartNo(1);
@@ -38,8 +38,8 @@ public class MLotCtl extends X_M_LotCtl {
    * @param rs result set
    * @param trxName transaction
    */
-  public MLotCtl(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public MLotCtl(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   } //	MLotCtl
 
   /**

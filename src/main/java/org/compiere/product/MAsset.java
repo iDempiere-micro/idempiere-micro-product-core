@@ -44,8 +44,8 @@ public class MAsset extends X_A_Asset
   private BigDecimal m_A_Accumulated_Depr_F = Env.ZERO;
 
   /** Create constructor */
-  public MAsset(Properties ctx, int A_Asset_ID, String trxName) {
-    super(ctx, A_Asset_ID, trxName);
+  public MAsset(Properties ctx, int A_Asset_ID) {
+    super(ctx, A_Asset_ID);
     if (A_Asset_ID == 0) {
       setA_Asset_Status(X_A_Asset.A_ASSET_STATUS_New);
       // commented out by @win
@@ -63,8 +63,8 @@ public class MAsset extends X_A_Asset
    * @param ctx context
    * @param rs result set record
    */
-  public MAsset(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public MAsset(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   } //	MAsset
 
     // Temporary used variables:
@@ -141,7 +141,7 @@ public class MAsset extends X_A_Asset
     if (getM_Product_ID() > 0 && getMAttributeSetInstance_ID() <= 0) {
       MProduct product = MProduct.get(getCtx(), getM_Product_ID());
       MAttributeSetInstance asi =
-          new MAttributeSetInstance(getCtx(), 0, product.getMAttributeSet_ID(), null);
+          new MAttributeSetInstance(getCtx(), 0, product.getMAttributeSet_ID());
       asi.setSerNo(getSerNo());
       asi.setDescription();
       asi.saveEx();
@@ -205,7 +205,7 @@ public class MAsset extends X_A_Asset
     // If new record, create accounting and workfile
     if (newRecord) {
       // @win: set value at asset group as default value for asset
-      MAssetGroup assetgroup = new MAssetGroup(getCtx(), getA_Asset_Group_ID(), null);
+      MAssetGroup assetgroup = new MAssetGroup(getCtx(), getA_Asset_Group_ID());
       String isDepreciated = (assetgroup.isDepreciated()) ? "Y" : "N";
       String isOwned = (assetgroup.isOwned()) ? "Y" : "N";
       setIsDepreciated(assetgroup.isDepreciated());
@@ -220,7 +220,7 @@ public class MAsset extends X_A_Asset
       // end @win
 
     } else {
-      MAssetChange.createAndSave(getCtx(), "UPD", new PO[] {this}, null);
+      MAssetChange.createAndSave(getCtx(), "UPD", new PO[] {this});
     }
 
     return true;

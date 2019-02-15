@@ -29,8 +29,8 @@ public class MCurrency extends X_C_Currency {
    * @param C_Currency_ID id
    * @param trxName transaction
    */
-  public MCurrency(Properties ctx, int C_Currency_ID, String trxName) {
-    super(ctx, C_Currency_ID, trxName);
+  public MCurrency(Properties ctx, int C_Currency_ID) {
+    super(ctx, C_Currency_ID);
     if (C_Currency_ID == 0) {
       setIsEMUMember(false);
       setIsEuro(false);
@@ -46,8 +46,8 @@ public class MCurrency extends X_C_Currency {
    * @param rs
    * @param trxName
    */
-  public MCurrency(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public MCurrency(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   }
   /**
    * Currency Constructor
@@ -68,7 +68,7 @@ public class MCurrency extends X_C_Currency {
       int StdPrecision,
       int CostingPrecision,
       String trxName) {
-    super(ctx, 0, trxName);
+    super(ctx, 0);
     setISO_Code(ISO_Code);
     setDescription(Description);
     setCurSymbol(CurSymbol);
@@ -91,7 +91,7 @@ public class MCurrency extends X_C_Currency {
     if (retValue != null) return retValue;
 
     //	Try database
-    Query query = new Query(ctx, I_C_Currency.Table_Name, "ISO_Code=?", null);
+    Query query = new Query(ctx, I_C_Currency.Table_Name, "ISO_Code=?");
     query.setParameters(ISOcode);
     retValue = (MCurrency) query.firstOnly();
 
@@ -114,7 +114,7 @@ public class MCurrency extends X_C_Currency {
     if (retValue != null) return retValue;
 
     //	Create it
-    retValue = new MCurrency(ctx, C_Currency_ID, null);
+    retValue = new MCurrency(ctx, C_Currency_ID);
     //	Save in System
     if (retValue.getClientId() == 0) s_currencies.put(key, retValue);
     return retValue;

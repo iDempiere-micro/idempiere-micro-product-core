@@ -39,8 +39,8 @@ public class MPriceList extends X_M_PriceList {
    * @param M_PriceList_ID id
    * @param trxName transaction
    */
-  public MPriceList(Properties ctx, int M_PriceList_ID, String trxName) {
-    super(ctx, M_PriceList_ID, trxName);
+  public MPriceList(Properties ctx, int M_PriceList_ID) {
+    super(ctx, M_PriceList_ID);
     if (M_PriceList_ID == 0) {
       setEnforcePriceLimit(false);
       setIsDefault(false);
@@ -59,8 +59,8 @@ public class MPriceList extends X_M_PriceList {
    * @param rs result set
    * @param trxName transaction
    */
-  public MPriceList(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public MPriceList(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   } //	MPriceList
   public MPriceList(Properties ctx, Row row) {
     super(ctx, row);
@@ -72,7 +72,7 @@ public class MPriceList extends X_M_PriceList {
    * @param impPL import
    */
   public MPriceList(X_I_PriceList impPL) {
-    this(impPL.getCtx(), 0, null);
+    this(impPL.getCtx(), 0);
     setClientOrg(impPL);
     setUpdatedBy(impPL.getUpdatedBy());
     //
@@ -93,11 +93,11 @@ public class MPriceList extends X_M_PriceList {
    * @param trxName transaction
    * @return PriceList
    */
-  public static MPriceList get(Properties ctx, int M_PriceList_ID, String trxName) {
+  public static MPriceList get(Properties ctx, int M_PriceList_ID) {
     Integer key = new Integer(M_PriceList_ID);
     MPriceList retValue = (MPriceList) s_cache.get(key);
     if (retValue == null) {
-      retValue = new MPriceList(ctx, M_PriceList_ID, trxName);
+      retValue = new MPriceList(ctx, M_PriceList_ID);
       s_cache.put(key, retValue);
     }
     return retValue;
@@ -127,7 +127,7 @@ public class MPriceList extends X_M_PriceList {
     //	Get from DB
     final String whereClause = "AD_Client_ID=? AND IsDefault=? AND IsSOPriceList=?";
     retValue =
-        new Query(ctx, I_M_PriceList.Table_Name, whereClause, null)
+        new Query(ctx, I_M_PriceList.Table_Name, whereClause)
             .setParameters(AD_Client_ID, "Y", IsSOPriceList ? "Y" : "N")
             .setOnlyActiveRecords(true)
             .setOrderBy("M_PriceList_ID")
@@ -148,7 +148,7 @@ public class MPriceList extends X_M_PriceList {
    * @return precision
    */
   public static int getStandardPrecision(Properties ctx, int M_PriceList_ID) {
-    MPriceList pl = MPriceList.get(ctx, M_PriceList_ID, null);
+    MPriceList pl = MPriceList.get(ctx, M_PriceList_ID);
     return pl.getStandardPrecision();
   } //	getStandardPrecision
 
@@ -160,7 +160,7 @@ public class MPriceList extends X_M_PriceList {
    * @return precision
    */
   public static int getPricePrecision(Properties ctx, int M_PriceList_ID) {
-    MPriceList pl = MPriceList.get(ctx, M_PriceList_ID, null);
+    MPriceList pl = MPriceList.get(ctx, M_PriceList_ID);
     return pl.getPricePrecision();
   } //	getPricePrecision
 
@@ -175,7 +175,7 @@ public class MPriceList extends X_M_PriceList {
 
     final String whereClause = "M_PriceList_ID=? AND TRUNC(ValidFrom)<=?";
     m_plv =
-        new Query(getCtx(), I_M_PriceList_Version.Table_Name, whereClause, null)
+        new Query(getCtx(), I_M_PriceList_Version.Table_Name, whereClause)
             .setParameters(getM_PriceList_ID(), valid)
             .setOnlyActiveRecords(true)
             .setOrderBy("ValidFrom DESC")

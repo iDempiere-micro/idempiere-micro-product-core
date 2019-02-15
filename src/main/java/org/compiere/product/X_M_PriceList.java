@@ -4,7 +4,6 @@ import kotliquery.Row;
 import org.compiere.model.HasName;
 import org.compiere.model.I_M_PriceList;
 import org.compiere.orm.PO;
-import org.idempiere.common.util.KeyNamePair;
 import org.idempiere.orm.I_Persistent;
 
 import java.sql.ResultSet;
@@ -22,8 +21,8 @@ public abstract class X_M_PriceList extends PO implements I_M_PriceList, I_Persi
   private static final long serialVersionUID = 20171031L;
 
   /** Standard Constructor */
-  public X_M_PriceList(Properties ctx, int M_PriceList_ID, String trxName) {
-    super(ctx, M_PriceList_ID, trxName);
+  public X_M_PriceList(Properties ctx, int M_PriceList_ID) {
+    super(ctx, M_PriceList_ID);
     /**
      * if (M_PriceList_ID == 0) { setC_Currency_ID (0); setEnforcePriceLimit (false); setIsDefault
      * (false); setIsSOPriceList (false); setIsTaxIncluded (false); setM_PriceList_ID (0); setName
@@ -32,8 +31,8 @@ public abstract class X_M_PriceList extends PO implements I_M_PriceList, I_Persi
   }
 
   /** Load Constructor */
-  public X_M_PriceList(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public X_M_PriceList(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   }
   public X_M_PriceList(Properties ctx, Row row) {
     super(ctx, row);

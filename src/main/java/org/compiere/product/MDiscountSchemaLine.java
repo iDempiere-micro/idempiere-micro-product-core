@@ -21,8 +21,8 @@ public class MDiscountSchemaLine extends X_M_DiscountSchemaLine {
    * @param M_DiscountSchemaLine_ID id
    * @param trxName transaction
    */
-  public MDiscountSchemaLine(Properties ctx, int M_DiscountSchemaLine_ID, String trxName) {
-    super(ctx, M_DiscountSchemaLine_ID, trxName);
+  public MDiscountSchemaLine(Properties ctx, int M_DiscountSchemaLine_ID) {
+    super(ctx, M_DiscountSchemaLine_ID);
   } //	MDiscountSchemaLine
 
   /**
@@ -32,7 +32,7 @@ public class MDiscountSchemaLine extends X_M_DiscountSchemaLine {
    * @param rs result set
    * @param trxName transaction
    */
-  public MDiscountSchemaLine(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public MDiscountSchemaLine(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   } //	MDiscountSchemaLine
 } //	MDiscountSchemaLine

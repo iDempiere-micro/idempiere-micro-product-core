@@ -24,13 +24,13 @@ public class X_M_Product_Category extends BasePONameValue
   private static final long serialVersionUID = 20171031L;
 
   /** Standard Constructor */
-  public X_M_Product_Category(Properties ctx, int M_Product_Category_ID, String trxName) {
-    super(ctx, M_Product_Category_ID, trxName);
+  public X_M_Product_Category(Properties ctx, int M_Product_Category_ID) {
+    super(ctx, M_Product_Category_ID);
   }
 
   /** Load Constructor */
-  public X_M_Product_Category(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public X_M_Product_Category(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   }
 
   /**
@@ -50,7 +50,7 @@ public class X_M_Product_Category extends BasePONameValue
   public org.compiere.model.I_A_Asset_Group getA_Asset_Group() throws RuntimeException {
     return (org.compiere.model.I_A_Asset_Group)
         MTable.get(getCtx(), org.compiere.model.I_A_Asset_Group.Table_Name)
-            .getPO(getA_Asset_Group_ID(), null);
+            .getPO(getA_Asset_Group_ID());
   }
 
   /**

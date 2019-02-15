@@ -19,8 +19,8 @@ public class X_M_AttributeValue extends BasePONameValue
   private static final long serialVersionUID = 20171031L;
 
   /** Standard Constructor */
-  public X_M_AttributeValue(Properties ctx, int M_AttributeValue_ID, String trxName) {
-    super(ctx, M_AttributeValue_ID, trxName);
+  public X_M_AttributeValue(Properties ctx, int M_AttributeValue_ID) {
+    super(ctx, M_AttributeValue_ID);
     /**
      * if (M_AttributeValue_ID == 0) { setMAttributeID (0); setM_AttributeValue_ID (0); setName
      * (null); setValue (null); }
@@ -28,8 +28,8 @@ public class X_M_AttributeValue extends BasePONameValue
   }
 
   /** Load Constructor */
-  public X_M_AttributeValue(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public X_M_AttributeValue(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   }
 
   /**

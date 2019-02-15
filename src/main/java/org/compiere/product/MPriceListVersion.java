@@ -25,8 +25,8 @@ public class MPriceListVersion extends X_M_PriceList_Version {
    * @param M_PriceList_Version_ID id
    * @param trxName transaction
    */
-  public MPriceListVersion(Properties ctx, int M_PriceList_Version_ID, String trxName) {
-    super(ctx, M_PriceList_Version_ID, trxName);
+  public MPriceListVersion(Properties ctx, int M_PriceList_Version_ID) {
+    super(ctx, M_PriceList_Version_ID);
     if (M_PriceList_Version_ID == 0) {
       //	setName (null);	// @#Date@
       //	setM_PriceList_ID (0);
@@ -42,8 +42,8 @@ public class MPriceListVersion extends X_M_PriceList_Version {
    * @param rs result set
    * @param trxName transaction
    */
-  public MPriceListVersion(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public MPriceListVersion(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   } //	MPriceListVersion
   public MPriceListVersion(Properties ctx, Row row) {
     super(ctx, row);
@@ -56,7 +56,7 @@ public class MPriceListVersion extends X_M_PriceList_Version {
    * @param pl parent
    */
   public MPriceListVersion(I_M_PriceList pl) {
-    this(pl.getCtx(), 0, null);
+    this(pl.getCtx(), 0);
     setClientOrg(pl);
     setM_PriceList_ID(pl.getM_PriceList_ID());
   } //	MPriceListVersion

@@ -26,8 +26,8 @@ public class MAttribute extends X_M_Attribute {
    * @param M_Attribute_ID id
    * @param trxName transaction
    */
-  public MAttribute(Properties ctx, int M_Attribute_ID, String trxName) {
-    super(ctx, M_Attribute_ID, trxName);
+  public MAttribute(Properties ctx, int M_Attribute_ID) {
+    super(ctx, M_Attribute_ID);
     if (M_Attribute_ID == 0) {
       setAttributeValueType(X_M_Attribute.ATTRIBUTEVALUETYPE_StringMax40);
       setIsInstanceAttribute(false);
@@ -42,8 +42,8 @@ public class MAttribute extends X_M_Attribute {
    * @param rs result set
    * @param trxName transaction
    */
-  public MAttribute(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public MAttribute(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   } //	MAttribute
 
     /**
@@ -59,7 +59,7 @@ public class MAttribute extends X_M_Attribute {
             + I_M_AttributeInstance.COLUMNNAME_M_AttributeSetInstance_ID
             + "=?";
     MAttributeInstance retValue =
-        new Query(getCtx(), I_M_AttributeInstance.Table_Name, whereClause, null)
+        new Query(getCtx(), I_M_AttributeInstance.Table_Name, whereClause)
             .setParameters(getMAttribute_ID(), M_AttributeSetInstance_ID)
             .first();
 

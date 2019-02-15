@@ -22,14 +22,14 @@ public class X_I_PriceList extends PO implements I_I_PriceList, I_Persistent {
   private static final long serialVersionUID = 20171031L;
 
   /** Standard Constructor */
-  public X_I_PriceList(Properties ctx, int I_PriceList_ID, String trxName) {
-    super(ctx, I_PriceList_ID, trxName);
+  public X_I_PriceList(Properties ctx, int I_PriceList_ID) {
+    super(ctx, I_PriceList_ID);
     /** if (I_PriceList_ID == 0) { setI_IsImported (false); // N setI_PriceList_ID (0); } */
   }
 
   /** Load Constructor */
-  public X_I_PriceList(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public X_I_PriceList(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   }
 
   /**

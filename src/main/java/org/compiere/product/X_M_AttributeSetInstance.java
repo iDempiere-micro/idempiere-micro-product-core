@@ -6,7 +6,6 @@ import java.util.Properties;
 import org.compiere.model.I_M_AttributeSetInstance;
 import org.compiere.orm.MTable;
 import org.compiere.orm.PO;
-import org.idempiere.common.util.KeyNamePair;
 import org.idempiere.orm.I_Persistent;
 
 /**
@@ -21,8 +20,8 @@ public class X_M_AttributeSetInstance extends PO implements I_M_AttributeSetInst
   private static final long serialVersionUID = 20171031L;
 
   /** Standard Constructor */
-  public X_M_AttributeSetInstance(Properties ctx, int M_AttributeSetInstance_ID, String trxName) {
-    super(ctx, M_AttributeSetInstance_ID, trxName);
+  public X_M_AttributeSetInstance(Properties ctx, int M_AttributeSetInstance_ID) {
+    super(ctx, M_AttributeSetInstance_ID);
     /**
      * if (M_AttributeSetInstance_ID == 0) { setM_AttributeSet_ID (0); setM_AttributeSetInstance_ID
      * (0); }
@@ -30,8 +29,8 @@ public class X_M_AttributeSetInstance extends PO implements I_M_AttributeSetInst
   }
 
   /** Load Constructor */
-  public X_M_AttributeSetInstance(Properties ctx, ResultSet rs, String trxName) {
-    super(ctx, rs, trxName);
+  public X_M_AttributeSetInstance(Properties ctx, ResultSet rs) {
+    super(ctx, rs);
   }
 
   /**
@@ -105,7 +104,7 @@ public class X_M_AttributeSetInstance extends PO implements I_M_AttributeSetInst
   public org.compiere.model.I_M_AttributeSet getMAttributeSet() throws RuntimeException {
     return (org.compiere.model.I_M_AttributeSet)
         MTable.get(getCtx(), org.compiere.model.I_M_AttributeSet.Table_Name)
-            .getPO(getMAttributeSet_ID(), null);
+            .getPO(getMAttributeSet_ID());
   }
 
   /**
