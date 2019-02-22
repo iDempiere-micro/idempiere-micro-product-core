@@ -11,28 +11,30 @@ import java.util.Properties;
  */
 public class MDiscountSchemaLine extends X_M_DiscountSchemaLine {
 
-  /** */
-  private static final long serialVersionUID = 1632154004024021493L;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1632154004024021493L;
 
-  /**
-   * Standard Constructor
-   *
-   * @param ctx context
-   * @param M_DiscountSchemaLine_ID id
-   * @param trxName transaction
-   */
-  public MDiscountSchemaLine(Properties ctx, int M_DiscountSchemaLine_ID) {
-    super(ctx, M_DiscountSchemaLine_ID);
-  } //	MDiscountSchemaLine
+    /**
+     * Standard Constructor
+     *
+     * @param ctx                     context
+     * @param M_DiscountSchemaLine_ID id
+     * @param trxName                 transaction
+     */
+    public MDiscountSchemaLine(Properties ctx, int M_DiscountSchemaLine_ID) {
+        super(ctx, M_DiscountSchemaLine_ID);
+    } //	MDiscountSchemaLine
 
-  /**
-   * Load Constructor
-   *
-   * @param ctx context
-   * @param rs result set
-   * @param trxName transaction
-   */
-  public MDiscountSchemaLine(Properties ctx, ResultSet rs) {
-    super(ctx, rs);
-  } //	MDiscountSchemaLine
+    /**
+     * Load Constructor
+     *
+     * @param ctx     context
+     * @param rs      result set
+     * @param trxName transaction
+     */
+    public MDiscountSchemaLine(Properties ctx, ResultSet rs) {
+        super(ctx, rs);
+    } //	MDiscountSchemaLine
 } //	MDiscountSchemaLine
