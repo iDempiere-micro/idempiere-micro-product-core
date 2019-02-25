@@ -2,7 +2,6 @@ package org.compiere.product;
 
 import org.compiere.model.I_S_ResourceType;
 import org.compiere.orm.BasePONameValue;
-import org.idempiere.orm.I_Persistent;
 
 import java.sql.ResultSet;
 import java.sql.Timestamp;
@@ -14,7 +13,7 @@ import java.util.Properties;
  * @author iDempiere (generated)
  * @version Release 5.1 - $Id$
  */
-public class X_S_ResourceType extends BasePONameValue implements I_S_ResourceType, I_Persistent {
+public class X_S_ResourceType extends BasePONameValue implements I_S_ResourceType {
 
     /**
      *
@@ -62,7 +61,7 @@ public class X_S_ResourceType extends BasePONameValue implements I_S_ResourceTyp
      * @return Tax Category
      */
     public int getC_TaxCategory_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_C_TaxCategory_ID);
+        Integer ii = (Integer) getValue(COLUMNNAME_C_TaxCategory_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -73,7 +72,7 @@ public class X_S_ResourceType extends BasePONameValue implements I_S_ResourceTyp
      * @return Unit of Measure
      */
     public int getC_UOM_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_C_UOM_ID);
+        Integer ii = (Integer) getValue(COLUMNNAME_C_UOM_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -84,7 +83,7 @@ public class X_S_ResourceType extends BasePONameValue implements I_S_ResourceTyp
      * @return Resource has day slot availability
      */
     public boolean isDateSlot() {
-        Object oo = get_Value(COLUMNNAME_IsDateSlot);
+        Object oo = getValue(COLUMNNAME_IsDateSlot);
         if (oo != null) {
             if (oo instanceof Boolean) return ((Boolean) oo).booleanValue();
             return "Y".equals(oo);
@@ -98,7 +97,7 @@ public class X_S_ResourceType extends BasePONameValue implements I_S_ResourceTyp
      * @return Resource has time slot availability
      */
     public boolean isTimeSlot() {
-        Object oo = get_Value(COLUMNNAME_IsTimeSlot);
+        Object oo = getValue(COLUMNNAME_IsTimeSlot);
         if (oo != null) {
             if (oo instanceof Boolean) return ((Boolean) oo).booleanValue();
             return "Y".equals(oo);
@@ -112,7 +111,7 @@ public class X_S_ResourceType extends BasePONameValue implements I_S_ResourceTyp
      * @return Category of a Product
      */
     public int getM_Product_Category_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_M_Product_Category_ID);
+        Integer ii = (Integer) getValue(COLUMNNAME_M_Product_Category_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -123,7 +122,7 @@ public class X_S_ResourceType extends BasePONameValue implements I_S_ResourceTyp
      * @return Available on Fridays
      */
     public boolean isOnFriday() {
-        Object oo = get_Value(COLUMNNAME_OnFriday);
+        Object oo = getValue(COLUMNNAME_OnFriday);
         if (oo != null) {
             if (oo instanceof Boolean) return ((Boolean) oo).booleanValue();
             return "Y".equals(oo);
@@ -137,7 +136,7 @@ public class X_S_ResourceType extends BasePONameValue implements I_S_ResourceTyp
      * @return Available on Mondays
      */
     public boolean isOnMonday() {
-        Object oo = get_Value(COLUMNNAME_OnMonday);
+        Object oo = getValue(COLUMNNAME_OnMonday);
         if (oo != null) {
             if (oo instanceof Boolean) return ((Boolean) oo).booleanValue();
             return "Y".equals(oo);
@@ -151,7 +150,7 @@ public class X_S_ResourceType extends BasePONameValue implements I_S_ResourceTyp
      * @return Available on Saturday
      */
     public boolean isOnSaturday() {
-        Object oo = get_Value(COLUMNNAME_OnSaturday);
+        Object oo = getValue(COLUMNNAME_OnSaturday);
         if (oo != null) {
             if (oo instanceof Boolean) return ((Boolean) oo).booleanValue();
             return "Y".equals(oo);
@@ -165,7 +164,7 @@ public class X_S_ResourceType extends BasePONameValue implements I_S_ResourceTyp
      * @return Available on Sundays
      */
     public boolean isOnSunday() {
-        Object oo = get_Value(COLUMNNAME_OnSunday);
+        Object oo = getValue(COLUMNNAME_OnSunday);
         if (oo != null) {
             if (oo instanceof Boolean) return ((Boolean) oo).booleanValue();
             return "Y".equals(oo);
@@ -179,7 +178,7 @@ public class X_S_ResourceType extends BasePONameValue implements I_S_ResourceTyp
      * @return Available on Thursdays
      */
     public boolean isOnThursday() {
-        Object oo = get_Value(COLUMNNAME_OnThursday);
+        Object oo = getValue(COLUMNNAME_OnThursday);
         if (oo != null) {
             if (oo instanceof Boolean) return ((Boolean) oo).booleanValue();
             return "Y".equals(oo);
@@ -193,7 +192,7 @@ public class X_S_ResourceType extends BasePONameValue implements I_S_ResourceTyp
      * @return Available on Tuesdays
      */
     public boolean isOnTuesday() {
-        Object oo = get_Value(COLUMNNAME_OnTuesday);
+        Object oo = getValue(COLUMNNAME_OnTuesday);
         if (oo != null) {
             if (oo instanceof Boolean) return ((Boolean) oo).booleanValue();
             return "Y".equals(oo);
@@ -207,7 +206,7 @@ public class X_S_ResourceType extends BasePONameValue implements I_S_ResourceTyp
      * @return Available on Wednesdays
      */
     public boolean isOnWednesday() {
-        Object oo = get_Value(COLUMNNAME_OnWednesday);
+        Object oo = getValue(COLUMNNAME_OnWednesday);
         if (oo != null) {
             if (oo instanceof Boolean) return ((Boolean) oo).booleanValue();
             return "Y".equals(oo);
@@ -221,7 +220,7 @@ public class X_S_ResourceType extends BasePONameValue implements I_S_ResourceTyp
      * @return Resource Type
      */
     public int getS_ResourceType_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_S_ResourceType_ID);
+        Integer ii = (Integer) getValue(COLUMNNAME_S_ResourceType_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -232,7 +231,7 @@ public class X_S_ResourceType extends BasePONameValue implements I_S_ResourceTyp
      * @return Time when timeslot ends
      */
     public Timestamp getTimeSlotEnd() {
-        return (Timestamp) get_Value(COLUMNNAME_TimeSlotEnd);
+        return (Timestamp) getValue(COLUMNNAME_TimeSlotEnd);
     }
 
     /**
@@ -241,7 +240,7 @@ public class X_S_ResourceType extends BasePONameValue implements I_S_ResourceTyp
      * @return Time when timeslot starts
      */
     public Timestamp getTimeSlotStart() {
-        return (Timestamp) get_Value(COLUMNNAME_TimeSlotStart);
+        return (Timestamp) getValue(COLUMNNAME_TimeSlotStart);
     }
 
     @Override

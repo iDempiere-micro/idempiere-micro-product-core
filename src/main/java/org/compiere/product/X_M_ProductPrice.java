@@ -4,7 +4,6 @@ import org.compiere.model.I_M_ProductPrice;
 import org.compiere.orm.MTable;
 import org.compiere.orm.PO;
 import org.idempiere.common.util.Env;
-import org.idempiere.orm.I_Persistent;
 
 import java.math.BigDecimal;
 import java.sql.ResultSet;
@@ -16,7 +15,7 @@ import java.util.Properties;
  * @author iDempiere (generated)
  * @version Release 5.1 - $Id$
  */
-public class X_M_ProductPrice extends PO implements I_M_ProductPrice, I_Persistent {
+public class X_M_ProductPrice extends PO implements I_M_ProductPrice {
 
     /**
      *
@@ -67,7 +66,7 @@ public class X_M_ProductPrice extends PO implements I_M_ProductPrice, I_Persiste
      * @return Identifies a unique instance of a Price List
      */
     public int getM_PriceList_Version_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_M_PriceList_Version_ID);
+        Integer ii = (Integer) getValue(COLUMNNAME_M_PriceList_Version_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -89,7 +88,7 @@ public class X_M_ProductPrice extends PO implements I_M_ProductPrice, I_Persiste
      * @return Product, Service, Item
      */
     public int getM_Product_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_M_Product_ID);
+        Integer ii = (Integer) getValue(COLUMNNAME_M_Product_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -110,7 +109,7 @@ public class X_M_ProductPrice extends PO implements I_M_ProductPrice, I_Persiste
      * @return Lowest price for a product
      */
     public BigDecimal getPriceLimit() {
-        BigDecimal bd = (BigDecimal) get_Value(COLUMNNAME_PriceLimit);
+        BigDecimal bd = (BigDecimal) getValue(COLUMNNAME_PriceLimit);
         if (bd == null) return Env.ZERO;
         return bd;
     }
@@ -130,7 +129,7 @@ public class X_M_ProductPrice extends PO implements I_M_ProductPrice, I_Persiste
      * @return List Price
      */
     public BigDecimal getPriceList() {
-        BigDecimal bd = (BigDecimal) get_Value(COLUMNNAME_PriceList);
+        BigDecimal bd = (BigDecimal) getValue(COLUMNNAME_PriceList);
         if (bd == null) return Env.ZERO;
         return bd;
     }
@@ -150,7 +149,7 @@ public class X_M_ProductPrice extends PO implements I_M_ProductPrice, I_Persiste
      * @return Standard Price
      */
     public BigDecimal getPriceStd() {
-        BigDecimal bd = (BigDecimal) get_Value(COLUMNNAME_PriceStd);
+        BigDecimal bd = (BigDecimal) getValue(COLUMNNAME_PriceStd);
         if (bd == null) return Env.ZERO;
         return bd;
     }

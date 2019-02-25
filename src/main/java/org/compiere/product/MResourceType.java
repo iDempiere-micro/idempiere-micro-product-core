@@ -115,7 +115,7 @@ public class MResourceType extends X_S_ResourceType {
         sb.append("MResourceType[")
                 .append(getId())
                 .append(",Value=")
-                .append(getValue())
+                .append(getSearchKey())
                 .append(",Name=")
                 .append(getName());
         if (isTimeSlot()) {

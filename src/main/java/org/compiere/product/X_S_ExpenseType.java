@@ -2,7 +2,6 @@ package org.compiere.product;
 
 import org.compiere.model.I_S_ExpenseType;
 import org.compiere.orm.BasePONameValue;
-import org.idempiere.orm.I_Persistent;
 
 import java.sql.ResultSet;
 import java.util.Properties;
@@ -13,7 +12,7 @@ import java.util.Properties;
  * @author iDempiere (generated)
  * @version Release 5.1 - $Id$
  */
-public class X_S_ExpenseType extends BasePONameValue implements I_S_ExpenseType, I_Persistent {
+public class X_S_ExpenseType extends BasePONameValue implements I_S_ExpenseType {
 
     /**
      *
@@ -57,7 +56,7 @@ public class X_S_ExpenseType extends BasePONameValue implements I_S_ExpenseType,
      * @return Tax Category
      */
     public int getC_TaxCategory_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_C_TaxCategory_ID);
+        Integer ii = (Integer) getValue(COLUMNNAME_C_TaxCategory_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -68,7 +67,7 @@ public class X_S_ExpenseType extends BasePONameValue implements I_S_ExpenseType,
      * @return Unit of Measure
      */
     public int getC_UOM_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_C_UOM_ID);
+        Integer ii = (Integer) getValue(COLUMNNAME_C_UOM_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -79,7 +78,7 @@ public class X_S_ExpenseType extends BasePONameValue implements I_S_ExpenseType,
      * @return Optional short description of the record
      */
     public String getDescription() {
-        return (String) get_Value(COLUMNNAME_Description);
+        return (String) getValue(COLUMNNAME_Description);
     }
 
     /**
@@ -88,7 +87,7 @@ public class X_S_ExpenseType extends BasePONameValue implements I_S_ExpenseType,
      * @return Category of a Product
      */
     public int getM_Product_Category_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_M_Product_Category_ID);
+        Integer ii = (Integer) getValue(COLUMNNAME_M_Product_Category_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -99,7 +98,7 @@ public class X_S_ExpenseType extends BasePONameValue implements I_S_ExpenseType,
      * @return Expense report type
      */
     public int getS_ExpenseType_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_S_ExpenseType_ID);
+        Integer ii = (Integer) getValue(COLUMNNAME_S_ExpenseType_ID);
         if (ii == null) return 0;
         return ii;
     }

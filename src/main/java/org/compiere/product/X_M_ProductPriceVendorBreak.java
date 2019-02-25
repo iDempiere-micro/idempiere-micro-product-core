@@ -2,14 +2,13 @@ package org.compiere.product;
 
 import org.compiere.model.I_M_ProductPriceVendorBreak;
 import org.compiere.orm.PO;
-import org.idempiere.orm.I_Persistent;
 
 import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.util.Properties;
 
 public class X_M_ProductPriceVendorBreak extends PO
-        implements I_M_ProductPriceVendorBreak, I_Persistent {
+        implements I_M_ProductPriceVendorBreak {
 
     /**
      *
@@ -60,17 +59,6 @@ public class X_M_ProductPriceVendorBreak extends PO
     }
 
     /**
-     * Get Business Partner .
-     *
-     * @return Identifies a Business Partner
-     */
-    public int getC_BPartner_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_C_BPartner_ID);
-        if (ii == null) return 0;
-        return ii;
-    }
-
-    /**
      * Set Business Partner .
      *
      * @param C_BPartner_ID Identifies a Business Partner
@@ -78,17 +66,6 @@ public class X_M_ProductPriceVendorBreak extends PO
     public void setC_BPartner_ID(int C_BPartner_ID) {
         if (C_BPartner_ID < 1) set_ValueNoCheck(COLUMNNAME_C_BPartner_ID, null);
         else set_ValueNoCheck(COLUMNNAME_C_BPartner_ID, Integer.valueOf(C_BPartner_ID));
-    }
-
-    /**
-     * Get Price List Version.
-     *
-     * @return Identifies a unique instance of a Price List
-     */
-    public int getM_PriceList_Version_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_M_PriceList_Version_ID);
-        if (ii == null) return 0;
-        return ii;
     }
 
     /**
@@ -100,17 +77,6 @@ public class X_M_ProductPriceVendorBreak extends PO
         if (M_PriceList_Version_ID < 1) set_ValueNoCheck(COLUMNNAME_M_PriceList_Version_ID, null);
         else
             set_ValueNoCheck(COLUMNNAME_M_PriceList_Version_ID, Integer.valueOf(M_PriceList_Version_ID));
-    }
-
-    /**
-     * Get Product.
-     *
-     * @return Product, Service, Item
-     */
-    public int getM_Product_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_M_Product_ID);
-        if (ii == null) return 0;
-        return ii;
     }
 
     /**

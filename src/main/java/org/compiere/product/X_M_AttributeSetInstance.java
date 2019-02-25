@@ -3,7 +3,6 @@ package org.compiere.product;
 import org.compiere.model.I_M_AttributeSetInstance;
 import org.compiere.orm.MTable;
 import org.compiere.orm.PO;
-import org.idempiere.orm.I_Persistent;
 
 import java.sql.ResultSet;
 import java.sql.Timestamp;
@@ -15,7 +14,7 @@ import java.util.Properties;
  * @author iDempiere (generated)
  * @version Release 5.1 - $Id$
  */
-public class X_M_AttributeSetInstance extends PO implements I_M_AttributeSetInstance, I_Persistent {
+public class X_M_AttributeSetInstance extends PO implements I_M_AttributeSetInstance {
 
     /**
      *
@@ -60,7 +59,7 @@ public class X_M_AttributeSetInstance extends PO implements I_M_AttributeSetInst
      * @return Optional short description of the record
      */
     public String getDescription() {
-        return (String) get_Value(COLUMNNAME_Description);
+        return (String) getValue(COLUMNNAME_Description);
     }
 
     /**
@@ -78,7 +77,7 @@ public class X_M_AttributeSetInstance extends PO implements I_M_AttributeSetInst
      * @return Date when guarantee expires
      */
     public Timestamp getGuaranteeDate() {
-        return (Timestamp) get_Value(COLUMNNAME_GuaranteeDate);
+        return (Timestamp) getValue(COLUMNNAME_GuaranteeDate);
     }
 
     /**
@@ -96,7 +95,7 @@ public class X_M_AttributeSetInstance extends PO implements I_M_AttributeSetInst
      * @return Lot number (alphanumeric)
      */
     public String getLot() {
-        return (String) get_Value(COLUMNNAME_Lot);
+        return (String) getValue(COLUMNNAME_Lot);
     }
 
     /**
@@ -130,7 +129,7 @@ public class X_M_AttributeSetInstance extends PO implements I_M_AttributeSetInst
      * @return Product Attribute Set
      */
     public int getMAttributeSet_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_M_AttributeSet_ID);
+        Integer ii = (Integer) getValue(COLUMNNAME_M_AttributeSet_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -141,18 +140,7 @@ public class X_M_AttributeSetInstance extends PO implements I_M_AttributeSetInst
      * @return Product Attribute Set Instance
      */
     public int getMAttributeSetInstance_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_M_AttributeSetInstance_ID);
-        if (ii == null) return 0;
-        return ii;
-    }
-
-    /**
-     * Get Lot.
-     *
-     * @return Product Lot Definition
-     */
-    public int getM_Lot_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_M_Lot_ID);
+        Integer ii = (Integer) getValue(COLUMNNAME_M_AttributeSetInstance_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -173,7 +161,7 @@ public class X_M_AttributeSetInstance extends PO implements I_M_AttributeSetInst
      * @return Product Serial Number
      */
     public String getSerNo() {
-        return (String) get_Value(COLUMNNAME_SerNo);
+        return (String) getValue(COLUMNNAME_SerNo);
     }
 
     /**

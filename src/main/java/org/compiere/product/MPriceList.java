@@ -56,7 +56,7 @@ public class MPriceList extends X_M_PriceList {
             setIsTaxIncluded(false);
             setPricePrecision(2); // 2
             //	setName (null);
-            //	setC_Currency_ID (0);
+            //	setCurrencyId (0);
         }
     } //	MPriceList
 

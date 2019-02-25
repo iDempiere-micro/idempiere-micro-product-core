@@ -4,7 +4,6 @@ import kotliquery.Row;
 import org.compiere.model.HasName;
 import org.compiere.model.I_M_PriceList;
 import org.compiere.orm.PO;
-import org.idempiere.orm.I_Persistent;
 
 import java.sql.ResultSet;
 import java.util.Properties;
@@ -15,7 +14,7 @@ import java.util.Properties;
  * @author iDempiere (generated)
  * @version Release 5.1 - $Id$
  */
-public abstract class X_M_PriceList extends PO implements I_M_PriceList, I_Persistent {
+public abstract class X_M_PriceList extends PO implements I_M_PriceList {
 
     /**
      *
@@ -28,7 +27,7 @@ public abstract class X_M_PriceList extends PO implements I_M_PriceList, I_Persi
     public X_M_PriceList(Properties ctx, int M_PriceList_ID) {
         super(ctx, M_PriceList_ID);
         /**
-         * if (M_PriceList_ID == 0) { setC_Currency_ID (0); setEnforcePriceLimit (false); setIsDefault
+         * if (M_PriceList_ID == 0) { setCurrencyId (0); setEnforcePriceLimit (false); setIsDefault
          * (false); setIsSOPriceList (false); setIsTaxIncluded (false); setM_PriceList_ID (0); setName
          * (null); setPricePrecision (0); // 2 }
          */
@@ -60,23 +59,12 @@ public abstract class X_M_PriceList extends PO implements I_M_PriceList, I_Persi
     }
 
     /**
-     * Get Base Pricelist.
-     *
-     * @return Pricelist to be used, if product not found on this pricelist
-     */
-    public int getBasePriceList_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_BasePriceList_ID);
-        if (ii == null) return 0;
-        return ii;
-    }
-
-    /**
      * Get Currency.
      *
      * @return The Currency for this record
      */
     public int getC_Currency_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_C_Currency_ID);
+        Integer ii = (Integer) getValue(COLUMNNAME_C_Currency_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -106,7 +94,7 @@ public abstract class X_M_PriceList extends PO implements I_M_PriceList, I_Persi
      * @return Do not allow prices below the limit price
      */
     public boolean isEnforcePriceLimit() {
-        Object oo = get_Value(COLUMNNAME_EnforcePriceLimit);
+        Object oo = getValue(COLUMNNAME_EnforcePriceLimit);
         if (oo != null) {
             if (oo instanceof Boolean) return ((Boolean) oo).booleanValue();
             return "Y".equals(oo);
@@ -138,7 +126,7 @@ public abstract class X_M_PriceList extends PO implements I_M_PriceList, I_Persi
      * @return Default value
      */
     public boolean isDefault() {
-        Object oo = get_Value(COLUMNNAME_IsDefault);
+        Object oo = getValue(COLUMNNAME_IsDefault);
         if (oo != null) {
             if (oo instanceof Boolean) return ((Boolean) oo).booleanValue();
             return "Y".equals(oo);
@@ -161,7 +149,7 @@ public abstract class X_M_PriceList extends PO implements I_M_PriceList, I_Persi
      * @return This is a Sales Price List
      */
     public boolean isSOPriceList() {
-        Object oo = get_Value(COLUMNNAME_IsSOPriceList);
+        Object oo = getValue(COLUMNNAME_IsSOPriceList);
         if (oo != null) {
             if (oo instanceof Boolean) return ((Boolean) oo).booleanValue();
             return "Y".equals(oo);
@@ -184,7 +172,7 @@ public abstract class X_M_PriceList extends PO implements I_M_PriceList, I_Persi
      * @return Tax is included in the price
      */
     public boolean isTaxIncluded() {
-        Object oo = get_Value(COLUMNNAME_IsTaxIncluded);
+        Object oo = getValue(COLUMNNAME_IsTaxIncluded);
         if (oo != null) {
             if (oo instanceof Boolean) return ((Boolean) oo).booleanValue();
             return "Y".equals(oo);
@@ -198,7 +186,7 @@ public abstract class X_M_PriceList extends PO implements I_M_PriceList, I_Persi
      * @return Unique identifier of a Price List
      */
     public int getM_PriceList_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_M_PriceList_ID);
+        Integer ii = (Integer) getValue(COLUMNNAME_M_PriceList_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -209,7 +197,7 @@ public abstract class X_M_PriceList extends PO implements I_M_PriceList, I_Persi
      * @return Alphanumeric identifier of the entity
      */
     public String getName() {
-        return (String) get_Value(HasName.Companion.getCOLUMNNAME_Name());
+        return (String) getValue(HasName.Companion.getCOLUMNNAME_Name());
     }
 
     /**
@@ -227,7 +215,7 @@ public abstract class X_M_PriceList extends PO implements I_M_PriceList, I_Persi
      * @return Precision (number of decimals) for the Price
      */
     public int getPricePrecision() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_PricePrecision);
+        Integer ii = (Integer) getValue(COLUMNNAME_PricePrecision);
         if (ii == null) return 0;
         return ii;
     }

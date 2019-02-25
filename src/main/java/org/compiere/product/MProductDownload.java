@@ -62,27 +62,4 @@ public class MProductDownload extends X_M_ProductDownload {
         return sb.toString();
     } //	toString
 
-    /**
-     * Find download url
-     *
-     * @param directory optional directory
-     * @return file or null
-     */
-    public File getDownloadFile(String directory) {
-        File file = new File(getDownloadURL()); // 	absolute file
-        if (file.exists()) return file;
-        if (directory == null || directory.length() == 0) {
-            log.log(Level.SEVERE, "Not found " + getDownloadURL());
-            return null;
-        }
-        String downloadURL2 = directory;
-        if (!downloadURL2.endsWith(File.separator)) downloadURL2 += File.separator;
-        downloadURL2 += getDownloadURL();
-        file = new File(downloadURL2);
-        if (file.exists()) return file;
-
-        log.log(Level.SEVERE, "Not found " + getDownloadURL() + " + " + downloadURL2);
-        return null;
-    } //	getDownloadFile
-
 } //	MProductDownload

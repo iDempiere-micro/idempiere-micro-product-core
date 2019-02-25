@@ -4,7 +4,6 @@ import org.compiere.model.HasName;
 import org.compiere.model.I_I_PriceList;
 import org.compiere.orm.PO;
 import org.idempiere.common.util.Env;
-import org.idempiere.orm.I_Persistent;
 
 import java.math.BigDecimal;
 import java.sql.ResultSet;
@@ -17,7 +16,7 @@ import java.util.Properties;
  * @author iDempiere (generated)
  * @version Release 5.1 - $Id$
  */
-public class X_I_PriceList extends PO implements I_I_PriceList, I_Persistent {
+public class X_I_PriceList extends PO implements I_I_PriceList {
 
     /**
      *
@@ -58,7 +57,7 @@ public class X_I_PriceList extends PO implements I_I_PriceList, I_Persistent {
      * @return Low Value of trade discount break level
      */
     public BigDecimal getBreakValue() {
-        BigDecimal bd = (BigDecimal) get_Value(COLUMNNAME_BreakValue);
+        BigDecimal bd = (BigDecimal) getValue(COLUMNNAME_BreakValue);
         if (bd == null) return Env.ZERO;
         return bd;
     }
@@ -69,7 +68,7 @@ public class X_I_PriceList extends PO implements I_I_PriceList, I_Persistent {
      * @return Identifies a Business Partner
      */
     public int getC_BPartner_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_C_BPartner_ID);
+        Integer ii = (Integer) getValue(COLUMNNAME_C_BPartner_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -80,18 +79,7 @@ public class X_I_PriceList extends PO implements I_I_PriceList, I_Persistent {
      * @return The Currency for this record
      */
     public int getC_Currency_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_C_Currency_ID);
-        if (ii == null) return 0;
-        return ii;
-    }
-
-    /**
-     * Get UOM.
-     *
-     * @return Unit of Measure
-     */
-    public int getC_UOM_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_C_UOM_ID);
+        Integer ii = (Integer) getValue(COLUMNNAME_C_Currency_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -102,7 +90,7 @@ public class X_I_PriceList extends PO implements I_I_PriceList, I_Persistent {
      * @return Optional short description of the record
      */
     public String getDescription() {
-        return (String) get_Value(COLUMNNAME_Description);
+        return (String) getValue(COLUMNNAME_Description);
     }
 
     /**
@@ -111,7 +99,7 @@ public class X_I_PriceList extends PO implements I_I_PriceList, I_Persistent {
      * @return Do not allow prices below the limit price
      */
     public boolean isEnforcePriceLimit() {
-        Object oo = get_Value(COLUMNNAME_EnforcePriceLimit);
+        Object oo = getValue(COLUMNNAME_EnforcePriceLimit);
         if (oo != null) {
             if (oo instanceof Boolean) return ((Boolean) oo).booleanValue();
             return "Y".equals(oo);
@@ -125,7 +113,7 @@ public class X_I_PriceList extends PO implements I_I_PriceList, I_Persistent {
      * @return Import Price List
      */
     public int getI_PriceList_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_I_PriceList_ID);
+        Integer ii = (Integer) getValue(COLUMNNAME_I_PriceList_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -136,7 +124,7 @@ public class X_I_PriceList extends PO implements I_I_PriceList, I_Persistent {
      * @return This is a Sales Price List
      */
     public boolean isSOPriceList() {
-        Object oo = get_Value(COLUMNNAME_IsSOPriceList);
+        Object oo = getValue(COLUMNNAME_IsSOPriceList);
         if (oo != null) {
             if (oo instanceof Boolean) return ((Boolean) oo).booleanValue();
             return "Y".equals(oo);
@@ -150,7 +138,7 @@ public class X_I_PriceList extends PO implements I_I_PriceList, I_Persistent {
      * @return Tax is included in the price
      */
     public boolean isTaxIncluded() {
-        Object oo = get_Value(COLUMNNAME_IsTaxIncluded);
+        Object oo = getValue(COLUMNNAME_IsTaxIncluded);
         if (oo != null) {
             if (oo instanceof Boolean) return ((Boolean) oo).booleanValue();
             return "Y".equals(oo);
@@ -164,7 +152,7 @@ public class X_I_PriceList extends PO implements I_I_PriceList, I_Persistent {
      * @return Unique identifier of a Price List
      */
     public int getM_PriceList_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_M_PriceList_ID);
+        Integer ii = (Integer) getValue(COLUMNNAME_M_PriceList_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -175,7 +163,7 @@ public class X_I_PriceList extends PO implements I_I_PriceList, I_Persistent {
      * @return Identifies a unique instance of a Price List
      */
     public int getM_PriceList_Version_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_M_PriceList_Version_ID);
+        Integer ii = (Integer) getValue(COLUMNNAME_M_PriceList_Version_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -186,7 +174,7 @@ public class X_I_PriceList extends PO implements I_I_PriceList, I_Persistent {
      * @return Product, Service, Item
      */
     public int getM_Product_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_M_Product_ID);
+        Integer ii = (Integer) getValue(COLUMNNAME_M_Product_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -197,7 +185,7 @@ public class X_I_PriceList extends PO implements I_I_PriceList, I_Persistent {
      * @return Alphanumeric identifier of the entity
      */
     public String getName() {
-        return (String) get_Value(HasName.Companion.getCOLUMNNAME_Name());
+        return (String) getValue(HasName.Companion.getCOLUMNNAME_Name());
     }
 
     /**
@@ -206,7 +194,7 @@ public class X_I_PriceList extends PO implements I_I_PriceList, I_Persistent {
      * @return Lowest price for a product
      */
     public BigDecimal getPriceLimit() {
-        BigDecimal bd = (BigDecimal) get_Value(COLUMNNAME_PriceLimit);
+        BigDecimal bd = (BigDecimal) getValue(COLUMNNAME_PriceLimit);
         if (bd == null) return Env.ZERO;
         return bd;
     }
@@ -217,7 +205,7 @@ public class X_I_PriceList extends PO implements I_I_PriceList, I_Persistent {
      * @return List Price
      */
     public BigDecimal getPriceList() {
-        BigDecimal bd = (BigDecimal) get_Value(COLUMNNAME_PriceList);
+        BigDecimal bd = (BigDecimal) getValue(COLUMNNAME_PriceList);
         if (bd == null) return Env.ZERO;
         return bd;
     }
@@ -228,7 +216,7 @@ public class X_I_PriceList extends PO implements I_I_PriceList, I_Persistent {
      * @return Precision (number of decimals) for the Price
      */
     public int getPricePrecision() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_PricePrecision);
+        Integer ii = (Integer) getValue(COLUMNNAME_PricePrecision);
         if (ii == null) return 0;
         return ii;
     }
@@ -239,7 +227,7 @@ public class X_I_PriceList extends PO implements I_I_PriceList, I_Persistent {
      * @return Standard Price
      */
     public BigDecimal getPriceStd() {
-        BigDecimal bd = (BigDecimal) get_Value(COLUMNNAME_PriceStd);
+        BigDecimal bd = (BigDecimal) getValue(COLUMNNAME_PriceStd);
         if (bd == null) return Env.ZERO;
         return bd;
     }
@@ -250,7 +238,7 @@ public class X_I_PriceList extends PO implements I_I_PriceList, I_Persistent {
      * @return Valid from including this date (first day)
      */
     public Timestamp getValidFrom() {
-        return (Timestamp) get_Value(COLUMNNAME_ValidFrom);
+        return (Timestamp) getValue(COLUMNNAME_ValidFrom);
     }
 
     @Override

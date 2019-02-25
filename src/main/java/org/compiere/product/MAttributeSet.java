@@ -213,66 +213,6 @@ public class MAttributeSet extends X_M_AttributeSet {
     }
 
     /**
-     * Exclude Lot creation
-     *
-     * @param AD_Column_ID column
-     * @param isSOTrx      SO
-     * @return true if excluded
-     */
-    public boolean isExcludeLot(int AD_Column_ID, boolean isSOTrx) {
-        if (getM_LotCtl_ID() == 0) return true;
-        if (m_excludeLots == null) {
-            final String whereClause = X_M_LotCtlExclude.COLUMNNAME_M_LotCtl_ID + "=?";
-            List<X_M_LotCtlExclude> list =
-                    new Query(getCtx(), X_M_LotCtlExclude.Table_Name, whereClause)
-                            .setParameters(getM_LotCtl_ID())
-                            .setOnlyActiveRecords(true)
-                            .list();
-            m_excludeLots = new X_M_LotCtlExclude[list.size()];
-            list.toArray(m_excludeLots);
-        }
-        //	Find it
-        if (m_excludeLots != null && m_excludeLots.length > 0) {
-            MColumn column = MColumn.get(getCtx(), AD_Column_ID);
-            for (int i = 0; i < m_excludeLots.length; i++) {
-                if (m_excludeLots[i].getAD_Table_ID() == column.getAD_Table_ID()
-                        && m_excludeLots[i].isSOTrx() == isSOTrx) return true;
-            }
-        }
-        return false;
-    } //	isExcludeLot
-
-    /**
-     * Exclude SerNo creation
-     *
-     * @param AD_Column_ID column
-     * @param isSOTrx      SO
-     * @return true if excluded
-     */
-    public boolean isExcludeSerNo(int AD_Column_ID, boolean isSOTrx) {
-        if (getM_SerNoCtl_ID() == 0) return true;
-        if (m_excludeSerNos == null) {
-            final String whereClause = X_M_SerNoCtlExclude.COLUMNNAME_M_SerNoCtl_ID + "=?";
-            List<X_M_SerNoCtlExclude> list =
-                    new Query(getCtx(), X_M_SerNoCtlExclude.Table_Name, whereClause)
-                            .setParameters(getM_SerNoCtl_ID())
-                            .setOnlyActiveRecords(true)
-                            .list();
-            m_excludeSerNos = new X_M_SerNoCtlExclude[list.size()];
-            list.toArray(m_excludeSerNos);
-        }
-        //	Find it
-        if (m_excludeSerNos != null && m_excludeSerNos.length > 0) {
-            MColumn column = MColumn.get(getCtx(), AD_Column_ID);
-            for (int i = 0; i < m_excludeSerNos.length; i++) {
-                if (m_excludeSerNos[i].getAD_Table_ID() == column.getAD_Table_ID()
-                        && m_excludeSerNos[i].isSOTrx() == isSOTrx) return true;
-            }
-        }
-        return false;
-    } //	isExcludeSerNo
-
-    /**
      * Get Lot Char Start
      *
      * @return defined or \u00ab

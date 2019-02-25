@@ -2,7 +2,6 @@ package org.compiere.product;
 
 import org.compiere.model.I_M_DiscountSchemaLine;
 import org.compiere.orm.PO;
-import org.idempiere.orm.I_Persistent;
 
 import java.sql.ResultSet;
 import java.util.Properties;
@@ -13,7 +12,7 @@ import java.util.Properties;
  * @author iDempiere (generated)
  * @version Release 5.1 - $Id$
  */
-public class X_M_DiscountSchemaLine extends PO implements I_M_DiscountSchemaLine, I_Persistent {
+public class X_M_DiscountSchemaLine extends PO implements I_M_DiscountSchemaLine {
 
     /**
      * Product Cost = P
@@ -72,67 +71,12 @@ public class X_M_DiscountSchemaLine extends PO implements I_M_DiscountSchemaLine
     }
 
     /**
-     * Get Business Partner .
-     *
-     * @return Identifies a Business Partner
-     */
-    public int getC_BPartner_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_C_BPartner_ID);
-        if (ii == null) return 0;
-        return ii;
-    }
-
-    /**
-     * Get Currency Type.
-     *
-     * @return Currency Conversion Rate Type
-     */
-    public int getC_ConversionType_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_C_ConversionType_ID);
-        if (ii == null) return 0;
-        return ii;
-    }
-
-    /**
-     * Get Discount Schema.
-     *
-     * @return Schema to calculate the trade discount percentage
-     */
-    public int getM_DiscountSchema_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_M_DiscountSchema_ID);
-        if (ii == null) return 0;
-        return ii;
-    }
-
-    /**
-     * Get Product Category.
-     *
-     * @return Category of a Product
-     */
-    public int getM_Product_Category_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_M_Product_Category_ID);
-        if (ii == null) return 0;
-        return ii;
-    }
-
-    /**
-     * Get Product.
-     *
-     * @return Product, Service, Item
-     */
-    public int getM_Product_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_M_Product_ID);
-        if (ii == null) return 0;
-        return ii;
-    }
-
-    /**
      * Get Sequence.
      *
      * @return Method of ordering records; lowest number comes first
      */
     public int getSeqNo() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_SeqNo);
+        Integer ii = (Integer) getValue(COLUMNNAME_SeqNo);
         if (ii == null) return 0;
         return ii;
     }

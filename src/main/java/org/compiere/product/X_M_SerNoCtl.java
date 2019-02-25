@@ -2,7 +2,6 @@ package org.compiere.product;
 
 import org.compiere.model.I_M_SerNoCtl;
 import org.compiere.orm.BasePOName;
-import org.idempiere.orm.I_Persistent;
 
 import java.sql.ResultSet;
 import java.util.Properties;
@@ -13,7 +12,7 @@ import java.util.Properties;
  * @author iDempiere (generated)
  * @version Release 5.1 - $Id$
  */
-public class X_M_SerNoCtl extends BasePOName implements I_M_SerNoCtl, I_Persistent {
+public class X_M_SerNoCtl extends BasePOName implements I_M_SerNoCtl {
 
     /**
      *
@@ -58,7 +57,7 @@ public class X_M_SerNoCtl extends BasePOName implements I_M_SerNoCtl, I_Persiste
      * @return The next number to be used
      */
     public int getCurrentNext() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_CurrentNext);
+        Integer ii = (Integer) getValue(COLUMNNAME_CurrentNext);
         if (ii == null) return 0;
         return ii;
     }
@@ -78,7 +77,7 @@ public class X_M_SerNoCtl extends BasePOName implements I_M_SerNoCtl, I_Persiste
      * @return The number to increment the last document number by
      */
     public int getIncrementNo() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_IncrementNo);
+        Integer ii = (Integer) getValue(COLUMNNAME_IncrementNo);
         if (ii == null) return 0;
         return ii;
     }
@@ -98,7 +97,7 @@ public class X_M_SerNoCtl extends BasePOName implements I_M_SerNoCtl, I_Persiste
      * @return Prefix before the sequence number
      */
     public String getPrefix() {
-        return (String) get_Value(COLUMNNAME_Prefix);
+        return (String) getValue(COLUMNNAME_Prefix);
     }
 
     /**
@@ -116,7 +115,7 @@ public class X_M_SerNoCtl extends BasePOName implements I_M_SerNoCtl, I_Persiste
      * @return Suffix after the number
      */
     public String getSuffix() {
-        return (String) get_Value(COLUMNNAME_Suffix);
+        return (String) getValue(COLUMNNAME_Suffix);
     }
 
     @Override

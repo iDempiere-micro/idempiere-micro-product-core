@@ -2,7 +2,6 @@ package org.compiere.product;
 
 import org.compiere.model.I_C_Currency;
 import org.compiere.orm.PO;
-import org.idempiere.orm.I_Persistent;
 
 import java.sql.ResultSet;
 import java.util.Properties;
@@ -13,7 +12,7 @@ import java.util.Properties;
  * @author iDempiere (generated)
  * @version Release 5.1 - $Id$
  */
-public class X_C_Currency extends PO implements I_C_Currency, I_Persistent {
+public class X_C_Currency extends PO implements I_C_Currency {
 
     /**
      *
@@ -26,7 +25,7 @@ public class X_C_Currency extends PO implements I_C_Currency, I_Persistent {
     public X_C_Currency(Properties ctx, int C_Currency_ID) {
         super(ctx, C_Currency_ID);
         /**
-         * if (C_Currency_ID == 0) { setC_Currency_ID (0); setCostingPrecision (0); // 4 setDescription
+         * if (C_Currency_ID == 0) { setCurrencyId (0); setCostingPrecision (0); // 4 setDescription
          * (null); setIsEMUMember (false); // N setIsEuro (false); // N setISO_Code (null);
          * setRoundOffFactor (Env.ZERO); // 1 setStdPrecision (0); // 2 }
          */
@@ -59,7 +58,7 @@ public class X_C_Currency extends PO implements I_C_Currency, I_Persistent {
      * @return The Currency for this record
      */
     public int getC_Currency_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_C_Currency_ID);
+        Integer ii = (Integer) getValue(COLUMNNAME_C_Currency_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -70,7 +69,7 @@ public class X_C_Currency extends PO implements I_C_Currency, I_Persistent {
      * @return Rounding used costing calculations
      */
     public int getCostingPrecision() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_CostingPrecision);
+        Integer ii = (Integer) getValue(COLUMNNAME_CostingPrecision);
         if (ii == null) return 0;
         return ii;
     }
@@ -90,7 +89,7 @@ public class X_C_Currency extends PO implements I_C_Currency, I_Persistent {
      * @return Symbol of the currency (opt used for printing only)
      */
     public String getCurSymbol() {
-        return (String) get_Value(COLUMNNAME_CurSymbol);
+        return (String) getValue(COLUMNNAME_CurSymbol);
     }
 
     /**
@@ -108,7 +107,7 @@ public class X_C_Currency extends PO implements I_C_Currency, I_Persistent {
      * @return Optional short description of the record
      */
     public String getDescription() {
-        return (String) get_Value(COLUMNNAME_Description);
+        return (String) getValue(COLUMNNAME_Description);
     }
 
     /**
@@ -144,7 +143,7 @@ public class X_C_Currency extends PO implements I_C_Currency, I_Persistent {
      * @return Three letter ISO 4217 Code of the Currency
      */
     public String getISO_Code() {
-        return (String) get_Value(COLUMNNAME_ISO_Code);
+        return (String) getValue(COLUMNNAME_ISO_Code);
     }
 
     /**
@@ -162,7 +161,7 @@ public class X_C_Currency extends PO implements I_C_Currency, I_Persistent {
      * @return Rule for rounding calculated amounts
      */
     public int getStdPrecision() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_StdPrecision);
+        Integer ii = (Integer) getValue(COLUMNNAME_StdPrecision);
         if (ii == null) return 0;
         return ii;
     }

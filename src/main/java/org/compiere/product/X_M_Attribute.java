@@ -2,7 +2,6 @@ package org.compiere.product;
 
 import org.compiere.model.I_M_Attribute;
 import org.compiere.orm.BasePOName;
-import org.idempiere.orm.I_Persistent;
 
 import java.sql.ResultSet;
 import java.util.Properties;
@@ -13,16 +12,12 @@ import java.util.Properties;
  * @author iDempiere (generated)
  * @version Release 5.1 - $Id$
  */
-public class X_M_Attribute extends BasePOName implements I_M_Attribute, I_Persistent {
+public class X_M_Attribute extends BasePOName implements I_M_Attribute {
 
     /**
      * String (max 40) = S
      */
     public static final String ATTRIBUTEVALUETYPE_StringMax40 = "S";
-    /**
-     * List = L
-     */
-    public static final String ATTRIBUTEVALUETYPE_List = "L";
     /**
      *
      */
@@ -61,7 +56,7 @@ public class X_M_Attribute extends BasePOName implements I_M_Attribute, I_Persis
      * @return Type of Attribute Value
      */
     public String getAttributeValueType() {
-        return (String) get_Value(COLUMNNAME_AttributeValueType);
+        return (String) getValue(COLUMNNAME_AttributeValueType);
     }
 
     /**
@@ -91,7 +86,7 @@ public class X_M_Attribute extends BasePOName implements I_M_Attribute, I_Persis
      * Date)
      */
     public boolean isInstanceAttribute() {
-        Object oo = get_Value(COLUMNNAME_IsInstanceAttribute);
+        Object oo = getValue(COLUMNNAME_IsInstanceAttribute);
         if (oo != null) {
             if (oo instanceof Boolean) return (Boolean) oo;
             return "Y".equals(oo);
@@ -109,37 +104,12 @@ public class X_M_Attribute extends BasePOName implements I_M_Attribute, I_Persis
     }
 
     /**
-     * Get Mandatory.
-     *
-     * @return Data entry is required in this column
-     */
-    public boolean isMandatory() {
-        Object oo = get_Value(COLUMNNAME_IsMandatory);
-        if (oo != null) {
-            if (oo instanceof Boolean) return (Boolean) oo;
-            return "Y".equals(oo);
-        }
-        return false;
-    }
-
-    /**
      * Get Attribute.
      *
      * @return Product Attribute
      */
     public int getMAttribute_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_M_Attribute_ID);
-        if (ii == null) return 0;
-        return ii;
-    }
-
-    /**
-     * Get Attribute Search.
-     *
-     * @return Common Search Attribute
-     */
-    public int getMAttributeSearch_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_M_AttributeSearch_ID);
+        Integer ii = (Integer) getValue(COLUMNNAME_M_Attribute_ID);
         if (ii == null) return 0;
         return ii;
     }

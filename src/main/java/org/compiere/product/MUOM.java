@@ -98,18 +98,6 @@ public class MUOM extends X_C_UOM {
     } //	UOM
 
     /**
-     * Get Minute C_UOM_ID
-     *
-     * @param ctx context
-     * @return C_UOM_ID for Minute
-     */
-    public static int getMinute_UOM_ID(Properties ctx) {
-        //	Server
-        String sql = "SELECT C_UOM_ID FROM C_UOM WHERE IsActive='Y' AND X12DE355=?";
-        return getSQLValue(sql, X12_MINUTE);
-    } //	getMinute_UOM_ID
-
-    /**
      * Get Default C_UOM_ID
      *
      * @param ctx context for AD_Client

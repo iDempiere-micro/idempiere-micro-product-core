@@ -4,7 +4,6 @@ import org.compiere.model.HasName;
 import org.compiere.model.I_A_Asset;
 import org.compiere.orm.BasePOUser;
 import org.compiere.orm.MTable;
-import org.idempiere.orm.I_Persistent;
 
 import java.math.BigDecimal;
 import java.sql.ResultSet;
@@ -17,7 +16,7 @@ import java.util.Properties;
  * @author iDempiere (generated)
  * @version Release 5.1 - $Id$
  */
-public class X_A_Asset extends BasePOUser implements I_A_Asset, I_Persistent {
+public class X_A_Asset extends BasePOUser implements I_A_Asset {
 
     /**
      * Activated = AC
@@ -80,22 +79,11 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset, I_Persistent {
     }
 
     /**
-     * Get Asset class.
-     *
-     * @return Asset class
-     */
-    public int getA_Asset_Class_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_A_Asset_Class_ID);
-        if (ii == null) return 0;
-        return ii;
-    }
-
-    /**
      * Set Create Date.
      *
      * @param A_Asset_CreateDate Create Date
      */
-    public void setA_Asset_CreateDate(Timestamp A_Asset_CreateDate) {
+    public void setAssetCreateDate(Timestamp A_Asset_CreateDate) {
         set_ValueNoCheck(COLUMNNAME_A_Asset_CreateDate, A_Asset_CreateDate);
     }
 
@@ -104,8 +92,8 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset, I_Persistent {
      *
      * @return Group of Assets
      */
-    public int getA_Asset_Group_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_A_Asset_Group_ID);
+    public int getAssetGroupId() {
+        Integer ii = (Integer) getValue(COLUMNNAME_A_Asset_Group_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -115,7 +103,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset, I_Persistent {
      *
      * @param A_Asset_Group_ID Group of Assets
      */
-    public void setA_Asset_Group_ID(int A_Asset_Group_ID) {
+    public void setAssetGroupId(int A_Asset_Group_ID) {
         if (A_Asset_Group_ID < 1) set_Value(COLUMNNAME_A_Asset_Group_ID, null);
         else set_Value(COLUMNNAME_A_Asset_Group_ID, Integer.valueOf(A_Asset_Group_ID));
     }
@@ -125,8 +113,8 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset, I_Persistent {
      *
      * @return Asset used internally or by customers
      */
-    public int getA_Asset_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_A_Asset_ID);
+    public int getAssetId() {
+        Integer ii = (Integer) getValue(COLUMNNAME_A_Asset_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -136,8 +124,8 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset, I_Persistent {
      *
      * @return Asset Status
      */
-    public String getA_Asset_Status() {
-        return (String) get_Value(COLUMNNAME_A_Asset_Status);
+    public String getAssetStatus() {
+        return (String) getValue(COLUMNNAME_A_Asset_Status);
     }
 
     /**
@@ -145,15 +133,15 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset, I_Persistent {
      *
      * @param A_Asset_Status Asset Status
      */
-    public void setA_Asset_Status(String A_Asset_Status) {
+    public void setAssetStatus(String A_Asset_Status) {
 
         set_Value(COLUMNNAME_A_Asset_Status, A_Asset_Status);
     }
 
-    public org.compiere.model.I_A_Asset_Type getA_Asset_Type() throws RuntimeException {
+    public org.compiere.model.I_A_Asset_Type getAssetType() throws RuntimeException {
         return (org.compiere.model.I_A_Asset_Type)
                 MTable.get(getCtx(), org.compiere.model.I_A_Asset_Type.Table_Name)
-                        .getPO(getA_Asset_Type_ID());
+                        .getPO(getAssetTypeId());
     }
 
     /**
@@ -161,8 +149,8 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset, I_Persistent {
      *
      * @return Asset Type
      */
-    public int getA_Asset_Type_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_A_Asset_Type_ID);
+    public int getAssetTypeId() {
+        Integer ii = (Integer) getValue(COLUMNNAME_A_Asset_Type_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -172,8 +160,8 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset, I_Persistent {
      *
      * @return Parent Asset
      */
-    public int getA_Parent_Asset_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_A_Parent_Asset_ID);
+    public int getParentAssetId() {
+        Integer ii = (Integer) getValue(COLUMNNAME_A_Parent_Asset_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -183,7 +171,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset, I_Persistent {
      *
      * @param A_Parent_Asset_ID Parent Asset
      */
-    public void setA_Parent_Asset_ID(int A_Parent_Asset_ID) {
+    public void setParentAssetId(int A_Parent_Asset_ID) {
         if (A_Parent_Asset_ID < 1) set_Value(COLUMNNAME_A_Parent_Asset_ID, null);
         else set_Value(COLUMNNAME_A_Parent_Asset_ID, Integer.valueOf(A_Parent_Asset_ID));
     }
@@ -194,7 +182,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset, I_Persistent {
      * @return Activation Date
      */
     public Timestamp getAssetActivationDate() {
-        return (Timestamp) get_Value(COLUMNNAME_AssetActivationDate);
+        return (Timestamp) getValue(COLUMNNAME_AssetActivationDate);
     }
 
     /**
@@ -221,7 +209,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset, I_Persistent {
      * @return Date when Asset was put into service
      */
     public Timestamp getAssetServiceDate() {
-        return (Timestamp) get_Value(COLUMNNAME_AssetServiceDate);
+        return (Timestamp) getValue(COLUMNNAME_AssetServiceDate);
     }
 
     /**
@@ -234,35 +222,13 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset, I_Persistent {
     }
 
     /**
-     * Get Activity.
-     *
-     * @return Business Activity
-     */
-    public int getC_Activity_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_C_Activity_ID);
-        if (ii == null) return 0;
-        return ii;
-    }
-
-    /**
      * Set Activity.
      *
      * @param C_Activity_ID Business Activity
      */
-    public void setC_Activity_ID(int C_Activity_ID) {
+    public void setActivityId(int C_Activity_ID) {
         if (C_Activity_ID < 1) set_Value(COLUMNNAME_C_Activity_ID, null);
         else set_Value(COLUMNNAME_C_Activity_ID, Integer.valueOf(C_Activity_ID));
-    }
-
-    /**
-     * Get Business Partner .
-     *
-     * @return Identifies a Business Partner
-     */
-    public int getC_BPartner_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_C_BPartner_ID);
-        if (ii == null) return 0;
-        return ii;
     }
 
     /**
@@ -270,41 +236,8 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset, I_Persistent {
      *
      * @return Identifies the (ship to) address for this Business Partner
      */
-    public int getC_BPartner_Location_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_C_BPartner_Location_ID);
-        if (ii == null) return 0;
-        return ii;
-    }
-
-    /**
-     * Get BPartner (Agent).
-     *
-     * @return Business Partner (Agent or Sales Rep)
-     */
-    public int getC_BPartnerSR_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_C_BPartnerSR_ID);
-        if (ii == null) return 0;
-        return ii;
-    }
-
-    /**
-     * Get Address.
-     *
-     * @return Location or Address
-     */
-    public int getC_Location_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_C_Location_ID);
-        if (ii == null) return 0;
-        return ii;
-    }
-
-    /**
-     * Get Project.
-     *
-     * @return Financial Project
-     */
-    public int getC_Project_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_C_Project_ID);
+    public int getBPartnerLocationId() {
+        Integer ii = (Integer) getValue(COLUMNNAME_C_BPartner_Location_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -315,7 +248,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset, I_Persistent {
      * @return Optional short description of the record
      */
     public String getDescription() {
-        return (String) get_Value(COLUMNNAME_Description);
+        return (String) getValue(COLUMNNAME_Description);
     }
 
     /**
@@ -342,7 +275,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset, I_Persistent {
      * @return Inventory No
      */
     public String getInventoryNo() {
-        return (String) get_Value(COLUMNNAME_InventoryNo);
+        return (String) getValue(COLUMNNAME_InventoryNo);
     }
 
     /**
@@ -369,7 +302,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset, I_Persistent {
      * @return The asset will be depreciated
      */
     public boolean isDepreciated() {
-        Object oo = get_Value(COLUMNNAME_IsDepreciated);
+        Object oo = getValue(COLUMNNAME_IsDepreciated);
         if (oo != null) {
             if (oo instanceof Boolean) return ((Boolean) oo).booleanValue();
             return "Y".equals(oo);
@@ -401,7 +334,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset, I_Persistent {
      * @return The asset is fully depreciated
      */
     public boolean isFullyDepreciated() {
-        Object oo = get_Value(COLUMNNAME_IsFullyDepreciated);
+        Object oo = getValue(COLUMNNAME_IsFullyDepreciated);
         if (oo != null) {
             if (oo instanceof Boolean) return ((Boolean) oo).booleanValue();
             return "Y".equals(oo);
@@ -428,17 +361,6 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset, I_Persistent {
     }
 
     /**
-     * Get Lessor.
-     *
-     * @return The Business Partner who rents or leases
-     */
-    public int getLease_BPartner_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_Lease_BPartner_ID);
-        if (ii == null) return 0;
-        return ii;
-    }
-
-    /**
      * Set Lot No.
      *
      * @param Lot Lot number (alphanumeric)
@@ -452,7 +374,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset, I_Persistent {
      *
      * @param M_AttributeSetInstance_ID Product Attribute Set Instance
      */
-    public void setM_AttributeSetInstance_ID(int M_AttributeSetInstance_ID) {
+    public void setAttributeSetInstanceId(int M_AttributeSetInstance_ID) {
         if (M_AttributeSetInstance_ID < 0) set_ValueNoCheck(COLUMNNAME_M_AttributeSetInstance_ID, null);
         else
             set_ValueNoCheck(
@@ -464,30 +386,8 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset, I_Persistent {
      *
      * @return Product Attribute Set Instance
      */
-    public int getMAttributeSetInstance_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_M_AttributeSetInstance_ID);
-        if (ii == null) return 0;
-        return ii;
-    }
-
-    /**
-     * Get Shipment/Receipt Line.
-     *
-     * @return Line on Shipment or Receipt document
-     */
-    public int getM_InOutLine_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_M_InOutLine_ID);
-        if (ii == null) return 0;
-        return ii;
-    }
-
-    /**
-     * Get Locator.
-     *
-     * @return Warehouse Locator
-     */
-    public int getM_Locator_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_M_Locator_ID);
+    public int getAttributeSetInstanceId() {
+        Integer ii = (Integer) getValue(COLUMNNAME_M_AttributeSetInstance_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -497,8 +397,8 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset, I_Persistent {
      *
      * @return Product, Service, Item
      */
-    public int getM_Product_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_M_Product_ID);
+    public int getProductId() {
+        Integer ii = (Integer) getValue(COLUMNNAME_M_Product_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -508,7 +408,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset, I_Persistent {
      *
      * @param M_Product_ID Product, Service, Item
      */
-    public void setM_Product_ID(int M_Product_ID) {
+    public void setProductId(int M_Product_ID) {
         if (M_Product_ID < 1) set_Value(COLUMNNAME_M_Product_ID, null);
         else set_Value(COLUMNNAME_M_Product_ID, Integer.valueOf(M_Product_ID));
     }
@@ -519,7 +419,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset, I_Persistent {
      * @return Alphanumeric identifier of the entity
      */
     public String getName() {
-        return (String) get_Value(HasName.Companion.getCOLUMNNAME_Name());
+        return (String) getValue(HasName.Companion.getCOLUMNNAME_Name());
     }
 
     /**
@@ -555,7 +455,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset, I_Persistent {
      * @return Product Serial Number
      */
     public String getSerNo() {
-        return (String) get_Value(COLUMNNAME_SerNo);
+        return (String) getValue(COLUMNNAME_SerNo);
     }
 
     /**
@@ -573,7 +473,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset, I_Persistent {
      * @return Months of the usable life of the asset
      */
     public int getUseLifeMonths() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_UseLifeMonths);
+        Integer ii = (Integer) getValue(COLUMNNAME_UseLifeMonths);
         if (ii == null) return 0;
         return ii;
     }
@@ -584,7 +484,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset, I_Persistent {
      * @return Search key for the record in the format required - must be unique
      */
     public String getValue() {
-        return (String) get_Value(COLUMNNAME_Value);
+        return (String) getValue(COLUMNNAME_Value);
     }
 
     /**

@@ -87,28 +87,6 @@ public class MCurrency extends X_C_Currency {
     } //	MCurrency
 
     /**
-     * Get Currency using ISO code
-     *
-     * @param ctx     Context
-     * @param ISOcode Iso code
-     * @return MCurrency
-     */
-    public static MCurrency get(Properties ctx, String ISOcode) {
-        //	Try Cache
-        MCurrency retValue = (MCurrency) s_currenciesISO.get(ISOcode);
-        if (retValue != null) return retValue;
-
-        //	Try database
-        Query query = new Query(ctx, I_C_Currency.Table_Name, "ISO_Code=?");
-        query.setParameters(ISOcode);
-        retValue = (MCurrency) query.firstOnly();
-
-        //	Save
-        if (retValue != null) s_currenciesISO.put(ISOcode, retValue);
-        return retValue;
-    }
-
-    /**
      * Get Currency
      *
      * @param ctx           Context

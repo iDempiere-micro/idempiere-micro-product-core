@@ -2,7 +2,6 @@ package org.compiere.product;
 
 import org.compiere.model.I_M_SerNoCtlExclude;
 import org.compiere.orm.PO;
-import org.idempiere.orm.I_Persistent;
 
 import java.sql.ResultSet;
 import java.util.Properties;
@@ -13,7 +12,7 @@ import java.util.Properties;
  * @author iDempiere (generated)
  * @version Release 5.1 - $Id$
  */
-public class X_M_SerNoCtlExclude extends PO implements I_M_SerNoCtlExclude, I_Persistent {
+public class X_M_SerNoCtlExclude extends PO implements I_M_SerNoCtlExclude {
 
     /**
      *
@@ -26,7 +25,7 @@ public class X_M_SerNoCtlExclude extends PO implements I_M_SerNoCtlExclude, I_Pe
     public X_M_SerNoCtlExclude(Properties ctx, int M_SerNoCtlExclude_ID) {
         super(ctx, M_SerNoCtlExclude_ID);
         /**
-         * if (M_SerNoCtlExclude_ID == 0) { setAD_Table_ID (0); setIsSOTrx (false);
+         * if (M_SerNoCtlExclude_ID == 0) { setColumnTableId (0); setIsSOTrx (false);
          * setM_SerNoCtlExclude_ID (0); setM_SerNoCtl_ID (0); }
          */
     }
@@ -58,7 +57,7 @@ public class X_M_SerNoCtlExclude extends PO implements I_M_SerNoCtlExclude, I_Pe
      * @return Database Table information
      */
     public int getAD_Table_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_AD_Table_ID);
+        Integer ii = (Integer) getValue(COLUMNNAME_AD_Table_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -69,23 +68,12 @@ public class X_M_SerNoCtlExclude extends PO implements I_M_SerNoCtlExclude, I_Pe
      * @return This is a Sales Transaction
      */
     public boolean isSOTrx() {
-        Object oo = get_Value(COLUMNNAME_IsSOTrx);
+        Object oo = getValue(COLUMNNAME_IsSOTrx);
         if (oo != null) {
             if (oo instanceof Boolean) return ((Boolean) oo).booleanValue();
             return "Y".equals(oo);
         }
         return false;
-    }
-
-    /**
-     * Get Serial No Control.
-     *
-     * @return Product Serial Number Control
-     */
-    public int getM_SerNoCtl_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_M_SerNoCtl_ID);
-        if (ii == null) return 0;
-        return ii;
     }
 
     @Override

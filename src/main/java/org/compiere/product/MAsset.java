@@ -58,7 +58,7 @@ public class MAsset extends X_A_Asset
     public MAsset(Properties ctx, int A_Asset_ID) {
         super(ctx, A_Asset_ID);
         if (A_Asset_ID == 0) {
-            setA_Asset_Status(X_A_Asset.A_ASSET_STATUS_New);
+            setAssetStatus(X_A_Asset.A_ASSET_STATUS_New);
             // commented out by @win
       /*
       setA_Asset_Type("MFX");
@@ -86,7 +86,7 @@ public class MAsset extends X_A_Asset
      * @param assetGroup
      */
     public void setAssetGroup(MAssetGroup assetGroup) {
-        setA_Asset_Group_ID(assetGroup.getA_Asset_Group_ID());
+        setAssetGroupId(assetGroup.getAssetGroupId());
 
     /* commented out by @win
     setA_Asset_Type_ID(assetGroup.getA_Asset_Type_ID());
@@ -103,7 +103,7 @@ public class MAsset extends X_A_Asset
      * @param asi
      */
     public void setASI(MAttributeSetInstance asi) {
-        setM_AttributeSetInstance_ID(asi.getMAttributeSetInstance_ID());
+        setAttributeSetInstanceId(asi.getMAttributeSetInstance_ID());
         setLot(asi.getLot());
         setSerNo(asi.getSerNo());
     }
@@ -116,8 +116,8 @@ public class MAsset extends X_A_Asset
      */
     protected boolean beforeSave(boolean newRecord) {
         // Set parent asset:
-        if (getA_Parent_Asset_ID() <= 0) {
-            setA_Parent_Asset_ID(getA_Asset_ID());
+        if (getParentAssetId() <= 0) {
+            setParentAssetId(getAssetId());
         }
         // Fix inventory number:
         String invNo = getInventoryNo();
@@ -125,8 +125,8 @@ public class MAsset extends X_A_Asset
             setInventoryNo(invNo.trim());
         }
         // If no asset group, than set the default one:
-        if (getA_Asset_Group_ID() <= 0) {
-            setA_Asset_Group_ID(MAssetGroup.getDefault_ID(SetGetUtil.wrap(this)));
+        if (getAssetGroupId() <= 0) {
+            setAssetGroupId(MAssetGroup.getDefault_ID(SetGetUtil.wrap(this)));
         }
     /* @win temporary commented out
 
@@ -139,24 +139,24 @@ public class MAsset extends X_A_Asset
 
         // Copy fields from C_BPartner_Location
         if (is_ValueChanged(I_A_Asset.COLUMNNAME_C_BPartner_Location_ID)
-                && getC_BPartner_Location_ID() > 0) {
+                && getBPartnerLocationId() > 0) {
             // Goodwill BF: Error: MAsset cannot be cast to SetGetModel
             SetGetUtil.copyValues(
                     SetGetUtil.wrap(this),
                     I_C_BPartner_Location.Table_Name,
-                    getC_BPartner_Location_ID(),
+                    getBPartnerLocationId(),
                     new String[]{I_C_BPartner_Location.COLUMNNAME_C_Location_ID});
         }
         //
         // Create ASI if not exist:
-        if (getM_Product_ID() > 0 && getMAttributeSetInstance_ID() <= 0) {
-            MProduct product = MProduct.get(getCtx(), getM_Product_ID());
+        if (getProductId() > 0 && getAttributeSetInstanceId() <= 0) {
+            MProduct product = MProduct.get(getCtx(), getProductId());
             MAttributeSetInstance asi =
                     new MAttributeSetInstance(getCtx(), 0, product.getMAttributeSet_ID());
             asi.setSerNo(getSerNo());
             asi.setDescription();
             asi.saveEx();
-            setM_AttributeSetInstance_ID(asi.getMAttributeSetInstance_ID());
+            setAttributeSetInstanceId(asi.getMAttributeSetInstance_ID());
         }
         // TODO: With the lines below, after creating the asset, the whole system goes much slower ???
         //		else if (is_ValueChanged(COLUMNNAME_SerNo) && getMAttributeSetInstance_ID() > 0) {
@@ -191,12 +191,12 @@ public class MAsset extends X_A_Asset
 
         //
         // Set parent
-        if (getA_Parent_Asset_ID() <= 0) {
-            int A_Asset_ID = getA_Asset_ID();
-            setA_Parent_Asset_ID(A_Asset_ID);
+        if (getParentAssetId() <= 0) {
+            int A_Asset_ID = getAssetId();
+            setParentAssetId(A_Asset_ID);
             executeUpdateEx(
                     "UPDATE A_Asset SET A_Parent_Asset_ID=A_Asset_ID WHERE A_Asset_ID=" + A_Asset_ID);
-            if (log.isLoggable(Level.FINE)) log.fine("A_Parent_Asset_ID=" + getA_Parent_Asset_ID());
+            if (log.isLoggable(Level.FINE)) log.fine("A_Parent_Asset_ID=" + getParentAssetId());
         }
 
         //
@@ -209,14 +209,14 @@ public class MAsset extends X_A_Asset
                     "UPDATE A_Asset SET InventoryNo="
                             + TO_STRING(invNo)
                             + " WHERE A_Asset_ID="
-                            + getA_Asset_ID());
+                            + getAssetId());
             if (log.isLoggable(Level.FINE)) log.fine("InventoryNo=" + getInventoryNo());
         }
 
         // If new record, create accounting and workfile
         if (newRecord) {
             // @win: set value at asset group as default value for asset
-            MAssetGroup assetgroup = new MAssetGroup(getCtx(), getA_Asset_Group_ID());
+            MAssetGroup assetgroup = new MAssetGroup(getCtx(), getAssetGroupId());
             String isDepreciated = (assetgroup.isDepreciated()) ? "Y" : "N";
             String isOwned = (assetgroup.isOwned()) ? "Y" : "N";
             setIsDepreciated(assetgroup.isDepreciated());
@@ -227,7 +227,7 @@ public class MAsset extends X_A_Asset
                             + "', isOwned ='"
                             + isOwned
                             + "' WHERE A_Asset_ID="
-                            + getA_Asset_ID());
+                            + getAssetId());
             // end @win
 
         } else {
@@ -245,7 +245,7 @@ public class MAsset extends X_A_Asset
      * @see #beforeSave(boolean)
      */
     public void updateStatus() {
-        String status = getA_Asset_Status();
+        String status = getAssetStatus();
         setProcessed(!status.equals(X_A_Asset.A_ASSET_STATUS_New));
         //		setIsDisposed(!status.equals(A_ASSET_STATUS_New) &&
         // !status.equals(A_ASSET_STATUS_Activated));
@@ -274,7 +274,7 @@ public class MAsset extends X_A_Asset
      * @param date      state change date; if null context "#Date" will be used
      */
     public void changeStatus(String newStatus, Timestamp date) {
-        String status = getA_Asset_Status();
+        String status = getAssetStatus();
         if (log.isLoggable(Level.FINEST))
             log.finest("Entering: " + status + "->" + newStatus + ", date=" + date);
 
@@ -297,7 +297,7 @@ public class MAsset extends X_A_Asset
         }
 
         // Set new status
-        setA_Asset_Status(newStatus);
+        setAssetStatus(newStatus);
     } //	changeStatus
 
     public int getUseLifeMonths_F() {

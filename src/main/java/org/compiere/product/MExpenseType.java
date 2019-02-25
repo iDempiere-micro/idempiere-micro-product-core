@@ -65,7 +65,7 @@ public class MExpenseType extends X_S_ExpenseType {
      */
     protected boolean beforeSave(boolean newRecord) {
         if (newRecord) {
-            if (getValue() == null || getValue().length() == 0) setValue(getName());
+            if (getSearchKey() == null || getSearchKey().length() == 0) setSearchKey(getName());
             m_product = new MProduct(this);
             return m_product.save();
         }

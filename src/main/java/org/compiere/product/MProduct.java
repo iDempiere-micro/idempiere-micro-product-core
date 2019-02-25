@@ -46,10 +46,6 @@ public class MProduct extends X_M_Product implements I_M_Product {
      * UOM Precision
      */
     protected Integer m_precision = null;
-    /**
-     * Additional Downloads
-     */
-    private MProductDownload[] m_downloads = null;
 
     /**
      * ************************************************************************ Standard Constructor
@@ -118,7 +114,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
      */
     public MProduct(MResource resource, MResourceType resourceType) {
         this(resource.getCtx(), 0);
-        setAD_Org_ID(resource.getOrgId());
+        setOrgId(resource.getOrgId());
         setProductType(I_M_Product.PRODUCTTYPE_Resource);
         setResource(resource);
         setResource(resourceType);
@@ -134,7 +130,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
         setClientOrg(impP);
         setUpdatedBy(impP.getUpdatedBy());
         //
-        setValue(impP.getValue());
+        setValue(impP.getSearchKey());
         setName(impP.getName());
         setDescription(impP.getDescription());
         setDocumentNote(impP.getDocumentNote());
@@ -246,8 +242,8 @@ public class MProduct extends X_M_Product implements I_M_Product {
             changed = true;
         }
         //
-        if (!parent.getValue().equals(getValue())) {
-            setValue(parent.getValue());
+        if (!parent.getSearchKey().equals(getValue())) {
+            setValue(parent.getSearchKey());
             changed = true;
         }
         if (!parent.getName().equals(getName())) {

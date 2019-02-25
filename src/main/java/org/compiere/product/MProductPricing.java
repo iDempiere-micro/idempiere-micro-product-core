@@ -30,7 +30,6 @@ public class MProductPricing extends AbstractProductPricing {
      */
     protected CLogger log = CLogger.getCLogger(getClass());
 
-    private String trxName = null;
     private int m_M_PriceList_Version_ID = 0;
     private Timestamp m_PriceDate;
     /**
@@ -45,12 +44,8 @@ public class MProductPricing extends AbstractProductPricing {
     private BigDecimal m_PriceList = Env.ZERO;
     private BigDecimal m_PriceStd = Env.ZERO;
     private BigDecimal m_PriceLimit = Env.ZERO;
-    private int m_C_Currency_ID = 0;
-    private boolean m_enforcePriceLimit = false;
     private int m_C_UOM_ID = 0;
     private int m_M_Product_Category_ID;
-    private boolean m_discountSchema = false;
-    private boolean m_isTaxIncluded = false;
 
     /**
      * New constructor to be used with the ProductPriceFactories
@@ -172,10 +167,7 @@ public class MProductPricing extends AbstractProductPricing {
                 if (rs.wasNull()) m_PriceLimit = Env.ZERO;
                 //
                 m_C_UOM_ID = rs.getInt(4);
-                m_C_Currency_ID = rs.getInt(6);
                 m_M_Product_Category_ID = rs.getInt(7);
-                m_enforcePriceLimit = "Y".equals(rs.getString(8));
-                m_isTaxIncluded = "Y".equals(rs.getString(9));
                 //
                 if (log.isLoggable(Level.FINE))
                     log.fine("M_PriceList_Version_ID=" + m_M_PriceList_Version_ID + " - " + m_PriceStd);
@@ -254,9 +246,7 @@ public class MProductPricing extends AbstractProductPricing {
                     if (rs.wasNull()) m_PriceLimit = Env.ZERO;
                     //
                     m_C_UOM_ID = rs.getInt(4);
-                    m_C_Currency_ID = rs.getInt(6);
                     m_M_Product_Category_ID = rs.getInt(7);
-                    m_enforcePriceLimit = "Y".equals(rs.getString(8));
                     //
                     if (log.isLoggable(Level.FINE))
                         log.fine(
@@ -323,10 +313,7 @@ public class MProductPricing extends AbstractProductPricing {
                     if (rs.wasNull()) m_PriceLimit = Env.ZERO;
                     //
                     m_C_UOM_ID = rs.getInt(4);
-                    m_C_Currency_ID = rs.getInt(6);
                     m_M_Product_Category_ID = rs.getInt(7);
-                    m_enforcePriceLimit = "Y".equals(rs.getString(8));
-                    m_isTaxIncluded = "Y".equals(rs.getString(9));
                     //
                     if (log.isLoggable(Level.FINE))
                         log.fine(
@@ -391,10 +378,7 @@ public class MProductPricing extends AbstractProductPricing {
                 if (rs.wasNull()) m_PriceLimit = Env.ZERO;
                 //
                 m_C_UOM_ID = rs.getInt(4);
-                m_C_Currency_ID = rs.getInt(6);
                 m_M_Product_Category_ID = rs.getInt(7);
-                m_enforcePriceLimit = "Y".equals(rs.getString(8));
-                m_isTaxIncluded = "Y".equals(rs.getString(9));
                 //
                 if (log.isLoggable(Level.FINE))
                     log.fine("M_PriceList_Version_ID=" + m_M_PriceList_Version_ID + " - " + m_PriceStd);
@@ -477,9 +461,7 @@ public class MProductPricing extends AbstractProductPricing {
                     if (rs.wasNull()) m_PriceLimit = Env.ZERO;
                     //
                     m_C_UOM_ID = rs.getInt(4);
-                    m_C_Currency_ID = rs.getInt(6);
                     m_M_Product_Category_ID = rs.getInt(7);
-                    m_enforcePriceLimit = "Y".equals(rs.getString(8));
                     //
                     if (log.isLoggable(Level.FINE))
                         log.fine(
@@ -550,10 +532,7 @@ public class MProductPricing extends AbstractProductPricing {
                     if (rs.wasNull()) m_PriceLimit = Env.ZERO;
                     //
                     m_C_UOM_ID = rs.getInt(4);
-                    m_C_Currency_ID = rs.getInt(6);
                     m_M_Product_Category_ID = rs.getInt(7);
-                    m_enforcePriceLimit = "Y".equals(rs.getString(8));
-                    m_isTaxIncluded = "Y".equals(rs.getString(9));
                     //
                     if (log.isLoggable(Level.FINE))
                         log.fine(
@@ -591,7 +570,6 @@ public class MProductPricing extends AbstractProductPricing {
      * Partner) Discount
      */
     private void calculateDiscount() {
-        m_discountSchema = false;
         if (m_C_BPartner_ID == 0 || m_M_Product_ID == 0) return;
 
         int M_DiscountSchema_ID = 0;
@@ -627,7 +605,6 @@ public class MProductPricing extends AbstractProductPricing {
                 || (MDiscountSchema.DISCOUNTTYPE_Breaks.equals(sd.getDiscountType())
                 && !MDiscountSchema.CUMULATIVELEVEL_Line.equals(sd.getCumulativeLevel()))) return;
         //
-        m_discountSchema = true;
         m_PriceStd =
                 sd.calculatePrice(m_Qty, m_PriceStd, m_M_Product_ID, m_M_Product_Category_ID, FlatDiscount);
     } //	calculateDiscount

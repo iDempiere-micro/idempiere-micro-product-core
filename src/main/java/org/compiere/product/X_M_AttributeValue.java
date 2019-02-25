@@ -2,7 +2,6 @@ package org.compiere.product;
 
 import org.compiere.model.I_M_AttributeValue;
 import org.compiere.orm.BasePONameValue;
-import org.idempiere.orm.I_Persistent;
 
 import java.sql.ResultSet;
 import java.util.Properties;
@@ -14,7 +13,7 @@ import java.util.Properties;
  * @version Release 5.1 - $Id$
  */
 public class X_M_AttributeValue extends BasePONameValue
-        implements I_M_AttributeValue, I_Persistent {
+        implements I_M_AttributeValue {
 
     /**
      *
@@ -51,28 +50,6 @@ public class X_M_AttributeValue extends BasePONameValue
     public String toString() {
         StringBuffer sb = new StringBuffer("X_M_AttributeValue[").append(getId()).append("]");
         return sb.toString();
-    }
-
-    /**
-     * Get Attribute.
-     *
-     * @return Product Attribute
-     */
-    public int getMAttribute_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_M_Attribute_ID);
-        if (ii == null) return 0;
-        return ii;
-    }
-
-    /**
-     * Get Attribute Value.
-     *
-     * @return Product Attribute Value
-     */
-    public int getMAttributeValue_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_M_AttributeValue_ID);
-        if (ii == null) return 0;
-        return ii;
     }
 
     @Override

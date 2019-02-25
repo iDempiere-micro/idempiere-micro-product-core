@@ -3,7 +3,6 @@ package org.compiere.product;
 import org.compiere.model.I_M_DiscountSchema;
 import org.compiere.orm.BasePOName;
 import org.idempiere.common.util.Env;
-import org.idempiere.orm.I_Persistent;
 
 import java.math.BigDecimal;
 import java.sql.ResultSet;
@@ -16,7 +15,7 @@ import java.util.Properties;
  * @author iDempiere (generated)
  * @version Release 5.1 - $Id$
  */
-public class X_M_DiscountSchema extends BasePOName implements I_M_DiscountSchema, I_Persistent {
+public class X_M_DiscountSchema extends BasePOName implements I_M_DiscountSchema {
 
     /**
      * Line = L
@@ -77,7 +76,7 @@ public class X_M_DiscountSchema extends BasePOName implements I_M_DiscountSchema
      * @return Level for accumulative calculations
      */
     public String getCumulativeLevel() {
-        return (String) get_Value(COLUMNNAME_CumulativeLevel);
+        return (String) getValue(COLUMNNAME_CumulativeLevel);
     }
 
     /**
@@ -96,7 +95,7 @@ public class X_M_DiscountSchema extends BasePOName implements I_M_DiscountSchema
      * @return Type of trade discount calculation
      */
     public String getDiscountType() {
-        return (String) get_Value(COLUMNNAME_DiscountType);
+        return (String) getValue(COLUMNNAME_DiscountType);
     }
 
     /**
@@ -115,7 +114,7 @@ public class X_M_DiscountSchema extends BasePOName implements I_M_DiscountSchema
      * @return Flat discount percentage
      */
     public BigDecimal getFlatDiscount() {
-        BigDecimal bd = (BigDecimal) get_Value(COLUMNNAME_FlatDiscount);
+        BigDecimal bd = (BigDecimal) getValue(COLUMNNAME_FlatDiscount);
         if (bd == null) return Env.ZERO;
         return bd;
     }
@@ -144,7 +143,7 @@ public class X_M_DiscountSchema extends BasePOName implements I_M_DiscountSchema
      * @return Use flat discount defined on Business Partner Level
      */
     public boolean isBPartnerFlatDiscount() {
-        Object oo = get_Value(COLUMNNAME_IsBPartnerFlatDiscount);
+        Object oo = getValue(COLUMNNAME_IsBPartnerFlatDiscount);
         if (oo != null) {
             if (oo instanceof Boolean) return ((Boolean) oo).booleanValue();
             return "Y".equals(oo);
@@ -167,7 +166,7 @@ public class X_M_DiscountSchema extends BasePOName implements I_M_DiscountSchema
      * @return Trade discount break level based on Quantity (not value)
      */
     public boolean isQuantityBased() {
-        Object oo = get_Value(COLUMNNAME_IsQuantityBased);
+        Object oo = getValue(COLUMNNAME_IsQuantityBased);
         if (oo != null) {
             if (oo instanceof Boolean) return ((Boolean) oo).booleanValue();
             return "Y".equals(oo);
@@ -181,7 +180,7 @@ public class X_M_DiscountSchema extends BasePOName implements I_M_DiscountSchema
      * @return Schema to calculate the trade discount percentage
      */
     public int getM_DiscountSchema_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_M_DiscountSchema_ID);
+        Integer ii = (Integer) getValue(COLUMNNAME_M_DiscountSchema_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -192,7 +191,7 @@ public class X_M_DiscountSchema extends BasePOName implements I_M_DiscountSchema
      * @return Valid from including this date (first day)
      */
     public Timestamp getValidFrom() {
-        return (Timestamp) get_Value(COLUMNNAME_ValidFrom);
+        return (Timestamp) getValue(COLUMNNAME_ValidFrom);
     }
 
     /**

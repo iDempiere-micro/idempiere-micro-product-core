@@ -6,7 +6,6 @@ import org.compiere.model.I_M_Product;
 import org.compiere.orm.MTable;
 import org.compiere.orm.PO;
 import org.idempiere.common.util.Env;
-import org.idempiere.orm.I_Persistent;
 
 import java.math.BigDecimal;
 import java.sql.ResultSet;
@@ -18,7 +17,7 @@ import java.util.Properties;
  * @author iDempiere (generated)
  * @version Release 5.1 - $Id$
  */
-public class X_M_Product extends PO implements I_Persistent {
+public class X_M_Product extends PO {
 
     /**
      *
@@ -72,7 +71,7 @@ public class X_M_Product extends PO implements I_Persistent {
      * @return Method for recording revenue
      */
     public int getC_RevenueRecognition_ID() {
-        Integer ii = (Integer) get_Value(I_M_Product.COLUMNNAME_C_RevenueRecognition_ID);
+        Integer ii = (Integer) getValue(I_M_Product.COLUMNNAME_C_RevenueRecognition_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -89,7 +88,7 @@ public class X_M_Product extends PO implements I_Persistent {
      * @return Tax Category
      */
     public int getC_TaxCategory_ID() {
-        Integer ii = (Integer) get_Value(I_M_Product.COLUMNNAME_C_TaxCategory_ID);
+        Integer ii = (Integer) getValue(I_M_Product.COLUMNNAME_C_TaxCategory_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -110,7 +109,7 @@ public class X_M_Product extends PO implements I_Persistent {
      * @return Unit of Measure
      */
     public int getC_UOM_ID() {
-        Integer ii = (Integer) get_Value(I_M_Product.COLUMNNAME_C_UOM_ID);
+        Integer ii = (Integer) getValue(I_M_Product.COLUMNNAME_C_UOM_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -131,7 +130,7 @@ public class X_M_Product extends PO implements I_Persistent {
      * @return Optional short description of the record
      */
     public String getDescription() {
-        return (String) get_Value(I_M_Product.COLUMNNAME_Description);
+        return (String) getValue(I_M_Product.COLUMNNAME_Description);
     }
 
     /**
@@ -194,7 +193,7 @@ public class X_M_Product extends PO implements I_Persistent {
      * @return Bill of Materials
      */
     public boolean isBOM() {
-        Object oo = get_Value(I_M_Product.COLUMNNAME_IsBOM);
+        Object oo = getValue(I_M_Product.COLUMNNAME_IsBOM);
         if (oo != null) {
             if (oo instanceof Boolean) return ((Boolean) oo).booleanValue();
             return "Y".equals(oo);
@@ -217,7 +216,7 @@ public class X_M_Product extends PO implements I_Persistent {
      * @return Exclude from automatic Delivery
      */
     public boolean isExcludeAutoDelivery() {
-        Object oo = get_Value(I_M_Product.COLUMNNAME_IsExcludeAutoDelivery);
+        Object oo = getValue(I_M_Product.COLUMNNAME_IsExcludeAutoDelivery);
         if (oo != null) {
             if (oo instanceof Boolean) return ((Boolean) oo).booleanValue();
             return "Y".equals(oo);
@@ -240,7 +239,7 @@ public class X_M_Product extends PO implements I_Persistent {
      * @return This product is manufactured
      */
     public boolean isManufactured() {
-        Object oo = get_Value(I_M_Product.COLUMNNAME_IsManufactured);
+        Object oo = getValue(I_M_Product.COLUMNNAME_IsManufactured);
         if (oo != null) {
             if (oo instanceof Boolean) return ((Boolean) oo).booleanValue();
             return "Y".equals(oo);
@@ -254,7 +253,7 @@ public class X_M_Product extends PO implements I_Persistent {
      * @return Own Box
      */
     public boolean isOwnBox() {
-        Object oo = get_Value(I_M_Product.COLUMNNAME_IsOwnBox);
+        Object oo = getValue(I_M_Product.COLUMNNAME_IsOwnBox);
         if (oo != null) {
             if (oo instanceof Boolean) return ((Boolean) oo).booleanValue();
             return "Y".equals(oo);
@@ -268,7 +267,7 @@ public class X_M_Product extends PO implements I_Persistent {
      * @return Phantom Component
      */
     public boolean isPhantom() {
-        Object oo = get_Value(I_M_Product.COLUMNNAME_IsPhantom);
+        Object oo = getValue(I_M_Product.COLUMNNAME_IsPhantom);
         if (oo != null) {
             if (oo instanceof Boolean) return ((Boolean) oo).booleanValue();
             return "Y".equals(oo);
@@ -328,7 +327,7 @@ public class X_M_Product extends PO implements I_Persistent {
      * @return Organization stocks this product
      */
     public boolean isStocked() {
-        Object oo = get_Value(I_M_Product.COLUMNNAME_IsStocked);
+        Object oo = getValue(I_M_Product.COLUMNNAME_IsStocked);
         if (oo != null) {
             if (oo instanceof Boolean) return ((Boolean) oo).booleanValue();
             return "Y".equals(oo);
@@ -360,7 +359,7 @@ public class X_M_Product extends PO implements I_Persistent {
      * @return The BOM configuration has been verified
      */
     public boolean isVerified() {
-        Object oo = get_Value(I_M_Product.COLUMNNAME_IsVerified);
+        Object oo = getValue(I_M_Product.COLUMNNAME_IsVerified);
         if (oo != null) {
             if (oo instanceof Boolean) return ((Boolean) oo).booleanValue();
             return "Y".equals(oo);
@@ -400,7 +399,7 @@ public class X_M_Product extends PO implements I_Persistent {
      * @return Product Attribute Set
      */
     public int getMAttributeSet_ID() {
-        Integer ii = (Integer) get_Value(I_M_Product.COLUMNNAME_M_AttributeSet_ID);
+        Integer ii = (Integer) getValue(I_M_Product.COLUMNNAME_M_AttributeSet_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -425,7 +424,7 @@ public class X_M_Product extends PO implements I_Persistent {
      * @return Product Attribute Set Instance
      */
     public int getMAttributeSetInstance_ID() {
-        Integer ii = (Integer) get_Value(I_M_Product.COLUMNNAME_M_AttributeSetInstance_ID);
+        Integer ii = (Integer) getValue(I_M_Product.COLUMNNAME_M_AttributeSetInstance_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -436,7 +435,7 @@ public class X_M_Product extends PO implements I_Persistent {
      * @return Warehouse Locator
      */
     public int getM_Locator_ID() {
-        Integer ii = (Integer) get_Value(I_M_Product.COLUMNNAME_M_Locator_ID);
+        Integer ii = (Integer) getValue(I_M_Product.COLUMNNAME_M_Locator_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -453,7 +452,7 @@ public class X_M_Product extends PO implements I_Persistent {
      * @return Category of a Product
      */
     public int getM_Product_Category_ID() {
-        Integer ii = (Integer) get_Value(I_M_Product.COLUMNNAME_M_Product_Category_ID);
+        Integer ii = (Integer) getValue(I_M_Product.COLUMNNAME_M_Product_Category_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -476,7 +475,7 @@ public class X_M_Product extends PO implements I_Persistent {
      * @return Product, Service, Item
      */
     public int getM_Product_ID() {
-        Integer ii = (Integer) get_Value(I_M_Product.COLUMNNAME_M_Product_ID);
+        Integer ii = (Integer) getValue(I_M_Product.COLUMNNAME_M_Product_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -487,7 +486,7 @@ public class X_M_Product extends PO implements I_Persistent {
      * @return Alphanumeric identifier of the entity
      */
     public String getName() {
-        return (String) get_Value(HasName.Companion.getCOLUMNNAME_Name());
+        return (String) getValue(HasName.Companion.getCOLUMNNAME_Name());
     }
 
     /**
@@ -514,7 +513,7 @@ public class X_M_Product extends PO implements I_Persistent {
      * @return Type of product
      */
     public String getProductType() {
-        return (String) get_Value(I_M_Product.COLUMNNAME_ProductType);
+        return (String) getValue(I_M_Product.COLUMNNAME_ProductType);
     }
 
     /**
@@ -533,7 +532,7 @@ public class X_M_Product extends PO implements I_Persistent {
      * @return Expense report type
      */
     public int getS_ExpenseType_ID() {
-        Integer ii = (Integer) get_Value(I_M_Product.COLUMNNAME_S_ExpenseType_ID);
+        Integer ii = (Integer) getValue(I_M_Product.COLUMNNAME_S_ExpenseType_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -555,7 +554,7 @@ public class X_M_Product extends PO implements I_Persistent {
      * @return Shelf depth required
      */
     public int getShelfDepth() {
-        Integer ii = (Integer) get_Value(I_M_Product.COLUMNNAME_ShelfDepth);
+        Integer ii = (Integer) getValue(I_M_Product.COLUMNNAME_ShelfDepth);
         if (ii == null) return 0;
         return ii;
     }
@@ -566,7 +565,7 @@ public class X_M_Product extends PO implements I_Persistent {
      * @return Shelf height required
      */
     public BigDecimal getShelfHeight() {
-        BigDecimal bd = (BigDecimal) get_Value(I_M_Product.COLUMNNAME_ShelfHeight);
+        BigDecimal bd = (BigDecimal) getValue(I_M_Product.COLUMNNAME_ShelfHeight);
         if (bd == null) return Env.ZERO;
         return bd;
     }
@@ -577,7 +576,7 @@ public class X_M_Product extends PO implements I_Persistent {
      * @return Shelf width required
      */
     public int getShelfWidth() {
-        Integer ii = (Integer) get_Value(I_M_Product.COLUMNNAME_ShelfWidth);
+        Integer ii = (Integer) getValue(I_M_Product.COLUMNNAME_ShelfWidth);
         if (ii == null) return 0;
         return ii;
     }
@@ -597,7 +596,7 @@ public class X_M_Product extends PO implements I_Persistent {
      * @return Resource
      */
     public int getS_Resource_ID() {
-        Integer ii = (Integer) get_Value(I_M_Product.COLUMNNAME_S_Resource_ID);
+        Integer ii = (Integer) getValue(I_M_Product.COLUMNNAME_S_Resource_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -627,7 +626,7 @@ public class X_M_Product extends PO implements I_Persistent {
      * @return Search key for the record in the format required - must be unique
      */
     public String getValue() {
-        return (String) get_Value(I_M_Product.COLUMNNAME_Value);
+        return (String) getValue(I_M_Product.COLUMNNAME_Value);
     }
 
     /**
@@ -645,7 +644,7 @@ public class X_M_Product extends PO implements I_Persistent {
      * @return Version Number
      */
     public String getVersionNo() {
-        return (String) get_Value(I_M_Product.COLUMNNAME_VersionNo);
+        return (String) getValue(I_M_Product.COLUMNNAME_VersionNo);
     }
 
     /**
@@ -654,7 +653,7 @@ public class X_M_Product extends PO implements I_Persistent {
      * @return Volume of a product
      */
     public BigDecimal getVolume() {
-        BigDecimal bd = (BigDecimal) get_Value(I_M_Product.COLUMNNAME_Volume);
+        BigDecimal bd = (BigDecimal) getValue(I_M_Product.COLUMNNAME_Volume);
         if (bd == null) return Env.ZERO;
         return bd;
     }
@@ -674,7 +673,7 @@ public class X_M_Product extends PO implements I_Persistent {
      * @return Weight of a product
      */
     public BigDecimal getWeight() {
-        BigDecimal bd = (BigDecimal) get_Value(I_M_Product.COLUMNNAME_Weight);
+        BigDecimal bd = (BigDecimal) getValue(I_M_Product.COLUMNNAME_Weight);
         if (bd == null) return Env.ZERO;
         return bd;
     }

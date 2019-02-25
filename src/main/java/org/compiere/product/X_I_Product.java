@@ -3,7 +3,6 @@ package org.compiere.product;
 import org.compiere.model.I_I_Product;
 import org.compiere.orm.BasePONameValue;
 import org.idempiere.common.util.Env;
-import org.idempiere.orm.I_Persistent;
 
 import java.math.BigDecimal;
 import java.sql.ResultSet;
@@ -15,7 +14,7 @@ import java.util.Properties;
  * @author iDempiere (generated)
  * @version Release 5.1 - $Id$
  */
-public class X_I_Product extends BasePONameValue implements I_I_Product, I_Persistent {
+public class X_I_Product extends BasePONameValue implements I_I_Product {
 
     /**
      *
@@ -56,18 +55,7 @@ public class X_I_Product extends BasePONameValue implements I_I_Product, I_Persi
      * @return Identifies a Business Partner
      */
     public int getC_BPartner_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_C_BPartner_ID);
-        if (ii == null) return 0;
-        return ii;
-    }
-
-    /**
-     * Get Currency.
-     *
-     * @return The Currency for this record
-     */
-    public int getC_Currency_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_C_Currency_ID);
+        Integer ii = (Integer) getValue(COLUMNNAME_C_BPartner_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -78,7 +66,7 @@ public class X_I_Product extends BasePONameValue implements I_I_Product, I_Persi
      * @return Unit of Measure
      */
     public int getC_UOM_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_C_UOM_ID);
+        Integer ii = (Integer) getValue(COLUMNNAME_C_UOM_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -89,7 +77,7 @@ public class X_I_Product extends BasePONameValue implements I_I_Product, I_Persi
      * @return Optional short description of the record
      */
     public String getDescription() {
-        return (String) get_Value(COLUMNNAME_Description);
+        return (String) getValue(COLUMNNAME_Description);
     }
 
     /**
@@ -98,7 +86,7 @@ public class X_I_Product extends BasePONameValue implements I_I_Product, I_Persi
      * @return URL for the description
      */
     public String getDescriptionURL() {
-        return (String) get_Value(COLUMNNAME_DescriptionURL);
+        return (String) getValue(COLUMNNAME_DescriptionURL);
     }
 
     /**
@@ -107,7 +95,7 @@ public class X_I_Product extends BasePONameValue implements I_I_Product, I_Persi
      * @return Additional information for a Document
      */
     public String getDocumentNote() {
-        return (String) get_Value(COLUMNNAME_DocumentNote);
+        return (String) getValue(COLUMNNAME_DocumentNote);
     }
 
     /**
@@ -116,7 +104,7 @@ public class X_I_Product extends BasePONameValue implements I_I_Product, I_Persi
      * @return Comment or Hint
      */
     public String getHelp() {
-        return (String) get_Value(COLUMNNAME_Help);
+        return (String) getValue(COLUMNNAME_Help);
     }
 
     /**
@@ -125,7 +113,7 @@ public class X_I_Product extends BasePONameValue implements I_I_Product, I_Persi
      * @return URL of image
      */
     public String getImageURL() {
-        return (String) get_Value(COLUMNNAME_ImageURL);
+        return (String) getValue(COLUMNNAME_ImageURL);
     }
 
     /**
@@ -134,7 +122,7 @@ public class X_I_Product extends BasePONameValue implements I_I_Product, I_Persi
      * @return Import Item or Service
      */
     public int getI_Product_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_I_Product_ID);
+        Integer ii = (Integer) getValue(COLUMNNAME_I_Product_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -145,7 +133,7 @@ public class X_I_Product extends BasePONameValue implements I_I_Product, I_Persi
      * @return Category of a Product
      */
     public int getM_Product_Category_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_M_Product_Category_ID);
+        Integer ii = (Integer) getValue(COLUMNNAME_M_Product_Category_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -156,7 +144,7 @@ public class X_I_Product extends BasePONameValue implements I_I_Product, I_Persi
      * @return Product, Service, Item
      */
     public int getM_Product_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_M_Product_ID);
+        Integer ii = (Integer) getValue(COLUMNNAME_M_Product_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -167,7 +155,7 @@ public class X_I_Product extends BasePONameValue implements I_I_Product, I_Persi
      * @return Lowest price for a product
      */
     public BigDecimal getPriceLimit() {
-        BigDecimal bd = (BigDecimal) get_Value(COLUMNNAME_PriceLimit);
+        BigDecimal bd = (BigDecimal) getValue(COLUMNNAME_PriceLimit);
         if (bd == null) return Env.ZERO;
         return bd;
     }
@@ -178,7 +166,7 @@ public class X_I_Product extends BasePONameValue implements I_I_Product, I_Persi
      * @return List Price
      */
     public BigDecimal getPriceList() {
-        BigDecimal bd = (BigDecimal) get_Value(COLUMNNAME_PriceList);
+        BigDecimal bd = (BigDecimal) getValue(COLUMNNAME_PriceList);
         if (bd == null) return Env.ZERO;
         return bd;
     }
@@ -189,7 +177,7 @@ public class X_I_Product extends BasePONameValue implements I_I_Product, I_Persi
      * @return Standard Price
      */
     public BigDecimal getPriceStd() {
-        BigDecimal bd = (BigDecimal) get_Value(COLUMNNAME_PriceStd);
+        BigDecimal bd = (BigDecimal) getValue(COLUMNNAME_PriceStd);
         if (bd == null) return Env.ZERO;
         return bd;
     }
@@ -200,7 +188,7 @@ public class X_I_Product extends BasePONameValue implements I_I_Product, I_Persi
      * @return Type of product
      */
     public String getProductType() {
-        return (String) get_Value(COLUMNNAME_ProductType);
+        return (String) getValue(COLUMNNAME_ProductType);
     }
 
     /**
@@ -209,7 +197,7 @@ public class X_I_Product extends BasePONameValue implements I_I_Product, I_Persi
      * @return Stock Keeping Unit
      */
     public String getSKU() {
-        return (String) get_Value(COLUMNNAME_SKU);
+        return (String) getValue(COLUMNNAME_SKU);
     }
 
     /**
@@ -218,7 +206,7 @@ public class X_I_Product extends BasePONameValue implements I_I_Product, I_Persi
      * @return Bar Code (Universal Product Code or its superset European Article Number)
      */
     public String getUPC() {
-        return (String) get_Value(COLUMNNAME_UPC);
+        return (String) getValue(COLUMNNAME_UPC);
     }
 
     /**
@@ -227,7 +215,7 @@ public class X_I_Product extends BasePONameValue implements I_I_Product, I_Persi
      * @return Volume of a product
      */
     public BigDecimal getVolume() {
-        BigDecimal bd = (BigDecimal) get_Value(COLUMNNAME_Volume);
+        BigDecimal bd = (BigDecimal) getValue(COLUMNNAME_Volume);
         if (bd == null) return Env.ZERO;
         return bd;
     }
@@ -238,7 +226,7 @@ public class X_I_Product extends BasePONameValue implements I_I_Product, I_Persi
      * @return Weight of a product
      */
     public BigDecimal getWeight() {
-        BigDecimal bd = (BigDecimal) get_Value(COLUMNNAME_Weight);
+        BigDecimal bd = (BigDecimal) getValue(COLUMNNAME_Weight);
         if (bd == null) return Env.ZERO;
         return bd;
     }

@@ -2,7 +2,6 @@ package org.compiere.product;
 
 import org.compiere.model.I_M_Lot;
 import org.compiere.orm.BasePOName;
-import org.idempiere.orm.I_Persistent;
 
 import java.sql.ResultSet;
 import java.util.Properties;
@@ -13,7 +12,7 @@ import java.util.Properties;
  * @author iDempiere (generated)
  * @version Release 5.1 - $Id$
  */
-public class X_M_Lot extends BasePOName implements I_M_Lot, I_Persistent {
+public class X_M_Lot extends BasePOName implements I_M_Lot {
 
     /**
      *
@@ -49,17 +48,6 @@ public class X_M_Lot extends BasePOName implements I_M_Lot, I_Persistent {
     }
 
     /**
-     * Get Lot Control.
-     *
-     * @return Product Lot Control
-     */
-    public int getM_LotCtl_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_M_LotCtl_ID);
-        if (ii == null) return 0;
-        return ii;
-    }
-
-    /**
      * Set Lot Control.
      *
      * @param M_LotCtl_ID Product Lot Control
@@ -75,18 +63,7 @@ public class X_M_Lot extends BasePOName implements I_M_Lot, I_Persistent {
      * @return Product Lot Definition
      */
     public int getM_Lot_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_M_Lot_ID);
-        if (ii == null) return 0;
-        return ii;
-    }
-
-    /**
-     * Get Product.
-     *
-     * @return Product, Service, Item
-     */
-    public int getM_Product_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_M_Product_ID);
+        Integer ii = (Integer) getValue(COLUMNNAME_M_Lot_ID);
         if (ii == null) return 0;
         return ii;
     }

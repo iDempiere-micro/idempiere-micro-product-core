@@ -8,7 +8,6 @@ public class DefaultProductPricingFactory implements IProductPricingFactory {
     public DefaultProductPricingFactory() {
     }
 
-    @Override
     public AbstractProductPricing newProductPricingInstance() {
         return new MProductPricing();
     }

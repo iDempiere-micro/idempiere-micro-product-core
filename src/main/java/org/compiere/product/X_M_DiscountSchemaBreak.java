@@ -3,7 +3,6 @@ package org.compiere.product;
 import org.compiere.model.I_M_DiscountSchemaBreak;
 import org.compiere.orm.PO;
 import org.idempiere.common.util.Env;
-import org.idempiere.orm.I_Persistent;
 
 import java.math.BigDecimal;
 import java.sql.ResultSet;
@@ -15,7 +14,7 @@ import java.util.Properties;
  * @author iDempiere (generated)
  * @version Release 5.1 - $Id$
  */
-public class X_M_DiscountSchemaBreak extends PO implements I_M_DiscountSchemaBreak, I_Persistent {
+public class X_M_DiscountSchemaBreak extends PO implements I_M_DiscountSchemaBreak {
 
     /**
      *
@@ -62,7 +61,7 @@ public class X_M_DiscountSchemaBreak extends PO implements I_M_DiscountSchemaBre
      * @return Trade Discount in Percent for the break level
      */
     public BigDecimal getBreakDiscount() {
-        BigDecimal bd = (BigDecimal) get_Value(COLUMNNAME_BreakDiscount);
+        BigDecimal bd = (BigDecimal) getValue(COLUMNNAME_BreakDiscount);
         if (bd == null) return Env.ZERO;
         return bd;
     }
@@ -73,7 +72,7 @@ public class X_M_DiscountSchemaBreak extends PO implements I_M_DiscountSchemaBre
      * @return Low Value of trade discount break level
      */
     public BigDecimal getBreakValue() {
-        BigDecimal bd = (BigDecimal) get_Value(COLUMNNAME_BreakValue);
+        BigDecimal bd = (BigDecimal) getValue(COLUMNNAME_BreakValue);
         if (bd == null) return Env.ZERO;
         return bd;
     }
@@ -84,7 +83,7 @@ public class X_M_DiscountSchemaBreak extends PO implements I_M_DiscountSchemaBre
      * @return Use flat discount defined on Business Partner Level
      */
     public boolean isBPartnerFlatDiscount() {
-        Object oo = get_Value(COLUMNNAME_IsBPartnerFlatDiscount);
+        Object oo = getValue(COLUMNNAME_IsBPartnerFlatDiscount);
         if (oo != null) {
             if (oo instanceof Boolean) return ((Boolean) oo).booleanValue();
             return "Y".equals(oo);
@@ -93,23 +92,12 @@ public class X_M_DiscountSchemaBreak extends PO implements I_M_DiscountSchemaBre
     }
 
     /**
-     * Get Discount Schema.
-     *
-     * @return Schema to calculate the trade discount percentage
-     */
-    public int getM_DiscountSchema_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_M_DiscountSchema_ID);
-        if (ii == null) return 0;
-        return ii;
-    }
-
-    /**
      * Get Product Category.
      *
      * @return Category of a Product
      */
     public int getM_Product_Category_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_M_Product_Category_ID);
+        Integer ii = (Integer) getValue(COLUMNNAME_M_Product_Category_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -130,7 +118,7 @@ public class X_M_DiscountSchemaBreak extends PO implements I_M_DiscountSchemaBre
      * @return Product, Service, Item
      */
     public int getM_Product_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_M_Product_ID);
+        Integer ii = (Integer) getValue(COLUMNNAME_M_Product_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -141,7 +129,7 @@ public class X_M_DiscountSchemaBreak extends PO implements I_M_DiscountSchemaBre
      * @return Method of ordering records; lowest number comes first
      */
     public int getSeqNo() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_SeqNo);
+        Integer ii = (Integer) getValue(COLUMNNAME_SeqNo);
         if (ii == null) return 0;
         return ii;
     }

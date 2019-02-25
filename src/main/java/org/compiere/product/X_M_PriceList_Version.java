@@ -5,7 +5,6 @@ import org.compiere.model.HasName;
 import org.compiere.model.I_M_PriceList_Version;
 import org.compiere.orm.MTable;
 import org.compiere.orm.PO;
-import org.idempiere.orm.I_Persistent;
 
 import java.sql.ResultSet;
 import java.sql.Timestamp;
@@ -17,7 +16,7 @@ import java.util.Properties;
  * @author iDempiere (generated)
  * @version Release 5.1 - $Id$
  */
-public class X_M_PriceList_Version extends PO implements I_M_PriceList_Version, I_Persistent {
+public class X_M_PriceList_Version extends PO implements I_M_PriceList_Version {
 
     /**
      *
@@ -62,17 +61,6 @@ public class X_M_PriceList_Version extends PO implements I_M_PriceList_Version, 
     }
 
     /**
-     * Get Discount Schema.
-     *
-     * @return Schema to calculate the trade discount percentage
-     */
-    public int getM_DiscountSchema_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_M_DiscountSchema_ID);
-        if (ii == null) return 0;
-        return ii;
-    }
-
-    /**
      * Set Discount Schema.
      *
      * @param M_DiscountSchema_ID Schema to calculate the trade discount percentage
@@ -94,7 +82,7 @@ public class X_M_PriceList_Version extends PO implements I_M_PriceList_Version, 
      * @return Unique identifier of a Price List
      */
     public int getM_PriceList_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_M_PriceList_ID);
+        Integer ii = (Integer) getValue(COLUMNNAME_M_PriceList_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -110,23 +98,12 @@ public class X_M_PriceList_Version extends PO implements I_M_PriceList_Version, 
     }
 
     /**
-     * Get Base Price List.
-     *
-     * @return Source for Price list calculations
-     */
-    public int getM_Pricelist_Version_Base_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_M_Pricelist_Version_Base_ID);
-        if (ii == null) return 0;
-        return ii;
-    }
-
-    /**
      * Get Price List Version.
      *
      * @return Identifies a unique instance of a Price List
      */
     public int getM_PriceList_Version_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_M_PriceList_Version_ID);
+        Integer ii = (Integer) getValue(COLUMNNAME_M_PriceList_Version_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -137,7 +114,7 @@ public class X_M_PriceList_Version extends PO implements I_M_PriceList_Version, 
      * @return Alphanumeric identifier of the entity
      */
     public String getName() {
-        return (String) get_Value(HasName.Companion.getCOLUMNNAME_Name());
+        return (String) getValue(HasName.Companion.getCOLUMNNAME_Name());
     }
 
     /**
@@ -155,7 +132,7 @@ public class X_M_PriceList_Version extends PO implements I_M_PriceList_Version, 
      * @return Valid from including this date (first day)
      */
     public Timestamp getValidFrom() {
-        return (Timestamp) get_Value(COLUMNNAME_ValidFrom);
+        return (Timestamp) getValue(COLUMNNAME_ValidFrom);
     }
 
     /**

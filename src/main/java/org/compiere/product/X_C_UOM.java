@@ -3,7 +3,6 @@ package org.compiere.product;
 import kotliquery.Row;
 import org.compiere.model.I_C_UOM;
 import org.compiere.orm.BasePOName;
-import org.idempiere.orm.I_Persistent;
 
 import java.sql.ResultSet;
 import java.util.Properties;
@@ -14,7 +13,7 @@ import java.util.Properties;
  * @author iDempiere (generated)
  * @version Release 5.1 - $Id$
  */
-public class X_C_UOM extends BasePOName implements I_C_UOM, I_Persistent {
+public class X_C_UOM extends BasePOName implements I_C_UOM {
 
     /**
      *
@@ -59,7 +58,7 @@ public class X_C_UOM extends BasePOName implements I_C_UOM, I_Persistent {
      * @return Rounding used costing calculations
      */
     public int getCostingPrecision() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_CostingPrecision);
+        Integer ii = (Integer) getValue(COLUMNNAME_CostingPrecision);
         if (ii == null) return 0;
         return ii;
     }
@@ -79,7 +78,7 @@ public class X_C_UOM extends BasePOName implements I_C_UOM, I_Persistent {
      * @return Unit of Measure
      */
     public int getC_UOM_ID() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_C_UOM_ID);
+        Integer ii = (Integer) getValue(COLUMNNAME_C_UOM_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -99,7 +98,7 @@ public class X_C_UOM extends BasePOName implements I_C_UOM, I_Persistent {
      * @return Rule for rounding calculated amounts
      */
     public int getStdPrecision() {
-        Integer ii = (Integer) get_Value(COLUMNNAME_StdPrecision);
+        Integer ii = (Integer) getValue(COLUMNNAME_StdPrecision);
         if (ii == null) return 0;
         return ii;
     }
@@ -114,21 +113,12 @@ public class X_C_UOM extends BasePOName implements I_C_UOM, I_Persistent {
     }
 
     /**
-     * Get Symbol.
-     *
-     * @return Symbol for a Unit of Measure
-     */
-    public String getUOMSymbol() {
-        return (String) get_Value(COLUMNNAME_UOMSymbol);
-    }
-
-    /**
      * Get UOM Code.
      *
      * @return UOM EDI X12 Code
      */
     public String getX12DE355() {
-        return (String) get_Value(COLUMNNAME_X12DE355);
+        return (String) getValue(COLUMNNAME_X12DE355);
     }
 
     @Override
