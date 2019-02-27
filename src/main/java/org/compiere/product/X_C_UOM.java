@@ -69,7 +69,7 @@ public class X_C_UOM extends BasePOName implements I_C_UOM {
      * @param CostingPrecision Rounding used costing calculations
      */
     public void setCostingPrecision(int CostingPrecision) {
-        set_Value(COLUMNNAME_CostingPrecision, Integer.valueOf(CostingPrecision));
+        setValue(COLUMNNAME_CostingPrecision, Integer.valueOf(CostingPrecision));
     }
 
     /**
@@ -89,7 +89,7 @@ public class X_C_UOM extends BasePOName implements I_C_UOM {
      * @param IsDefault Default value
      */
     public void setIsDefault(boolean IsDefault) {
-        set_Value(COLUMNNAME_IsDefault, Boolean.valueOf(IsDefault));
+        setValue(COLUMNNAME_IsDefault, Boolean.valueOf(IsDefault));
     }
 
     /**
@@ -109,7 +109,7 @@ public class X_C_UOM extends BasePOName implements I_C_UOM {
      * @param StdPrecision Rule for rounding calculated amounts
      */
     public void setStdPrecision(int StdPrecision) {
-        set_Value(COLUMNNAME_StdPrecision, Integer.valueOf(StdPrecision));
+        setValue(COLUMNNAME_StdPrecision, Integer.valueOf(StdPrecision));
     }
 
     /**

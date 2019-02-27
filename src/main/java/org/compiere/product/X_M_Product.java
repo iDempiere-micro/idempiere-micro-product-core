@@ -99,8 +99,8 @@ public class X_M_Product extends PO {
      * @param C_TaxCategory_ID Tax Category
      */
     public void setC_TaxCategory_ID(int C_TaxCategory_ID) {
-        if (C_TaxCategory_ID < 1) set_Value(I_M_Product.COLUMNNAME_C_TaxCategory_ID, null);
-        else set_Value(I_M_Product.COLUMNNAME_C_TaxCategory_ID, Integer.valueOf(C_TaxCategory_ID));
+        if (C_TaxCategory_ID < 1) setValue(I_M_Product.COLUMNNAME_C_TaxCategory_ID, null);
+        else setValue(I_M_Product.COLUMNNAME_C_TaxCategory_ID, Integer.valueOf(C_TaxCategory_ID));
     }
 
     /**
@@ -120,8 +120,8 @@ public class X_M_Product extends PO {
      * @param C_UOM_ID Unit of Measure
      */
     public void setC_UOM_ID(int C_UOM_ID) {
-        if (C_UOM_ID < 1) set_Value(I_M_Product.COLUMNNAME_C_UOM_ID, null);
-        else set_Value(I_M_Product.COLUMNNAME_C_UOM_ID, Integer.valueOf(C_UOM_ID));
+        if (C_UOM_ID < 1) setValue(I_M_Product.COLUMNNAME_C_UOM_ID, null);
+        else setValue(I_M_Product.COLUMNNAME_C_UOM_ID, Integer.valueOf(C_UOM_ID));
     }
 
     /**
@@ -139,7 +139,7 @@ public class X_M_Product extends PO {
      * @param Description Optional short description of the record
      */
     public void setDescription(String Description) {
-        set_Value(I_M_Product.COLUMNNAME_Description, Description);
+        setValue(I_M_Product.COLUMNNAME_Description, Description);
     }
 
     /**
@@ -148,7 +148,7 @@ public class X_M_Product extends PO {
      * @param DescriptionURL URL for the description
      */
     public void setDescriptionURL(String DescriptionURL) {
-        set_Value(I_M_Product.COLUMNNAME_DescriptionURL, DescriptionURL);
+        setValue(I_M_Product.COLUMNNAME_DescriptionURL, DescriptionURL);
     }
 
     /**
@@ -157,7 +157,7 @@ public class X_M_Product extends PO {
      * @param DocumentNote Additional information for a Document
      */
     public void setDocumentNote(String DocumentNote) {
-        set_Value(I_M_Product.COLUMNNAME_DocumentNote, DocumentNote);
+        setValue(I_M_Product.COLUMNNAME_DocumentNote, DocumentNote);
     }
 
     /**
@@ -166,7 +166,7 @@ public class X_M_Product extends PO {
      * @param Help Comment or Hint
      */
     public void setHelp(String Help) {
-        set_Value(I_M_Product.COLUMNNAME_Help, Help);
+        setValue(I_M_Product.COLUMNNAME_Help, Help);
     }
 
     /**
@@ -175,7 +175,7 @@ public class X_M_Product extends PO {
      * @param ImageURL URL of image
      */
     public void setImageURL(String ImageURL) {
-        set_Value(I_M_Product.COLUMNNAME_ImageURL, ImageURL);
+        setValue(I_M_Product.COLUMNNAME_ImageURL, ImageURL);
     }
 
     /**
@@ -184,7 +184,7 @@ public class X_M_Product extends PO {
      * @param IsBOM Bill of Materials
      */
     public void setIsBOM(boolean IsBOM) {
-        set_Value(I_M_Product.COLUMNNAME_IsBOM, Boolean.valueOf(IsBOM));
+        setValue(I_M_Product.COLUMNNAME_IsBOM, Boolean.valueOf(IsBOM));
     }
 
     /**
@@ -207,7 +207,7 @@ public class X_M_Product extends PO {
      * @param IsExcludeAutoDelivery Exclude from automatic Delivery
      */
     public void setIsExcludeAutoDelivery(boolean IsExcludeAutoDelivery) {
-        set_Value(I_M_Product.COLUMNNAME_IsExcludeAutoDelivery, Boolean.valueOf(IsExcludeAutoDelivery));
+        setValue(I_M_Product.COLUMNNAME_IsExcludeAutoDelivery, Boolean.valueOf(IsExcludeAutoDelivery));
     }
 
     /**
@@ -230,7 +230,7 @@ public class X_M_Product extends PO {
      * @param IsInvoicePrintDetails Print detail BOM elements on the invoice
      */
     public void setIsInvoicePrintDetails(boolean IsInvoicePrintDetails) {
-        set_Value(I_M_Product.COLUMNNAME_IsInvoicePrintDetails, Boolean.valueOf(IsInvoicePrintDetails));
+        setValue(I_M_Product.COLUMNNAME_IsInvoicePrintDetails, Boolean.valueOf(IsInvoicePrintDetails));
     }
 
     /**
@@ -281,7 +281,7 @@ public class X_M_Product extends PO {
      * @param IsPickListPrintDetails Print detail BOM elements on the pick list
      */
     public void setIsPickListPrintDetails(boolean IsPickListPrintDetails) {
-        set_Value(
+        setValue(
                 I_M_Product.COLUMNNAME_IsPickListPrintDetails, Boolean.valueOf(IsPickListPrintDetails));
     }
 
@@ -291,7 +291,7 @@ public class X_M_Product extends PO {
      * @param IsPurchased Organization purchases this product
      */
     public void setIsPurchased(boolean IsPurchased) {
-        set_Value(I_M_Product.COLUMNNAME_IsPurchased, Boolean.valueOf(IsPurchased));
+        setValue(I_M_Product.COLUMNNAME_IsPurchased, Boolean.valueOf(IsPurchased));
     }
 
     /**
@@ -300,7 +300,7 @@ public class X_M_Product extends PO {
      * @param IsSelfService This is a Self-Service entry or this entry can be changed via Self-Service
      */
     public void setIsSelfService(boolean IsSelfService) {
-        set_Value(I_M_Product.COLUMNNAME_IsSelfService, Boolean.valueOf(IsSelfService));
+        setValue(I_M_Product.COLUMNNAME_IsSelfService, Boolean.valueOf(IsSelfService));
     }
 
     /**
@@ -309,7 +309,7 @@ public class X_M_Product extends PO {
      * @param IsSold Organization sells this product
      */
     public void setIsSold(boolean IsSold) {
-        set_Value(I_M_Product.COLUMNNAME_IsSold, Boolean.valueOf(IsSold));
+        setValue(I_M_Product.COLUMNNAME_IsSold, Boolean.valueOf(IsSold));
     }
 
     /**
@@ -318,7 +318,7 @@ public class X_M_Product extends PO {
      * @param IsStocked Organization stocks this product
      */
     public void setIsStocked(boolean IsStocked) {
-        set_Value(I_M_Product.COLUMNNAME_IsStocked, Boolean.valueOf(IsStocked));
+        setValue(I_M_Product.COLUMNNAME_IsStocked, Boolean.valueOf(IsStocked));
     }
 
     /**
@@ -341,7 +341,7 @@ public class X_M_Product extends PO {
      * @param IsSummary This is a summary entity
      */
     public void setIsSummary(boolean IsSummary) {
-        set_Value(I_M_Product.COLUMNNAME_IsSummary, Boolean.valueOf(IsSummary));
+        setValue(I_M_Product.COLUMNNAME_IsSummary, Boolean.valueOf(IsSummary));
     }
 
     /**
@@ -350,7 +350,7 @@ public class X_M_Product extends PO {
      * @param IsVerified The BOM configuration has been verified
      */
     public void setIsVerified(boolean IsVerified) {
-        set_ValueNoCheck(I_M_Product.COLUMNNAME_IsVerified, Boolean.valueOf(IsVerified));
+        setValueNoCheck(I_M_Product.COLUMNNAME_IsVerified, Boolean.valueOf(IsVerified));
     }
 
     /**
@@ -374,7 +374,7 @@ public class X_M_Product extends PO {
      *                           search
      */
     public void setIsWebStoreFeatured(boolean IsWebStoreFeatured) {
-        set_Value(I_M_Product.COLUMNNAME_IsWebStoreFeatured, Boolean.valueOf(IsWebStoreFeatured));
+        setValue(I_M_Product.COLUMNNAME_IsWebStoreFeatured, Boolean.valueOf(IsWebStoreFeatured));
     }
 
     /**
@@ -384,7 +384,7 @@ public class X_M_Product extends PO {
      *                 requirement should be exploited
      */
     public void setLowLevel(int LowLevel) {
-        set_Value(I_M_Product.COLUMNNAME_LowLevel, Integer.valueOf(LowLevel));
+        setValue(I_M_Product.COLUMNNAME_LowLevel, Integer.valueOf(LowLevel));
     }
 
     public org.compiere.model.I_M_AttributeSet getMAttributeSet() throws RuntimeException {
@@ -411,9 +411,9 @@ public class X_M_Product extends PO {
      */
     public void setM_AttributeSetInstance_ID(int M_AttributeSetInstance_ID) {
         if (M_AttributeSetInstance_ID < 0)
-            set_Value(I_M_Product.COLUMNNAME_M_AttributeSetInstance_ID, null);
+            setValue(I_M_Product.COLUMNNAME_M_AttributeSetInstance_ID, null);
         else
-            set_Value(
+            setValue(
                     I_M_Product.COLUMNNAME_M_AttributeSetInstance_ID,
                     Integer.valueOf(M_AttributeSetInstance_ID));
     }
@@ -463,9 +463,9 @@ public class X_M_Product extends PO {
      * @param M_Product_Category_ID Category of a Product
      */
     public void setM_Product_Category_ID(int M_Product_Category_ID) {
-        if (M_Product_Category_ID < 1) set_Value(I_M_Product.COLUMNNAME_M_Product_Category_ID, null);
+        if (M_Product_Category_ID < 1) setValue(I_M_Product.COLUMNNAME_M_Product_Category_ID, null);
         else
-            set_Value(
+            setValue(
                     I_M_Product.COLUMNNAME_M_Product_Category_ID, M_Product_Category_ID);
     }
 
@@ -495,7 +495,7 @@ public class X_M_Product extends PO {
      * @param Name Alphanumeric identifier of the entity
      */
     public void setName(String Name) {
-        set_Value(HasName.Companion.getCOLUMNNAME_Name(), Name);
+        setValue(HasName.Companion.getCOLUMNNAME_Name(), Name);
     }
 
     /**
@@ -504,7 +504,7 @@ public class X_M_Product extends PO {
      * @param Processing Process Now
      */
     public void setProcessing(boolean Processing) {
-        set_Value(I_M_Product.COLUMNNAME_Processing, Boolean.valueOf(Processing));
+        setValue(I_M_Product.COLUMNNAME_Processing, Boolean.valueOf(Processing));
     }
 
     /**
@@ -523,7 +523,7 @@ public class X_M_Product extends PO {
      */
     public void setProductType(String ProductType) {
 
-        set_Value(I_M_Product.COLUMNNAME_ProductType, ProductType);
+        setValue(I_M_Product.COLUMNNAME_ProductType, ProductType);
     }
 
     /**
@@ -543,9 +543,9 @@ public class X_M_Product extends PO {
      * @param S_ExpenseType_ID Expense report type
      */
     public void setS_ExpenseType_ID(int S_ExpenseType_ID) {
-        if (S_ExpenseType_ID < 1) set_ValueNoCheck(I_M_Product.COLUMNNAME_S_ExpenseType_ID, null);
+        if (S_ExpenseType_ID < 1) setValueNoCheck(I_M_Product.COLUMNNAME_S_ExpenseType_ID, null);
         else
-            set_ValueNoCheck(I_M_Product.COLUMNNAME_S_ExpenseType_ID, Integer.valueOf(S_ExpenseType_ID));
+            setValueNoCheck(I_M_Product.COLUMNNAME_S_ExpenseType_ID, Integer.valueOf(S_ExpenseType_ID));
     }
 
     /**
@@ -587,7 +587,7 @@ public class X_M_Product extends PO {
      * @param SKU Stock Keeping Unit
      */
     public void setSKU(String SKU) {
-        set_Value(I_M_Product.COLUMNNAME_SKU, SKU);
+        setValue(I_M_Product.COLUMNNAME_SKU, SKU);
     }
 
     /**
@@ -607,8 +607,8 @@ public class X_M_Product extends PO {
      * @param S_Resource_ID Resource
      */
     public void setS_Resource_ID(int S_Resource_ID) {
-        if (S_Resource_ID < 1) set_ValueNoCheck(I_M_Product.COLUMNNAME_S_Resource_ID, null);
-        else set_ValueNoCheck(I_M_Product.COLUMNNAME_S_Resource_ID, Integer.valueOf(S_Resource_ID));
+        if (S_Resource_ID < 1) setValueNoCheck(I_M_Product.COLUMNNAME_S_Resource_ID, null);
+        else setValueNoCheck(I_M_Product.COLUMNNAME_S_Resource_ID, Integer.valueOf(S_Resource_ID));
     }
 
     /**
@@ -617,7 +617,7 @@ public class X_M_Product extends PO {
      * @param UPC Bar Code (Universal Product Code or its superset European Article Number)
      */
     public void setUPC(String UPC) {
-        set_Value(I_M_Product.COLUMNNAME_UPC, UPC);
+        setValue(I_M_Product.COLUMNNAME_UPC, UPC);
     }
 
     /**
@@ -635,7 +635,7 @@ public class X_M_Product extends PO {
      * @param Value Search key for the record in the format required - must be unique
      */
     public void setValue(String Value) {
-        set_Value(I_M_Product.COLUMNNAME_Value, Value);
+        setValue(I_M_Product.COLUMNNAME_Value, Value);
     }
 
     /**
@@ -664,7 +664,7 @@ public class X_M_Product extends PO {
      * @param Volume Volume of a product
      */
     public void setVolume(BigDecimal Volume) {
-        set_Value(I_M_Product.COLUMNNAME_Volume, Volume);
+        setValue(I_M_Product.COLUMNNAME_Volume, Volume);
     }
 
     /**
@@ -684,7 +684,7 @@ public class X_M_Product extends PO {
      * @param Weight Weight of a product
      */
     public void setWeight(BigDecimal Weight) {
-        set_Value(I_M_Product.COLUMNNAME_Weight, Weight);
+        setValue(I_M_Product.COLUMNNAME_Weight, Weight);
     }
 
     @Override

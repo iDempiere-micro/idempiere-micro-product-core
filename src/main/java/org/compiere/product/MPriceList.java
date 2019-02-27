@@ -87,7 +87,7 @@ public class MPriceList extends X_M_PriceList {
         //
         setName(impPL.getName());
         setDescription(impPL.getDescription());
-        setC_Currency_ID(impPL.getC_Currency_ID());
+        setCurrencyId(impPL.getCurrencyId());
         setPricePrecision(impPL.getPricePrecision());
         setIsSOPriceList(impPL.isSOPriceList());
         setIsTaxIncluded(impPL.isTaxIncluded());
@@ -185,12 +185,12 @@ public class MPriceList extends X_M_PriceList {
         final String whereClause = "M_PriceList_ID=? AND TRUNC(ValidFrom)<=?";
         m_plv =
                 new Query(getCtx(), I_M_PriceList_Version.Table_Name, whereClause)
-                        .setParameters(getM_PriceList_ID(), valid)
+                        .setParameters(getPriceListId(), valid)
                         .setOnlyActiveRecords(true)
                         .setOrderBy("ValidFrom DESC")
                         .first();
         if (m_plv == null)
-            log.warning("None found M_PriceList_ID=" + getM_PriceList_ID() + " - " + valid);
+            log.warning("None found M_PriceList_ID=" + getPriceListId() + " - " + valid);
         else if (log.isLoggable(Level.FINE)) log.fine(m_plv.toString());
         return m_plv;
     } //	getPriceListVersion
@@ -202,7 +202,7 @@ public class MPriceList extends X_M_PriceList {
      */
     public int getStandardPrecision() {
         if (m_precision == null) {
-            MCurrency c = MCurrency.get(getCtx(), getC_Currency_ID());
+            MCurrency c = MCurrency.get(getCtx(), getCurrencyId());
             m_precision = new Integer(c.getStdPrecision());
         }
         return m_precision.intValue();

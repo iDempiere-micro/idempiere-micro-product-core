@@ -31,7 +31,7 @@ public class MPriceListVersion extends X_M_PriceList_Version {
         super(ctx, M_PriceList_Version_ID);
         if (M_PriceList_Version_ID == 0) {
             //	setName (null);	// @#Date@
-            //	setM_PriceList_ID (0);
+            //	setPriceListId (0);
             //	setValidFrom (TimeUtil.getDay(null));	// @#Date@
             //	setM_DiscountSchema_ID (0);
         }
@@ -61,7 +61,7 @@ public class MPriceListVersion extends X_M_PriceList_Version {
     public MPriceListVersion(I_M_PriceList pl) {
         this(pl.getCtx(), 0);
         setClientOrg(pl);
-        setM_PriceList_ID(pl.getM_PriceList_ID());
+        setPriceListId(pl.getPriceListId());
     } //	MPriceListVersion
 
     /**

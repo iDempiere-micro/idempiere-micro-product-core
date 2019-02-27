@@ -632,10 +632,10 @@ public class MProductPricing extends AbstractProductPricing {
      *
      * @param M_PriceList_ID pl
      */
-    public void setM_PriceList_ID(int M_PriceList_ID) {
-        super.setM_PriceList_ID(M_PriceList_ID);
+    public void setPriceListId(int M_PriceList_ID) {
+        super.setPriceListId(M_PriceList_ID);
         m_calculated = false;
-    } //	setM_PriceList_ID
+    } //	setPriceListId
 
     /**
      * Set Price Date
@@ -652,7 +652,7 @@ public class MProductPricing extends AbstractProductPricing {
      */
     private void setPrecision() {
         if (m_M_PriceList_ID != 0)
-            m_precision = MPriceList.getPricePrecision(Env.getCtx(), getM_PriceList_ID());
+            m_precision = MPriceList.getPricePrecision(Env.getCtx(), getPriceListId());
     } //	setPrecision
 
     /**

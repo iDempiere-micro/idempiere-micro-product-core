@@ -78,7 +78,7 @@ public class X_M_Product_Category extends BasePONameValue
      * @param IsDefault Default value
      */
     public void setIsDefault(boolean IsDefault) {
-        set_Value(COLUMNNAME_IsDefault, Boolean.valueOf(IsDefault));
+        setValue(COLUMNNAME_IsDefault, Boolean.valueOf(IsDefault));
     }
 
     /**
@@ -87,7 +87,7 @@ public class X_M_Product_Category extends BasePONameValue
      * @param IsSelfService This is a Self-Service entry or this entry can be changed via Self-Service
      */
     public void setIsSelfService(boolean IsSelfService) {
-        set_Value(COLUMNNAME_IsSelfService, Boolean.valueOf(IsSelfService));
+        setValue(COLUMNNAME_IsSelfService, Boolean.valueOf(IsSelfService));
     }
 
     /**
@@ -106,7 +106,7 @@ public class X_M_Product_Category extends BasePONameValue
      */
     public void setMMPolicy(String MMPolicy) {
 
-        set_Value(COLUMNNAME_MMPolicy, MMPolicy);
+        setValue(COLUMNNAME_MMPolicy, MMPolicy);
     }
 
     /**
@@ -148,7 +148,7 @@ public class X_M_Product_Category extends BasePONameValue
      * @param PlannedMargin Project's planned margin as a percentage
      */
     public void setPlannedMargin(BigDecimal PlannedMargin) {
-        set_Value(COLUMNNAME_PlannedMargin, PlannedMargin);
+        setValue(COLUMNNAME_PlannedMargin, PlannedMargin);
     }
 
     @Override

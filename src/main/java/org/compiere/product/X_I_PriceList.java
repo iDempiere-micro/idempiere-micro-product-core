@@ -67,7 +67,7 @@ public class X_I_PriceList extends PO implements I_I_PriceList {
      *
      * @return Identifies a Business Partner
      */
-    public int getC_BPartner_ID() {
+    public int getBusinessPartnerId() {
         Integer ii = (Integer) getValue(COLUMNNAME_C_BPartner_ID);
         if (ii == null) return 0;
         return ii;
@@ -78,7 +78,7 @@ public class X_I_PriceList extends PO implements I_I_PriceList {
      *
      * @return The Currency for this record
      */
-    public int getC_Currency_ID() {
+    public int getCurrencyId() {
         Integer ii = (Integer) getValue(COLUMNNAME_C_Currency_ID);
         if (ii == null) return 0;
         return ii;
@@ -151,7 +151,7 @@ public class X_I_PriceList extends PO implements I_I_PriceList {
      *
      * @return Unique identifier of a Price List
      */
-    public int getM_PriceList_ID() {
+    public int getPriceListId() {
         Integer ii = (Integer) getValue(COLUMNNAME_M_PriceList_ID);
         if (ii == null) return 0;
         return ii;

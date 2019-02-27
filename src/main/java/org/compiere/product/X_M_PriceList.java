@@ -28,7 +28,7 @@ public abstract class X_M_PriceList extends PO implements I_M_PriceList {
         super(ctx, M_PriceList_ID);
         /**
          * if (M_PriceList_ID == 0) { setCurrencyId (0); setEnforcePriceLimit (false); setIsDefault
-         * (false); setIsSOPriceList (false); setIsTaxIncluded (false); setM_PriceList_ID (0); setName
+         * (false); setIsSOPriceList (false); setIsTaxIncluded (false); setPriceListId (0); setName
          * (null); setPricePrecision (0); // 2 }
          */
     }
@@ -63,7 +63,7 @@ public abstract class X_M_PriceList extends PO implements I_M_PriceList {
      *
      * @return The Currency for this record
      */
-    public int getC_Currency_ID() {
+    public int getCurrencyId() {
         Integer ii = (Integer) getValue(COLUMNNAME_C_Currency_ID);
         if (ii == null) return 0;
         return ii;
@@ -74,9 +74,9 @@ public abstract class X_M_PriceList extends PO implements I_M_PriceList {
      *
      * @param C_Currency_ID The Currency for this record
      */
-    public void setC_Currency_ID(int C_Currency_ID) {
-        if (C_Currency_ID < 1) set_Value(COLUMNNAME_C_Currency_ID, null);
-        else set_Value(COLUMNNAME_C_Currency_ID, C_Currency_ID);
+    public void setCurrencyId(int C_Currency_ID) {
+        if (C_Currency_ID < 1) setValue(COLUMNNAME_C_Currency_ID, null);
+        else setValue(COLUMNNAME_C_Currency_ID, C_Currency_ID);
     }
 
     /**
@@ -85,7 +85,7 @@ public abstract class X_M_PriceList extends PO implements I_M_PriceList {
      * @param Description Optional short description of the record
      */
     public void setDescription(String Description) {
-        set_Value(COLUMNNAME_Description, Description);
+        setValue(COLUMNNAME_Description, Description);
     }
 
     /**
@@ -108,7 +108,7 @@ public abstract class X_M_PriceList extends PO implements I_M_PriceList {
      * @param EnforcePriceLimit Do not allow prices below the limit price
      */
     public void setEnforcePriceLimit(boolean EnforcePriceLimit) {
-        set_Value(COLUMNNAME_EnforcePriceLimit, Boolean.valueOf(EnforcePriceLimit));
+        setValue(COLUMNNAME_EnforcePriceLimit, Boolean.valueOf(EnforcePriceLimit));
     }
 
     /**
@@ -117,7 +117,7 @@ public abstract class X_M_PriceList extends PO implements I_M_PriceList {
      * @param IsDefault Default value
      */
     public void setIsDefault(boolean IsDefault) {
-        set_Value(COLUMNNAME_IsDefault, Boolean.valueOf(IsDefault));
+        setValue(COLUMNNAME_IsDefault, Boolean.valueOf(IsDefault));
     }
 
     /**
@@ -140,7 +140,7 @@ public abstract class X_M_PriceList extends PO implements I_M_PriceList {
      * @param IsSOPriceList This is a Sales Price List
      */
     public void setIsSOPriceList(boolean IsSOPriceList) {
-        set_Value(COLUMNNAME_IsSOPriceList, Boolean.valueOf(IsSOPriceList));
+        setValue(COLUMNNAME_IsSOPriceList, Boolean.valueOf(IsSOPriceList));
     }
 
     /**
@@ -163,7 +163,7 @@ public abstract class X_M_PriceList extends PO implements I_M_PriceList {
      * @param IsTaxIncluded Tax is included in the price
      */
     public void setIsTaxIncluded(boolean IsTaxIncluded) {
-        set_Value(COLUMNNAME_IsTaxIncluded, Boolean.valueOf(IsTaxIncluded));
+        setValue(COLUMNNAME_IsTaxIncluded, Boolean.valueOf(IsTaxIncluded));
     }
 
     /**
@@ -185,7 +185,7 @@ public abstract class X_M_PriceList extends PO implements I_M_PriceList {
      *
      * @return Unique identifier of a Price List
      */
-    public int getM_PriceList_ID() {
+    public int getPriceListId() {
         Integer ii = (Integer) getValue(COLUMNNAME_M_PriceList_ID);
         if (ii == null) return 0;
         return ii;
@@ -206,7 +206,7 @@ public abstract class X_M_PriceList extends PO implements I_M_PriceList {
      * @param Name Alphanumeric identifier of the entity
      */
     public void setName(String Name) {
-        set_Value(HasName.Companion.getCOLUMNNAME_Name(), Name);
+        setValue(HasName.Companion.getCOLUMNNAME_Name(), Name);
     }
 
     /**
@@ -226,6 +226,6 @@ public abstract class X_M_PriceList extends PO implements I_M_PriceList {
      * @param PricePrecision Precision (number of decimals) for the Price
      */
     public void setPricePrecision(int PricePrecision) {
-        set_Value(COLUMNNAME_PricePrecision, Integer.valueOf(PricePrecision));
+        setValue(COLUMNNAME_PricePrecision, Integer.valueOf(PricePrecision));
     }
 }

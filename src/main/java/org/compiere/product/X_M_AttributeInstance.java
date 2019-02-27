@@ -56,8 +56,8 @@ public class X_M_AttributeInstance extends PO implements I_M_AttributeInstance {
      * @param M_Attribute_ID Product Attribute
      */
     public void setMAttributeID(int M_Attribute_ID) {
-        if (M_Attribute_ID < 1) set_ValueNoCheck(COLUMNNAME_M_Attribute_ID, null);
-        else set_ValueNoCheck(COLUMNNAME_M_Attribute_ID, Integer.valueOf(M_Attribute_ID));
+        if (M_Attribute_ID < 1) setValueNoCheck(COLUMNNAME_M_Attribute_ID, null);
+        else setValueNoCheck(COLUMNNAME_M_Attribute_ID, Integer.valueOf(M_Attribute_ID));
     }
 
     /**
@@ -66,9 +66,9 @@ public class X_M_AttributeInstance extends PO implements I_M_AttributeInstance {
      * @param M_AttributeSetInstance_ID Product Attribute Set Instance
      */
     public void setM_AttributeSetInstance_ID(int M_AttributeSetInstance_ID) {
-        if (M_AttributeSetInstance_ID < 0) set_ValueNoCheck(COLUMNNAME_M_AttributeSetInstance_ID, null);
+        if (M_AttributeSetInstance_ID < 0) setValueNoCheck(COLUMNNAME_M_AttributeSetInstance_ID, null);
         else
-            set_ValueNoCheck(
+            setValueNoCheck(
                     COLUMNNAME_M_AttributeSetInstance_ID, Integer.valueOf(M_AttributeSetInstance_ID));
     }
 
@@ -78,8 +78,8 @@ public class X_M_AttributeInstance extends PO implements I_M_AttributeInstance {
      * @param M_AttributeValue_ID Product Attribute Value
      */
     public void setM_AttributeValue_ID(int M_AttributeValue_ID) {
-        if (M_AttributeValue_ID < 1) set_Value(COLUMNNAME_M_AttributeValue_ID, null);
-        else set_Value(COLUMNNAME_M_AttributeValue_ID, Integer.valueOf(M_AttributeValue_ID));
+        if (M_AttributeValue_ID < 1) setValue(COLUMNNAME_M_AttributeValue_ID, null);
+        else setValue(COLUMNNAME_M_AttributeValue_ID, Integer.valueOf(M_AttributeValue_ID));
     }
 
     /**
@@ -97,7 +97,7 @@ public class X_M_AttributeInstance extends PO implements I_M_AttributeInstance {
      * @param Value Search key for the record in the format required - must be unique
      */
     public void setValue(String Value) {
-        set_Value(COLUMNNAME_Value, Value);
+        setValue(COLUMNNAME_Value, Value);
     }
 
     /**
@@ -106,7 +106,7 @@ public class X_M_AttributeInstance extends PO implements I_M_AttributeInstance {
      * @param ValueNumber Numeric Value
      */
     public void setValueNumber(BigDecimal ValueNumber) {
-        set_Value(COLUMNNAME_ValueNumber, ValueNumber);
+        setValue(COLUMNNAME_ValueNumber, ValueNumber);
     }
 
     @Override

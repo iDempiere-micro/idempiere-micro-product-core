@@ -86,7 +86,7 @@ public class X_M_DiscountSchema extends BasePOName implements I_M_DiscountSchema
      */
     public void setCumulativeLevel(String CumulativeLevel) {
 
-        set_Value(COLUMNNAME_CumulativeLevel, CumulativeLevel);
+        setValue(COLUMNNAME_CumulativeLevel, CumulativeLevel);
     }
 
     /**
@@ -105,7 +105,7 @@ public class X_M_DiscountSchema extends BasePOName implements I_M_DiscountSchema
      */
     public void setDiscountType(String DiscountType) {
 
-        set_Value(COLUMNNAME_DiscountType, DiscountType);
+        setValue(COLUMNNAME_DiscountType, DiscountType);
     }
 
     /**
@@ -125,7 +125,7 @@ public class X_M_DiscountSchema extends BasePOName implements I_M_DiscountSchema
      * @param FlatDiscount Flat discount percentage
      */
     public void setFlatDiscount(BigDecimal FlatDiscount) {
-        set_Value(COLUMNNAME_FlatDiscount, FlatDiscount);
+        setValue(COLUMNNAME_FlatDiscount, FlatDiscount);
     }
 
     /**
@@ -134,7 +134,7 @@ public class X_M_DiscountSchema extends BasePOName implements I_M_DiscountSchema
      * @param IsBPartnerFlatDiscount Use flat discount defined on Business Partner Level
      */
     public void setIsBPartnerFlatDiscount(boolean IsBPartnerFlatDiscount) {
-        set_Value(COLUMNNAME_IsBPartnerFlatDiscount, Boolean.valueOf(IsBPartnerFlatDiscount));
+        setValue(COLUMNNAME_IsBPartnerFlatDiscount, Boolean.valueOf(IsBPartnerFlatDiscount));
     }
 
     /**
@@ -157,7 +157,7 @@ public class X_M_DiscountSchema extends BasePOName implements I_M_DiscountSchema
      * @param IsQuantityBased Trade discount break level based on Quantity (not value)
      */
     public void setIsQuantityBased(boolean IsQuantityBased) {
-        set_Value(COLUMNNAME_IsQuantityBased, Boolean.valueOf(IsQuantityBased));
+        setValue(COLUMNNAME_IsQuantityBased, Boolean.valueOf(IsQuantityBased));
     }
 
     /**
@@ -200,7 +200,7 @@ public class X_M_DiscountSchema extends BasePOName implements I_M_DiscountSchema
      * @param ValidFrom Valid from including this date (first day)
      */
     public void setValidFrom(Timestamp ValidFrom) {
-        set_Value(COLUMNNAME_ValidFrom, ValidFrom);
+        setValue(COLUMNNAME_ValidFrom, ValidFrom);
     }
 
     @Override

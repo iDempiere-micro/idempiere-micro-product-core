@@ -57,7 +57,7 @@ public class X_C_Currency extends PO implements I_C_Currency {
      *
      * @return The Currency for this record
      */
-    public int getC_Currency_ID() {
+    public int getCurrencyId() {
         Integer ii = (Integer) getValue(COLUMNNAME_C_Currency_ID);
         if (ii == null) return 0;
         return ii;
@@ -80,7 +80,7 @@ public class X_C_Currency extends PO implements I_C_Currency {
      * @param CostingPrecision Rounding used costing calculations
      */
     public void setCostingPrecision(int CostingPrecision) {
-        set_Value(COLUMNNAME_CostingPrecision, Integer.valueOf(CostingPrecision));
+        setValue(COLUMNNAME_CostingPrecision, Integer.valueOf(CostingPrecision));
     }
 
     /**
@@ -98,7 +98,7 @@ public class X_C_Currency extends PO implements I_C_Currency {
      * @param CurSymbol Symbol of the currency (opt used for printing only)
      */
     public void setCurSymbol(String CurSymbol) {
-        set_Value(COLUMNNAME_CurSymbol, CurSymbol);
+        setValue(COLUMNNAME_CurSymbol, CurSymbol);
     }
 
     /**
@@ -116,7 +116,7 @@ public class X_C_Currency extends PO implements I_C_Currency {
      * @param Description Optional short description of the record
      */
     public void setDescription(String Description) {
-        set_Value(COLUMNNAME_Description, Description);
+        setValue(COLUMNNAME_Description, Description);
     }
 
     /**
@@ -125,7 +125,7 @@ public class X_C_Currency extends PO implements I_C_Currency {
      * @param IsEMUMember This currency is member if the European Monetary Union
      */
     public void setIsEMUMember(boolean IsEMUMember) {
-        set_Value(COLUMNNAME_IsEMUMember, Boolean.valueOf(IsEMUMember));
+        setValue(COLUMNNAME_IsEMUMember, Boolean.valueOf(IsEMUMember));
     }
 
     /**
@@ -134,7 +134,7 @@ public class X_C_Currency extends PO implements I_C_Currency {
      * @param IsEuro This currency is the Euro
      */
     public void setIsEuro(boolean IsEuro) {
-        set_Value(COLUMNNAME_IsEuro, Boolean.valueOf(IsEuro));
+        setValue(COLUMNNAME_IsEuro, Boolean.valueOf(IsEuro));
     }
 
     /**
@@ -152,7 +152,7 @@ public class X_C_Currency extends PO implements I_C_Currency {
      * @param ISO_Code Three letter ISO 4217 Code of the Currency
      */
     public void setISO_Code(String ISO_Code) {
-        set_Value(COLUMNNAME_ISO_Code, ISO_Code);
+        setValue(COLUMNNAME_ISO_Code, ISO_Code);
     }
 
     /**
@@ -172,7 +172,7 @@ public class X_C_Currency extends PO implements I_C_Currency {
      * @param StdPrecision Rule for rounding calculated amounts
      */
     public void setStdPrecision(int StdPrecision) {
-        set_Value(COLUMNNAME_StdPrecision, Integer.valueOf(StdPrecision));
+        setValue(COLUMNNAME_StdPrecision, Integer.valueOf(StdPrecision));
     }
 
     @Override

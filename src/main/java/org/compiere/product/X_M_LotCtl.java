@@ -67,7 +67,7 @@ public class X_M_LotCtl extends BasePOName implements I_M_LotCtl {
      * @param CurrentNext The next number to be used
      */
     public void setCurrentNext(int CurrentNext) {
-        set_Value(COLUMNNAME_CurrentNext, Integer.valueOf(CurrentNext));
+        setValue(COLUMNNAME_CurrentNext, Integer.valueOf(CurrentNext));
     }
 
     /**
@@ -87,7 +87,7 @@ public class X_M_LotCtl extends BasePOName implements I_M_LotCtl {
      * @param IncrementNo The number to increment the last document number by
      */
     public void setIncrementNo(int IncrementNo) {
-        set_Value(COLUMNNAME_IncrementNo, Integer.valueOf(IncrementNo));
+        setValue(COLUMNNAME_IncrementNo, Integer.valueOf(IncrementNo));
     }
 
     /**
@@ -116,7 +116,7 @@ public class X_M_LotCtl extends BasePOName implements I_M_LotCtl {
      * @param StartNo Starting number/position
      */
     public void setStartNo(int StartNo) {
-        set_Value(COLUMNNAME_StartNo, Integer.valueOf(StartNo));
+        setValue(COLUMNNAME_StartNo, Integer.valueOf(StartNo));
     }
 
     /**

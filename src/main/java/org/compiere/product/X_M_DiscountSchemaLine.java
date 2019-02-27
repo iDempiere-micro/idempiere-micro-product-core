@@ -37,7 +37,7 @@ public class X_M_DiscountSchemaLine extends PO implements I_M_DiscountSchemaLine
     public X_M_DiscountSchemaLine(Properties ctx, int M_DiscountSchemaLine_ID) {
         super(ctx, M_DiscountSchemaLine_ID);
         /**
-         * if (M_DiscountSchemaLine_ID == 0) { setC_ConversionType_ID (0); setConversionDate (new
+         * if (M_DiscountSchemaLine_ID == 0) { setConversionTypeId (0); setConversionDate (new
          * Timestamp( System.currentTimeMillis() )); // @#Date@ setLimit_AddAmt (Env.ZERO);
          * setLimit_Base (null); // X setLimit_Discount (Env.ZERO); setLimit_MaxAmt (Env.ZERO);
          * setLimit_MinAmt (Env.ZERO); setLimit_Rounding (null); // C setList_AddAmt (Env.ZERO);
@@ -87,7 +87,7 @@ public class X_M_DiscountSchemaLine extends PO implements I_M_DiscountSchemaLine
      * @param SeqNo Method of ordering records; lowest number comes first
      */
     public void setSeqNo(int SeqNo) {
-        set_Value(COLUMNNAME_SeqNo, Integer.valueOf(SeqNo));
+        setValue(COLUMNNAME_SeqNo, Integer.valueOf(SeqNo));
     }
 
     @Override

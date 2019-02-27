@@ -146,7 +146,7 @@ public class X_S_Resource extends BasePOUser implements I_S_Resource {
      * @param Value Search key for the record in the format required - must be unique
      */
     public void setValue(String Value) {
-        set_Value(COLUMNNAME_Value, Value);
+        setValue(COLUMNNAME_Value, Value);
     }
 
     @Override

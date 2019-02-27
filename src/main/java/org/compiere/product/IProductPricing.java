@@ -41,9 +41,9 @@ public interface IProductPricing {
 
     int getM_Product_ID();
 
-    int getM_PriceList_ID();
+    int getPriceListId();
 
-    void setM_PriceList_ID(int M_PriceList_ID);
+    void setPriceListId(int M_PriceList_ID);
 
     /**
      * Get Price Date

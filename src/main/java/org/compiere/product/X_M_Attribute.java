@@ -66,7 +66,7 @@ public class X_M_Attribute extends BasePOName implements I_M_Attribute {
      */
     public void setAttributeValueType(String AttributeValueType) {
 
-        set_Value(COLUMNNAME_AttributeValueType, AttributeValueType);
+        setValue(COLUMNNAME_AttributeValueType, AttributeValueType);
     }
 
     /**
@@ -76,7 +76,7 @@ public class X_M_Attribute extends BasePOName implements I_M_Attribute {
      *                            Lot or Guarantee Date)
      */
     public void setIsInstanceAttribute(boolean IsInstanceAttribute) {
-        set_Value(COLUMNNAME_IsInstanceAttribute, IsInstanceAttribute);
+        setValue(COLUMNNAME_IsInstanceAttribute, IsInstanceAttribute);
     }
 
     /**
@@ -100,7 +100,7 @@ public class X_M_Attribute extends BasePOName implements I_M_Attribute {
      * @param IsMandatory Data entry is required in this column
      */
     public void setIsMandatory(boolean IsMandatory) {
-        set_Value(COLUMNNAME_IsMandatory, IsMandatory);
+        setValue(COLUMNNAME_IsMandatory, IsMandatory);
     }
 
     /**

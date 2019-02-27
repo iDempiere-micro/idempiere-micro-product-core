@@ -85,7 +85,7 @@ public class X_M_AttributeSet extends BasePOName implements I_M_AttributeSet {
      * @param IsGuaranteeDate Product has Guarantee or Expiry Date
      */
     public void setIsGuaranteeDate(boolean IsGuaranteeDate) {
-        set_Value(COLUMNNAME_IsGuaranteeDate, Boolean.valueOf(IsGuaranteeDate));
+        setValue(COLUMNNAME_IsGuaranteeDate, Boolean.valueOf(IsGuaranteeDate));
     }
 
     /**
@@ -109,7 +109,7 @@ public class X_M_AttributeSet extends BasePOName implements I_M_AttributeSet {
      *                                 Product Instance
      */
     public void setIsGuaranteeDateMandatory(boolean IsGuaranteeDateMandatory) {
-        set_Value(COLUMNNAME_IsGuaranteeDateMandatory, Boolean.valueOf(IsGuaranteeDateMandatory));
+        setValue(COLUMNNAME_IsGuaranteeDateMandatory, Boolean.valueOf(IsGuaranteeDateMandatory));
     }
 
     /**
@@ -133,7 +133,7 @@ public class X_M_AttributeSet extends BasePOName implements I_M_AttributeSet {
      *                            Lot or Guarantee Date)
      */
     public void setIsInstanceAttribute(boolean IsInstanceAttribute) {
-        set_Value(COLUMNNAME_IsInstanceAttribute, Boolean.valueOf(IsInstanceAttribute));
+        setValue(COLUMNNAME_IsInstanceAttribute, Boolean.valueOf(IsInstanceAttribute));
     }
 
     /**
@@ -157,7 +157,7 @@ public class X_M_AttributeSet extends BasePOName implements I_M_AttributeSet {
      * @param IsLot The product instances have a Lot Number
      */
     public void setIsLot(boolean IsLot) {
-        set_Value(COLUMNNAME_IsLot, Boolean.valueOf(IsLot));
+        setValue(COLUMNNAME_IsLot, Boolean.valueOf(IsLot));
     }
 
     /**
@@ -180,7 +180,7 @@ public class X_M_AttributeSet extends BasePOName implements I_M_AttributeSet {
      * @param IsLotMandatory The entry of Lot info is mandatory when creating a Product Instance
      */
     public void setIsLotMandatory(boolean IsLotMandatory) {
-        set_Value(COLUMNNAME_IsLotMandatory, Boolean.valueOf(IsLotMandatory));
+        setValue(COLUMNNAME_IsLotMandatory, Boolean.valueOf(IsLotMandatory));
     }
 
     /**
@@ -203,7 +203,7 @@ public class X_M_AttributeSet extends BasePOName implements I_M_AttributeSet {
      * @param IsSerNo The product instances have Serial Numbers
      */
     public void setIsSerNo(boolean IsSerNo) {
-        set_Value(COLUMNNAME_IsSerNo, Boolean.valueOf(IsSerNo));
+        setValue(COLUMNNAME_IsSerNo, Boolean.valueOf(IsSerNo));
     }
 
     /**
@@ -226,7 +226,7 @@ public class X_M_AttributeSet extends BasePOName implements I_M_AttributeSet {
      * @param IsSerNoMandatory The entry of a Serial No is mandatory when creating a Product Instance
      */
     public void setIsSerNoMandatory(boolean IsSerNoMandatory) {
-        set_Value(COLUMNNAME_IsSerNoMandatory, Boolean.valueOf(IsSerNoMandatory));
+        setValue(COLUMNNAME_IsSerNoMandatory, Boolean.valueOf(IsSerNoMandatory));
     }
 
     /**
@@ -277,7 +277,7 @@ public class X_M_AttributeSet extends BasePOName implements I_M_AttributeSet {
      */
     public void setMandatoryType(String MandatoryType) {
 
-        set_Value(COLUMNNAME_MandatoryType, MandatoryType);
+        setValue(COLUMNNAME_MandatoryType, MandatoryType);
     }
 
     /**

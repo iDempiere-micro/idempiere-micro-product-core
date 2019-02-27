@@ -108,8 +108,8 @@ public class X_M_DiscountSchemaBreak extends PO implements I_M_DiscountSchemaBre
      * @param M_Product_Category_ID Category of a Product
      */
     public void setM_Product_Category_ID(int M_Product_Category_ID) {
-        if (M_Product_Category_ID < 1) set_Value(COLUMNNAME_M_Product_Category_ID, null);
-        else set_Value(COLUMNNAME_M_Product_Category_ID, Integer.valueOf(M_Product_Category_ID));
+        if (M_Product_Category_ID < 1) setValue(COLUMNNAME_M_Product_Category_ID, null);
+        else setValue(COLUMNNAME_M_Product_Category_ID, Integer.valueOf(M_Product_Category_ID));
     }
 
     /**
@@ -140,7 +140,7 @@ public class X_M_DiscountSchemaBreak extends PO implements I_M_DiscountSchemaBre
      * @param SeqNo Method of ordering records; lowest number comes first
      */
     public void setSeqNo(int SeqNo) {
-        set_Value(COLUMNNAME_SeqNo, Integer.valueOf(SeqNo));
+        setValue(COLUMNNAME_SeqNo, Integer.valueOf(SeqNo));
     }
 
     @Override

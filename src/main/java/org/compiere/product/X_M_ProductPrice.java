@@ -77,9 +77,9 @@ public class X_M_ProductPrice extends PO implements I_M_ProductPrice {
      * @param M_PriceList_Version_ID Identifies a unique instance of a Price List
      */
     public void setM_PriceList_Version_ID(int M_PriceList_Version_ID) {
-        if (M_PriceList_Version_ID < 1) set_ValueNoCheck(COLUMNNAME_M_PriceList_Version_ID, null);
+        if (M_PriceList_Version_ID < 1) setValueNoCheck(COLUMNNAME_M_PriceList_Version_ID, null);
         else
-            set_ValueNoCheck(COLUMNNAME_M_PriceList_Version_ID, M_PriceList_Version_ID);
+            setValueNoCheck(COLUMNNAME_M_PriceList_Version_ID, M_PriceList_Version_ID);
     }
 
     /**
@@ -99,8 +99,8 @@ public class X_M_ProductPrice extends PO implements I_M_ProductPrice {
      * @param M_Product_ID Product, Service, Item
      */
     public void setM_Product_ID(int M_Product_ID) {
-        if (M_Product_ID < 1) set_ValueNoCheck(COLUMNNAME_M_Product_ID, null);
-        else set_ValueNoCheck(COLUMNNAME_M_Product_ID, M_Product_ID);
+        if (M_Product_ID < 1) setValueNoCheck(COLUMNNAME_M_Product_ID, null);
+        else setValueNoCheck(COLUMNNAME_M_Product_ID, M_Product_ID);
     }
 
     /**
@@ -120,7 +120,7 @@ public class X_M_ProductPrice extends PO implements I_M_ProductPrice {
      * @param PriceLimit Lowest price for a product
      */
     public void setPriceLimit(BigDecimal PriceLimit) {
-        set_Value(COLUMNNAME_PriceLimit, PriceLimit);
+        setValue(COLUMNNAME_PriceLimit, PriceLimit);
     }
 
     /**
@@ -140,7 +140,7 @@ public class X_M_ProductPrice extends PO implements I_M_ProductPrice {
      * @param PriceList List Price
      */
     public void setPriceList(BigDecimal PriceList) {
-        set_Value(COLUMNNAME_PriceList, PriceList);
+        setValue(COLUMNNAME_PriceList, PriceList);
     }
 
     /**
@@ -160,7 +160,7 @@ public class X_M_ProductPrice extends PO implements I_M_ProductPrice {
      * @param PriceStd Standard Price
      */
     public void setPriceStd(BigDecimal PriceStd) {
-        set_Value(COLUMNNAME_PriceStd, PriceStd);
+        setValue(COLUMNNAME_PriceStd, PriceStd);
     }
 
     @Override

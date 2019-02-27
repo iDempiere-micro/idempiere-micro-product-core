@@ -320,7 +320,7 @@ public class MAttributeSetInstance extends X_M_AttributeSetInstance {
                 // use id as description when description is empty
                 String desc = this.getDescription();
                 if (desc == null || desc.trim().length() == 0) {
-                    this.set_ValueNoCheck("Description", Integer.toString(getMAttributeSetInstance_ID()));
+                    this.setValueNoCheck("Description", Integer.toString(getMAttributeSetInstance_ID()));
                     String sql =
                             "UPDATE M_AttributeSetInstance SET Description = ? WHERE M_AttributeSetInstance_ID = ?";
                     int no =

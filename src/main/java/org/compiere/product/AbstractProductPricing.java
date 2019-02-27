@@ -38,12 +38,12 @@ public abstract class AbstractProductPricing implements IProductPricing {
     }
 
     @Override
-    public int getM_PriceList_ID() {
+    public int getPriceListId() {
         return m_M_PriceList_ID;
     }
 
     @Override
-    public void setM_PriceList_ID(int M_PriceList_ID) {
+    public void setPriceListId(int M_PriceList_ID) {
         m_M_PriceList_ID = M_PriceList_ID;
     }
 
@@ -60,7 +60,7 @@ public abstract class AbstractProductPricing implements IProductPricing {
     @Override
     public void setOrderLine(I_C_OrderLine orderLine) {
         m_M_Product_ID = orderLine.getM_Product_ID();
-        m_C_BPartner_ID = orderLine.getC_BPartner_ID();
+        m_C_BPartner_ID = orderLine.getBusinessPartnerId();
         BigDecimal qty = orderLine.getQtyOrdered();
         if (qty != null && Env.ZERO.compareTo(qty) != 0) m_Qty = qty;
         m_isSOTrx = orderLine.getC_Order().isSOTrx();
@@ -70,7 +70,7 @@ public abstract class AbstractProductPricing implements IProductPricing {
     @Override
     public void setInvoiceLine(I_C_InvoiceLine invoiceLine) {
         m_M_Product_ID = invoiceLine.getM_Product_ID();
-        m_C_BPartner_ID = invoiceLine.getC_Invoice().getC_BPartner_ID();
+        m_C_BPartner_ID = invoiceLine.getC_Invoice().getBusinessPartnerId();
         BigDecimal qty =
                 invoiceLine.getQtyInvoiced() != null
                         ? invoiceLine.getQtyInvoiced()
@@ -83,7 +83,7 @@ public abstract class AbstractProductPricing implements IProductPricing {
     @Override
     public void setProjectLine(I_C_ProjectLine projectLine) {
         m_M_Product_ID = projectLine.getM_Product_ID();
-        m_C_BPartner_ID = projectLine.getC_Project().getC_BPartner_ID();
+        m_C_BPartner_ID = projectLine.getC_Project().getBusinessPartnerId();
         BigDecimal qty = projectLine.getPlannedQty();
         if (qty != null && Env.ZERO.compareTo(qty) != 0) m_Qty = qty;
         m_isSOTrx = true;
@@ -92,7 +92,7 @@ public abstract class AbstractProductPricing implements IProductPricing {
     @Override
     public void setRequisitionLine(I_M_RequisitionLine reqLine) {
         m_M_Product_ID = reqLine.getM_Product_ID();
-        m_C_BPartner_ID = reqLine.getC_BPartner_ID();
+        m_C_BPartner_ID = reqLine.getBusinessPartnerId();
         BigDecimal qty = reqLine.getQty();
         if (qty != null && Env.ZERO.compareTo(qty) != 0) m_Qty = qty;
         m_isSOTrx = false;

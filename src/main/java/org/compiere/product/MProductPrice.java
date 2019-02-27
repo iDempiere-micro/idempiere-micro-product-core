@@ -141,15 +141,15 @@ public class MProductPrice extends X_M_ProductPrice {
     public void setPrices(BigDecimal PriceList, BigDecimal PriceStd, BigDecimal PriceLimit) {
         setPriceLimit(
                 PriceLimit.setScale(
-                        this.getM_PriceList_Version().getM_PriceList().getPricePrecision(),
+                        this.getM_PriceList_Version().getPriceList().getPricePrecision(),
                         BigDecimal.ROUND_HALF_UP));
         setPriceList(
                 PriceList.setScale(
-                        this.getM_PriceList_Version().getM_PriceList().getPricePrecision(),
+                        this.getM_PriceList_Version().getPriceList().getPricePrecision(),
                         BigDecimal.ROUND_HALF_UP));
         setPriceStd(
                 PriceStd.setScale(
-                        this.getM_PriceList_Version().getM_PriceList().getPricePrecision(),
+                        this.getM_PriceList_Version().getPriceList().getPricePrecision(),
                         BigDecimal.ROUND_HALF_UP));
     } //	setPrice
 

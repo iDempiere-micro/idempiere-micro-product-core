@@ -84,7 +84,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset {
      * @param A_Asset_CreateDate Create Date
      */
     public void setAssetCreateDate(Timestamp A_Asset_CreateDate) {
-        set_ValueNoCheck(COLUMNNAME_A_Asset_CreateDate, A_Asset_CreateDate);
+        setValueNoCheck(COLUMNNAME_A_Asset_CreateDate, A_Asset_CreateDate);
     }
 
     /**
@@ -104,8 +104,8 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset {
      * @param A_Asset_Group_ID Group of Assets
      */
     public void setAssetGroupId(int A_Asset_Group_ID) {
-        if (A_Asset_Group_ID < 1) set_Value(COLUMNNAME_A_Asset_Group_ID, null);
-        else set_Value(COLUMNNAME_A_Asset_Group_ID, Integer.valueOf(A_Asset_Group_ID));
+        if (A_Asset_Group_ID < 1) setValue(COLUMNNAME_A_Asset_Group_ID, null);
+        else setValue(COLUMNNAME_A_Asset_Group_ID, Integer.valueOf(A_Asset_Group_ID));
     }
 
     /**
@@ -135,7 +135,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset {
      */
     public void setAssetStatus(String A_Asset_Status) {
 
-        set_Value(COLUMNNAME_A_Asset_Status, A_Asset_Status);
+        setValue(COLUMNNAME_A_Asset_Status, A_Asset_Status);
     }
 
     public org.compiere.model.I_A_Asset_Type getAssetType() throws RuntimeException {
@@ -172,8 +172,8 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset {
      * @param A_Parent_Asset_ID Parent Asset
      */
     public void setParentAssetId(int A_Parent_Asset_ID) {
-        if (A_Parent_Asset_ID < 1) set_Value(COLUMNNAME_A_Parent_Asset_ID, null);
-        else set_Value(COLUMNNAME_A_Parent_Asset_ID, Integer.valueOf(A_Parent_Asset_ID));
+        if (A_Parent_Asset_ID < 1) setValue(COLUMNNAME_A_Parent_Asset_ID, null);
+        else setValue(COLUMNNAME_A_Parent_Asset_ID, Integer.valueOf(A_Parent_Asset_ID));
     }
 
     /**
@@ -191,7 +191,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset {
      * @param AssetActivationDate Activation Date
      */
     public void setAssetActivationDate(Timestamp AssetActivationDate) {
-        set_Value(COLUMNNAME_AssetActivationDate, AssetActivationDate);
+        setValue(COLUMNNAME_AssetActivationDate, AssetActivationDate);
     }
 
     /**
@@ -200,7 +200,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset {
      * @param AssetDisposalDate Date when the asset is/was disposed
      */
     public void setAssetDisposalDate(Timestamp AssetDisposalDate) {
-        set_Value(COLUMNNAME_AssetDisposalDate, AssetDisposalDate);
+        setValue(COLUMNNAME_AssetDisposalDate, AssetDisposalDate);
     }
 
     /**
@@ -218,7 +218,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset {
      * @param AssetServiceDate Date when Asset was put into service
      */
     public void setAssetServiceDate(Timestamp AssetServiceDate) {
-        set_Value(COLUMNNAME_AssetServiceDate, AssetServiceDate);
+        setValue(COLUMNNAME_AssetServiceDate, AssetServiceDate);
     }
 
     /**
@@ -227,8 +227,8 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset {
      * @param C_Activity_ID Business Activity
      */
     public void setActivityId(int C_Activity_ID) {
-        if (C_Activity_ID < 1) set_Value(COLUMNNAME_C_Activity_ID, null);
-        else set_Value(COLUMNNAME_C_Activity_ID, Integer.valueOf(C_Activity_ID));
+        if (C_Activity_ID < 1) setValue(COLUMNNAME_C_Activity_ID, null);
+        else setValue(COLUMNNAME_C_Activity_ID, Integer.valueOf(C_Activity_ID));
     }
 
     /**
@@ -257,7 +257,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset {
      * @param Description Optional short description of the record
      */
     public void setDescription(String Description) {
-        set_Value(COLUMNNAME_Description, Description);
+        setValue(COLUMNNAME_Description, Description);
     }
 
     /**
@@ -266,7 +266,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset {
      * @param Help Comment or Hint
      */
     public void setHelp(String Help) {
-        set_Value(COLUMNNAME_Help, Help);
+        setValue(COLUMNNAME_Help, Help);
     }
 
     /**
@@ -284,7 +284,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset {
      * @param InventoryNo Inventory No
      */
     public void setInventoryNo(String InventoryNo) {
-        set_Value(COLUMNNAME_InventoryNo, InventoryNo);
+        setValue(COLUMNNAME_InventoryNo, InventoryNo);
     }
 
     /**
@@ -293,7 +293,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset {
      * @param IsDepreciated The asset will be depreciated
      */
     public void setIsDepreciated(boolean IsDepreciated) {
-        set_Value(COLUMNNAME_IsDepreciated, Boolean.valueOf(IsDepreciated));
+        setValue(COLUMNNAME_IsDepreciated, Boolean.valueOf(IsDepreciated));
     }
 
     /**
@@ -316,7 +316,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset {
      * @param IsDisposed The asset is disposed
      */
     public void setIsDisposed(boolean IsDisposed) {
-        set_Value(COLUMNNAME_IsDisposed, Boolean.valueOf(IsDisposed));
+        setValue(COLUMNNAME_IsDisposed, Boolean.valueOf(IsDisposed));
     }
 
     /**
@@ -325,7 +325,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset {
      * @param IsFullyDepreciated The asset is fully depreciated
      */
     public void setIsFullyDepreciated(boolean IsFullyDepreciated) {
-        set_ValueNoCheck(COLUMNNAME_IsFullyDepreciated, Boolean.valueOf(IsFullyDepreciated));
+        setValueNoCheck(COLUMNNAME_IsFullyDepreciated, Boolean.valueOf(IsFullyDepreciated));
     }
 
     /**
@@ -348,7 +348,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset {
      * @param IsInPosession The asset is in the possession of the organization
      */
     public void setIsInPosession(boolean IsInPosession) {
-        set_Value(COLUMNNAME_IsInPosession, Boolean.valueOf(IsInPosession));
+        setValue(COLUMNNAME_IsInPosession, Boolean.valueOf(IsInPosession));
     }
 
     /**
@@ -357,7 +357,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset {
      * @param IsOwned The asset is owned by the organization
      */
     public void setIsOwned(boolean IsOwned) {
-        set_Value(COLUMNNAME_IsOwned, Boolean.valueOf(IsOwned));
+        setValue(COLUMNNAME_IsOwned, Boolean.valueOf(IsOwned));
     }
 
     /**
@@ -366,7 +366,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset {
      * @param Lot Lot number (alphanumeric)
      */
     public void setLot(String Lot) {
-        set_Value(COLUMNNAME_Lot, Lot);
+        setValue(COLUMNNAME_Lot, Lot);
     }
 
     /**
@@ -375,9 +375,9 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset {
      * @param M_AttributeSetInstance_ID Product Attribute Set Instance
      */
     public void setAttributeSetInstanceId(int M_AttributeSetInstance_ID) {
-        if (M_AttributeSetInstance_ID < 0) set_ValueNoCheck(COLUMNNAME_M_AttributeSetInstance_ID, null);
+        if (M_AttributeSetInstance_ID < 0) setValueNoCheck(COLUMNNAME_M_AttributeSetInstance_ID, null);
         else
-            set_ValueNoCheck(
+            setValueNoCheck(
                     COLUMNNAME_M_AttributeSetInstance_ID, Integer.valueOf(M_AttributeSetInstance_ID));
     }
 
@@ -409,8 +409,8 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset {
      * @param M_Product_ID Product, Service, Item
      */
     public void setProductId(int M_Product_ID) {
-        if (M_Product_ID < 1) set_Value(COLUMNNAME_M_Product_ID, null);
-        else set_Value(COLUMNNAME_M_Product_ID, Integer.valueOf(M_Product_ID));
+        if (M_Product_ID < 1) setValue(COLUMNNAME_M_Product_ID, null);
+        else setValue(COLUMNNAME_M_Product_ID, Integer.valueOf(M_Product_ID));
     }
 
     /**
@@ -428,7 +428,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset {
      * @param Name Alphanumeric identifier of the entity
      */
     public void setName(String Name) {
-        set_Value(HasName.Companion.getCOLUMNNAME_Name(), Name);
+        setValue(HasName.Companion.getCOLUMNNAME_Name(), Name);
     }
 
     /**
@@ -437,7 +437,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset {
      * @param Processed The document has been processed
      */
     public void setProcessed(boolean Processed) {
-        set_Value(COLUMNNAME_Processed, Boolean.valueOf(Processed));
+        setValue(COLUMNNAME_Processed, Boolean.valueOf(Processed));
     }
 
     /**
@@ -446,7 +446,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset {
      * @param Qty Quantity
      */
     public void setQty(BigDecimal Qty) {
-        set_Value(COLUMNNAME_Qty, Qty);
+        setValue(COLUMNNAME_Qty, Qty);
     }
 
     /**
@@ -464,7 +464,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset {
      * @param SerNo Product Serial Number
      */
     public void setSerNo(String SerNo) {
-        set_Value(COLUMNNAME_SerNo, SerNo);
+        setValue(COLUMNNAME_SerNo, SerNo);
     }
 
     /**
@@ -493,7 +493,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset {
      * @param Value Search key for the record in the format required - must be unique
      */
     public void setValue(String Value) {
-        set_Value(COLUMNNAME_Value, Value);
+        setValue(COLUMNNAME_Value, Value);
     }
 
     /**
@@ -502,7 +502,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset {
      * @param VersionNo Version Number
      */
     public void setVersionNo(String VersionNo) {
-        set_Value(COLUMNNAME_VersionNo, VersionNo);
+        setValue(COLUMNNAME_VersionNo, VersionNo);
     }
 
     @Override

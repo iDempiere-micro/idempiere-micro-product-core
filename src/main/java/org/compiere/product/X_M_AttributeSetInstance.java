@@ -68,7 +68,7 @@ public class X_M_AttributeSetInstance extends PO implements I_M_AttributeSetInst
      * @param Description Optional short description of the record
      */
     public void setDescription(String Description) {
-        set_Value(COLUMNNAME_Description, Description);
+        setValue(COLUMNNAME_Description, Description);
     }
 
     /**
@@ -86,7 +86,7 @@ public class X_M_AttributeSetInstance extends PO implements I_M_AttributeSetInst
      * @param GuaranteeDate Date when guarantee expires
      */
     public void setGuaranteeDate(Timestamp GuaranteeDate) {
-        set_Value(COLUMNNAME_GuaranteeDate, GuaranteeDate);
+        setValue(COLUMNNAME_GuaranteeDate, GuaranteeDate);
     }
 
     /**
@@ -104,7 +104,7 @@ public class X_M_AttributeSetInstance extends PO implements I_M_AttributeSetInst
      * @param Lot Lot number (alphanumeric)
      */
     public void setLot(String Lot) {
-        set_Value(COLUMNNAME_Lot, Lot);
+        setValue(COLUMNNAME_Lot, Lot);
     }
 
     public org.compiere.model.I_M_AttributeSet getMAttributeSet() throws RuntimeException {
@@ -119,8 +119,8 @@ public class X_M_AttributeSetInstance extends PO implements I_M_AttributeSetInst
      * @param M_AttributeSet_ID Product Attribute Set
      */
     public void setM_AttributeSet_ID(int M_AttributeSet_ID) {
-        if (M_AttributeSet_ID < 0) set_Value(COLUMNNAME_M_AttributeSet_ID, null);
-        else set_Value(COLUMNNAME_M_AttributeSet_ID, Integer.valueOf(M_AttributeSet_ID));
+        if (M_AttributeSet_ID < 0) setValue(COLUMNNAME_M_AttributeSet_ID, null);
+        else setValue(COLUMNNAME_M_AttributeSet_ID, Integer.valueOf(M_AttributeSet_ID));
     }
 
     /**
@@ -151,8 +151,8 @@ public class X_M_AttributeSetInstance extends PO implements I_M_AttributeSetInst
      * @param M_Lot_ID Product Lot Definition
      */
     public void setM_Lot_ID(int M_Lot_ID) {
-        if (M_Lot_ID < 1) set_Value(COLUMNNAME_M_Lot_ID, null);
-        else set_Value(COLUMNNAME_M_Lot_ID, Integer.valueOf(M_Lot_ID));
+        if (M_Lot_ID < 1) setValue(COLUMNNAME_M_Lot_ID, null);
+        else setValue(COLUMNNAME_M_Lot_ID, Integer.valueOf(M_Lot_ID));
     }
 
     /**
@@ -170,7 +170,7 @@ public class X_M_AttributeSetInstance extends PO implements I_M_AttributeSetInst
      * @param SerNo Product Serial Number
      */
     public void setSerNo(String SerNo) {
-        set_Value(COLUMNNAME_SerNo, SerNo);
+        setValue(COLUMNNAME_SerNo, SerNo);
     }
 
     @Override

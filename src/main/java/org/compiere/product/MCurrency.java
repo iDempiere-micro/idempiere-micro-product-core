@@ -157,7 +157,7 @@ public class MCurrency extends X_C_Currency {
     public String toString() {
         StringBuilder msgreturn =
                 new StringBuilder("MCurrency[")
-                        .append(getC_Currency_ID())
+                        .append(getCurrencyId())
                         .append("-")
                         .append(getISO_Code())
                         .append("-")
