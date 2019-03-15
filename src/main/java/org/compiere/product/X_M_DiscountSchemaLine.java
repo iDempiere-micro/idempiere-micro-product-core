@@ -1,9 +1,9 @@
 package org.compiere.product;
 
+import kotliquery.Row;
 import org.compiere.model.I_M_DiscountSchemaLine;
 import org.compiere.orm.PO;
 
-import java.sql.ResultSet;
 import java.util.Properties;
 
 /**
@@ -53,8 +53,8 @@ public class X_M_DiscountSchemaLine extends PO implements I_M_DiscountSchemaLine
     /**
      * Load Constructor
      */
-    public X_M_DiscountSchemaLine(Properties ctx, ResultSet rs) {
-        super(ctx, rs);
+    public X_M_DiscountSchemaLine(Properties ctx, Row row) {
+        super(ctx, row);
     }
 
     /**

@@ -1,12 +1,12 @@
 package org.compiere.product;
 
+import kotliquery.Row;
 import org.compiere.model.I_M_Product_Category;
 import org.compiere.orm.BasePONameValue;
 import org.compiere.orm.MTable;
 import org.idempiere.common.util.Env;
 
 import java.math.BigDecimal;
-import java.sql.ResultSet;
 import java.util.Properties;
 
 /**
@@ -37,8 +37,8 @@ public class X_M_Product_Category extends BasePONameValue
     /**
      * Load Constructor
      */
-    public X_M_Product_Category(Properties ctx, ResultSet rs) {
-        super(ctx, rs);
+    public X_M_Product_Category(Properties ctx, Row row) {
+        super(ctx, row);
     }
 
     /**

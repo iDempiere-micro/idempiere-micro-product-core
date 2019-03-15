@@ -1,9 +1,9 @@
 package org.compiere.product;
 
+import kotliquery.Row;
 import org.compiere.model.I_S_ResourceType;
 import org.compiere.orm.BasePONameValue;
 
-import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.Properties;
 
@@ -37,8 +37,8 @@ public class X_S_ResourceType extends BasePONameValue implements I_S_ResourceTyp
     /**
      * Load Constructor
      */
-    public X_S_ResourceType(Properties ctx, ResultSet rs) {
-        super(ctx, rs);
+    public X_S_ResourceType(Properties ctx, Row row) {
+        super(ctx, row);
     }
 
     /**

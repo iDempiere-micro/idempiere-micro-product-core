@@ -1,9 +1,9 @@
 package org.compiere.product;
 
+import kotliquery.Row;
 import org.compiere.model.I_M_AttributeSetExclude;
 import org.compiere.orm.PO;
 
-import java.sql.ResultSet;
 import java.util.Properties;
 
 /**
@@ -33,8 +33,8 @@ public class X_M_AttributeSetExclude extends PO implements I_M_AttributeSetExclu
     /**
      * Load Constructor
      */
-    public X_M_AttributeSetExclude(Properties ctx, ResultSet rs) {
-        super(ctx, rs);
+    public X_M_AttributeSetExclude(Properties ctx, Row row) {
+        super(ctx, row);
     }
 
     /**

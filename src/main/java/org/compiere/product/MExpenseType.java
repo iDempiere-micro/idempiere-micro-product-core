@@ -1,6 +1,7 @@
 package org.compiere.product;
 
-import java.sql.ResultSet;
+import kotliquery.Row;
+
 import java.util.Properties;
 
 /**
@@ -38,8 +39,8 @@ public class MExpenseType extends X_S_ExpenseType {
      * @param rs      result set
      * @param trxName transaction
      */
-    public MExpenseType(Properties ctx, ResultSet rs) {
-        super(ctx, rs);
+    public MExpenseType(Properties ctx, Row row) {
+        super(ctx, row);
     } //	MExpenseType
 
     /**

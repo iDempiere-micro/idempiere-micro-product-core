@@ -1,12 +1,12 @@
 package org.compiere.product;
 
+import kotliquery.Row;
 import org.compiere.model.HasName;
 import org.compiere.model.I_A_Asset;
 import org.compiere.orm.BasePOUser;
 import org.compiere.orm.MTable;
 
 import java.math.BigDecimal;
-import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.Properties;
 
@@ -60,8 +60,8 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset {
     /**
      * Load Constructor
      */
-    public X_A_Asset(Properties ctx, ResultSet rs) {
-        super(ctx, rs);
+    public X_A_Asset(Properties ctx, Row row) {
+        super(ctx, row);
     }
 
     /**
@@ -370,6 +370,17 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset {
     }
 
     /**
+     * Get Attribute Set Instance.
+     *
+     * @return Product Attribute Set Instance
+     */
+    public int getAttributeSetInstanceId() {
+        Integer ii = (Integer) getValue(COLUMNNAME_M_AttributeSetInstance_ID);
+        if (ii == null) return 0;
+        return ii;
+    }
+
+    /**
      * Set Attribute Set Instance.
      *
      * @param M_AttributeSetInstance_ID Product Attribute Set Instance
@@ -379,17 +390,6 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset {
         else
             setValueNoCheck(
                     COLUMNNAME_M_AttributeSetInstance_ID, Integer.valueOf(M_AttributeSetInstance_ID));
-    }
-
-    /**
-     * Get Attribute Set Instance.
-     *
-     * @return Product Attribute Set Instance
-     */
-    public int getAttributeSetInstanceId() {
-        Integer ii = (Integer) getValue(COLUMNNAME_M_AttributeSetInstance_ID);
-        if (ii == null) return 0;
-        return ii;
     }
 
     /**

@@ -1,11 +1,11 @@
 package org.compiere.product;
 
+import kotliquery.Row;
 import org.compiere.model.I_S_ResourceType;
 import org.idempiere.common.exceptions.AdempiereException;
 import org.idempiere.common.exceptions.FillMandatoryException;
 import org.idempiere.common.util.CCache;
 
-import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Properties;
@@ -47,8 +47,8 @@ public class MResourceType extends X_S_ResourceType {
      * @param ctx context
      * @param rs  result set
      */
-    public MResourceType(Properties ctx, ResultSet rs) {
-        super(ctx, rs);
+    public MResourceType(Properties ctx, Row row) {
+        super(ctx, row);
     } //	MResourceType
 
     /**

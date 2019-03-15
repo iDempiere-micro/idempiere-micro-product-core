@@ -1,12 +1,12 @@
 package org.compiere.product;
 
+import kotliquery.Row;
 import org.compiere.model.HasName;
 import org.compiere.model.I_I_PriceList;
 import org.compiere.orm.PO;
 import org.idempiere.common.util.Env;
 
 import java.math.BigDecimal;
-import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.Properties;
 
@@ -34,8 +34,8 @@ public class X_I_PriceList extends PO implements I_I_PriceList {
     /**
      * Load Constructor
      */
-    public X_I_PriceList(Properties ctx, ResultSet rs) {
-        super(ctx, rs);
+    public X_I_PriceList(Properties ctx, Row row) {
+        super(ctx, row);
     }
 
     /**

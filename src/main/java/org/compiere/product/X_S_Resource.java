@@ -1,10 +1,10 @@
 package org.compiere.product;
 
+import kotliquery.Row;
 import org.compiere.model.HasName;
 import org.compiere.model.I_S_Resource;
 import org.compiere.orm.BasePOUser;
 
-import java.sql.ResultSet;
 import java.util.Properties;
 
 /**
@@ -39,8 +39,8 @@ public class X_S_Resource extends BasePOUser implements I_S_Resource {
     /**
      * Load Constructor
      */
-    public X_S_Resource(Properties ctx, ResultSet rs) {
-        super(ctx, rs);
+    public X_S_Resource(Properties ctx, Row row) {
+        super(ctx, row);
     }
 
     /**

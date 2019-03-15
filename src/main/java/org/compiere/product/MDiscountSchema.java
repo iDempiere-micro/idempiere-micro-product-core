@@ -1,18 +1,14 @@
 package org.compiere.product;
 
+import kotliquery.Row;
 import org.compiere.model.I_M_DiscountSchema;
 import org.compiere.orm.TimeUtil;
 import org.idempiere.common.util.CCache;
 import org.idempiere.common.util.Env;
 
 import java.math.BigDecimal;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.Properties;
 import java.util.logging.Level;
-
-import static software.hsharp.core.util.DBKt.prepareStatement;
 
 /**
  * Discount Schema Model
@@ -44,7 +40,6 @@ public class MDiscountSchema extends X_M_DiscountSchema {
      *
      * @param ctx                 context
      * @param M_DiscountSchema_ID id
-     * @param trxName             transaction
      */
     public MDiscountSchema(Properties ctx, int M_DiscountSchema_ID) {
         super(ctx, M_DiscountSchema_ID);
@@ -62,12 +57,10 @@ public class MDiscountSchema extends X_M_DiscountSchema {
     /**
      * Load Constructor
      *
-     * @param ctx     context
-     * @param rs      result set
-     * @param trxName transaction
+     * @param ctx context
      */
-    public MDiscountSchema(Properties ctx, ResultSet rs) {
-        super(ctx, rs);
+    public MDiscountSchema(Properties ctx, Row row) {
+        super(ctx, row);
     } //	MDiscountSchema
 
     /**
@@ -79,7 +72,7 @@ public class MDiscountSchema extends X_M_DiscountSchema {
      */
     public static MDiscountSchema get(Properties ctx, int M_DiscountSchema_ID) {
         Integer key = new Integer(M_DiscountSchema_ID);
-        MDiscountSchema retValue = (MDiscountSchema) s_cache.get(key);
+        MDiscountSchema retValue = s_cache.get(key);
         if (retValue != null) return retValue;
         retValue = new MDiscountSchema(ctx, M_DiscountSchema_ID);
         if (retValue.getId() != 0) s_cache.put(key, retValue);
@@ -95,23 +88,7 @@ public class MDiscountSchema extends X_M_DiscountSchema {
     public MDiscountSchemaBreak[] getBreaks(boolean reload) {
         if (m_breaks != null && !reload) return m_breaks;
 
-        String sql = "SELECT * FROM M_DiscountSchemaBreak WHERE M_DiscountSchema_ID=? ORDER BY SeqNo";
-        ArrayList<MDiscountSchemaBreak> list = new ArrayList<MDiscountSchemaBreak>();
-        PreparedStatement pstmt = null;
-        ResultSet rs = null;
-        try {
-            pstmt = prepareStatement(sql);
-            pstmt.setInt(1, getM_DiscountSchema_ID());
-            rs = pstmt.executeQuery();
-            while (rs.next()) list.add(new MDiscountSchemaBreak(getCtx(), rs));
-        } catch (Exception e) {
-            log.log(Level.SEVERE, sql, e);
-        } finally {
-            rs = null;
-            pstmt = null;
-        }
-        m_breaks = new MDiscountSchemaBreak[list.size()];
-        list.toArray(m_breaks);
+        m_breaks = MBaseDiscountSchemaKt.getBreaks(getCtx(), getM_DiscountSchema_ID());
         return m_breaks;
     } //	getBreaks
 
@@ -125,24 +102,8 @@ public class MDiscountSchema extends X_M_DiscountSchema {
         if (m_lines != null && !reload) {
             return m_lines;
         }
+        m_lines = MBaseDiscountSchemaKt.getLines(getCtx(), getM_DiscountSchema_ID());
 
-        String sql = "SELECT * FROM M_DiscountSchemaLine WHERE M_DiscountSchema_ID=? ORDER BY SeqNo";
-        ArrayList<MDiscountSchemaLine> list = new ArrayList<MDiscountSchemaLine>();
-        PreparedStatement pstmt = null;
-        ResultSet rs = null;
-        try {
-            pstmt = prepareStatement(sql);
-            pstmt.setInt(1, getM_DiscountSchema_ID());
-            rs = pstmt.executeQuery();
-            while (rs.next()) list.add(new MDiscountSchemaLine(getCtx(), rs));
-        } catch (Exception e) {
-            log.log(Level.SEVERE, sql, e);
-        } finally {
-            rs = null;
-            pstmt = null;
-        }
-        m_lines = new MDiscountSchemaLine[list.size()];
-        list.toArray(m_lines);
         return m_lines;
     } //	getBreaks
 

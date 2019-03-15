@@ -9,7 +9,6 @@ import org.compiere.orm.X_AD_Tree;
 import org.idempiere.common.exceptions.AdempiereException;
 import org.idempiere.common.util.CCache;
 
-import java.sql.ResultSet;
 import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
@@ -83,14 +82,8 @@ public class MProduct extends X_M_Product implements I_M_Product {
     /**
      * Load constructor
      *
-     * @param ctx     context
-     * @param rs      result set
-     * @param trxName transaction
+     * @param ctx context
      */
-    public MProduct(Properties ctx, ResultSet rs) {
-        super(ctx, rs);
-    } //	MProduct
-
     public MProduct(Properties ctx, Row row) {
         super(ctx, row);
     } //	MProduct
@@ -158,7 +151,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
             return null;
         }
         Integer key = new Integer(M_Product_ID);
-        MProduct retValue = (MProduct) s_cache.get(key);
+        MProduct retValue = s_cache.get(key);
         if (retValue != null) {
             return retValue;
         }
@@ -204,7 +197,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
         // Load from DB
         MProduct p =
                 new Query(ctx, I_M_Product.Table_Name, I_M_Product.COLUMNNAME_S_Resource_ID + "=?")
-                        .setParameters(new Object[]{S_Resource_ID})
+                        .setParameters(S_Resource_ID)
                         .firstOnly();
         if (p != null) {
             s_cache.put(p.getM_Product_ID(), p);

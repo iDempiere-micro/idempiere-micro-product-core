@@ -1,5 +1,6 @@
 package org.compiere.product;
 
+import kotliquery.Row;
 import org.compiere.model.I_M_Product;
 import org.compiere.util.Msg;
 import org.idempiere.common.util.CCache;
@@ -68,8 +69,8 @@ public class MProductCategory extends X_M_Product_Category {
      * @param rs      result set
      * @param trxName transaction
      */
-    public MProductCategory(Properties ctx, ResultSet rs) {
-        super(ctx, rs);
+    public MProductCategory(Properties ctx, Row row) {
+        super(ctx, row);
     } //	MProductCategory
 
     /**
@@ -81,7 +82,7 @@ public class MProductCategory extends X_M_Product_Category {
      */
     public static MProductCategory get(Properties ctx, int M_Product_Category_ID) {
         Integer ii = M_Product_Category_ID;
-        MProductCategory retValue = (MProductCategory) s_cache.get(ii);
+        MProductCategory retValue = s_cache.get(ii);
         if (retValue != null) return retValue;
         retValue = new MProductCategory(ctx, M_Product_Category_ID);
         if (retValue.getId() != 0) s_cache.put(M_Product_Category_ID, retValue);
@@ -99,7 +100,7 @@ public class MProductCategory extends X_M_Product_Category {
         if (M_Product_ID == 0 || M_Product_Category_ID == 0) return false;
         //	Look up
         Integer product = new Integer(M_Product_ID);
-        Integer category = (Integer) s_products.get(product);
+        Integer category = s_products.get(product);
         if (category != null) return category.intValue() == M_Product_Category_ID;
 
         String sql = "SELECT M_Product_Category_ID FROM M_Product WHERE M_Product_ID=?";
@@ -215,7 +216,7 @@ public class MProductCategory extends X_M_Product_Category {
         final Iterator<SimpleTreeNode> iter = categories.iterator();
         boolean ret = false;
         while (iter.hasNext()) {
-            SimpleTreeNode node = (SimpleTreeNode) iter.next();
+            SimpleTreeNode node = iter.next();
             if (node.getNodeId() == parentCategoryId) {
                 if (node.getParentId() == 0) {
                     // root node, all fine

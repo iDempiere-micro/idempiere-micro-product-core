@@ -1,9 +1,9 @@
 package org.compiere.product;
 
+import kotliquery.Row;
 import org.compiere.model.I_A_Asset_Group;
 import org.compiere.orm.BasePOName;
 
-import java.sql.ResultSet;
 import java.util.Properties;
 
 /**
@@ -29,8 +29,8 @@ public class X_A_Asset_Group extends BasePOName implements I_A_Asset_Group {
     /**
      * Load Constructor
      */
-    public X_A_Asset_Group(Properties ctx, ResultSet rs) {
-        super(ctx, rs);
+    public X_A_Asset_Group(Properties ctx, Row row) {
+        super(ctx, row);
     }
 
     /**

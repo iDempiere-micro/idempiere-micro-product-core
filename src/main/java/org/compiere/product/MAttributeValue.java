@@ -1,6 +1,7 @@
 package org.compiere.product;
 
-import java.sql.ResultSet;
+import kotliquery.Row;
+
 import java.util.Properties;
 
 /**
@@ -37,8 +38,8 @@ public class MAttributeValue extends X_M_AttributeValue {
      * @param rs      result set
      * @param trxName transaction
      */
-    public MAttributeValue(Properties ctx, ResultSet rs) {
-        super(ctx, rs);
+    public MAttributeValue(Properties ctx, Row row) {
+        super(ctx, row);
     } //	MAttributeValue
 
     /**

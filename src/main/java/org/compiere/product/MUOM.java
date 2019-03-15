@@ -8,7 +8,6 @@ import org.idempiere.common.util.CCache;
 import org.idempiere.common.util.Env;
 
 import java.math.BigDecimal;
-import java.sql.ResultSet;
 import java.util.List;
 import java.util.Properties;
 
@@ -85,14 +84,8 @@ public class MUOM extends X_C_UOM {
     /**
      * Load Constructor.
      *
-     * @param ctx     context
-     * @param rs      result set
-     * @param trxName transaction
+     * @param ctx context
      */
-    public MUOM(Properties ctx, ResultSet rs) {
-        super(ctx, rs);
-    } //	UOM
-
     public MUOM(Properties ctx, Row row) {
         super(ctx, row);
     } //	UOM

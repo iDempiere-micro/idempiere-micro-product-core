@@ -1,15 +1,14 @@
 package org.compiere.product;
 
 import kotliquery.Row;
+import org.compiere.bo.MCurrency;
 import org.compiere.model.I_M_PriceList;
 import org.compiere.model.I_M_PriceList_Version;
 import org.compiere.orm.Query;
 import org.idempiere.common.util.CCache;
 import org.idempiere.common.util.Env;
 
-import java.sql.ResultSet;
 import java.sql.Timestamp;
-import java.util.Iterator;
 import java.util.Properties;
 import java.util.logging.Level;
 
@@ -30,11 +29,7 @@ public class MPriceList extends X_M_PriceList {
      * Cache of Price Lists
      */
     private static CCache<Integer, MPriceList> s_cache =
-            new CCache<Integer, MPriceList>(I_M_PriceList.Table_Name, 5, 5);
-    /**
-     * Cached PLV
-     */
-    private MPriceListVersion m_plv = null;
+            new CCache<>(I_M_PriceList.Table_Name, 5, 5);
     /**
      * Cached Precision
      */
@@ -45,7 +40,6 @@ public class MPriceList extends X_M_PriceList {
      *
      * @param ctx            context
      * @param M_PriceList_ID id
-     * @param trxName        transaction
      */
     public MPriceList(Properties ctx, int M_PriceList_ID) {
         super(ctx, M_PriceList_ID);
@@ -63,14 +57,9 @@ public class MPriceList extends X_M_PriceList {
     /**
      * Load Constructor
      *
-     * @param ctx     context
-     * @param rs      result set
-     * @param trxName transaction
+     * @param ctx context
+     * @param rs  result set
      */
-    public MPriceList(Properties ctx, ResultSet rs) {
-        super(ctx, rs);
-    } //	MPriceList
-
     public MPriceList(Properties ctx, Row row) {
         super(ctx, row);
     } //	MPriceList
@@ -99,12 +88,11 @@ public class MPriceList extends X_M_PriceList {
      *
      * @param ctx            context
      * @param M_PriceList_ID id
-     * @param trxName        transaction
      * @return PriceList
      */
     public static MPriceList get(Properties ctx, int M_PriceList_ID) {
-        Integer key = new Integer(M_PriceList_ID);
-        MPriceList retValue = (MPriceList) s_cache.get(key);
+        Integer key = M_PriceList_ID;
+        MPriceList retValue = s_cache.get(key);
         if (retValue == null) {
             retValue = new MPriceList(ctx, M_PriceList_ID);
             s_cache.put(key, retValue);
@@ -121,11 +109,10 @@ public class MPriceList extends X_M_PriceList {
      */
     public static MPriceList getDefault(Properties ctx, boolean IsSOPriceList) {
         int AD_Client_ID = Env.getClientId(ctx);
-        MPriceList retValue = null;
+        MPriceList retValue;
         //	Search for it in cache
-        Iterator<MPriceList> it = s_cache.values().iterator();
-        while (it.hasNext()) {
-            retValue = it.next();
+        for (MPriceList mPriceList : s_cache.values()) {
+            retValue = mPriceList;
             if (retValue.isDefault()
                     && retValue.getClientId() == AD_Client_ID
                     && retValue.isSOPriceList() == IsSOPriceList) {
@@ -183,12 +170,14 @@ public class MPriceList extends X_M_PriceList {
         if (valid == null) valid = new Timestamp(System.currentTimeMillis());
 
         final String whereClause = "M_PriceList_ID=? AND TRUNC(ValidFrom)<=?";
-        m_plv =
-                new Query(getCtx(), I_M_PriceList_Version.Table_Name, whereClause)
-                        .setParameters(getPriceListId(), valid)
-                        .setOnlyActiveRecords(true)
-                        .setOrderBy("ValidFrom DESC")
-                        .first();
+        /*
+         * Cached PLV
+         */
+        MPriceListVersion m_plv = new Query(getCtx(), I_M_PriceList_Version.Table_Name, whereClause)
+                .setParameters(getPriceListId(), valid)
+                .setOnlyActiveRecords(true)
+                .setOrderBy("ValidFrom DESC")
+                .first();
         if (m_plv == null)
             log.warning("None found M_PriceList_ID=" + getPriceListId() + " - " + valid);
         else if (log.isLoggable(Level.FINE)) log.fine(m_plv.toString());
@@ -203,9 +192,9 @@ public class MPriceList extends X_M_PriceList {
     public int getStandardPrecision() {
         if (m_precision == null) {
             MCurrency c = MCurrency.get(getCtx(), getCurrencyId());
-            m_precision = new Integer(c.getStdPrecision());
+            m_precision = c.getStdPrecision();
         }
-        return m_precision.intValue();
+        return m_precision;
     } //	getStandardPrecision
 
     @Override

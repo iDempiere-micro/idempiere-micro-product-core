@@ -1,6 +1,7 @@
 package org.compiere.product;
 
-import java.sql.ResultSet;
+import kotliquery.Row;
+
 import java.util.Properties;
 
 /**
@@ -34,7 +35,7 @@ public class MDiscountSchemaLine extends X_M_DiscountSchemaLine {
      * @param rs      result set
      * @param trxName transaction
      */
-    public MDiscountSchemaLine(Properties ctx, ResultSet rs) {
-        super(ctx, rs);
+    public MDiscountSchemaLine(Properties ctx, Row row) {
+        super(ctx, row);
     } //	MDiscountSchemaLine
 } //	MDiscountSchemaLine

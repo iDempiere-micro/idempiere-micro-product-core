@@ -6,7 +6,6 @@ import org.compiere.model.I_M_PriceList_Version;
 import org.compiere.orm.MTable;
 import org.compiere.orm.PO;
 
-import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.Properties;
 
@@ -38,10 +37,6 @@ public class X_M_PriceList_Version extends PO implements I_M_PriceList_Version {
     /**
      * Load Constructor
      */
-    public X_M_PriceList_Version(Properties ctx, ResultSet rs) {
-        super(ctx, rs);
-    }
-
     public X_M_PriceList_Version(Properties ctx, Row row) {
         super(ctx, row);
     }

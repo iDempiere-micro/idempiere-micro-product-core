@@ -4,7 +4,6 @@ import kotliquery.Row;
 import org.compiere.model.I_C_UOM;
 import org.compiere.orm.BasePOName;
 
-import java.sql.ResultSet;
 import java.util.Properties;
 
 /**
@@ -30,10 +29,6 @@ public class X_C_UOM extends BasePOName implements I_C_UOM {
     /**
      * Load Constructor
      */
-    public X_C_UOM(Properties ctx, ResultSet rs) {
-        super(ctx, rs);
-    }
-
     public X_C_UOM(Properties ctx, Row row) {
         super(ctx, row);
     } //	UOM

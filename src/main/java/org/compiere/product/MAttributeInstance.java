@@ -1,7 +1,8 @@
 package org.compiere.product;
 
+import kotliquery.Row;
+
 import java.math.BigDecimal;
-import java.sql.ResultSet;
 import java.util.Properties;
 
 /**
@@ -21,7 +22,6 @@ public class MAttributeInstance extends X_M_AttributeInstance {
      *
      * @param ctx     context
      * @param ignored ignored
-     * @param trxName transaction
      */
     public MAttributeInstance(Properties ctx, int ignored) {
         super(ctx, 0);
@@ -31,12 +31,10 @@ public class MAttributeInstance extends X_M_AttributeInstance {
     /**
      * Load Cosntructor
      *
-     * @param ctx     context
-     * @param rs      result set
-     * @param trxName transaction
+     * @param ctx context
      */
-    public MAttributeInstance(Properties ctx, ResultSet rs) {
-        super(ctx, rs);
+    public MAttributeInstance(Properties ctx, Row row) {
+        super(ctx, row);
     } //	MAttributeInstance
 
     /**

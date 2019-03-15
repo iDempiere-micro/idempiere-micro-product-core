@@ -1,9 +1,9 @@
 package org.compiere.product;
 
+import kotliquery.Row;
 import org.compiere.model.I_M_AttributeInstance;
 import org.compiere.orm.Query;
 
-import java.sql.ResultSet;
 import java.util.Properties;
 import java.util.logging.Level;
 
@@ -44,8 +44,8 @@ public class MAttribute extends X_M_Attribute {
      * @param rs      result set
      * @param trxName transaction
      */
-    public MAttribute(Properties ctx, ResultSet rs) {
-        super(ctx, rs);
+    public MAttribute(Properties ctx, Row row) {
+        super(ctx, row);
     } //	MAttribute
 
     /**

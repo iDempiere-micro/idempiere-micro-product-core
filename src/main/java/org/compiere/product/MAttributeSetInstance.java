@@ -1,5 +1,6 @@
 package org.compiere.product;
 
+import kotliquery.Row;
 import org.compiere.orm.TimeUtil;
 import org.compiere.util.DisplayType;
 import org.idempiere.common.util.CLogger;
@@ -60,8 +61,8 @@ public class MAttributeSetInstance extends X_M_AttributeSetInstance {
      * @param rs      result set
      * @param trxName transaction
      */
-    public MAttributeSetInstance(Properties ctx, ResultSet rs) {
-        super(ctx, rs);
+    public MAttributeSetInstance(Properties ctx, Row row) {
+        super(ctx, row);
     } //	MAttributeSetInstance
 
     /**
@@ -229,7 +230,6 @@ public class MAttributeSetInstance extends X_M_AttributeSetInstance {
             if (mai != null) {
                 if (sb.length() > 0) sb.append("_");
                 if (mai.getValue() != null) sb.append(mai.getValue());
-                else sb.append("");
             }
         }
         setDescription(sb.toString());

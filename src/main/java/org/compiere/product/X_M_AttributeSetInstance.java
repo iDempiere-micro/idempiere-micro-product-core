@@ -1,10 +1,10 @@
 package org.compiere.product;
 
+import kotliquery.Row;
 import org.compiere.model.I_M_AttributeSetInstance;
 import org.compiere.orm.MTable;
 import org.compiere.orm.PO;
 
-import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.Properties;
 
@@ -35,8 +35,8 @@ public class X_M_AttributeSetInstance extends PO implements I_M_AttributeSetInst
     /**
      * Load Constructor
      */
-    public X_M_AttributeSetInstance(Properties ctx, ResultSet rs) {
-        super(ctx, rs);
+    public X_M_AttributeSetInstance(Properties ctx, Row row) {
+        super(ctx, row);
     }
 
     /**

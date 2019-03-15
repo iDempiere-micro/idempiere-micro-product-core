@@ -5,7 +5,6 @@ import org.compiere.model.HasName;
 import org.compiere.model.I_M_PriceList;
 import org.compiere.orm.PO;
 
-import java.sql.ResultSet;
 import java.util.Properties;
 
 /**
@@ -36,13 +35,10 @@ public abstract class X_M_PriceList extends PO implements I_M_PriceList {
     /**
      * Load Constructor
      */
-    public X_M_PriceList(Properties ctx, ResultSet rs) {
-        super(ctx, rs);
-    }
-
     public X_M_PriceList(Properties ctx, Row row) {
         super(ctx, row);
-    } //	MPriceList
+    }
+
 
     /**
      * AccessLevel

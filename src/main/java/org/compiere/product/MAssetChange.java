@@ -1,12 +1,9 @@
 package org.compiere.product;
 
-import org.compiere.orm.PO;
-import org.idempiere.common.util.CLogger;
+import kotliquery.Row;
 import org.idempiere.icommon.model.IPO;
 
-import java.sql.ResultSet;
 import java.util.Properties;
-import java.util.logging.Level;
 
 /**
  * Asset Addition Model
@@ -35,8 +32,8 @@ public class MAssetChange extends X_A_Asset_Change {
      * @param ctx context
      * @param rs  result set
      */
-    public MAssetChange(Properties ctx, ResultSet rs) {
-        super(ctx, rs);
+    public MAssetChange(Properties ctx, Row row) {
+        super(ctx, row);
     } //	MInventoryLine
 
     /**

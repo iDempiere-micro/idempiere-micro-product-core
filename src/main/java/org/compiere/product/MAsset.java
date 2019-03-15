@@ -1,5 +1,6 @@
 package org.compiere.product;
 
+import kotliquery.Row;
 import org.compiere.model.I_A_Asset;
 import org.compiere.model.I_C_BPartner_Location;
 import org.compiere.orm.PO;
@@ -7,7 +8,6 @@ import org.compiere.orm.SetGetUtil;
 import org.idempiere.common.util.Env;
 
 import java.math.BigDecimal;
-import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.Properties;
 import java.util.logging.Level;
@@ -74,8 +74,8 @@ public class MAsset extends X_A_Asset
      * @param ctx context
      * @param rs  result set record
      */
-    public MAsset(Properties ctx, ResultSet rs) {
-        super(ctx, rs);
+    public MAsset(Properties ctx, Row row) {
+        super(ctx, row);
     } //	MAsset
 
     // Temporary used variables:

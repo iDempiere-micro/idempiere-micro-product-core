@@ -5,7 +5,6 @@ import org.compiere.model.I_M_PriceList;
 import org.compiere.orm.TimeUtil;
 import org.compiere.util.DisplayType;
 
-import java.sql.ResultSet;
 import java.util.Properties;
 
 /**
@@ -44,14 +43,9 @@ public class MPriceListVersion extends X_M_PriceList_Version {
      * @param rs      result set
      * @param trxName transaction
      */
-    public MPriceListVersion(Properties ctx, ResultSet rs) {
-        super(ctx, rs);
-    } //	MPriceListVersion
-
     public MPriceListVersion(Properties ctx, Row row) {
         super(ctx, row);
-    }
-
+    } //	MPriceListVersion
 
     /**
      * Parent Constructor

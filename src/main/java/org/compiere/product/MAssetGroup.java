@@ -1,11 +1,11 @@
 package org.compiere.product;
 
+import kotliquery.Row;
 import org.compiere.model.I_A_Asset_Group;
 import org.compiere.model.SetGetModel;
 import org.compiere.orm.SetGetUtil;
 import org.idempiere.common.util.CCache;
 
-import java.sql.ResultSet;
 import java.util.Properties;
 
 import static software.hsharp.core.util.DBKt.getSQLValueEx;
@@ -43,8 +43,8 @@ public class MAssetGroup extends X_A_Asset_Group {
      * @param ctx context
      * @param rs  result set
      */
-    public MAssetGroup(Properties ctx, ResultSet rs) {
-        super(ctx, rs);
+    public MAssetGroup(Properties ctx, Row row) {
+        super(ctx, row);
     } //	MAssetGroup
 
     /**
@@ -115,11 +115,7 @@ public class MAssetGroup extends X_A_Asset_Group {
     }
 
     protected boolean afterSave(boolean newRecord, boolean success) {
-        if (!success) {
-            return false;
-        }
+        return success;//
         //
-        //
-        return true;
     }
 } //	MAssetGroup

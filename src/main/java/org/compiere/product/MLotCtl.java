@@ -1,6 +1,7 @@
 package org.compiere.product;
 
-import java.sql.ResultSet;
+import kotliquery.Row;
+
 import java.util.Properties;
 
 /**
@@ -40,8 +41,8 @@ public class MLotCtl extends X_M_LotCtl {
      * @param rs      result set
      * @param trxName transaction
      */
-    public MLotCtl(Properties ctx, ResultSet rs) {
-        super(ctx, rs);
+    public MLotCtl(Properties ctx, Row row) {
+        super(ctx, row);
     } //	MLotCtl
 
     /**

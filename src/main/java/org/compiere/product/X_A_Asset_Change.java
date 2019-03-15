@@ -1,9 +1,9 @@
 package org.compiere.product;
 
+import kotliquery.Row;
 import org.compiere.model.I_A_Asset_Change;
 import org.compiere.orm.PO;
 
-import java.sql.ResultSet;
 import java.util.Properties;
 
 /**
@@ -33,8 +33,8 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change {
     /**
      * Load Constructor
      */
-    public X_A_Asset_Change(Properties ctx, ResultSet rs) {
-        super(ctx, rs);
+    public X_A_Asset_Change(Properties ctx, Row row) {
+        super(ctx, row);
     }
 
     /**

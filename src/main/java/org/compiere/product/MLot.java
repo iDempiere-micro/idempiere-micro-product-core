@@ -1,9 +1,9 @@
 package org.compiere.product;
 
+import kotliquery.Row;
 import org.compiere.model.I_M_Lot;
 import org.compiere.orm.Query;
 
-import java.sql.ResultSet;
 import java.util.Properties;
 
 /**
@@ -38,8 +38,8 @@ public class MLot extends X_M_Lot {
      * @param rs      result set
      * @param trxName transaction
      */
-    public MLot(Properties ctx, ResultSet rs) {
-        super(ctx, rs);
+    public MLot(Properties ctx, Row row) {
+        super(ctx, row);
     } //	MLot
 
     /**

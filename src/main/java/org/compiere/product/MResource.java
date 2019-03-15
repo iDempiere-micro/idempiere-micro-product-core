@@ -1,10 +1,10 @@
 package org.compiere.product;
 
+import kotliquery.Row;
 import org.compiere.model.I_S_Resource;
 import org.idempiere.common.exceptions.AdempiereException;
 import org.idempiere.common.util.CCache;
 
-import java.sql.ResultSet;
 import java.util.Properties;
 
 /**
@@ -53,8 +53,8 @@ public class MResource extends X_S_Resource {
      * @param ctx context
      * @param rs  result set
      */
-    public MResource(Properties ctx, ResultSet rs) {
-        super(ctx, rs);
+    public MResource(Properties ctx, Row row) {
+        super(ctx, row);
     } //	MResource
 
     /**

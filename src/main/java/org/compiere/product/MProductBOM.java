@@ -1,11 +1,11 @@
 package org.compiere.product;
 
+import kotliquery.Row;
 import org.compiere.model.I_M_Product_BOM;
 import org.compiere.orm.Query;
 import org.idempiere.common.util.CLogger;
 import org.idempiere.common.util.Env;
 
-import java.sql.ResultSet;
 import java.util.List;
 import java.util.Properties;
 
@@ -58,8 +58,8 @@ public class MProductBOM extends X_M_Product_BOM {
      * @param rs      result set
      * @param trxName transaction
      */
-    public MProductBOM(Properties ctx, ResultSet rs) {
-        super(ctx, rs);
+    public MProductBOM(Properties ctx, Row row) {
+        super(ctx, row);
     } //	MProductBOM
 
     /**

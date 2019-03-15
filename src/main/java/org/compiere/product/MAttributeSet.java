@@ -1,7 +1,7 @@
 package org.compiere.product;
 
+import kotliquery.Row;
 import org.compiere.model.I_M_AttributeSet;
-import org.compiere.orm.MColumn;
 import org.compiere.orm.Query;
 import org.idempiere.common.exceptions.DBException;
 import org.idempiere.common.util.CCache;
@@ -84,8 +84,8 @@ public class MAttributeSet extends X_M_AttributeSet {
      * @param rs      result set
      * @param trxName transaction
      */
-    public MAttributeSet(Properties ctx, ResultSet rs) {
-        super(ctx, rs);
+    public MAttributeSet(Properties ctx, Row row) {
+        super(ctx, row);
     } //	MAttributeSet
 
     /**
@@ -97,7 +97,7 @@ public class MAttributeSet extends X_M_AttributeSet {
      */
     public static MAttributeSet get(Properties ctx, int M_AttributeSet_ID) {
         Integer key = new Integer(M_AttributeSet_ID);
-        MAttributeSet retValue = (MAttributeSet) s_cache.get(key);
+        MAttributeSet retValue = s_cache.get(key);
         if (retValue != null) return retValue;
         retValue = new MAttributeSet(ctx, M_AttributeSet_ID);
         if (retValue.getId() != 0) s_cache.put(key, retValue);

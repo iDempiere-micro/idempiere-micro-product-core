@@ -1,7 +1,8 @@
 package org.compiere.product;
 
+import kotliquery.Row;
+
 import java.math.BigDecimal;
-import java.sql.ResultSet;
 import java.util.Properties;
 
 import static software.hsharp.core.orm.POKt.I_ZERO;
@@ -39,8 +40,8 @@ public class MDiscountSchemaBreak extends X_M_DiscountSchemaBreak {
      * @param rs      result set
      * @param trxName transaction
      */
-    public MDiscountSchemaBreak(Properties ctx, ResultSet rs) {
-        super(ctx, rs);
+    public MDiscountSchemaBreak(Properties ctx, Row row) {
+        super(ctx, row);
     } //	MDiscountSchemaBreak
 
     /**

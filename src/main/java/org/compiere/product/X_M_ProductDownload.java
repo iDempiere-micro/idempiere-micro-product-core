@@ -1,9 +1,9 @@
 package org.compiere.product;
 
+import kotliquery.Row;
 import org.compiere.model.I_M_ProductDownload;
 import org.compiere.orm.BasePOName;
 
-import java.sql.ResultSet;
 import java.util.Properties;
 
 /**
@@ -33,8 +33,8 @@ public class X_M_ProductDownload extends BasePOName implements I_M_ProductDownlo
     /**
      * Load Constructor
      */
-    public X_M_ProductDownload(Properties ctx, ResultSet rs) {
-        super(ctx, rs);
+    public X_M_ProductDownload(Properties ctx, Row row) {
+        super(ctx, row);
     }
 
     /**

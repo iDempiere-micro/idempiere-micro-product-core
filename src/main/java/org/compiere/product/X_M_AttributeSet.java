@@ -1,9 +1,9 @@
 package org.compiere.product;
 
+import kotliquery.Row;
 import org.compiere.model.I_M_AttributeSet;
 import org.compiere.orm.BasePOName;
 
-import java.sql.ResultSet;
 import java.util.Properties;
 
 /**
@@ -37,8 +37,8 @@ public class X_M_AttributeSet extends BasePOName implements I_M_AttributeSet {
     /**
      * Load Constructor
      */
-    public X_M_AttributeSet(Properties ctx, ResultSet rs) {
-        super(ctx, rs);
+    public X_M_AttributeSet(Properties ctx, Row row) {
+        super(ctx, row);
     }
 
     /**

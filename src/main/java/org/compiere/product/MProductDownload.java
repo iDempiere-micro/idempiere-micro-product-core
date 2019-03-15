@@ -1,9 +1,8 @@
 package org.compiere.product;
 
-import java.io.File;
-import java.sql.ResultSet;
+import kotliquery.Row;
+
 import java.util.Properties;
-import java.util.logging.Level;
 
 /**
  * Product Download Model
@@ -41,8 +40,8 @@ public class MProductDownload extends X_M_ProductDownload {
      * @param rs      result set
      * @param trxName trx
      */
-    public MProductDownload(Properties ctx, ResultSet rs) {
-        super(ctx, rs);
+    public MProductDownload(Properties ctx, Row row) {
+        super(ctx, row);
     } //	MProductDownload
 
     /**
