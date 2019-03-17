@@ -29,7 +29,7 @@ public class X_M_Product_BOM extends PO implements I_M_Product_BOM {
         /**
          * if (M_Product_BOM_ID == 0) { setBOMQty (Env.ZERO); // 1 setLine (0); // @SQL=SELECT
          * NVL(MAX(Line),0)+10 AS DefaultValue FROM M_Product_BOM WHERE M_Product_ID=@M_Product_ID@
-         * setM_Product_BOM_ID (0); setM_ProductBOM_ID (0); setM_Product_ID (0); }
+         * setProduct_BOM_ID (0); setProductBOM_ID (0); setProductId (0); }
          */
     }
 
@@ -117,7 +117,7 @@ public class X_M_Product_BOM extends PO implements I_M_Product_BOM {
      *
      * @return BOM Line
      */
-    public int getM_Product_BOM_ID() {
+    public int getBOMLineId() {
         Integer ii = (Integer) getValue(COLUMNNAME_M_Product_BOM_ID);
         if (ii == null) return 0;
         return ii;
@@ -128,7 +128,7 @@ public class X_M_Product_BOM extends PO implements I_M_Product_BOM {
      *
      * @return Bill of Material Component Product
      */
-    public int getM_ProductBOM_ID() {
+    public int getBOMProductId() {
         Integer ii = (Integer) getValue(COLUMNNAME_M_ProductBOM_ID);
         if (ii == null) return 0;
         return ii;
@@ -139,7 +139,7 @@ public class X_M_Product_BOM extends PO implements I_M_Product_BOM {
      *
      * @param M_ProductBOM_ID Bill of Material Component Product
      */
-    public void setM_ProductBOM_ID(int M_ProductBOM_ID) {
+    public void setBOMProductId(int M_ProductBOM_ID) {
         if (M_ProductBOM_ID < 1) setValue(COLUMNNAME_M_ProductBOM_ID, null);
         else setValue(COLUMNNAME_M_ProductBOM_ID, Integer.valueOf(M_ProductBOM_ID));
     }
@@ -149,7 +149,7 @@ public class X_M_Product_BOM extends PO implements I_M_Product_BOM {
      *
      * @return Product, Service, Item
      */
-    public int getM_Product_ID() {
+    public int getProductId() {
         Integer ii = (Integer) getValue(COLUMNNAME_M_Product_ID);
         if (ii == null) return 0;
         return ii;
@@ -160,7 +160,7 @@ public class X_M_Product_BOM extends PO implements I_M_Product_BOM {
      *
      * @param M_Product_ID Product, Service, Item
      */
-    public void setM_Product_ID(int M_Product_ID) {
+    public void setProductId(int M_Product_ID) {
         if (M_Product_ID < 1) setValueNoCheck(COLUMNNAME_M_Product_ID, null);
         else setValueNoCheck(COLUMNNAME_M_Product_ID, Integer.valueOf(M_Product_ID));
     }

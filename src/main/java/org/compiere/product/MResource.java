@@ -83,11 +83,11 @@ public class MResource extends X_S_Resource {
      */
     public MResourceType getResourceType() {
         // Use cache if we are outside transaction:
-        if (null == null && getS_ResourceType_ID() > 0)
-            return MResourceType.get(getCtx(), getS_ResourceType_ID());
+        if (null == null && getResourceTypeId() > 0)
+            return MResourceType.get(getCtx(), getResourceTypeId());
         //
-        if (m_resourceType == null && getS_ResourceType_ID() != 0) {
-            m_resourceType = new MResourceType(getCtx(), getS_ResourceType_ID());
+        if (m_resourceType == null && getResourceTypeId() != 0) {
+            m_resourceType = new MResourceType(getCtx(), getResourceTypeId());
         }
         return m_resourceType;
     } //	getResourceType
@@ -99,7 +99,7 @@ public class MResource extends X_S_Resource {
      */
     public MProduct getProduct() {
         if (m_product == null) {
-            m_product = MProduct.forS_Resource_ID(getCtx(), getS_Resource_ID());
+            m_product = MProduct.forS_ResourceId(getCtx(), getResourceId());
         } else {
         }
         return m_product;
@@ -136,8 +136,8 @@ public class MResource extends X_S_Resource {
     protected boolean beforeDelete() {
         // Delete product
         MProduct product = getProduct();
-        if (product != null && product.getM_Product_ID() > 0) {
-            product.setS_Resource_ID(0); // unlink resource
+        if (product != null && product.getProductId() > 0) {
+            product.setResourceID(0); // unlink resource
             product.deleteEx(true);
         }
         return true;

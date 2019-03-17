@@ -285,7 +285,7 @@ public class X_M_AttributeSet extends BasePOName implements I_M_AttributeSet {
      *
      * @return Product Attribute Set
      */
-    public int getMAttributeSet_ID() {
+    public int getAttributeSetId() {
         Integer ii = (Integer) getValue(COLUMNNAME_M_AttributeSet_ID);
         if (ii == null) return 0;
         return ii;
@@ -296,7 +296,7 @@ public class X_M_AttributeSet extends BasePOName implements I_M_AttributeSet {
      *
      * @return Product Lot Control
      */
-    public int getM_LotCtl_ID() {
+    public int getLotControlId() {
         Integer ii = (Integer) getValue(COLUMNNAME_M_LotCtl_ID);
         if (ii == null) return 0;
         return ii;
@@ -307,7 +307,7 @@ public class X_M_AttributeSet extends BasePOName implements I_M_AttributeSet {
      *
      * @return Product Serial Number Control
      */
-    public int getM_SerNoCtl_ID() {
+    public int getSerialNoControlId() {
         Integer ii = (Integer) getValue(COLUMNNAME_M_SerNoCtl_ID);
         if (ii == null) return 0;
         return ii;

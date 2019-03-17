@@ -28,8 +28,8 @@ public class X_M_PriceList_Version extends PO implements I_M_PriceList_Version {
     public X_M_PriceList_Version(Properties ctx, int M_PriceList_Version_ID) {
         super(ctx, M_PriceList_Version_ID);
         /**
-         * if (M_PriceList_Version_ID == 0) { setM_DiscountSchema_ID (0); setPriceListId (0);
-         * setM_PriceList_Version_ID (0); setName (null); // @#Date@ setValidFrom (new Timestamp(
+         * if (M_PriceList_Version_ID == 0) { setDiscountSchemaId (0); setPriceListId (0);
+         * setPriceListVersionId (0); setName (null); // @#Date@ setValidFrom (new Timestamp(
          * System.currentTimeMillis() )); // @#Date@ }
          */
     }
@@ -60,7 +60,7 @@ public class X_M_PriceList_Version extends PO implements I_M_PriceList_Version {
      *
      * @param M_DiscountSchema_ID Schema to calculate the trade discount percentage
      */
-    public void setM_DiscountSchema_ID(int M_DiscountSchema_ID) {
+    public void setDiscountSchemaId(int M_DiscountSchema_ID) {
         if (M_DiscountSchema_ID < 1) setValue(COLUMNNAME_M_DiscountSchema_ID, null);
         else setValue(COLUMNNAME_M_DiscountSchema_ID, Integer.valueOf(M_DiscountSchema_ID));
     }
@@ -97,7 +97,7 @@ public class X_M_PriceList_Version extends PO implements I_M_PriceList_Version {
      *
      * @return Identifies a unique instance of a Price List
      */
-    public int getM_PriceList_Version_ID() {
+    public int getPriceListVersionId() {
         Integer ii = (Integer) getValue(COLUMNNAME_M_PriceList_Version_ID);
         if (ii == null) return 0;
         return ii;

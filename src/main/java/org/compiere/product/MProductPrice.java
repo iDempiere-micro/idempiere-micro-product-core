@@ -59,8 +59,8 @@ public class MProductPrice extends X_M_ProductPrice {
     public MProductPrice(
             Properties ctx, int M_PriceList_Version_ID, int M_Product_ID) {
         this(ctx, 0);
-        setM_PriceList_Version_ID(M_PriceList_Version_ID); // 	FK
-        setM_Product_ID(M_Product_ID); // 	FK
+        setPriceListVersionId(M_PriceList_Version_ID); // 	FK
+        setProductId(M_Product_ID); // 	FK
     } //	MProductPrice
 
     /**
@@ -103,8 +103,8 @@ public class MProductPrice extends X_M_ProductPrice {
             BigDecimal PriceLimit) {
         this(plv.getCtx(), 0);
         setClientOrg(plv);
-        setM_PriceList_Version_ID(plv.getM_PriceList_Version_ID());
-        setM_Product_ID(M_Product_ID);
+        setPriceListVersionId(plv.getPriceListVersionId());
+        setProductId(M_Product_ID);
         setPrices(PriceList, PriceStd, PriceLimit);
     } //	MProductPrice
 
@@ -141,15 +141,15 @@ public class MProductPrice extends X_M_ProductPrice {
     public void setPrices(BigDecimal PriceList, BigDecimal PriceStd, BigDecimal PriceLimit) {
         setPriceLimit(
                 PriceLimit.setScale(
-                        this.getM_PriceList_Version().getPriceList().getPricePrecision(),
+                        this.getPriceListVersion().getPriceList().getPricePrecision(),
                         BigDecimal.ROUND_HALF_UP));
         setPriceList(
                 PriceList.setScale(
-                        this.getM_PriceList_Version().getPriceList().getPricePrecision(),
+                        this.getPriceListVersion().getPriceList().getPricePrecision(),
                         BigDecimal.ROUND_HALF_UP));
         setPriceStd(
                 PriceStd.setScale(
-                        this.getM_PriceList_Version().getPriceList().getPricePrecision(),
+                        this.getPriceListVersion().getPriceList().getPricePrecision(),
                         BigDecimal.ROUND_HALF_UP));
     } //	setPrice
 
@@ -160,9 +160,9 @@ public class MProductPrice extends X_M_ProductPrice {
      */
     public String toString() {
         StringBuilder sb = new StringBuilder("MProductPrice[");
-        sb.append(getM_PriceList_Version_ID())
+        sb.append(getPriceListVersionId())
                 .append(",M_Product_ID=")
-                .append(getM_Product_ID())
+                .append(getProductId())
                 .append(",PriceList=")
                 .append(getPriceList())
                 .append("]");

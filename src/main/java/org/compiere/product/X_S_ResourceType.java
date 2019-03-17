@@ -26,9 +26,9 @@ public class X_S_ResourceType extends BasePONameValue implements I_S_ResourceTyp
     public X_S_ResourceType(Properties ctx, int S_ResourceType_ID) {
         super(ctx, S_ResourceType_ID);
         /**
-         * if (S_ResourceType_ID == 0) { setAllowUoMFractions (false); // N setC_TaxCategory_ID (0);
-         * setC_UOM_ID (0); setIsDateSlot (false); setIsSingleAssignment (false); setIsTimeSlot (false);
-         * setM_Product_Category_ID (0); setName (null); setOnFriday (true); // Y setOnMonday (true); //
+         * if (S_ResourceType_ID == 0) { setAllowUoMFractions (false); // N setTaxCategoryId (0);
+         * setUOMId (0); setIsDateSlot (false); setIsSingleAssignment (false); setIsTimeSlot (false);
+         * setProductCategoryId (0); setName (null); setOnFriday (true); // Y setOnMonday (true); //
          * Y setOnSaturday (false); setOnSunday (false); setOnThursday (true); // Y setOnTuesday (true);
          * // Y setOnWednesday (true); // Y setS_ResourceType_ID (0); setValue (null); }
          */
@@ -60,7 +60,7 @@ public class X_S_ResourceType extends BasePONameValue implements I_S_ResourceTyp
      *
      * @return Tax Category
      */
-    public int getC_TaxCategory_ID() {
+    public int getTaxCategoryId() {
         Integer ii = (Integer) getValue(COLUMNNAME_C_TaxCategory_ID);
         if (ii == null) return 0;
         return ii;
@@ -71,7 +71,7 @@ public class X_S_ResourceType extends BasePONameValue implements I_S_ResourceTyp
      *
      * @return Unit of Measure
      */
-    public int getC_UOM_ID() {
+    public int getUOMId() {
         Integer ii = (Integer) getValue(COLUMNNAME_C_UOM_ID);
         if (ii == null) return 0;
         return ii;
@@ -110,7 +110,7 @@ public class X_S_ResourceType extends BasePONameValue implements I_S_ResourceTyp
      *
      * @return Category of a Product
      */
-    public int getM_Product_Category_ID() {
+    public int getProductCategoryId() {
         Integer ii = (Integer) getValue(COLUMNNAME_M_Product_Category_ID);
         if (ii == null) return 0;
         return ii;
@@ -219,7 +219,7 @@ public class X_S_ResourceType extends BasePONameValue implements I_S_ResourceTyp
      *
      * @return Resource Type
      */
-    public int getS_ResourceType_ID() {
+    public int getResourceTypeId() {
         Integer ii = (Integer) getValue(COLUMNNAME_S_ResourceType_ID);
         if (ii == null) return 0;
         return ii;

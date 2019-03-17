@@ -27,7 +27,7 @@ public class MProductDownload extends X_M_ProductDownload {
     public MProductDownload(Properties ctx, int M_ProductDownload_ID) {
         super(ctx, M_ProductDownload_ID);
         if (M_ProductDownload_ID == 0) {
-            //	setM_Product_ID (0);
+            //	setProductId (0);
             //	setName (null);
             //	setDownloadURL (null);
         }
@@ -54,7 +54,7 @@ public class MProductDownload extends X_M_ProductDownload {
                 new StringBuffer("MProductDownload[")
                         .append(getId())
                         .append(",M_Product_ID=")
-                        .append(getM_Product_ID())
+                        .append(getProductId())
                         .append(",")
                         .append(getDownloadURL())
                         .append("]");

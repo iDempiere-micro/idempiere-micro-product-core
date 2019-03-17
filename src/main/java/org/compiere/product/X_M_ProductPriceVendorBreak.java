@@ -22,8 +22,8 @@ public class X_M_ProductPriceVendorBreak extends PO
             Properties ctx, int M_ProductPriceVendorBreak_ID) {
         super(ctx, M_ProductPriceVendorBreak_ID);
         /**
-         * if (M_ProductPriceVendorBreak_ID == 0) { setBreakValue (Env.ZERO); setM_PriceList_Version_ID
-         * (0); setM_Product_ID (0); setM_ProductPriceVendorBreak_ID (0); setPriceLimit (Env.ZERO);
+         * if (M_ProductPriceVendorBreak_ID == 0) { setBreakValue (Env.ZERO); setPriceListVersionId
+         * (0); setProductId (0); setProductPriceVendorBreak_ID (0); setPriceLimit (Env.ZERO);
          * setPriceList (Env.ZERO); setPriceStd (Env.ZERO); }
          */
     }
@@ -73,7 +73,7 @@ public class X_M_ProductPriceVendorBreak extends PO
      *
      * @param M_PriceList_Version_ID Identifies a unique instance of a Price List
      */
-    public void setM_PriceList_Version_ID(int M_PriceList_Version_ID) {
+    public void setPriceListVersionId(int M_PriceList_Version_ID) {
         if (M_PriceList_Version_ID < 1) setValueNoCheck(COLUMNNAME_M_PriceList_Version_ID, null);
         else
             setValueNoCheck(COLUMNNAME_M_PriceList_Version_ID, Integer.valueOf(M_PriceList_Version_ID));
@@ -84,7 +84,7 @@ public class X_M_ProductPriceVendorBreak extends PO
      *
      * @param M_Product_ID Product, Service, Item
      */
-    public void setM_Product_ID(int M_Product_ID) {
+    public void setProductId(int M_Product_ID) {
         if (M_Product_ID < 1) setValueNoCheck(COLUMNNAME_M_Product_ID, null);
         else setValueNoCheck(COLUMNNAME_M_Product_ID, Integer.valueOf(M_Product_ID));
     }

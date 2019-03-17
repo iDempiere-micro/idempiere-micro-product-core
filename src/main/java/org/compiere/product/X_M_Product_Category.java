@@ -55,10 +55,10 @@ public class X_M_Product_Category extends BasePONameValue
         return sb.toString();
     }
 
-    public org.compiere.model.I_A_Asset_Group getA_Asset_Group() throws RuntimeException {
+    public org.compiere.model.I_A_Asset_Group getAssetGroup() throws RuntimeException {
         return (org.compiere.model.I_A_Asset_Group)
                 MTable.get(getCtx(), org.compiere.model.I_A_Asset_Group.Table_Name)
-                        .getPO(getA_Asset_Group_ID());
+                        .getPO(getAssetGroupId());
     }
 
     /**
@@ -66,7 +66,7 @@ public class X_M_Product_Category extends BasePONameValue
      *
      * @return Group of Assets
      */
-    public int getA_Asset_Group_ID() {
+    public int getAssetGroupId() {
         Integer ii = (Integer) getValue(COLUMNNAME_A_Asset_Group_ID);
         if (ii == null) return 0;
         return ii;
@@ -114,7 +114,7 @@ public class X_M_Product_Category extends BasePONameValue
      *
      * @return Category of a Product
      */
-    public int getM_Product_Category_ID() {
+    public int getProductCategoryId() {
         Integer ii = (Integer) getValue(COLUMNNAME_M_Product_Category_ID);
         if (ii == null) return 0;
         return ii;
@@ -125,7 +125,7 @@ public class X_M_Product_Category extends BasePONameValue
      *
      * @return Parent Product Category
      */
-    public int getM_Product_Category_Parent_ID() {
+    public int getProductCategoryParentId() {
         Integer ii = (Integer) getValue(COLUMNNAME_M_Product_Category_Parent_ID);
         if (ii == null) return 0;
         return ii;

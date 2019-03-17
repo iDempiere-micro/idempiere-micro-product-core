@@ -96,7 +96,7 @@ public class MUOM extends X_C_UOM {
      * @param ctx context for AD_Client
      * @return C_UOM_ID
      */
-    public static int getDefault_UOM_ID(Properties ctx) {
+    public static int getDefault_UOMId(Properties ctx) {
         String sql =
                 "SELECT C_UOM_ID "
                         + "FROM C_UOM "

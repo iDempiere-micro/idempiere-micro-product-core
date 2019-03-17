@@ -97,7 +97,7 @@ public class MResourceType extends X_S_ResourceType {
                             getCtx(),
                             "S_Resource_ID IN "
                                     + "(SELECT S_Resource_ID FROM S_Resource WHERE S_ResourceType_ID="
-                                    + getS_ResourceType_ID()
+                                    + getResourceTypeId()
                                     + ")");
             for (MProduct product : products) {
                 if (product.setResource(this)) {

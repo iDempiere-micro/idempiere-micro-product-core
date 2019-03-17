@@ -31,7 +31,7 @@ public class X_S_Resource extends BasePOUser implements I_S_Resource {
         super(ctx, S_Resource_ID);
         /**
          * if (S_Resource_ID == 0) { setIsAvailable (true); // Y setWarehouseId (0); setName (null);
-         * setPercentUtilization (Env.ZERO); // 100 setS_Resource_ID (0); setS_ResourceType_ID (0);
+         * setPercentUtilization (Env.ZERO); // 100 setResourceID (0); setS_ResourceType_ID (0);
          * setValue (null); }
          */
     }
@@ -114,7 +114,7 @@ public class X_S_Resource extends BasePOUser implements I_S_Resource {
      *
      * @return Resource
      */
-    public int getS_Resource_ID() {
+    public int getResourceId() {
         Integer ii = (Integer) getValue(COLUMNNAME_S_Resource_ID);
         if (ii == null) return 0;
         return ii;
@@ -125,7 +125,7 @@ public class X_S_Resource extends BasePOUser implements I_S_Resource {
      *
      * @return Resource Type
      */
-    public int getS_ResourceType_ID() {
+    public int getResourceTypeId() {
         Integer ii = (Integer) getValue(COLUMNNAME_S_ResourceType_ID);
         if (ii == null) return 0;
         return ii;

@@ -62,7 +62,7 @@ public class MAttribute extends X_M_Attribute {
                         + "=?";
         MAttributeInstance retValue =
                 new Query(getCtx(), I_M_AttributeInstance.Table_Name, whereClause)
-                        .setParameters(getMAttribute_ID(), M_AttributeSetInstance_ID)
+                        .setParameters(getProductAttributeId(), M_AttributeSetInstance_ID)
                         .first();
 
         return retValue;
@@ -96,7 +96,7 @@ public class MAttribute extends X_M_Attribute {
     protected boolean afterSave(boolean newRecord, boolean success) {
         if (!success) return success;
         //	Changed to Instance Attribute
-        if (!newRecord && is_ValueChanged("IsInstanceAttribute") && isInstanceAttribute()) {
+        if (!newRecord && isValueChanged("IsInstanceAttribute") && isInstanceAttribute()) {
             StringBuilder sql =
                     new StringBuilder("UPDATE M_AttributeSet mas ")
                             .append("SET IsInstanceAttribute='Y' ")
@@ -104,7 +104,7 @@ public class MAttribute extends X_M_Attribute {
                             .append(" AND EXISTS (SELECT * FROM M_AttributeUse mau ")
                             .append("WHERE mas.M_AttributeSet_ID=mau.M_AttributeSet_ID")
                             .append(" AND mau.M_Attribute_ID=")
-                            .append(getMAttribute_ID())
+                            .append(getProductAttributeId())
                             .append(")");
             int no = executeUpdate(sql.toString());
             if (log.isLoggable(Level.FINE)) log.fine("AttributeSet Instance set #" + no);

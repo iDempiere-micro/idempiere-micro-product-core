@@ -26,7 +26,7 @@ public class MAttributeValue extends X_M_AttributeValue {
     public MAttributeValue(Properties ctx, int M_AttributeValue_ID) {
         super(ctx, M_AttributeValue_ID);
         /**
-         * if (M_AttributeValue_ID == 0) { setM_AttributeValue_ID (0); setMAttributeID (0); setName
+         * if (M_AttributeValue_ID == 0) { setAttributeValue_ID (0); setMAttributeID (0); setName
          * (null); setValue (null); }
          */
     } //	MAttributeValue

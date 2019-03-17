@@ -58,9 +58,9 @@ public class MProduct extends X_M_Product implements I_M_Product {
         if (M_Product_ID == 0) {
             //	setValue (null);
             //	setName (null);
-            //	setM_Product_Category_ID (0);
-            //	setC_TaxCategory_ID (0);
-            //	setC_UOM_ID (0);
+            //	setProductCategoryId (0);
+            //	setTaxCategoryId (0);
+            //	setUOMId (0);
             //
             setProductType(I_M_Product.PRODUCTTYPE_Item); // I
             setIsBOM(false); // N
@@ -130,8 +130,8 @@ public class MProduct extends X_M_Product implements I_M_Product {
         setHelp(impP.getHelp());
         setUPC(impP.getUPC());
         setSKU(impP.getSKU());
-        setC_UOM_ID(impP.getC_UOM_ID());
-        setM_Product_Category_ID(impP.getM_Product_Category_ID());
+        setUOMId(impP.getUOMId());
+        setProductCategoryId(impP.getProductCategoryId());
         setProductType(impP.getProductType());
         setImageURL(impP.getImageURL());
         setDescriptionURL(impP.getDescriptionURL());
@@ -172,7 +172,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
      */
     public static MProduct[] get(Properties ctx, String whereClause) {
         List<MProduct> list =
-                new Query(ctx, I_M_Product.Table_Name, whereClause).setClient_ID().list();
+                new Query(ctx, I_M_Product.Table_Name, whereClause).setClientId().list();
         return list.toArray(new MProduct[list.size()]);
     } //	get
 
@@ -184,13 +184,13 @@ public class MProduct extends X_M_Product implements I_M_Product {
      * @param trxName
      * @return MProduct or null if not found
      */
-    public static MProduct forS_Resource_ID(Properties ctx, int S_Resource_ID) {
+    public static MProduct forS_ResourceId(Properties ctx, int S_Resource_ID) {
         if (S_Resource_ID <= 0) {
             return null;
         }
 
         for (MProduct p : s_cache.values()) {
-            if (p.getS_Resource_ID() == S_Resource_ID) {
+            if (p.getResourceID() == S_Resource_ID) {
                 return p;
             }
         }
@@ -200,7 +200,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
                         .setParameters(S_Resource_ID)
                         .firstOnly();
         if (p != null) {
-            s_cache.put(p.getM_Product_ID(), p);
+            s_cache.put(p.getProductId(), p);
         }
         return p;
     }
@@ -226,8 +226,8 @@ public class MProduct extends X_M_Product implements I_M_Product {
             setProductType(I_M_Product.PRODUCTTYPE_ExpenseType);
             changed = true;
         }
-        if (parent.getS_ExpenseType_ID() != getS_ExpenseType_ID()) {
-            setS_ExpenseType_ID(parent.getS_ExpenseType_ID());
+        if (parent.getExpenseTypeId() != getExpenseTypeId()) {
+            setExpenseTypeId(parent.getExpenseTypeId());
             changed = true;
         }
         if (parent.isActive() != isActive()) {
@@ -248,16 +248,16 @@ public class MProduct extends X_M_Product implements I_M_Product {
             setDescription(parent.getDescription());
             changed = true;
         }
-        if (parent.getC_UOM_ID() != getC_UOM_ID()) {
-            setC_UOM_ID(parent.getC_UOM_ID());
+        if (parent.getUOMId() != getUOMId()) {
+            setUOMId(parent.getUOMId());
             changed = true;
         }
-        if (parent.getM_Product_Category_ID() != getM_Product_Category_ID()) {
-            setM_Product_Category_ID(parent.getM_Product_Category_ID());
+        if (parent.getProductCategoryId() != getProductCategoryId()) {
+            setProductCategoryId(parent.getProductCategoryId());
             changed = true;
         }
-        if (parent.getC_TaxCategory_ID() != getC_TaxCategory_ID()) {
-            setC_TaxCategory_ID(parent.getC_TaxCategory_ID());
+        if (parent.getTaxCategoryId() != getTaxCategoryId()) {
+            setTaxCategoryId(parent.getTaxCategoryId());
             changed = true;
         }
         //
@@ -276,8 +276,8 @@ public class MProduct extends X_M_Product implements I_M_Product {
             setProductType(I_M_Product.PRODUCTTYPE_Resource);
             changed = true;
         }
-        if (parent.getS_Resource_ID() != getS_Resource_ID()) {
-            setS_Resource_ID(parent.getS_Resource_ID());
+        if (parent.getResourceId() != getResourceID()) {
+            setResourceID(parent.getResourceId());
             changed = true;
         }
         if (parent.isActive() != isActive()) {
@@ -315,16 +315,16 @@ public class MProduct extends X_M_Product implements I_M_Product {
             changed = true;
         }
         //
-        if (parent.getC_UOM_ID() != getC_UOM_ID()) {
-            setC_UOM_ID(parent.getC_UOM_ID());
+        if (parent.getUOMId() != getUOMId()) {
+            setUOMId(parent.getUOMId());
             changed = true;
         }
-        if (parent.getM_Product_Category_ID() != getM_Product_Category_ID()) {
-            setM_Product_Category_ID(parent.getM_Product_Category_ID());
+        if (parent.getProductCategoryId() != getProductCategoryId()) {
+            setProductCategoryId(parent.getProductCategoryId());
             changed = true;
         }
-        if (parent.getC_TaxCategory_ID() != getC_TaxCategory_ID()) {
-            setC_TaxCategory_ID(parent.getC_TaxCategory_ID());
+        if (parent.getTaxCategoryId() != getTaxCategoryId()) {
+            setTaxCategoryId(parent.getTaxCategoryId());
             changed = true;
         }
         //
@@ -338,7 +338,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
      */
     public int getUOMPrecision() {
         if (m_precision == null) {
-            int C_UOM_ID = getC_UOM_ID();
+            int C_UOM_ID = getUOMId();
             if (C_UOM_ID == 0) return 0; // 	EA
             m_precision = new Integer(MUOM.getPrecision(getCtx(), C_UOM_ID));
         }
@@ -350,10 +350,10 @@ public class MProduct extends X_M_Product implements I_M_Product {
      *
      * @return asset group id
      */
-    public int getA_Asset_Group_ID() {
-        MProductCategory pc = MProductCategory.get(getCtx(), getM_Product_Category_ID());
-        return pc.getA_Asset_Group_ID();
-    } //	getA_Asset_Group_ID
+    public int getAssetGroupId() {
+        MProductCategory pc = MProductCategory.get(getCtx(), getProductCategoryId());
+        return pc.getAssetGroupId();
+    } //	getAssetGroupId
 
     /**
      * Create Asset for this product
@@ -361,8 +361,8 @@ public class MProduct extends X_M_Product implements I_M_Product {
      * @return true if asset is created
      */
     public boolean isCreateAsset() {
-        MProductCategory pc = MProductCategory.get(getCtx(), getM_Product_Category_ID());
-        return pc.getA_Asset_Group_ID() != 0;
+        MProductCategory pc = MProductCategory.get(getCtx(), getProductCategoryId());
+        return pc.getAssetGroupId() != 0;
     } //	isCreated
 
     /**
@@ -371,7 +371,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
      * @return set or null
      */
     public MAttributeSet getAttributeSet() {
-        if (getMAttributeSet_ID() != 0) return MAttributeSet.get(getCtx(), getMAttributeSet_ID());
+        if (getAttributeSetId() != 0) return MAttributeSet.get(getCtx(), getAttributeSetId());
         return null;
     } //	getAttributeSet
 
@@ -381,8 +381,8 @@ public class MProduct extends X_M_Product implements I_M_Product {
      * @return true if instance attributes
      */
     public boolean isInstanceAttribute() {
-        if (getMAttributeSet_ID() == 0) return false;
-        MAttributeSet mas = MAttributeSet.get(getCtx(), getMAttributeSet_ID());
+        if (getAttributeSetId() == 0) return false;
+        MAttributeSet mas = MAttributeSet.get(getCtx(), getAttributeSetId());
         return mas.isInstanceAttribute();
     } //	isInstanceAttribute
 
@@ -392,9 +392,9 @@ public class MProduct extends X_M_Product implements I_M_Product {
      * @return individual asset
      */
     public boolean isOneAssetPerUOM() {
-        MProductCategory pc = MProductCategory.get(getCtx(), getM_Product_Category_ID());
-        if (pc.getA_Asset_Group_ID() == 0) return false;
-        MAssetGroup ag = MAssetGroup.get(getCtx(), pc.getA_Asset_Group_ID());
+        MProductCategory pc = MProductCategory.get(getCtx(), getProductCategoryId());
+        if (pc.getAssetGroupId() == 0) return false;
+        MAssetGroup ag = MAssetGroup.get(getCtx(), pc.getAssetGroupId());
         return ag.isOneAssetPerUOM();
     } //	isOneAssetPerUOM
 
@@ -443,28 +443,28 @@ public class MProduct extends X_M_Product implements I_M_Product {
         if (!I_M_Product.PRODUCTTYPE_Item.equals(getProductType())) setIsStocked(false);
 
         //	UOM reset
-        if (m_precision != null && is_ValueChanged("C_UOM_ID")) m_precision = null;
+        if (m_precision != null && isValueChanged("C_UOM_ID")) m_precision = null;
 
         // AttributeSetInstance reset
-        if (getMAttributeSetInstance_ID() > 0
-                && is_ValueChanged(I_M_Product.COLUMNNAME_M_AttributeSet_ID)) {
+        if (getAttributeSetInstanceId() > 0
+                && isValueChanged(I_M_Product.COLUMNNAME_M_AttributeSet_ID)) {
             MAttributeSetInstance asi =
-                    new MAttributeSetInstance(getCtx(), getMAttributeSetInstance_ID());
-            if (asi.getMAttributeSet_ID() != getMAttributeSet_ID()) setM_AttributeSetInstance_ID(0);
+                    new MAttributeSetInstance(getCtx(), getAttributeSetInstanceId());
+            if (asi.getAttributeSetId() != getAttributeSetId()) setAttributeSetInstanceId(0);
         }
-        if (!newRecord && is_ValueChanged(I_M_Product.COLUMNNAME_M_AttributeSetInstance_ID)) {
+        if (!newRecord && isValueChanged(I_M_Product.COLUMNNAME_M_AttributeSetInstance_ID)) {
             // IDEMPIERE-2752 check if the ASI is referenced in other products before trying to delete it
-            int oldasiid = get_ValueOldAsInt(I_M_Product.COLUMNNAME_M_AttributeSetInstance_ID);
+            int oldasiid = getValueOldAsInt(I_M_Product.COLUMNNAME_M_AttributeSetInstance_ID);
             if (oldasiid > 0) {
                 MAttributeSetInstance oldasi =
                         new MAttributeSetInstance(
                                 getCtx(),
-                                get_ValueOldAsInt(I_M_Product.COLUMNNAME_M_AttributeSetInstance_ID));
+                                getValueOldAsInt(I_M_Product.COLUMNNAME_M_AttributeSetInstance_ID));
                 int cnt =
                         getSQLValueEx(
                                 null,
                                 "SELECT COUNT(*) FROM M_Product WHERE M_AttributeSetInstance_ID=?",
-                                oldasi.getMAttributeSetInstance_ID());
+                                oldasi.getAttributeSetInstanceId());
                 if (cnt == 1) {
                     // Delete the old m_attributesetinstance
                     try {
@@ -485,7 +485,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
         if (!success) return success;
 
         //	Name/Description Change in Asset	MAsset.setValueNameDescription
-        if (!newRecord && (is_ValueChanged("Name") || is_ValueChanged("Description"))) {
+        if (!newRecord && (isValueChanged("Name") || isValueChanged("Description"))) {
             String sql =
                     "UPDATE A_Asset a "
                             + "SET (Name, Description)="
@@ -495,7 +495,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
                             + "WHERE IsActive='Y'"
                             //	+ " AND GuaranteeDate > SysDate"
                             + "  AND M_Product_ID="
-                            + getM_Product_ID();
+                            + getProductId();
             int no = executeUpdate(sql);
             if (log.isLoggable(Level.FINE)) log.fine("Asset Description updated #" + no);
         }
@@ -505,10 +505,10 @@ public class MProduct extends X_M_Product implements I_M_Product {
             insert_Accounting(
                     "M_Product_Acct",
                     "M_Product_Category_Acct",
-                    "p.M_Product_Category_ID=" + getM_Product_Category_ID());
+                    "p.M_Product_Category_ID=" + getProductCategoryId());
             insert_Tree(X_AD_Tree.TREETYPE_Product);
         }
-        if (newRecord || is_ValueChanged(I_M_Product.COLUMNNAME_Value))
+        if (newRecord || isValueChanged(I_M_Product.COLUMNNAME_Value))
             update_Tree(MTree_Base.TREETYPE_Product);
 
         return success;
@@ -516,7 +516,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
 
     @Override
     protected boolean beforeDelete() {
-        if (I_M_Product.PRODUCTTYPE_Resource.equals(getProductType()) && getS_Resource_ID() > 0) {
+        if (I_M_Product.PRODUCTTYPE_Resource.equals(getProductType()) && getResourceID() > 0) {
             throw new AdempiereException("@S_Resource_ID@<>0");
         }
 
@@ -539,7 +539,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
     	if(ce == null)
     		continue;
 
-    	MCost mcost = MCost.get(this, 0, mass[i], 0, ce.getM_CostElement_ID());
+    	MCost mcost = MCost.get(this, 0, mass[i], 0, ce.getCostElementId());
     	mcost.delete(true, null);
     }*/
 
@@ -559,7 +559,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
      * @return Material Management Policy
      */
     public String getMMPolicy() {
-        MProductCategory pc = MProductCategory.get(getCtx(), getM_Product_Category_ID());
+        MProductCategory pc = MProductCategory.get(getCtx(), getProductCategoryId());
         String MMPolicy = pc.getMMPolicy();
         if (MMPolicy == null || MMPolicy.length() == 0) MMPolicy = MClient.get(getCtx()).getMMPolicy();
         return MMPolicy;

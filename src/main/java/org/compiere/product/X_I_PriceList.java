@@ -28,7 +28,7 @@ public class X_I_PriceList extends PO implements I_I_PriceList {
      */
     public X_I_PriceList(Properties ctx, int I_PriceList_ID) {
         super(ctx, I_PriceList_ID);
-        /** if (I_PriceList_ID == 0) { setI_IsImported (false); // N setI_PriceList_ID (0); } */
+        /** if (I_PriceList_ID == 0) { setIsImported (false); // N setI_PriceList_ID (0); } */
     }
 
     /**
@@ -112,7 +112,7 @@ public class X_I_PriceList extends PO implements I_I_PriceList {
      *
      * @return Import Price List
      */
-    public int getI_PriceList_ID() {
+    public int getImportPriceListId() {
         Integer ii = (Integer) getValue(COLUMNNAME_I_PriceList_ID);
         if (ii == null) return 0;
         return ii;
@@ -162,7 +162,7 @@ public class X_I_PriceList extends PO implements I_I_PriceList {
      *
      * @return Identifies a unique instance of a Price List
      */
-    public int getM_PriceList_Version_ID() {
+    public int getPriceListVersionId() {
         Integer ii = (Integer) getValue(COLUMNNAME_M_PriceList_Version_ID);
         if (ii == null) return 0;
         return ii;
@@ -173,7 +173,7 @@ public class X_I_PriceList extends PO implements I_I_PriceList {
      *
      * @return Product, Service, Item
      */
-    public int getM_Product_ID() {
+    public int getProductId() {
         Integer ii = (Integer) getValue(COLUMNNAME_M_Product_ID);
         if (ii == null) return 0;
         return ii;

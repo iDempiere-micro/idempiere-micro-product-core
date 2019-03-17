@@ -26,7 +26,7 @@ public class MSerNoCtl extends X_M_SerNoCtl {
     public MSerNoCtl(Properties ctx, int M_SerNoCtl_ID) {
         super(ctx, M_SerNoCtl_ID);
         if (M_SerNoCtl_ID == 0) {
-            //	setM_SerNoCtl_ID (0);
+            //	setSerNoCtl_ID (0);
             setStartNo(1);
             setCurrentNext(1);
             setIncrementNo(1);

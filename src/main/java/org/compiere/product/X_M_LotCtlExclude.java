@@ -25,8 +25,8 @@ public class X_M_LotCtlExclude extends PO implements I_M_LotCtlExclude {
     public X_M_LotCtlExclude(Properties ctx, int M_LotCtlExclude_ID) {
         super(ctx, M_LotCtlExclude_ID);
         /**
-         * if (M_LotCtlExclude_ID == 0) { setColumnTableId (0); setIsSOTrx (false); setM_LotCtlExclude_ID
-         * (0); setM_LotCtl_ID (0); }
+         * if (M_LotCtlExclude_ID == 0) { setColumnTableId (0); setIsSOTrx (false); setLotCtlExclude_ID
+         * (0); setLotControlId (0); }
          */
     }
 
@@ -56,7 +56,7 @@ public class X_M_LotCtlExclude extends PO implements I_M_LotCtlExclude {
      *
      * @return Database Table information
      */
-    public int getAD_Table_ID() {
+    public int getRowTableId() {
         Integer ii = (Integer) getValue(COLUMNNAME_AD_Table_ID);
         if (ii == null) return 0;
         return ii;

@@ -28,8 +28,8 @@ public class X_M_DiscountSchemaBreak extends PO implements I_M_DiscountSchemaBre
         super(ctx, M_DiscountSchemaBreak_ID);
         /**
          * if (M_DiscountSchemaBreak_ID == 0) { setBreakDiscount (Env.ZERO); setBreakValue (Env.ZERO);
-         * setIsBPartnerFlatDiscount (false); // N setM_DiscountSchemaBreak_ID (0);
-         * setM_DiscountSchema_ID (0); setSeqNo (0); // @SQL=SELECT NVL(MAX(SeqNo),0)+10 AS DefaultValue
+         * setIsBPartnerFlatDiscount (false); // N setDiscountSchemaBreak_ID (0);
+         * setDiscountSchemaId (0); setSeqNo (0); // @SQL=SELECT NVL(MAX(SeqNo),0)+10 AS DefaultValue
          * FROM M_DiscountSchemaBreak WHERE M_DiscountSchema_ID=@M_DiscountSchema_ID@ }
          */
     }
@@ -96,7 +96,7 @@ public class X_M_DiscountSchemaBreak extends PO implements I_M_DiscountSchemaBre
      *
      * @return Category of a Product
      */
-    public int getM_Product_Category_ID() {
+    public int getProductCategoryId() {
         Integer ii = (Integer) getValue(COLUMNNAME_M_Product_Category_ID);
         if (ii == null) return 0;
         return ii;
@@ -107,7 +107,7 @@ public class X_M_DiscountSchemaBreak extends PO implements I_M_DiscountSchemaBre
      *
      * @param M_Product_Category_ID Category of a Product
      */
-    public void setM_Product_Category_ID(int M_Product_Category_ID) {
+    public void setProductCategoryId(int M_Product_Category_ID) {
         if (M_Product_Category_ID < 1) setValue(COLUMNNAME_M_Product_Category_ID, null);
         else setValue(COLUMNNAME_M_Product_Category_ID, Integer.valueOf(M_Product_Category_ID));
     }
@@ -117,7 +117,7 @@ public class X_M_DiscountSchemaBreak extends PO implements I_M_DiscountSchemaBre
      *
      * @return Product, Service, Item
      */
-    public int getM_Product_ID() {
+    public int getProductId() {
         Integer ii = (Integer) getValue(COLUMNNAME_M_Product_ID);
         if (ii == null) return 0;
         return ii;

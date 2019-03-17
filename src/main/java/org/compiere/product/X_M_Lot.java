@@ -52,7 +52,7 @@ public class X_M_Lot extends BasePOName implements I_M_Lot {
      *
      * @param M_LotCtl_ID Product Lot Control
      */
-    public void setM_LotCtl_ID(int M_LotCtl_ID) {
+    public void setLotControlId(int M_LotCtl_ID) {
         if (M_LotCtl_ID < 1) setValueNoCheck(COLUMNNAME_M_LotCtl_ID, null);
         else setValueNoCheck(COLUMNNAME_M_LotCtl_ID, Integer.valueOf(M_LotCtl_ID));
     }
@@ -62,7 +62,7 @@ public class X_M_Lot extends BasePOName implements I_M_Lot {
      *
      * @return Product Lot Definition
      */
-    public int getM_Lot_ID() {
+    public int getLotId() {
         Integer ii = (Integer) getValue(COLUMNNAME_M_Lot_ID);
         if (ii == null) return 0;
         return ii;
@@ -73,7 +73,7 @@ public class X_M_Lot extends BasePOName implements I_M_Lot {
      *
      * @param M_Product_ID Product, Service, Item
      */
-    public void setM_Product_ID(int M_Product_ID) {
+    public void setProductId(int M_Product_ID) {
         if (M_Product_ID < 1) setValueNoCheck(COLUMNNAME_M_Product_ID, null);
         else setValueNoCheck(COLUMNNAME_M_Product_ID, Integer.valueOf(M_Product_ID));
     }

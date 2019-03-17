@@ -25,8 +25,8 @@ public class X_S_ExpenseType extends BasePONameValue implements I_S_ExpenseType 
     public X_S_ExpenseType(Properties ctx, int S_ExpenseType_ID) {
         super(ctx, S_ExpenseType_ID);
         /**
-         * if (S_ExpenseType_ID == 0) { setC_TaxCategory_ID (0); setC_UOM_ID (0); setIsInvoiced (false);
-         * setM_Product_Category_ID (0); setName (null); setS_ExpenseType_ID (0); setValue (null); }
+         * if (S_ExpenseType_ID == 0) { setTaxCategoryId (0); setUOMId (0); setIsInvoiced (false);
+         * setProductCategoryId (0); setName (null); setExpenseTypeId (0); setValue (null); }
          */
     }
 
@@ -55,7 +55,7 @@ public class X_S_ExpenseType extends BasePONameValue implements I_S_ExpenseType 
      *
      * @return Tax Category
      */
-    public int getC_TaxCategory_ID() {
+    public int getTaxCategoryId() {
         Integer ii = (Integer) getValue(COLUMNNAME_C_TaxCategory_ID);
         if (ii == null) return 0;
         return ii;
@@ -66,7 +66,7 @@ public class X_S_ExpenseType extends BasePONameValue implements I_S_ExpenseType 
      *
      * @return Unit of Measure
      */
-    public int getC_UOM_ID() {
+    public int getUOMId() {
         Integer ii = (Integer) getValue(COLUMNNAME_C_UOM_ID);
         if (ii == null) return 0;
         return ii;
@@ -86,7 +86,7 @@ public class X_S_ExpenseType extends BasePONameValue implements I_S_ExpenseType 
      *
      * @return Category of a Product
      */
-    public int getM_Product_Category_ID() {
+    public int getProductCategoryId() {
         Integer ii = (Integer) getValue(COLUMNNAME_M_Product_Category_ID);
         if (ii == null) return 0;
         return ii;
@@ -97,7 +97,7 @@ public class X_S_ExpenseType extends BasePONameValue implements I_S_ExpenseType 
      *
      * @return Expense report type
      */
-    public int getS_ExpenseType_ID() {
+    public int getExpenseTypeId() {
         Integer ii = (Integer) getValue(COLUMNNAME_S_ExpenseType_ID);
         if (ii == null) return 0;
         return ii;

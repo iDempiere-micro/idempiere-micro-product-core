@@ -73,7 +73,7 @@ public class MAssetGroup extends X_A_Asset_Group {
      * @param m reference model (used to get AD_Client_ID)
      * @return default asset group ID or 0 if not found
      */
-    public static int getDefault_ID(SetGetModel m) {
+    public static int getDefaultId(SetGetModel m) {
         int AD_Client_ID = SetGetUtil.get_AttrValueAsInt(m, "AD_Client_ID");
     /* commented by @win
     int A_AssetType_ID = SetGetUtil.get_AttrValueAsInt(m, MAssetType.COLUMNNAME_A_Asset_Type_ID);
@@ -103,7 +103,7 @@ public class MAssetGroup extends X_A_Asset_Group {
 
     protected boolean beforeSave(boolean newRecord) {
     /* commented by @win
-    MAssetType type = MAssetType.get(getCtx(), getA_Asset_Type_ID());
+    MAssetType type = MAssetType.get(getCtx(), getA_Asset_TypeId());
     if (type != null)
     {
     	type.update(SetGetUtil.wrap(this), newRecord == true);

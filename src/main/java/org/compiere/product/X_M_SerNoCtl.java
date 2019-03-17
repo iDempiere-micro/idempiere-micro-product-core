@@ -26,7 +26,7 @@ public class X_M_SerNoCtl extends BasePOName implements I_M_SerNoCtl {
         super(ctx, M_SerNoCtl_ID);
         /**
          * if (M_SerNoCtl_ID == 0) { setCurrentNext (0); // 100 setIncrementNo (0); // 1
-         * setM_SerNoCtl_ID (0); setName (null); setStartNo (0); // 100 }
+         * setSerNoCtl_ID (0); setName (null); setStartNo (0); // 100 }
          */
     }
 

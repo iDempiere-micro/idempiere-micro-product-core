@@ -49,10 +49,10 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset {
     public X_A_Asset(Properties ctx, int A_Asset_ID) {
         super(ctx, A_Asset_ID);
         /**
-         * if (A_Asset_ID == 0) { setA_Asset_Action (null); // 'MD' setA_Asset_Group_ID (0);
+         * if (A_Asset_ID == 0) { setA_Asset_Action (null); // 'MD' setAssetGroup_ID (0);
          * setA_Asset_ID (0); setA_Asset_Status (null); // 'NW' setIsDepreciated (false); setIsDisposed
          * (false); setIsFullyDepreciated (false); // N setIsInPosession (false); setIsOwned (false);
-         * setM_AttributeSetInstance_ID (0); setM_Product_ID (0); setName (null); setProcessed (false);
+         * setAttributeSetInstanceId (0); setProductId (0); setName (null); setProcessed (false);
          * // 'N' setValue (null); }
          */
     }

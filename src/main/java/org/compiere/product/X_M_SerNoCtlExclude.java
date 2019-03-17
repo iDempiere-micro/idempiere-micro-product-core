@@ -26,7 +26,7 @@ public class X_M_SerNoCtlExclude extends PO implements I_M_SerNoCtlExclude {
         super(ctx, M_SerNoCtlExclude_ID);
         /**
          * if (M_SerNoCtlExclude_ID == 0) { setColumnTableId (0); setIsSOTrx (false);
-         * setM_SerNoCtlExclude_ID (0); setM_SerNoCtl_ID (0); }
+         * setSerNoCtlExclude_ID (0); setSerNoCtl_ID (0); }
          */
     }
 
@@ -56,7 +56,7 @@ public class X_M_SerNoCtlExclude extends PO implements I_M_SerNoCtlExclude {
      *
      * @return Database Table information
      */
-    public int getAD_Table_ID() {
+    public int getRowTableId() {
         Integer ii = (Integer) getValue(COLUMNNAME_AD_Table_ID);
         if (ii == null) return 0;
         return ii;

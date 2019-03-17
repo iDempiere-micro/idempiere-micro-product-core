@@ -43,10 +43,10 @@ public class MProductBOM extends X_M_Product_BOM {
     public MProductBOM(Properties ctx, int M_Product_BOM_ID) {
         super(ctx, M_Product_BOM_ID);
         if (M_Product_BOM_ID == 0) {
-            //	setM_Product_ID (0);	//	parent
+            //	setProductId (0);	//	parent
             //	setLine (0);	// @SQL=SELECT NVL(MAX(Line),0)+10 AS DefaultValue FROM M_Product_BOM WHERE
             // M_Product_ID=@M_Product_ID@
-            //	setM_ProductBOM_ID(0);
+            //	setProductBOMId(0);
             setBOMQty(Env.ZERO); // 1
         }
     } //	MProductBOM
@@ -69,7 +69,7 @@ public class MProductBOM extends X_M_Product_BOM {
      * @return array of BOMs
      */
     public static MProductBOM[] getBOMLines(MProduct product) {
-        return getBOMLines(product.getCtx(), product.getM_Product_ID());
+        return getBOMLines(product.getCtx(), product.getProductId());
     } //	getBOMLines
 
     /**
@@ -100,10 +100,10 @@ public class MProductBOM extends X_M_Product_BOM {
      *
      * @param M_ProductBOM_ID product ID
      */
-    public void setM_ProductBOM_ID(int M_ProductBOM_ID) {
-        super.setM_ProductBOM_ID(M_ProductBOM_ID);
+    public void setBOMProductId(int M_ProductBOM_ID) {
+        super.setBOMProductId(M_ProductBOM_ID);
         m_product = null;
-    } //	setM_ProductBOM_ID
+    } //	setProductBOM_ID
 
     /**
      * String Representation
@@ -119,7 +119,7 @@ public class MProductBOM extends X_M_Product_BOM {
                 .append(getBOMType())
                 .append(",Qty=")
                 .append(getBOMQty());
-        if (m_product == null) sb.append(",M_Product_ID=").append(getM_ProductBOM_ID());
+        if (m_product == null) sb.append(",M_Product_ID=").append(getBOMProductId());
         else sb.append(",").append(m_product);
         sb.append("]");
         return sb.toString();
@@ -134,20 +134,20 @@ public class MProductBOM extends X_M_Product_BOM {
      */
     protected boolean afterSave(boolean newRecord, boolean success) {
         if (!success) return success;
-        MProduct product = new MProduct(getCtx(), getM_Product_ID());
+        MProduct product = new MProduct(getCtx(), getProductId());
         if (product.isVerified()) {
             if (newRecord
-                    || is_ValueChanged("M_ProductBOM_ID") // 	Product Line was changed
-                    || (is_ValueChanged("IsActive") && isActive())) // line was activated
+                    || isValueChanged("M_ProductBOM_ID") // 	Product Line was changed
+                    || (isValueChanged("IsActive") && isActive())) // line was activated
             {
                 //	Invalidate BOM
                 product.setIsVerified(false);
                 product.saveEx();
             }
             if (product.isVerified()
-                    && is_ValueChanged("IsActive")
+                    && isValueChanged("IsActive")
                     && !isActive()) { // line was inactivated
-                if (!hasActiveComponents(getM_Product_ID())) {
+                if (!hasActiveComponents(getProductId())) {
                     product.setIsVerified(false);
                     product.saveEx();
                 }
@@ -159,9 +159,9 @@ public class MProductBOM extends X_M_Product_BOM {
     @Override
     protected boolean afterDelete(boolean success) {
         if (!success) return success;
-        MProduct product = new MProduct(getCtx(), getM_Product_ID());
+        MProduct product = new MProduct(getCtx(), getProductId());
         if (product.isVerified()) {
-            if (!hasActiveComponents(getM_Product_ID())) {
+            if (!hasActiveComponents(getProductId())) {
                 product.setIsVerified(false);
                 product.saveEx();
             }
@@ -175,7 +175,7 @@ public class MProductBOM extends X_M_Product_BOM {
                         null,
                         "SELECT COUNT(*) FROM M_Product_BOM WHERE IsActive='Y' AND M_Product_ID=? AND M_Product_BOM_ID!=?",
                         productID,
-                        getM_Product_BOM_ID());
+                        getBOMLineId());
         return cnt > 0;
     }
 } //	MProductBOM

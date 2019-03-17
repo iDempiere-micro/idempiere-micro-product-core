@@ -54,7 +54,7 @@ public class MAttributeInstance extends X_M_AttributeInstance {
             String trxName) {
         super(ctx, 0);
         setMAttributeID(M_Attribute_ID);
-        setM_AttributeSetInstance_ID(M_AttributeSetInstance_ID);
+        setAttributeSetInstanceId(M_AttributeSetInstance_ID);
         setValue(Value);
     } //	MAttributeInstance
 
@@ -75,7 +75,7 @@ public class MAttributeInstance extends X_M_AttributeInstance {
             String trxName) {
         super(ctx, 0);
         setMAttributeID(M_Attribute_ID);
-        setM_AttributeSetInstance_ID(M_AttributeSetInstance_ID);
+        setAttributeSetInstanceId(M_AttributeSetInstance_ID);
         setValueNumber(BDValue);
     } //	MAttributeInstance
 
@@ -98,8 +98,8 @@ public class MAttributeInstance extends X_M_AttributeInstance {
             String trxName) {
         super(ctx, 0);
         setMAttributeID(M_Attribute_ID);
-        setM_AttributeSetInstance_ID(M_AttributeSetInstance_ID);
-        setM_AttributeValue_ID(M_AttributeValue_ID);
+        setAttributeSetInstanceId(M_AttributeSetInstance_ID);
+        setAttributeValueId(M_AttributeValue_ID);
         setValue(Value);
     } //	MAttributeInstance
 

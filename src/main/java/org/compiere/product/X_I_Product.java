@@ -26,7 +26,7 @@ public class X_I_Product extends BasePONameValue implements I_I_Product {
      */
     public X_I_Product(Properties ctx, int I_Product_ID) {
         super(ctx, I_Product_ID);
-        /** if (I_Product_ID == 0) { setI_IsImported (false); setI_Product_ID (0); } */
+        /** if (I_Product_ID == 0) { setIsImported (false); setI_Product_ID (0); } */
     }
 
     /**
@@ -65,7 +65,7 @@ public class X_I_Product extends BasePONameValue implements I_I_Product {
      *
      * @return Unit of Measure
      */
-    public int getC_UOM_ID() {
+    public int getUOMId() {
         Integer ii = (Integer) getValue(COLUMNNAME_C_UOM_ID);
         if (ii == null) return 0;
         return ii;
@@ -121,7 +121,7 @@ public class X_I_Product extends BasePONameValue implements I_I_Product {
      *
      * @return Import Item or Service
      */
-    public int getI_Product_ID() {
+    public int getImportProductId() {
         Integer ii = (Integer) getValue(COLUMNNAME_I_Product_ID);
         if (ii == null) return 0;
         return ii;
@@ -132,7 +132,7 @@ public class X_I_Product extends BasePONameValue implements I_I_Product {
      *
      * @return Category of a Product
      */
-    public int getM_Product_Category_ID() {
+    public int getProductCategoryId() {
         Integer ii = (Integer) getValue(COLUMNNAME_M_Product_Category_ID);
         if (ii == null) return 0;
         return ii;
@@ -143,7 +143,7 @@ public class X_I_Product extends BasePONameValue implements I_I_Product {
      *
      * @return Product, Service, Item
      */
-    public int getM_Product_ID() {
+    public int getProductId() {
         Integer ii = (Integer) getValue(COLUMNNAME_M_Product_ID);
         if (ii == null) return 0;
         return ii;

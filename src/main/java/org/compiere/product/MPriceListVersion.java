@@ -32,7 +32,7 @@ public class MPriceListVersion extends X_M_PriceList_Version {
             //	setName (null);	// @#Date@
             //	setPriceListId (0);
             //	setValidFrom (TimeUtil.getDay(null));	// @#Date@
-            //	setM_DiscountSchema_ID (0);
+            //	setDiscountSchemaId (0);
         }
     } //	MPriceListVersion
 

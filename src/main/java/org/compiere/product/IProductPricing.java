@@ -39,7 +39,7 @@ public interface IProductPricing {
      */
     BigDecimal getDiscount();
 
-    int getM_Product_ID();
+    int getProductId();
 
     int getPriceListId();
 
@@ -64,7 +64,7 @@ public interface IProductPricing {
      *
      * @return uom
      */
-    int getC_UOM_ID();
+    int getUOMId();
 
     /**
      * Get Price List

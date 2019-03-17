@@ -59,23 +59,23 @@ public class MDiscountSchemaBreak extends X_M_DiscountSchemaBreak {
         if (Value.compareTo(getBreakValue()) < 0) return false;
 
         //	No Product / Category
-        if (getM_Product_ID() == 0 && getM_Product_Category_ID() == 0) return true;
+        if (getProductId() == 0 && getProductCategoryId() == 0) return true;
 
         //	Product
-        if (getM_Product_ID() == M_Product_ID) return true;
+        if (getProductId() == M_Product_ID) return true;
 
         //	Category
-        if (M_Product_Category_ID != 0) return getM_Product_Category_ID() == M_Product_Category_ID;
+        if (M_Product_Category_ID != 0) return getProductCategoryId() == M_Product_Category_ID;
 
         //	Look up Category of Product
-        return MProductCategory.isCategory(getM_Product_Category_ID(), M_Product_ID);
+        return MProductCategory.isCategory(getProductCategoryId(), M_Product_ID);
     } //	applies
 
     @Override
     protected boolean beforeSave(boolean newRecord) {
         // If M_Product_ID and M_Product_Category_ID is set, M_Product_ID has priority - teo_sarca [
         // 2012439 ]
-        if (getM_Product_ID() > 0 && getM_Product_Category_ID() > 0) setM_Product_Category_ID(I_ZERO);
+        if (getProductId() > 0 && getProductCategoryId() > 0) setProductCategoryId(I_ZERO);
         //
         return true;
     }
@@ -88,9 +88,9 @@ public class MDiscountSchemaBreak extends X_M_DiscountSchemaBreak {
     public String toString() {
         StringBuilder sb = new StringBuilder("MDiscountSchemaBreak[");
         sb.append(getId()).append("-Seq=").append(getSeqNo());
-        if (getM_Product_Category_ID() != 0)
-            sb.append(",M_Product_Category_ID=").append(getM_Product_Category_ID());
-        if (getM_Product_ID() != 0) sb.append(",M_Product_ID=").append(getM_Product_ID());
+        if (getProductCategoryId() != 0)
+            sb.append(",M_Product_Category_ID=").append(getProductCategoryId());
+        if (getProductId() != 0) sb.append(",M_Product_ID=").append(getProductId());
         sb.append(",Break=").append(getBreakValue());
         if (isBPartnerFlatDiscount()) sb.append(",FlatDiscount");
         else sb.append(",Discount=").append(getBreakDiscount());

@@ -26,7 +26,7 @@ public class X_M_AttributeInstance extends PO implements I_M_AttributeInstance {
     public X_M_AttributeInstance(Properties ctx, int M_AttributeInstance_ID) {
         super(ctx, M_AttributeInstance_ID);
         /**
-         * if (M_AttributeInstance_ID == 0) { setMAttributeID (0); setM_AttributeSetInstance_ID (0); }
+         * if (M_AttributeInstance_ID == 0) { setMAttributeID (0); setAttributeSetInstanceId (0); }
          */
     }
 
@@ -65,7 +65,7 @@ public class X_M_AttributeInstance extends PO implements I_M_AttributeInstance {
      *
      * @param M_AttributeSetInstance_ID Product Attribute Set Instance
      */
-    public void setM_AttributeSetInstance_ID(int M_AttributeSetInstance_ID) {
+    public void setAttributeSetInstanceId(int M_AttributeSetInstance_ID) {
         if (M_AttributeSetInstance_ID < 0) setValueNoCheck(COLUMNNAME_M_AttributeSetInstance_ID, null);
         else
             setValueNoCheck(
@@ -77,7 +77,7 @@ public class X_M_AttributeInstance extends PO implements I_M_AttributeInstance {
      *
      * @param M_AttributeValue_ID Product Attribute Value
      */
-    public void setM_AttributeValue_ID(int M_AttributeValue_ID) {
+    public void setAttributeValueId(int M_AttributeValue_ID) {
         if (M_AttributeValue_ID < 1) setValue(COLUMNNAME_M_AttributeValue_ID, null);
         else setValue(COLUMNNAME_M_AttributeValue_ID, Integer.valueOf(M_AttributeValue_ID));
     }

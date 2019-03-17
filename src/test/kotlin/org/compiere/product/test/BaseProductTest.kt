@@ -49,9 +49,9 @@ abstract class BaseProductTest {
         val product = MProduct(ctx, 0)
         product.name = name
         product.value = name
-        product.c_UOM_ID = MUOM.getDefault_UOM_ID(ctx)
-        product.m_Product_Category_ID = standardProduct.m_Product_Category_ID
-        product.c_TaxCategory_ID = 107 // standard category
+        product.uomId = MUOM.getDefault_UOMId(ctx)
+        product.productCategoryId = standardProduct.productCategoryId
+        product.taxCategoryId = 107 // standard category
         product.productType = productType // I_M_Product.PRODUCTTYPE_Service
         product.save()
         return getProductById(product.id)

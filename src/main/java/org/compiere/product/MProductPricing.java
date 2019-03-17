@@ -560,8 +560,8 @@ public class MProductPricing extends AbstractProductPricing {
 
         MProduct product = MProduct.get(Env.getCtx(), m_M_Product_ID);
         if (product != null) {
-            m_C_UOM_ID = product.getC_UOM_ID();
-            m_M_Product_Category_ID = product.getM_Product_Category_ID();
+            m_C_UOM_ID = product.getUOMId();
+            m_M_Product_Category_ID = product.getProductCategoryId();
         }
     } //	setBaseInfo
 
@@ -672,7 +672,7 @@ public class MProductPricing extends AbstractProductPricing {
      *
      * @return uom
      */
-    public int getC_UOM_ID() {
+    public int getUOMId() {
         if (!m_calculated) calculatePrice();
         return m_C_UOM_ID;
     }

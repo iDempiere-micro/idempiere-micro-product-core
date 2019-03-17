@@ -108,7 +108,7 @@ public class X_M_Attribute extends BasePOName implements I_M_Attribute {
      *
      * @return Product Attribute
      */
-    public int getMAttribute_ID() {
+    public int getProductAttributeId() {
         Integer ii = (Integer) getValue(COLUMNNAME_M_Attribute_ID);
         if (ii == null) return 0;
         return ii;

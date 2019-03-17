@@ -31,8 +31,8 @@ public class ProductNotOnPriceListException extends AdempiereException {
             if (sb.length() > 0) sb.append(", ");
             sb.append("@Line@:").append(documentLineNo);
         }
-        if (pp.getM_Product_ID() > 0) {
-            MProduct p = MProduct.get(Env.getCtx(), pp.getM_Product_ID());
+        if (pp.getProductId() > 0) {
+            MProduct p = MProduct.get(Env.getCtx(), pp.getProductId());
             if (sb.length() > 0) sb.append(", ");
             sb.append("@M_Product_ID@:")
                     .append(p == null ? "?" : p.get_Translation(HasName.Companion.getCOLUMNNAME_Name()));

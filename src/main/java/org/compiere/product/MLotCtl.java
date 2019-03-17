@@ -26,7 +26,7 @@ public class MLotCtl extends X_M_LotCtl {
     public MLotCtl(Properties ctx, int M_LotCtl_ID) {
         super(ctx, M_LotCtl_ID);
         if (M_LotCtl_ID == 0) {
-            //	setM_LotCtl_ID (0);
+            //	setLotControlId (0);
             setStartNo(1);
             setCurrentNext(1);
             setIncrementNo(1);

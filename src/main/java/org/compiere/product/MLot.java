@@ -28,7 +28,7 @@ public class MLot extends X_M_Lot {
      */
     public MLot(Properties ctx, int M_Lot_ID) {
         super(ctx, M_Lot_ID);
-        /** if (M_Lot_ID == 0) { setM_Lot_ID (0); setM_Product_ID (0); setName (null); } */
+        /** if (M_Lot_ID == 0) { setLotId (0); setProductId (0); setName (null); } */
     } //	MLot
 
     /**
@@ -52,8 +52,8 @@ public class MLot extends X_M_Lot {
     public MLot(MLotCtl ctl, int M_Product_ID, String Name) {
         this(ctl.getCtx(), 0);
         setClientOrg(ctl);
-        setM_LotCtl_ID(ctl.getM_LotCtl_ID());
-        setM_Product_ID(M_Product_ID);
+        setLotControlId(ctl.getLotControlId());
+        setProductId(M_Product_ID);
         setName(Name);
     } //	MLot
 

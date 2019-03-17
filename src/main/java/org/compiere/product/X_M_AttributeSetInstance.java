@@ -27,7 +27,7 @@ public class X_M_AttributeSetInstance extends PO implements I_M_AttributeSetInst
     public X_M_AttributeSetInstance(Properties ctx, int M_AttributeSetInstance_ID) {
         super(ctx, M_AttributeSetInstance_ID);
         /**
-         * if (M_AttributeSetInstance_ID == 0) { setM_AttributeSet_ID (0); setM_AttributeSetInstance_ID
+         * if (M_AttributeSetInstance_ID == 0) { setAttributeSetId (0); setAttributeSetInstanceId
          * (0); }
          */
     }
@@ -110,17 +110,7 @@ public class X_M_AttributeSetInstance extends PO implements I_M_AttributeSetInst
     public org.compiere.model.I_M_AttributeSet getMAttributeSet() throws RuntimeException {
         return (org.compiere.model.I_M_AttributeSet)
                 MTable.get(getCtx(), org.compiere.model.I_M_AttributeSet.Table_Name)
-                        .getPO(getMAttributeSet_ID());
-    }
-
-    /**
-     * Set Attribute Set.
-     *
-     * @param M_AttributeSet_ID Product Attribute Set
-     */
-    public void setM_AttributeSet_ID(int M_AttributeSet_ID) {
-        if (M_AttributeSet_ID < 0) setValue(COLUMNNAME_M_AttributeSet_ID, null);
-        else setValue(COLUMNNAME_M_AttributeSet_ID, Integer.valueOf(M_AttributeSet_ID));
+                        .getPO(getAttributeSetId());
     }
 
     /**
@@ -128,10 +118,20 @@ public class X_M_AttributeSetInstance extends PO implements I_M_AttributeSetInst
      *
      * @return Product Attribute Set
      */
-    public int getMAttributeSet_ID() {
+    public int getAttributeSetId() {
         Integer ii = (Integer) getValue(COLUMNNAME_M_AttributeSet_ID);
         if (ii == null) return 0;
         return ii;
+    }
+
+    /**
+     * Set Attribute Set.
+     *
+     * @param M_AttributeSet_ID Product Attribute Set
+     */
+    public void setAttributeSetId(int M_AttributeSet_ID) {
+        if (M_AttributeSet_ID < 0) setValue(COLUMNNAME_M_AttributeSet_ID, null);
+        else setValue(COLUMNNAME_M_AttributeSet_ID, Integer.valueOf(M_AttributeSet_ID));
     }
 
     /**
@@ -139,7 +139,7 @@ public class X_M_AttributeSetInstance extends PO implements I_M_AttributeSetInst
      *
      * @return Product Attribute Set Instance
      */
-    public int getMAttributeSetInstance_ID() {
+    public int getAttributeSetInstanceId() {
         Integer ii = (Integer) getValue(COLUMNNAME_M_AttributeSetInstance_ID);
         if (ii == null) return 0;
         return ii;
@@ -150,7 +150,7 @@ public class X_M_AttributeSetInstance extends PO implements I_M_AttributeSetInst
      *
      * @param M_Lot_ID Product Lot Definition
      */
-    public void setM_Lot_ID(int M_Lot_ID) {
+    public void setLotId(int M_Lot_ID) {
         if (M_Lot_ID < 1) setValue(COLUMNNAME_M_Lot_ID, null);
         else setValue(COLUMNNAME_M_Lot_ID, Integer.valueOf(M_Lot_ID));
     }

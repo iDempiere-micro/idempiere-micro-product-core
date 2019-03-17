@@ -125,7 +125,7 @@ public class MAttributeSet extends X_M_AttributeSet {
             ResultSet rs = null;
             try {
                 pstmt = prepareStatement(sql);
-                pstmt.setInt(1, getMAttributeSet_ID());
+                pstmt.setInt(1, getAttributeSetId());
                 pstmt.setString(2, instanceAttributes ? "Y" : "N");
                 rs = pstmt.executeQuery();
                 while (rs.next()) {
@@ -192,7 +192,7 @@ public class MAttributeSet extends X_M_AttributeSet {
         //	Find it
         if (m_excludes != null && m_excludes.length > 0) {
             for (int i = 0; i < m_excludes.length; i++) {
-                if (m_excludes[i].getAD_Table_ID() == AD_Table_ID && m_excludes[i].isSOTrx() == isSOTrx)
+                if (m_excludes[i].getRowTableId() == AD_Table_ID && m_excludes[i].isSOTrx() == isSOTrx)
                     return true;
             }
         }
@@ -283,7 +283,7 @@ public class MAttributeSet extends X_M_AttributeSet {
                     new StringBuilder("UPDATE M_AttributeSet mas")
                             .append(" SET IsInstanceAttribute='Y' ")
                             .append("WHERE M_AttributeSet_ID=")
-                            .append(getMAttributeSet_ID())
+                            .append(getAttributeSetId())
                             .append(" AND IsInstanceAttribute='N'")
                             .append(" AND (IsSerNo='Y' OR IsLot='Y' OR IsGuaranteeDate='Y'")
                             .append(" OR EXISTS (SELECT * FROM M_AttributeUse mau")
@@ -304,7 +304,7 @@ public class MAttributeSet extends X_M_AttributeSet {
                     new StringBuilder("UPDATE M_AttributeSet mas")
                             .append(" SET IsInstanceAttribute='N' ")
                             .append("WHERE M_AttributeSet_ID=")
-                            .append(getMAttributeSet_ID())
+                            .append(getAttributeSetId())
                             .append(" AND IsInstanceAttribute='Y'")
                             .append("	AND IsSerNo='N' AND IsLot='N' AND IsGuaranteeDate='N'")
                             .append(" AND NOT EXISTS (SELECT * FROM M_AttributeUse mau")

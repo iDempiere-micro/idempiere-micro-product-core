@@ -26,7 +26,7 @@ public class X_M_AttributeSetExclude extends PO implements I_M_AttributeSetExclu
         super(ctx, M_AttributeSetExclude_ID);
         /**
          * if (M_AttributeSetExclude_ID == 0) { setColumnTableId (0); setIsSOTrx (false);
-         * setM_AttributeSetExclude_ID (0); setM_AttributeSet_ID (0); }
+         * setAttributeSetExclude_ID (0); setAttributeSetId (0); }
          */
     }
 
@@ -55,7 +55,7 @@ public class X_M_AttributeSetExclude extends PO implements I_M_AttributeSetExclu
      *
      * @return Database Table information
      */
-    public int getAD_Table_ID() {
+    public int getRowTableId() {
         Integer ii = (Integer) getValue(COLUMNNAME_AD_Table_ID);
         if (ii == null) return 0;
         return ii;

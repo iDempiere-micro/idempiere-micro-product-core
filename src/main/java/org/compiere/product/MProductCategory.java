@@ -175,8 +175,8 @@ public class MProductCategory extends X_M_Product_Category {
      * @return "" or error message
      */
     public boolean hasLoopInTree() {
-        int productCategoryId = getM_Product_Category_ID();
-        int newParentCategoryId = getM_Product_Category_Parent_ID();
+        int productCategoryId = getProductCategoryId();
+        int newParentCategoryId = getProductCategoryParentId();
         //	get values
         ResultSet rs = null;
         PreparedStatement pstmt = null;

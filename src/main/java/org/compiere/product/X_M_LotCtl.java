@@ -25,7 +25,7 @@ public class X_M_LotCtl extends BasePOName implements I_M_LotCtl {
     public X_M_LotCtl(Properties ctx, int M_LotCtl_ID) {
         super(ctx, M_LotCtl_ID);
         /**
-         * if (M_LotCtl_ID == 0) { setCurrentNext (0); // 100 setIncrementNo (0); // 1 setM_LotCtl_ID
+         * if (M_LotCtl_ID == 0) { setCurrentNext (0); // 100 setIncrementNo (0); // 1 setLotControlId
          * (0); setName (null); setStartNo (0); // 100 }
          */
     }
@@ -95,7 +95,7 @@ public class X_M_LotCtl extends BasePOName implements I_M_LotCtl {
      *
      * @return Product Lot Control
      */
-    public int getM_LotCtl_ID() {
+    public int getLotControlId() {
         Integer ii = (Integer) getValue(COLUMNNAME_M_LotCtl_ID);
         if (ii == null) return 0;
         return ii;

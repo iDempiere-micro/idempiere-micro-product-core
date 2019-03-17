@@ -76,7 +76,7 @@ public class MAttributeSetInstance extends X_M_AttributeSetInstance {
     public MAttributeSetInstance(
             Properties ctx, int M_AttributeSetInstance_ID, int M_AttributeSet_ID) {
         this(ctx, M_AttributeSetInstance_ID);
-        setM_AttributeSet_ID(M_AttributeSet_ID);
+        setAttributeSetId(M_AttributeSet_ID);
     } //	MAttributeSetInstance
 
     /**
@@ -138,9 +138,9 @@ public class MAttributeSetInstance extends X_M_AttributeSetInstance {
     public static MAttributeSetInstance create(Properties ctx, MProduct product) {
         MAttributeSetInstance asi = new MAttributeSetInstance(ctx, 0);
         asi.setClientOrg(product.getClientId(), 0);
-        asi.setM_AttributeSet_ID(product.getMAttributeSet_ID());
+        asi.setAttributeSetId(product.getAttributeSetId());
         // Create new Lot, Serial# and Guarantee Date
-        if (asi.getMAttributeSet_ID() > 0) {
+        if (asi.getAttributeSetId() > 0) {
             asi.getLot(true, product.getId());
             asi.getSerNo(true);
             asi.getGuaranteeDate(true);
@@ -162,9 +162,9 @@ public class MAttributeSetInstance extends X_M_AttributeSetInstance {
             Properties ctx, MProduct product) {
         MAttributeSetInstance asi = new MAttributeSetInstance(ctx, 0);
         asi.setClientOrg(product.getClientId(), 0);
-        asi.setM_AttributeSet_ID(product.getMAttributeSet_ID());
+        asi.setAttributeSetId(product.getAttributeSetId());
         // Create new Lot
-        if (asi.getMAttributeSet_ID() > 0) {
+        if (asi.getAttributeSetId() > 0) {
             asi.getLot(true, product.getId());
         }
         //
@@ -179,8 +179,8 @@ public class MAttributeSetInstance extends X_M_AttributeSetInstance {
      * @return Attrbute Set or null
      */
     public MAttributeSet getMAttributeSet() {
-        if (m_mas == null && getMAttributeSet_ID() != 0)
-            m_mas = new MAttributeSet(getCtx(), getMAttributeSet_ID());
+        if (m_mas == null && getAttributeSetId() != 0)
+            m_mas = new MAttributeSet(getCtx(), getAttributeSetId());
         return m_mas;
     } //	getMAttributeSet
 
@@ -201,7 +201,7 @@ public class MAttributeSetInstance extends X_M_AttributeSetInstance {
         //	Instance Attribute Values
         MAttribute[] attributes = m_mas.getMAttributes(true);
         for (int i = 0; i < attributes.length; i++) {
-            MAttributeInstance mai = attributes[i].getMAttributeInstance(getMAttributeSetInstance_ID());
+            MAttributeInstance mai = attributes[i].getMAttributeInstance(getAttributeSetInstanceId());
             if (mai != null && mai.getValue() != null) {
                 if (sb.length() > 0) sb.append("_");
                 sb.append(mai.getValue());
@@ -226,7 +226,7 @@ public class MAttributeSetInstance extends X_M_AttributeSetInstance {
         //	Product Attribute Values
         attributes = m_mas.getMAttributes(false);
         for (int i = 0; i < attributes.length; i++) {
-            MAttributeInstance mai = attributes[i].getMAttributeInstance(getMAttributeSetInstance_ID());
+            MAttributeInstance mai = attributes[i].getMAttributeInstance(getAttributeSetInstanceId());
             if (mai != null) {
                 if (sb.length() > 0) sb.append("_");
                 if (mai.getValue() != null) sb.append(mai.getValue());
@@ -272,13 +272,13 @@ public class MAttributeSetInstance extends X_M_AttributeSetInstance {
      */
     public KeyNamePair createLot(int M_Product_ID) {
         KeyNamePair retValue = null;
-        int M_LotCtl_ID = getMAttributeSet().getM_LotCtl_ID();
+        int M_LotCtl_ID = getMAttributeSet().getLotControlId();
         if (M_LotCtl_ID != 0) {
             MLotCtl ctl = new MLotCtl(getCtx(), M_LotCtl_ID);
             MLot lot = ctl.createLot(M_Product_ID);
-            setM_Lot_ID(lot.getM_Lot_ID());
+            setLotId(lot.getLotId());
             setLot(lot.getName());
-            retValue = new KeyNamePair(lot.getM_Lot_ID(), lot.getName());
+            retValue = new KeyNamePair(lot.getLotId(), lot.getName());
         }
         return retValue;
     } //	createLot
@@ -292,7 +292,7 @@ public class MAttributeSetInstance extends X_M_AttributeSetInstance {
     public void setLot(String Lot, int M_Product_ID) {
         //	Try to find it
         MLot mLot = MLot.getProductLot(getCtx(), M_Product_ID, Lot);
-        if (mLot != null) setM_Lot_ID(mLot.getM_Lot_ID());
+        if (mLot != null) setLotId(mLot.getLotId());
         setLot(Lot);
     } //	setLot
 
@@ -304,7 +304,7 @@ public class MAttributeSetInstance extends X_M_AttributeSetInstance {
      */
     public String getSerNo(boolean getNew) {
         if (getNew) {
-            int M_SerNoCtl_ID = getMAttributeSet().getM_SerNoCtl_ID();
+            int M_SerNoCtl_ID = getMAttributeSet().getSerialNoControlId();
             if (M_SerNoCtl_ID != 0) {
                 MSerNoCtl ctl = new MSerNoCtl(getCtx(), M_SerNoCtl_ID);
                 setSerNo(ctl.createSerNo());
@@ -320,14 +320,14 @@ public class MAttributeSetInstance extends X_M_AttributeSetInstance {
                 // use id as description when description is empty
                 String desc = this.getDescription();
                 if (desc == null || desc.trim().length() == 0) {
-                    this.setValueNoCheck("Description", Integer.toString(getMAttributeSetInstance_ID()));
+                    this.setValueNoCheck("Description", Integer.toString(getAttributeSetInstanceId()));
                     String sql =
                             "UPDATE M_AttributeSetInstance SET Description = ? WHERE M_AttributeSetInstance_ID = ?";
                     int no =
                             executeUpdateEx(
                                     sql,
                                     new Object[]{
-                                            Integer.toString(getMAttributeSetInstance_ID()), getMAttributeSetInstance_ID()
+                                            Integer.toString(getAttributeSetInstanceId()), getAttributeSetInstanceId()
                                     }
                             );
                     if (no <= 0) {

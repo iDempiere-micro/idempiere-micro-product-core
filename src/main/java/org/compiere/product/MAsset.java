@@ -12,7 +12,7 @@ import java.sql.Timestamp;
 import java.util.Properties;
 import java.util.logging.Level;
 
-import static software.hsharp.core.util.DBKt.TO_STRING;
+import static software.hsharp.core.util.DBKt.convertString;
 import static software.hsharp.core.util.DBKt.executeUpdateEx;
 
 /**
@@ -62,7 +62,7 @@ public class MAsset extends X_A_Asset
             // commented out by @win
       /*
       setA_Asset_Type("MFX");
-      setA_Asset_Type_ID(1); // MFX
+      setA_Asset_TypeId(1); // MFX
       */
             // end comment by @win
         }
@@ -89,9 +89,9 @@ public class MAsset extends X_A_Asset
         setAssetGroupId(assetGroup.getAssetGroupId());
 
     /* commented out by @win
-    setA_Asset_Type_ID(assetGroup.getA_Asset_Type_ID());
+    setA_Asset_TypeId(assetGroup.getA_Asset_TypeId());
     setGZ_TipComponenta(assetGroup.getGZ_TipComponenta()); // TODO: move to GZ
-    MAssetType assetType = MAssetType.get(getCtx(), assetGroup.getA_Asset_Type_ID());
+    MAssetType assetType = MAssetType.get(getCtx(), assetGroup.getA_Asset_TypeId());
     assetType.update(SetGetUtil.wrap(this), true);
     */
         // end commet by @win
@@ -103,7 +103,7 @@ public class MAsset extends X_A_Asset
      * @param asi
      */
     public void setASI(MAttributeSetInstance asi) {
-        setAttributeSetInstanceId(asi.getMAttributeSetInstance_ID());
+        setAttributeSetInstanceId(asi.getAttributeSetInstanceId());
         setLot(asi.getLot());
         setSerNo(asi.getSerNo());
     }
@@ -126,19 +126,19 @@ public class MAsset extends X_A_Asset
         }
         // If no asset group, than set the default one:
         if (getAssetGroupId() <= 0) {
-            setAssetGroupId(MAssetGroup.getDefault_ID(SetGetUtil.wrap(this)));
+            setAssetGroupId(MAssetGroup.getDefaultId(SetGetUtil.wrap(this)));
         }
     /* @win temporary commented out
 
-    if (getA_Asset_Class_ID() <= 0 && getA_Asset_Group_ID() > 0)
+    if (getA_Asset_ClassId() <= 0 && getAssetGroupId() > 0)
     {
-    	MAssetGroup.updateAsset(SetGetUtil.wrap(this), getA_Asset_Group_ID());
+    	MAssetGroup.updateAsset(SetGetUtil.wrap(this), getAssetGroupId());
     }
     */
         // end @win comment
 
         // Copy fields from C_BPartner_Location
-        if (is_ValueChanged(I_A_Asset.COLUMNNAME_C_BPartner_Location_ID)
+        if (isValueChanged(I_A_Asset.COLUMNNAME_C_BPartner_Location_ID)
                 && getBPartnerLocationId() > 0) {
             // Goodwill BF: Error: MAsset cannot be cast to SetGetModel
             SetGetUtil.copyValues(
@@ -152,22 +152,22 @@ public class MAsset extends X_A_Asset
         if (getProductId() > 0 && getAttributeSetInstanceId() <= 0) {
             MProduct product = MProduct.get(getCtx(), getProductId());
             MAttributeSetInstance asi =
-                    new MAttributeSetInstance(getCtx(), 0, product.getMAttributeSet_ID());
+                    new MAttributeSetInstance(getCtx(), 0, product.getAttributeSetId());
             asi.setSerNo(getSerNo());
             asi.setDescription();
             asi.saveEx();
-            setAttributeSetInstanceId(asi.getMAttributeSetInstance_ID());
+            setAttributeSetInstanceId(asi.getAttributeSetInstanceId());
         }
         // TODO: With the lines below, after creating the asset, the whole system goes much slower ???
-        //		else if (is_ValueChanged(COLUMNNAME_SerNo) && getMAttributeSetInstance_ID() > 0) {
-        //			asi = new MAttributeSetInstance(getCtx(), getMAttributeSetInstance_ID(), null);
+        //		else if (isValueChanged(COLUMNNAME_SerNo) && getAttributeSetInstanceId() > 0) {
+        //			asi = new MAttributeSetInstance(getCtx(), getAttributeSetInstanceId(), null);
         //			asi.setSerNo(getSerNo());
         //			asi.setDescription();
         //			asi.saveEx();
         //		}
-        //		else if ((newRecord || is_ValueChanged(COLUMNNAME_M_AttributeSetInstance_ID)) &&
-        // getMAttributeSetInstance_ID() > 0) {
-        //			asi = new MAttributeSetInstance(getCtx(), getMAttributeSetInstance_ID(), null);
+        //		else if ((newRecord || isValueChanged(COLUMNNAME_M_AttributeSetInstance_ID)) &&
+        // getAttributeSetInstanceId() > 0) {
+        //			asi = new MAttributeSetInstance(getCtx(), getAttributeSetInstanceId(), null);
         //			setASI(asi);
         //		}
         //
@@ -207,7 +207,7 @@ public class MAsset extends X_A_Asset
             setInventoryNo(invNo);
             executeUpdateEx(
                     "UPDATE A_Asset SET InventoryNo="
-                            + TO_STRING(invNo)
+                            + convertString(invNo)
                             + " WHERE A_Asset_ID="
                             + getAssetId());
             if (log.isLoggable(Level.FINE)) log.fine("InventoryNo=" + getInventoryNo());
@@ -255,7 +255,7 @@ public class MAsset extends X_A_Asset
             setIsDepreciated(false);
         }
     /* commented by @win
-    MAssetClass assetClass = MAssetClass.get(getCtx(), getA_Asset_Class_ID());
+    MAssetClass assetClass = MAssetClass.get(getCtx(), getA_Asset_ClassId());
     if (assetClass != null && assetClass.isDepreciated())
     {
     	setIsDepreciated(true);
@@ -300,7 +300,7 @@ public class MAsset extends X_A_Asset
         setAssetStatus(newStatus);
     } //	changeStatus
 
-    public int getUseLifeMonths_F() {
+    public int getUseLifeMonthsFiscal() {
         return m_UseLifeMonths_F;
     }
 
@@ -316,11 +316,11 @@ public class MAsset extends X_A_Asset
         m_DateAcct = DateAcct;
     }
 
-    public int getA_Depreciation_ID() {
+    public int getA_DepreciationId() {
         return m_A_Depreciation_ID;
     }
 
-    public int getA_Depreciation_F_ID() {
+    public int getA_Depreciation_FId() {
         return m_A_Depreciation_F_ID;
     }
 

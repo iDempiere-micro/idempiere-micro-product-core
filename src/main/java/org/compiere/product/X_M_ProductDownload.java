@@ -25,8 +25,8 @@ public class X_M_ProductDownload extends BasePOName implements I_M_ProductDownlo
     public X_M_ProductDownload(Properties ctx, int M_ProductDownload_ID) {
         super(ctx, M_ProductDownload_ID);
         /**
-         * if (M_ProductDownload_ID == 0) { setDownloadURL (null); setM_ProductDownload_ID (0);
-         * setM_Product_ID (0); setName (null); }
+         * if (M_ProductDownload_ID == 0) { setDownloadURL (null); setProductDownload_ID (0);
+         * setProductId (0); setName (null); }
          */
     }
 
@@ -65,7 +65,7 @@ public class X_M_ProductDownload extends BasePOName implements I_M_ProductDownlo
      *
      * @return Product, Service, Item
      */
-    public int getM_Product_ID() {
+    public int getProductId() {
         Integer ii = (Integer) getValue(COLUMNNAME_M_Product_ID);
         if (ii == null) return 0;
         return ii;

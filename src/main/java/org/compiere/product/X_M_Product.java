@@ -29,13 +29,13 @@ public class X_M_Product extends PO {
     public X_M_Product(Properties ctx, int M_Product_ID) {
         super(ctx, M_Product_ID);
         /**
-         * if (M_Product_ID == 0) { setC_TaxCategory_ID (0); setC_UOM_ID (0); setIsBOM (false); // N
+         * if (M_Product_ID == 0) { setTaxCategoryId (0); setUOMId (0); setIsBOM (false); // N
          * setIsDropShip (false); setIsExcludeAutoDelivery (false); // N setIsInvoicePrintDetails
          * (false); setIsKanban (false); // N setIsManufactured (false); // N setIsOwnBox (false); // N
          * setIsPhantom (false); // N setIsPickListPrintDetails (false); setIsPurchased (true); // Y
          * setIsSelfService (true); // Y setIsSold (true); // Y setIsStocked (true); // Y setIsSummary
          * (false); setIsVerified (false); // N setIsWebStoreFeatured (false); setLowLevel (0); // 0
-         * setM_AttributeSetInstance_ID (0); setM_Product_Category_ID (0); setM_Product_ID (0); setName
+         * setAttributeSetInstanceId (0); setProductCategoryId (0); setProductId (0); setName
          * (null); setProductType (null); // I setValue (null); }
          */
     }
@@ -65,16 +65,16 @@ public class X_M_Product extends PO {
      *
      * @return Method for recording revenue
      */
-    public int getC_RevenueRecognition_ID() {
+    public int getRevenueRecognitionId() {
         Integer ii = (Integer) getValue(I_M_Product.COLUMNNAME_C_RevenueRecognition_ID);
         if (ii == null) return 0;
         return ii;
     }
 
-    public org.compiere.model.I_C_TaxCategory getC_TaxCategory() throws RuntimeException {
+    public org.compiere.model.I_C_TaxCategory getTaxCategory() throws RuntimeException {
         return (org.compiere.model.I_C_TaxCategory)
                 MTable.get(getCtx(), org.compiere.model.I_C_TaxCategory.Table_Name)
-                        .getPO(getC_TaxCategory_ID());
+                        .getPO(getTaxCategoryId());
     }
 
     /**
@@ -82,7 +82,7 @@ public class X_M_Product extends PO {
      *
      * @return Tax Category
      */
-    public int getC_TaxCategory_ID() {
+    public int getTaxCategoryId() {
         Integer ii = (Integer) getValue(I_M_Product.COLUMNNAME_C_TaxCategory_ID);
         if (ii == null) return 0;
         return ii;
@@ -93,7 +93,7 @@ public class X_M_Product extends PO {
      *
      * @param C_TaxCategory_ID Tax Category
      */
-    public void setC_TaxCategory_ID(int C_TaxCategory_ID) {
+    public void setTaxCategoryId(int C_TaxCategory_ID) {
         if (C_TaxCategory_ID < 1) setValue(I_M_Product.COLUMNNAME_C_TaxCategory_ID, null);
         else setValue(I_M_Product.COLUMNNAME_C_TaxCategory_ID, Integer.valueOf(C_TaxCategory_ID));
     }
@@ -103,7 +103,7 @@ public class X_M_Product extends PO {
      *
      * @return Unit of Measure
      */
-    public int getC_UOM_ID() {
+    public int getUOMId() {
         Integer ii = (Integer) getValue(I_M_Product.COLUMNNAME_C_UOM_ID);
         if (ii == null) return 0;
         return ii;
@@ -114,7 +114,7 @@ public class X_M_Product extends PO {
      *
      * @param C_UOM_ID Unit of Measure
      */
-    public void setC_UOM_ID(int C_UOM_ID) {
+    public void setUOMId(int C_UOM_ID) {
         if (C_UOM_ID < 1) setValue(I_M_Product.COLUMNNAME_C_UOM_ID, null);
         else setValue(I_M_Product.COLUMNNAME_C_UOM_ID, Integer.valueOf(C_UOM_ID));
     }
@@ -385,7 +385,7 @@ public class X_M_Product extends PO {
     public org.compiere.model.I_M_AttributeSet getMAttributeSet() throws RuntimeException {
         return (org.compiere.model.I_M_AttributeSet)
                 MTable.get(getCtx(), org.compiere.model.I_M_AttributeSet.Table_Name)
-                        .getPO(getMAttributeSet_ID());
+                        .getPO(getAttributeSetId());
     }
 
     /**
@@ -393,8 +393,19 @@ public class X_M_Product extends PO {
      *
      * @return Product Attribute Set
      */
-    public int getMAttributeSet_ID() {
+    public int getAttributeSetId() {
         Integer ii = (Integer) getValue(I_M_Product.COLUMNNAME_M_AttributeSet_ID);
+        if (ii == null) return 0;
+        return ii;
+    }
+
+    /**
+     * Get Attribute Set Instance.
+     *
+     * @return Product Attribute Set Instance
+     */
+    public int getAttributeSetInstanceId() {
+        Integer ii = (Integer) getValue(I_M_Product.COLUMNNAME_M_AttributeSetInstance_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -404,7 +415,7 @@ public class X_M_Product extends PO {
      *
      * @param M_AttributeSetInstance_ID Product Attribute Set Instance
      */
-    public void setM_AttributeSetInstance_ID(int M_AttributeSetInstance_ID) {
+    public void setAttributeSetInstanceId(int M_AttributeSetInstance_ID) {
         if (M_AttributeSetInstance_ID < 0)
             setValue(I_M_Product.COLUMNNAME_M_AttributeSetInstance_ID, null);
         else
@@ -414,31 +425,20 @@ public class X_M_Product extends PO {
     }
 
     /**
-     * Get Attribute Set Instance.
-     *
-     * @return Product Attribute Set Instance
-     */
-    public int getMAttributeSetInstance_ID() {
-        Integer ii = (Integer) getValue(I_M_Product.COLUMNNAME_M_AttributeSetInstance_ID);
-        if (ii == null) return 0;
-        return ii;
-    }
-
-    /**
      * Get Locator.
      *
      * @return Warehouse Locator
      */
-    public int getM_Locator_ID() {
+    public int getLocatorId() {
         Integer ii = (Integer) getValue(I_M_Product.COLUMNNAME_M_Locator_ID);
         if (ii == null) return 0;
         return ii;
     }
 
-    public org.compiere.model.I_M_Product_Category getM_Product_Category() throws RuntimeException {
+    public org.compiere.model.I_M_Product_Category getProductCategory() throws RuntimeException {
         return (org.compiere.model.I_M_Product_Category)
                 MTable.get(getCtx(), org.compiere.model.I_M_Product_Category.Table_Name)
-                        .getPO(getM_Product_Category_ID());
+                        .getPO(getProductCategoryId());
     }
 
     /**
@@ -446,7 +446,7 @@ public class X_M_Product extends PO {
      *
      * @return Category of a Product
      */
-    public int getM_Product_Category_ID() {
+    public int getProductCategoryId() {
         Integer ii = (Integer) getValue(I_M_Product.COLUMNNAME_M_Product_Category_ID);
         if (ii == null) return 0;
         return ii;
@@ -457,7 +457,7 @@ public class X_M_Product extends PO {
      *
      * @param M_Product_Category_ID Category of a Product
      */
-    public void setM_Product_Category_ID(int M_Product_Category_ID) {
+    public void setProductCategoryId(int M_Product_Category_ID) {
         if (M_Product_Category_ID < 1) setValue(I_M_Product.COLUMNNAME_M_Product_Category_ID, null);
         else
             setValue(
@@ -469,7 +469,7 @@ public class X_M_Product extends PO {
      *
      * @return Product, Service, Item
      */
-    public int getM_Product_ID() {
+    public int getProductId() {
         Integer ii = (Integer) getValue(I_M_Product.COLUMNNAME_M_Product_ID);
         if (ii == null) return 0;
         return ii;
@@ -526,7 +526,7 @@ public class X_M_Product extends PO {
      *
      * @return Expense report type
      */
-    public int getS_ExpenseType_ID() {
+    public int getExpenseTypeId() {
         Integer ii = (Integer) getValue(I_M_Product.COLUMNNAME_S_ExpenseType_ID);
         if (ii == null) return 0;
         return ii;
@@ -537,7 +537,7 @@ public class X_M_Product extends PO {
      *
      * @param S_ExpenseType_ID Expense report type
      */
-    public void setS_ExpenseType_ID(int S_ExpenseType_ID) {
+    public void setExpenseTypeId(int S_ExpenseType_ID) {
         if (S_ExpenseType_ID < 1) setValueNoCheck(I_M_Product.COLUMNNAME_S_ExpenseType_ID, null);
         else
             setValueNoCheck(I_M_Product.COLUMNNAME_S_ExpenseType_ID, Integer.valueOf(S_ExpenseType_ID));
@@ -590,7 +590,7 @@ public class X_M_Product extends PO {
      *
      * @return Resource
      */
-    public int getS_Resource_ID() {
+    public int getResourceID() {
         Integer ii = (Integer) getValue(I_M_Product.COLUMNNAME_S_Resource_ID);
         if (ii == null) return 0;
         return ii;
@@ -601,7 +601,7 @@ public class X_M_Product extends PO {
      *
      * @param S_Resource_ID Resource
      */
-    public void setS_Resource_ID(int S_Resource_ID) {
+    public void setResourceID(int S_Resource_ID) {
         if (S_Resource_ID < 1) setValueNoCheck(I_M_Product.COLUMNNAME_S_Resource_ID, null);
         else setValueNoCheck(I_M_Product.COLUMNNAME_S_Resource_ID, Integer.valueOf(S_Resource_ID));
     }

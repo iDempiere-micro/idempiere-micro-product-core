@@ -28,7 +28,7 @@ public class X_M_ProductPrice extends PO implements I_M_ProductPrice {
     public X_M_ProductPrice(Properties ctx, int M_ProductPrice_ID) {
         super(ctx, M_ProductPrice_ID);
         /**
-         * if (M_ProductPrice_ID == 0) { setM_PriceList_Version_ID (0); setM_Product_ID (0);
+         * if (M_ProductPrice_ID == 0) { setPriceListVersionId (0); setProductId (0);
          * setPriceLimit (Env.ZERO); setPriceList (Env.ZERO); setPriceStd (Env.ZERO); }
          */
     }
@@ -54,10 +54,10 @@ public class X_M_ProductPrice extends PO implements I_M_ProductPrice {
         return sb.toString();
     }
 
-    public org.compiere.model.I_M_PriceList_Version getM_PriceList_Version() throws RuntimeException {
+    public org.compiere.model.I_M_PriceList_Version getPriceListVersion() throws RuntimeException {
         return (org.compiere.model.I_M_PriceList_Version)
                 MTable.get(getCtx(), org.compiere.model.I_M_PriceList_Version.Table_Name)
-                        .getPO(getM_PriceList_Version_ID());
+                        .getPO(getPriceListVersionId());
     }
 
     /**
@@ -65,7 +65,7 @@ public class X_M_ProductPrice extends PO implements I_M_ProductPrice {
      *
      * @return Identifies a unique instance of a Price List
      */
-    public int getM_PriceList_Version_ID() {
+    public int getPriceListVersionId() {
         Integer ii = (Integer) getValue(COLUMNNAME_M_PriceList_Version_ID);
         if (ii == null) return 0;
         return ii;
@@ -76,7 +76,7 @@ public class X_M_ProductPrice extends PO implements I_M_ProductPrice {
      *
      * @param M_PriceList_Version_ID Identifies a unique instance of a Price List
      */
-    public void setM_PriceList_Version_ID(int M_PriceList_Version_ID) {
+    public void setPriceListVersionId(int M_PriceList_Version_ID) {
         if (M_PriceList_Version_ID < 1) setValueNoCheck(COLUMNNAME_M_PriceList_Version_ID, null);
         else
             setValueNoCheck(COLUMNNAME_M_PriceList_Version_ID, M_PriceList_Version_ID);
@@ -87,7 +87,7 @@ public class X_M_ProductPrice extends PO implements I_M_ProductPrice {
      *
      * @return Product, Service, Item
      */
-    public int getM_Product_ID() {
+    public int getProductId() {
         Integer ii = (Integer) getValue(COLUMNNAME_M_Product_ID);
         if (ii == null) return 0;
         return ii;
@@ -98,7 +98,7 @@ public class X_M_ProductPrice extends PO implements I_M_ProductPrice {
      *
      * @param M_Product_ID Product, Service, Item
      */
-    public void setM_Product_ID(int M_Product_ID) {
+    public void setProductId(int M_Product_ID) {
         if (M_Product_ID < 1) setValueNoCheck(COLUMNNAME_M_Product_ID, null);
         else setValueNoCheck(COLUMNNAME_M_Product_ID, M_Product_ID);
     }
