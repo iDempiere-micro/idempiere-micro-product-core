@@ -75,9 +75,6 @@ public class MAssetGroup extends X_A_Asset_Group {
      */
     public static int getDefaultId(SetGetModel m) {
         int AD_Client_ID = SetGetUtil.get_AttrValueAsInt(m, "AD_Client_ID");
-    /* commented by @win
-    int A_AssetType_ID = SetGetUtil.get_AttrValueAsInt(m, MAssetType.COLUMNNAME_A_Asset_Type_ID);
-    */
         final String sql =
                 "SELECT "
                         + I_A_Asset_Group.COLUMNNAME_A_Asset_Group_ID
@@ -92,25 +89,10 @@ public class MAssetGroup extends X_A_Asset_Group {
                         + I_A_Asset_Group.COLUMNNAME_A_Asset_Group_ID
                         + " ASC" // default first, older first
                 ;
-    /* modify by @win
-    int id = DB.getSQLValueEx(null, sql, AD_Client_ID, A_AssetType_ID);
-    */
-        int id = getSQLValueEx(null, sql, AD_Client_ID);
-        // modify by @win
-
-        return id;
+        return getSQLValueEx(sql, AD_Client_ID);
     }
 
     protected boolean beforeSave(boolean newRecord) {
-    /* commented by @win
-    MAssetType type = MAssetType.get(getCtx(), getA_Asset_TypeId());
-    if (type != null)
-    {
-    	type.update(SetGetUtil.wrap(this), newRecord == true);
-    }
-    */
-        // end commented by @win
-
         return true;
     }
 

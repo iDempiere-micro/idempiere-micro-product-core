@@ -87,14 +87,6 @@ public class MAsset extends X_A_Asset
      */
     public void setAssetGroup(MAssetGroup assetGroup) {
         setAssetGroupId(assetGroup.getAssetGroupId());
-
-    /* commented out by @win
-    setA_Asset_TypeId(assetGroup.getA_Asset_TypeId());
-    setGZ_TipComponenta(assetGroup.getGZ_TipComponenta()); // TODO: move to GZ
-    MAssetType assetType = MAssetType.get(getCtx(), assetGroup.getA_Asset_TypeId());
-    assetType.update(SetGetUtil.wrap(this), true);
-    */
-        // end commet by @win
     }
 
     /**
@@ -128,14 +120,6 @@ public class MAsset extends X_A_Asset
         if (getAssetGroupId() <= 0) {
             setAssetGroupId(MAssetGroup.getDefaultId(SetGetUtil.wrap(this)));
         }
-    /* @win temporary commented out
-
-    if (getA_Asset_ClassId() <= 0 && getAssetGroupId() > 0)
-    {
-    	MAssetGroup.updateAsset(SetGetUtil.wrap(this), getAssetGroupId());
-    }
-    */
-        // end @win comment
 
         // Copy fields from C_BPartner_Location
         if (isValueChanged(I_A_Asset.COLUMNNAME_C_BPartner_Location_ID)
@@ -158,28 +142,9 @@ public class MAsset extends X_A_Asset
             asi.saveEx();
             setAttributeSetInstanceId(asi.getAttributeSetInstanceId());
         }
-        // TODO: With the lines below, after creating the asset, the whole system goes much slower ???
-        //		else if (isValueChanged(COLUMNNAME_SerNo) && getAttributeSetInstanceId() > 0) {
-        //			asi = new MAttributeSetInstance(getCtx(), getAttributeSetInstanceId(), null);
-        //			asi.setSerNo(getSerNo());
-        //			asi.setDescription();
-        //			asi.saveEx();
-        //		}
-        //		else if ((newRecord || isValueChanged(COLUMNNAME_M_AttributeSetInstance_ID)) &&
-        // getAttributeSetInstanceId() > 0) {
-        //			asi = new MAttributeSetInstance(getCtx(), getAttributeSetInstanceId(), null);
-        //			setASI(asi);
-        //		}
-        //
 
         // Update status
         updateStatus();
-
-        // Validate AssetType
-        // @win commented out
-        // MAssetType.validate(this);
-        // @win end
-        //
 
         return true;
     } //	beforeSave
@@ -254,13 +219,6 @@ public class MAsset extends X_A_Asset
         if (isFullyDepreciated() || status.equals(X_A_Asset.A_ASSET_STATUS_Disposed)) {
             setIsDepreciated(false);
         }
-    /* commented by @win
-    MAssetClass assetClass = MAssetClass.get(getCtx(), getA_Asset_ClassId());
-    if (assetClass != null && assetClass.isDepreciated())
-    {
-    	setIsDepreciated(true);
-    }
-    */
         // end comment by @win
         if (status.equals(X_A_Asset.A_ASSET_STATUS_Activated) || getAssetActivationDate() == null) {
             setAssetActivationDate(getAssetServiceDate());

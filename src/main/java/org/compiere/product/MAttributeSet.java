@@ -46,14 +46,6 @@ public class MAttributeSet extends X_M_AttributeSet {
      * Entry Exclude
      */
     private X_M_AttributeSetExclude[] m_excludes = null;
-    /**
-     * Lot create Exclude
-     */
-    private X_M_LotCtlExclude[] m_excludeLots = null;
-    /**
-     * Serial No create Exclude
-     */
-    private X_M_SerNoCtlExclude[] m_excludeSerNos = null;
 
     /**
      * Standard constructor
