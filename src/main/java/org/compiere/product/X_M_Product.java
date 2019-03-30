@@ -2,6 +2,7 @@ package org.compiere.product;
 
 import kotliquery.Row;
 import org.compiere.model.HasName;
+import org.compiere.model.I_M_AttributeSet;
 import org.compiere.model.I_M_Product;
 import org.compiere.orm.MTable;
 import org.compiere.orm.PO;
@@ -28,16 +29,6 @@ public class X_M_Product extends PO {
      */
     public X_M_Product(Properties ctx, int M_Product_ID) {
         super(ctx, M_Product_ID);
-        /**
-         * if (M_Product_ID == 0) { setTaxCategoryId (0); setUOMId (0); setIsBOM (false); // N
-         * setIsDropShip (false); setIsExcludeAutoDelivery (false); // N setIsInvoicePrintDetails
-         * (false); setIsKanban (false); // N setIsManufactured (false); // N setIsOwnBox (false); // N
-         * setIsPhantom (false); // N setIsPickListPrintDetails (false); setIsPurchased (true); // Y
-         * setIsSelfService (true); // Y setIsSold (true); // Y setIsStocked (true); // Y setIsSummary
-         * (false); setIsVerified (false); // N setIsWebStoreFeatured (false); setLowLevel (0); // 0
-         * setAttributeSetInstanceId (0); setProductCategoryId (0); setProductId (0); setName
-         * (null); setProductType (null); // I setValue (null); }
-         */
     }
 
     /**
@@ -95,7 +86,7 @@ public class X_M_Product extends PO {
      */
     public void setTaxCategoryId(int C_TaxCategory_ID) {
         if (C_TaxCategory_ID < 1) setValue(I_M_Product.COLUMNNAME_C_TaxCategory_ID, null);
-        else setValue(I_M_Product.COLUMNNAME_C_TaxCategory_ID, Integer.valueOf(C_TaxCategory_ID));
+        else setValue(I_M_Product.COLUMNNAME_C_TaxCategory_ID, C_TaxCategory_ID);
     }
 
     /**
@@ -116,7 +107,7 @@ public class X_M_Product extends PO {
      */
     public void setUOMId(int C_UOM_ID) {
         if (C_UOM_ID < 1) setValue(I_M_Product.COLUMNNAME_C_UOM_ID, null);
-        else setValue(I_M_Product.COLUMNNAME_C_UOM_ID, Integer.valueOf(C_UOM_ID));
+        else setValue(I_M_Product.COLUMNNAME_C_UOM_ID, C_UOM_ID);
     }
 
     /**
@@ -179,7 +170,7 @@ public class X_M_Product extends PO {
      * @param IsBOM Bill of Materials
      */
     public void setIsBOM(boolean IsBOM) {
-        setValue(I_M_Product.COLUMNNAME_IsBOM, Boolean.valueOf(IsBOM));
+        setValue(I_M_Product.COLUMNNAME_IsBOM, IsBOM);
     }
 
     /**
@@ -190,7 +181,7 @@ public class X_M_Product extends PO {
     public boolean isBOM() {
         Object oo = getValue(I_M_Product.COLUMNNAME_IsBOM);
         if (oo != null) {
-            if (oo instanceof Boolean) return ((Boolean) oo).booleanValue();
+            if (oo instanceof Boolean) return (Boolean) oo;
             return "Y".equals(oo);
         }
         return false;
@@ -202,7 +193,7 @@ public class X_M_Product extends PO {
      * @param IsExcludeAutoDelivery Exclude from automatic Delivery
      */
     public void setIsExcludeAutoDelivery(boolean IsExcludeAutoDelivery) {
-        setValue(I_M_Product.COLUMNNAME_IsExcludeAutoDelivery, Boolean.valueOf(IsExcludeAutoDelivery));
+        setValue(I_M_Product.COLUMNNAME_IsExcludeAutoDelivery, IsExcludeAutoDelivery);
     }
 
     /**
@@ -213,7 +204,7 @@ public class X_M_Product extends PO {
     public boolean isExcludeAutoDelivery() {
         Object oo = getValue(I_M_Product.COLUMNNAME_IsExcludeAutoDelivery);
         if (oo != null) {
-            if (oo instanceof Boolean) return ((Boolean) oo).booleanValue();
+            if (oo instanceof Boolean) return (Boolean) oo;
             return "Y".equals(oo);
         }
         return false;
@@ -225,7 +216,7 @@ public class X_M_Product extends PO {
      * @param IsInvoicePrintDetails Print detail BOM elements on the invoice
      */
     public void setIsInvoicePrintDetails(boolean IsInvoicePrintDetails) {
-        setValue(I_M_Product.COLUMNNAME_IsInvoicePrintDetails, Boolean.valueOf(IsInvoicePrintDetails));
+        setValue(I_M_Product.COLUMNNAME_IsInvoicePrintDetails, IsInvoicePrintDetails);
     }
 
     /**
@@ -236,7 +227,7 @@ public class X_M_Product extends PO {
     public boolean isManufactured() {
         Object oo = getValue(I_M_Product.COLUMNNAME_IsManufactured);
         if (oo != null) {
-            if (oo instanceof Boolean) return ((Boolean) oo).booleanValue();
+            if (oo instanceof Boolean) return (Boolean) oo;
             return "Y".equals(oo);
         }
         return false;
@@ -250,7 +241,7 @@ public class X_M_Product extends PO {
     public boolean isOwnBox() {
         Object oo = getValue(I_M_Product.COLUMNNAME_IsOwnBox);
         if (oo != null) {
-            if (oo instanceof Boolean) return ((Boolean) oo).booleanValue();
+            if (oo instanceof Boolean) return (Boolean) oo;
             return "Y".equals(oo);
         }
         return false;
@@ -264,7 +255,7 @@ public class X_M_Product extends PO {
     public boolean isPhantom() {
         Object oo = getValue(I_M_Product.COLUMNNAME_IsPhantom);
         if (oo != null) {
-            if (oo instanceof Boolean) return ((Boolean) oo).booleanValue();
+            if (oo instanceof Boolean) return (Boolean) oo;
             return "Y".equals(oo);
         }
         return false;
@@ -277,7 +268,7 @@ public class X_M_Product extends PO {
      */
     public void setIsPickListPrintDetails(boolean IsPickListPrintDetails) {
         setValue(
-                I_M_Product.COLUMNNAME_IsPickListPrintDetails, Boolean.valueOf(IsPickListPrintDetails));
+                I_M_Product.COLUMNNAME_IsPickListPrintDetails, IsPickListPrintDetails);
     }
 
     /**
@@ -286,7 +277,7 @@ public class X_M_Product extends PO {
      * @param IsPurchased Organization purchases this product
      */
     public void setIsPurchased(boolean IsPurchased) {
-        setValue(I_M_Product.COLUMNNAME_IsPurchased, Boolean.valueOf(IsPurchased));
+        setValue(I_M_Product.COLUMNNAME_IsPurchased, IsPurchased);
     }
 
     /**
@@ -295,7 +286,7 @@ public class X_M_Product extends PO {
      * @param IsSelfService This is a Self-Service entry or this entry can be changed via Self-Service
      */
     public void setIsSelfService(boolean IsSelfService) {
-        setValue(I_M_Product.COLUMNNAME_IsSelfService, Boolean.valueOf(IsSelfService));
+        setValue(I_M_Product.COLUMNNAME_IsSelfService, IsSelfService);
     }
 
     /**
@@ -304,7 +295,7 @@ public class X_M_Product extends PO {
      * @param IsSold Organization sells this product
      */
     public void setIsSold(boolean IsSold) {
-        setValue(I_M_Product.COLUMNNAME_IsSold, Boolean.valueOf(IsSold));
+        setValue(I_M_Product.COLUMNNAME_IsSold, IsSold);
     }
 
     /**
@@ -313,7 +304,7 @@ public class X_M_Product extends PO {
      * @param IsStocked Organization stocks this product
      */
     public void setIsStocked(boolean IsStocked) {
-        setValue(I_M_Product.COLUMNNAME_IsStocked, Boolean.valueOf(IsStocked));
+        setValue(I_M_Product.COLUMNNAME_IsStocked, IsStocked);
     }
 
     /**
@@ -324,7 +315,7 @@ public class X_M_Product extends PO {
     public boolean isStocked() {
         Object oo = getValue(I_M_Product.COLUMNNAME_IsStocked);
         if (oo != null) {
-            if (oo instanceof Boolean) return ((Boolean) oo).booleanValue();
+            if (oo instanceof Boolean) return (Boolean) oo;
             return "Y".equals(oo);
         }
         return false;
@@ -336,7 +327,7 @@ public class X_M_Product extends PO {
      * @param IsSummary This is a summary entity
      */
     public void setIsSummary(boolean IsSummary) {
-        setValue(I_M_Product.COLUMNNAME_IsSummary, Boolean.valueOf(IsSummary));
+        setValue(I_M_Product.COLUMNNAME_IsSummary, IsSummary);
     }
 
     /**
@@ -345,7 +336,7 @@ public class X_M_Product extends PO {
      * @param IsVerified The BOM configuration has been verified
      */
     public void setIsVerified(boolean IsVerified) {
-        setValueNoCheck(I_M_Product.COLUMNNAME_IsVerified, Boolean.valueOf(IsVerified));
+        setValueNoCheck(I_M_Product.COLUMNNAME_IsVerified, IsVerified);
     }
 
     /**
@@ -356,7 +347,7 @@ public class X_M_Product extends PO {
     public boolean isVerified() {
         Object oo = getValue(I_M_Product.COLUMNNAME_IsVerified);
         if (oo != null) {
-            if (oo instanceof Boolean) return ((Boolean) oo).booleanValue();
+            if (oo instanceof Boolean) return (Boolean) oo;
             return "Y".equals(oo);
         }
         return false;
@@ -369,7 +360,7 @@ public class X_M_Product extends PO {
      *                           search
      */
     public void setIsWebStoreFeatured(boolean IsWebStoreFeatured) {
-        setValue(I_M_Product.COLUMNNAME_IsWebStoreFeatured, Boolean.valueOf(IsWebStoreFeatured));
+        setValue(I_M_Product.COLUMNNAME_IsWebStoreFeatured, IsWebStoreFeatured);
     }
 
     /**
@@ -379,12 +370,12 @@ public class X_M_Product extends PO {
      *                 requirement should be exploited
      */
     public void setLowLevel(int LowLevel) {
-        setValue(I_M_Product.COLUMNNAME_LowLevel, Integer.valueOf(LowLevel));
+        setValue(I_M_Product.COLUMNNAME_LowLevel, LowLevel);
     }
 
     public org.compiere.model.I_M_AttributeSet getMAttributeSet() throws RuntimeException {
         return (org.compiere.model.I_M_AttributeSet)
-                MTable.get(getCtx(), org.compiere.model.I_M_AttributeSet.Table_Name)
+                MTable.get(getCtx(), I_M_AttributeSet.Table_Name)
                         .getPO(getAttributeSetId());
     }
 
@@ -421,7 +412,7 @@ public class X_M_Product extends PO {
         else
             setValue(
                     I_M_Product.COLUMNNAME_M_AttributeSetInstance_ID,
-                    Integer.valueOf(M_AttributeSetInstance_ID));
+                    M_AttributeSetInstance_ID);
     }
 
     /**
@@ -499,7 +490,7 @@ public class X_M_Product extends PO {
      * @param Processing Process Now
      */
     public void setProcessing(boolean Processing) {
-        setValue(I_M_Product.COLUMNNAME_Processing, Boolean.valueOf(Processing));
+        setValue(I_M_Product.COLUMNNAME_Processing, Processing);
     }
 
     /**
@@ -540,7 +531,7 @@ public class X_M_Product extends PO {
     public void setExpenseTypeId(int S_ExpenseType_ID) {
         if (S_ExpenseType_ID < 1) setValueNoCheck(I_M_Product.COLUMNNAME_S_ExpenseType_ID, null);
         else
-            setValueNoCheck(I_M_Product.COLUMNNAME_S_ExpenseType_ID, Integer.valueOf(S_ExpenseType_ID));
+            setValueNoCheck(I_M_Product.COLUMNNAME_S_ExpenseType_ID, S_ExpenseType_ID);
     }
 
     /**
@@ -603,7 +594,7 @@ public class X_M_Product extends PO {
      */
     public void setResourceID(int S_Resource_ID) {
         if (S_Resource_ID < 1) setValueNoCheck(I_M_Product.COLUMNNAME_S_Resource_ID, null);
-        else setValueNoCheck(I_M_Product.COLUMNNAME_S_Resource_ID, Integer.valueOf(S_Resource_ID));
+        else setValueNoCheck(I_M_Product.COLUMNNAME_S_Resource_ID, S_Resource_ID);
     }
 
     /**
@@ -620,7 +611,7 @@ public class X_M_Product extends PO {
      *
      * @return Search key for the record in the format required - must be unique
      */
-    public String getValue() {
+    public String getSearchKey() {
         return (String) getValue(I_M_Product.COLUMNNAME_Value);
     }
 
@@ -629,7 +620,7 @@ public class X_M_Product extends PO {
      *
      * @param Value Search key for the record in the format required - must be unique
      */
-    public void setValue(String Value) {
+    public void setSearchKey(String Value) {
         setValue(I_M_Product.COLUMNNAME_Value, Value);
     }
 

@@ -64,7 +64,7 @@ public class X_C_UOM extends BasePOName implements I_C_UOM {
      * @param CostingPrecision Rounding used costing calculations
      */
     public void setCostingPrecision(int CostingPrecision) {
-        setValue(COLUMNNAME_CostingPrecision, Integer.valueOf(CostingPrecision));
+        setValue(COLUMNNAME_CostingPrecision, CostingPrecision);
     }
 
     /**
@@ -84,7 +84,7 @@ public class X_C_UOM extends BasePOName implements I_C_UOM {
      * @param IsDefault Default value
      */
     public void setIsDefault(boolean IsDefault) {
-        setValue(COLUMNNAME_IsDefault, Boolean.valueOf(IsDefault));
+        setValue(COLUMNNAME_IsDefault, IsDefault);
     }
 
     /**
@@ -104,7 +104,7 @@ public class X_C_UOM extends BasePOName implements I_C_UOM {
      * @param StdPrecision Rule for rounding calculated amounts
      */
     public void setStdPrecision(int StdPrecision) {
-        setValue(COLUMNNAME_StdPrecision, Integer.valueOf(StdPrecision));
+        setValue(COLUMNNAME_StdPrecision, StdPrecision);
     }
 
     /**
@@ -120,4 +120,22 @@ public class X_C_UOM extends BasePOName implements I_C_UOM {
     public int getTableId() {
         return I_C_UOM.Table_ID;
     }
+
+    /** Get Symbol.
+     @return Symbol for a Unit of Measure
+     */
+    public String getUOMSymbol ()
+    {
+        return (String)getValue(COLUMNNAME_UOMSymbol);
+    }
+
+    /** Set Symbol.
+     @param UOMSymbol
+     Symbol for a Unit of Measure
+     */
+    public void setUOMSymbol (String UOMSymbol)
+    {
+        setValue (COLUMNNAME_UOMSymbol, UOMSymbol);
+    }
+
 }

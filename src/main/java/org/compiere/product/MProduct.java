@@ -1,8 +1,11 @@
 package org.compiere.product;
 
 import kotliquery.Row;
+import org.compiere.model.I_C_UOM;
 import org.compiere.model.I_M_Product;
+import org.compiere.model.I_M_StorageOnHand;
 import org.compiere.orm.MClient;
+import org.compiere.orm.MTable;
 import org.compiere.orm.MTree_Base;
 import org.compiere.orm.Query;
 import org.compiere.orm.X_AD_Tree;
@@ -40,7 +43,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
      * Cache
      */
     private static CCache<Integer, MProduct> s_cache =
-            new CCache<Integer, MProduct>(I_M_Product.Table_Name, 40, 5); // 	5 minutes
+            new CCache<>(I_M_Product.Table_Name, 40, 5); // 	5 minutes
     /**
      * UOM Precision
      */
@@ -51,7 +54,6 @@ public class MProduct extends X_M_Product implements I_M_Product {
      *
      * @param ctx          context
      * @param M_Product_ID id
-     * @param trxName      transaction
      */
     public MProduct(Properties ctx, int M_Product_ID) {
         super(ctx, M_Product_ID);
@@ -123,7 +125,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
         setClientOrg(impP);
         setUpdatedBy(impP.getUpdatedBy());
         //
-        setValue(impP.getSearchKey());
+        setSearchKey(impP.getSearchKey());
         setName(impP.getName());
         setDescription(impP.getDescription());
         setDocumentNote(impP.getDocumentNote());
@@ -150,7 +152,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
         if (M_Product_ID <= 0) {
             return null;
         }
-        Integer key = new Integer(M_Product_ID);
+        Integer key = M_Product_ID;
         MProduct retValue = s_cache.get(key);
         if (retValue != null) {
             return retValue;
@@ -167,13 +169,12 @@ public class MProduct extends X_M_Product implements I_M_Product {
      *
      * @param ctx         context
      * @param whereClause sql where clause
-     * @param trxName     trx
      * @return MProduct
      */
     public static MProduct[] get(Properties ctx, String whereClause) {
         List<MProduct> list =
                 new Query(ctx, I_M_Product.Table_Name, whereClause).setClientId().list();
-        return list.toArray(new MProduct[list.size()]);
+        return list.toArray(new MProduct[0]);
     } //	get
 
     /**
@@ -181,7 +182,6 @@ public class MProduct extends X_M_Product implements I_M_Product {
      *
      * @param ctx           context
      * @param S_Resource_ID resource ID
-     * @param trxName
      * @return MProduct or null if not found
      */
     public static MProduct forS_ResourceId(Properties ctx, int S_Resource_ID) {
@@ -235,8 +235,8 @@ public class MProduct extends X_M_Product implements I_M_Product {
             changed = true;
         }
         //
-        if (!parent.getSearchKey().equals(getValue())) {
-            setValue(parent.getSearchKey());
+        if (!parent.getSearchKey().equals(getSearchKey())) {
+            setSearchKey(parent.getSearchKey());
             changed = true;
         }
         if (!parent.getName().equals(getName())) {
@@ -285,8 +285,8 @@ public class MProduct extends X_M_Product implements I_M_Product {
             changed = true;
         }
         //
-        if (!parent.getValue().equals(getValue())) {
-            setValue(parent.getValue());
+        if (!parent.getValue().equals(getSearchKey())) {
+            setSearchKey(parent.getValue());
             changed = true;
         }
         if (!parent.getName().equals(getName())) {
@@ -340,9 +340,9 @@ public class MProduct extends X_M_Product implements I_M_Product {
         if (m_precision == null) {
             int C_UOM_ID = getUOMId();
             if (C_UOM_ID == 0) return 0; // 	EA
-            m_precision = new Integer(MUOM.getPrecision(getCtx(), C_UOM_ID));
+            m_precision = MUOM.getPrecision(getCtx(), C_UOM_ID);
         }
-        return m_precision.intValue();
+        return m_precision;
     } //	getUOMPrecision
 
     /**
@@ -407,6 +407,11 @@ public class MProduct extends X_M_Product implements I_M_Product {
         return I_M_Product.PRODUCTTYPE_Item.equals(getProductType());
     } //	isItem
 
+    @Override
+    public List<I_M_StorageOnHand> getStorageOnHand() {
+        return null;
+    }
+
     /**
      * Product is an Item and Stocked
      *
@@ -429,9 +434,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder("MProduct[");
-        sb.append(getId()).append("-").append(getValue()).append("]");
-        return sb.toString();
+        return "MProduct[" + getId() + "-" + getSearchKey() + "]";
     } //	toString
 
     @Override
@@ -462,7 +465,6 @@ public class MProduct extends X_M_Product implements I_M_Product {
                                 getValueOldAsInt(I_M_Product.COLUMNNAME_M_AttributeSetInstance_ID));
                 int cnt =
                         getSQLValueEx(
-                                null,
                                 "SELECT COUNT(*) FROM M_Product WHERE M_AttributeSetInstance_ID=?",
                                 oldasi.getAttributeSetInstanceId());
                 if (cnt == 1) {
@@ -577,4 +579,11 @@ public class MProduct extends X_M_Product implements I_M_Product {
 
         return as.isUseGuaranteeDateForMPolicy();
     }
+
+    public org.compiere.model.I_C_UOM getUOM() throws RuntimeException
+    {
+        return (I_C_UOM) MTable.get(getCtx(), org.compiere.model.I_C_UOM.Table_Name)
+                .getPO(getUOMId());
+    }
+
 } //	MProduct
