@@ -4,8 +4,6 @@ import kotliquery.Row;
 import org.compiere.model.I_M_Lot;
 import org.compiere.orm.Query;
 
-import java.util.Properties;
-
 /**
  * Product Lot
  *
@@ -24,22 +22,18 @@ public class MLot extends X_M_Lot {
      *
      * @param ctx      context
      * @param M_Lot_ID ID
-     * @param trxName  transaction
      */
-    public MLot(Properties ctx, int M_Lot_ID) {
-        super(ctx, M_Lot_ID);
-        /** if (M_Lot_ID == 0) { setLotId (0); setProductId (0); setName (null); } */
+    public MLot(int M_Lot_ID) {
+        super(M_Lot_ID);
     } //	MLot
 
     /**
      * Load Constructor
      *
-     * @param ctx     context
-     * @param rs      result set
-     * @param trxName transaction
+     * @param ctx context
      */
-    public MLot(Properties ctx, Row row) {
-        super(ctx, row);
+    public MLot(Row row) {
+        super(row);
     } //	MLot
 
     /**
@@ -50,7 +44,7 @@ public class MLot extends X_M_Lot {
      * @param Name         name
      */
     public MLot(MLotCtl ctl, int M_Product_ID, String Name) {
-        this(ctl.getCtx(), 0);
+        this(0);
         setClientOrg(ctl);
         setLotControlId(ctl.getLotControlId());
         setProductId(M_Product_ID);
@@ -60,20 +54,16 @@ public class MLot extends X_M_Lot {
     /**
      * Get Lot for Product
      *
-     * @param ctx          context
      * @param M_Product_ID product
      * @param lot
-     * @param trxName      transaction
      * @return Last Lot for Product
      */
-    public static MLot getProductLot(Properties ctx, int M_Product_ID, String lot) {
+    public static MLot getProductLot(int M_Product_ID, String lot) {
         final String whereClause = "M_Product_ID=? AND Name=?";
-        MLot retValue =
-                new Query(ctx, I_M_Lot.Table_Name, whereClause)
-                        .setParameters(M_Product_ID, lot)
-                        .setOrderBy(I_M_Lot.COLUMNNAME_M_Lot_ID + " DESC")
-                        .first();
-        return retValue;
+        return new Query(I_M_Lot.Table_Name, whereClause)
+                .setParameters(M_Product_ID, lot)
+                .setOrderBy(I_M_Lot.COLUMNNAME_M_Lot_ID + " DESC")
+                .first();
     } //	getProductLot
 
     /**

@@ -5,7 +5,6 @@ import org.compiere.model.I_M_AttributeInstance;
 import org.compiere.orm.PO;
 
 import java.math.BigDecimal;
-import java.util.Properties;
 
 /**
  * Generated Model for M_AttributeInstance
@@ -23,8 +22,8 @@ public class X_M_AttributeInstance extends PO implements I_M_AttributeInstance {
     /**
      * Standard Constructor
      */
-    public X_M_AttributeInstance(Properties ctx, int M_AttributeInstance_ID) {
-        super(ctx, M_AttributeInstance_ID);
+    public X_M_AttributeInstance(int M_AttributeInstance_ID) {
+        super(M_AttributeInstance_ID);
         /**
          * if (M_AttributeInstance_ID == 0) { setMAttributeID (0); setAttributeSetInstanceId (0); }
          */
@@ -33,8 +32,8 @@ public class X_M_AttributeInstance extends PO implements I_M_AttributeInstance {
     /**
      * Load Constructor
      */
-    public X_M_AttributeInstance(Properties ctx, Row row) {
-        super(ctx, row);
+    public X_M_AttributeInstance(Row row) {
+        super(row);
     }
 
     /**

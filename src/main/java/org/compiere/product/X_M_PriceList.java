@@ -5,8 +5,6 @@ import org.compiere.model.HasName;
 import org.compiere.model.I_M_PriceList;
 import org.compiere.orm.PO;
 
-import java.util.Properties;
-
 /**
  * Generated Model for M_PriceList
  *
@@ -23,8 +21,8 @@ public abstract class X_M_PriceList extends PO implements I_M_PriceList {
     /**
      * Standard Constructor
      */
-    public X_M_PriceList(Properties ctx, int M_PriceList_ID) {
-        super(ctx, M_PriceList_ID);
+    public X_M_PriceList(int M_PriceList_ID) {
+        super(M_PriceList_ID);
         /**
          * if (M_PriceList_ID == 0) { setCurrencyId (0); setEnforcePriceLimit (false); setIsDefault
          * (false); setIsSOPriceList (false); setIsTaxIncluded (false); setPriceListId (0); setName
@@ -35,8 +33,8 @@ public abstract class X_M_PriceList extends PO implements I_M_PriceList {
     /**
      * Load Constructor
      */
-    public X_M_PriceList(Properties ctx, Row row) {
-        super(ctx, row);
+    public X_M_PriceList(Row row) {
+        super(row);
     }
 
 
@@ -193,7 +191,7 @@ public abstract class X_M_PriceList extends PO implements I_M_PriceList {
      * @return Alphanumeric identifier of the entity
      */
     public String getName() {
-        return (String) getValue(HasName.Companion.getCOLUMNNAME_Name());
+        return (String) getValue(HasName.COLUMNNAME_Name);
     }
 
     /**
@@ -202,7 +200,7 @@ public abstract class X_M_PriceList extends PO implements I_M_PriceList {
      * @param Name Alphanumeric identifier of the entity
      */
     public void setName(String Name) {
-        setValue(HasName.Companion.getCOLUMNNAME_Name(), Name);
+        setValue(HasName.COLUMNNAME_Name, Name);
     }
 
     /**

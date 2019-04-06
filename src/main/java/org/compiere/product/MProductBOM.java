@@ -7,7 +7,6 @@ import org.idempiere.common.util.CLogger;
 import org.idempiere.common.util.Env;
 
 import java.util.List;
-import java.util.Properties;
 
 import static software.hsharp.core.util.DBKt.getSQLValue;
 
@@ -38,15 +37,10 @@ public class MProductBOM extends X_M_Product_BOM {
      *
      * @param ctx              context
      * @param M_Product_BOM_ID id
-     * @param trxName          transaction
      */
-    public MProductBOM(Properties ctx, int M_Product_BOM_ID) {
-        super(ctx, M_Product_BOM_ID);
+    public MProductBOM(int M_Product_BOM_ID) {
+        super(M_Product_BOM_ID);
         if (M_Product_BOM_ID == 0) {
-            //	setProductId (0);	//	parent
-            //	setLine (0);	// @SQL=SELECT NVL(MAX(Line),0)+10 AS DefaultValue FROM M_Product_BOM WHERE
-            // M_Product_ID=@M_Product_ID@
-            //	setProductBOMId(0);
             setBOMQty(Env.ZERO); // 1
         }
     } //	MProductBOM
@@ -54,12 +48,10 @@ public class MProductBOM extends X_M_Product_BOM {
     /**
      * Load Constructor
      *
-     * @param ctx     context
-     * @param rs      result set
-     * @param trxName transaction
+     * @param ctx context
      */
-    public MProductBOM(Properties ctx, Row row) {
-        super(ctx, row);
+    public MProductBOM(Row row) {
+        super(row);
     } //	MProductBOM
 
     /**
@@ -69,7 +61,7 @@ public class MProductBOM extends X_M_Product_BOM {
      * @return array of BOMs
      */
     public static MProductBOM[] getBOMLines(MProduct product) {
-        return getBOMLines(product.getCtx(), product.getProductId());
+        return getBOMLines(product.getProductId());
     } //	getBOMLines
 
     /**
@@ -77,14 +69,13 @@ public class MProductBOM extends X_M_Product_BOM {
      *
      * @param ctx          context
      * @param M_Product_ID product
-     * @param trxName      transaction
      * @return array of BOMs
      */
-    public static MProductBOM[] getBOMLines(Properties ctx, int M_Product_ID) {
+    public static MProductBOM[] getBOMLines(int M_Product_ID) {
         // FR: [ 2214883 ] Remove SQL code and Replace for Query - red1
         final String whereClause = "M_Product_ID=?";
         List<MProductBOM> list =
-                new Query(ctx, I_M_Product_BOM.Table_Name, whereClause)
+                new Query(I_M_Product_BOM.Table_Name, whereClause)
                         .setParameters(M_Product_ID)
                         .setOrderBy("Line")
                         .list();
@@ -134,7 +125,7 @@ public class MProductBOM extends X_M_Product_BOM {
      */
     protected boolean afterSave(boolean newRecord, boolean success) {
         if (!success) return success;
-        MProduct product = new MProduct(getCtx(), getProductId());
+        MProduct product = new MProduct(getProductId());
         if (product.isVerified()) {
             if (newRecord
                     || isValueChanged("M_ProductBOM_ID") // 	Product Line was changed
@@ -159,7 +150,7 @@ public class MProductBOM extends X_M_Product_BOM {
     @Override
     protected boolean afterDelete(boolean success) {
         if (!success) return success;
-        MProduct product = new MProduct(getCtx(), getProductId());
+        MProduct product = new MProduct(getProductId());
         if (product.isVerified()) {
             if (!hasActiveComponents(getProductId())) {
                 product.setIsVerified(false);

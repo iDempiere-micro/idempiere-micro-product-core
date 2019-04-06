@@ -6,8 +6,6 @@ import org.compiere.model.SetGetModel;
 import org.compiere.orm.SetGetUtil;
 import org.idempiere.common.util.CCache;
 
-import java.util.Properties;
-
 import static software.hsharp.core.util.DBKt.getSQLValueEx;
 
 /**
@@ -25,42 +23,39 @@ public class MAssetGroup extends X_A_Asset_Group {
      * Cache: ID -> MAssetGroup
      */
     private static CCache<Integer, MAssetGroup> s_cache =
-            new CCache<Integer, MAssetGroup>(I_A_Asset_Group.Table_Name, 10, 0);
+            new CCache<>(I_A_Asset_Group.Table_Name, 10, 0);
 
     /**
      * Default Constructor
      *
-     * @param ctx              context
      * @param A_Asset_Group_ID
      */
-    public MAssetGroup(Properties ctx, int A_Asset_Group_ID) {
-        super(ctx, A_Asset_Group_ID);
+    public MAssetGroup(int A_Asset_Group_ID) {
+        super(A_Asset_Group_ID);
     } //	MAssetGroup
 
     /**
      * Load Constructor
      *
      * @param ctx context
-     * @param rs  result set
      */
-    public MAssetGroup(Properties ctx, Row row) {
-        super(ctx, row);
+    public MAssetGroup(Row row) {
+        super(row);
     } //	MAssetGroup
 
     /**
      * Get Asset Group [CACHE]
      *
-     * @param ctx              context
      * @param A_Asset_Group_ID asset group id
      * @return asset group or null
      */
-    public static MAssetGroup get(Properties ctx, int A_Asset_Group_ID) {
+    public static MAssetGroup get(int A_Asset_Group_ID) {
         if (A_Asset_Group_ID <= 0) return null;
         // Try cache
         MAssetGroup ag = s_cache.get(A_Asset_Group_ID);
         if (ag != null) return ag;
         // Load
-        ag = new MAssetGroup(ctx, A_Asset_Group_ID);
+        ag = new MAssetGroup(A_Asset_Group_ID);
         if (ag != null && ag.getId() != A_Asset_Group_ID) ag = null;
         else s_cache.put(A_Asset_Group_ID, ag);
         //

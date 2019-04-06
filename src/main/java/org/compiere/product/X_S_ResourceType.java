@@ -5,7 +5,6 @@ import org.compiere.model.I_S_ResourceType;
 import org.compiere.orm.BasePONameValue;
 
 import java.sql.Timestamp;
-import java.util.Properties;
 
 /**
  * Generated Model for S_ResourceType
@@ -23,8 +22,8 @@ public class X_S_ResourceType extends BasePONameValue implements I_S_ResourceTyp
     /**
      * Standard Constructor
      */
-    public X_S_ResourceType(Properties ctx, int S_ResourceType_ID) {
-        super(ctx, S_ResourceType_ID);
+    public X_S_ResourceType(int S_ResourceType_ID) {
+        super(S_ResourceType_ID);
         /**
          * if (S_ResourceType_ID == 0) { setAllowUoMFractions (false); // N setTaxCategoryId (0);
          * setUOMId (0); setIsDateSlot (false); setIsSingleAssignment (false); setIsTimeSlot (false);
@@ -37,8 +36,8 @@ public class X_S_ResourceType extends BasePONameValue implements I_S_ResourceTyp
     /**
      * Load Constructor
      */
-    public X_S_ResourceType(Properties ctx, Row row) {
-        super(ctx, row);
+    public X_S_ResourceType(Row row) {
+        super(row);
     }
 
     /**

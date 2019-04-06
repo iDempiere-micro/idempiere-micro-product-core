@@ -2,8 +2,6 @@ package org.compiere.product;
 
 import kotliquery.Row;
 
-import java.util.Properties;
-
 /**
  * Lot Control Model
  *
@@ -19,30 +17,24 @@ public class MLotCtl extends X_M_LotCtl {
     /**
      * Standard Constructor
      *
-     * @param ctx         context
      * @param M_LotCtl_ID id
-     * @param trxName     transaction
      */
-    public MLotCtl(Properties ctx, int M_LotCtl_ID) {
-        super(ctx, M_LotCtl_ID);
+    public MLotCtl(int M_LotCtl_ID) {
+        super(M_LotCtl_ID);
         if (M_LotCtl_ID == 0) {
-            //	setLotControlId (0);
             setStartNo(1);
             setCurrentNext(1);
             setIncrementNo(1);
-            //	setName (null);
         }
     } //	MLotCtl
 
     /**
      * Load Constructor
      *
-     * @param ctx     context
-     * @param rs      result set
-     * @param trxName transaction
+     * @param ctx context
      */
-    public MLotCtl(Properties ctx, Row row) {
-        super(ctx, row);
+    public MLotCtl(Row row) {
+        super(row);
     } //	MLotCtl
 
     /**

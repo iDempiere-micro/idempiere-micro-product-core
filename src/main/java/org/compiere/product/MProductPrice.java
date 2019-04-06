@@ -7,7 +7,6 @@ import org.compiere.orm.Query;
 import org.idempiere.common.util.CLogger;
 
 import java.math.BigDecimal;
-import java.util.Properties;
 
 /**
  * Product Price
@@ -31,21 +30,18 @@ public class MProductPrice extends X_M_ProductPrice {
      *
      * @param ctx               context
      * @param M_ProductPrice_ID key
-     * @param trxName           transaction
      */
-    public MProductPrice(Properties ctx, int M_ProductPrice_ID) {
-        super(ctx, M_ProductPrice_ID);
+    public MProductPrice(int M_ProductPrice_ID) {
+        super(M_ProductPrice_ID);
     } //	MProductPrice
 
     /**
      * Load Constructor
      *
-     * @param ctx     context
-     * @param rs      result set
-     * @param trxName transaction
+     * @param ctx context
      */
-    public MProductPrice(Properties ctx, Row row) {
-        super(ctx, row);
+    public MProductPrice(Row row) {
+        super(row);
     } //	MProductPrice
 
     /**
@@ -54,11 +50,10 @@ public class MProductPrice extends X_M_ProductPrice {
      * @param ctx                    context
      * @param M_PriceList_Version_ID Price List Version
      * @param M_Product_ID           product
-     * @param trxName                transaction
      */
     public MProductPrice(
-            Properties ctx, int M_PriceList_Version_ID, int M_Product_ID) {
-        this(ctx, 0);
+            int M_PriceList_Version_ID, int M_Product_ID) {
+        this(0);
         setPriceListVersionId(M_PriceList_Version_ID); // 	FK
         setProductId(M_Product_ID); // 	FK
     } //	MProductPrice
@@ -75,14 +70,14 @@ public class MProductPrice extends X_M_ProductPrice {
      * @param trxName                transaction
      */
     public MProductPrice(
-            Properties ctx,
+
             int M_PriceList_Version_ID,
             int M_Product_ID,
             BigDecimal PriceList,
             BigDecimal PriceStd,
             BigDecimal PriceLimit,
             String trxName) {
-        this(ctx, M_PriceList_Version_ID, M_Product_ID);
+        this(M_PriceList_Version_ID, M_Product_ID);
         setPrices(PriceList, PriceStd, PriceLimit);
     } //	MProductPrice
 
@@ -101,7 +96,7 @@ public class MProductPrice extends X_M_ProductPrice {
             BigDecimal PriceList,
             BigDecimal PriceStd,
             BigDecimal PriceLimit) {
-        this(plv.getCtx(), 0);
+        this(0);
         setClientOrg(plv);
         setPriceListVersionId(plv.getPriceListVersionId());
         setProductId(M_Product_ID);
@@ -111,24 +106,20 @@ public class MProductPrice extends X_M_ProductPrice {
     /**
      * Get Product Price
      *
-     * @param ctx                    ctx
      * @param M_PriceList_Version_ID id
      * @param M_Product_ID           id
-     * @param trxName                trx
      * @return product price or null
      */
     public static MProductPrice get(
-            Properties ctx, int M_PriceList_Version_ID, int M_Product_ID) {
+            int M_PriceList_Version_ID, int M_Product_ID) {
         final String whereClause =
                 MProductPrice.COLUMNNAME_M_PriceList_Version_ID
                         + "=? AND "
                         + MProductPrice.COLUMNNAME_M_Product_ID
                         + "=?";
-        MProductPrice retValue =
-                new Query(ctx, I_M_ProductPrice.Table_Name, whereClause)
-                        .setParameters(M_PriceList_Version_ID, M_Product_ID)
-                        .first();
-        return retValue;
+        return new Query(I_M_ProductPrice.Table_Name, whereClause)
+                .setParameters(M_PriceList_Version_ID, M_Product_ID)
+                .first();
     } //	get
 
     /**

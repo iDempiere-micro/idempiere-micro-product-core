@@ -4,8 +4,6 @@ import kotliquery.Row;
 import org.compiere.model.I_M_Lot;
 import org.compiere.orm.BasePOName;
 
-import java.util.Properties;
-
 /**
  * Generated Model for M_Lot
  *
@@ -22,15 +20,15 @@ public class X_M_Lot extends BasePOName implements I_M_Lot {
     /**
      * Standard Constructor
      */
-    public X_M_Lot(Properties ctx, int M_Lot_ID) {
-        super(ctx, M_Lot_ID);
+    public X_M_Lot(int M_Lot_ID) {
+        super(M_Lot_ID);
     }
 
     /**
      * Load Constructor
      */
-    public X_M_Lot(Properties ctx, Row row) {
-        super(ctx, row);
+    public X_M_Lot(Row row) {
+        super(row);
     }
 
     /**

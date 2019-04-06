@@ -2,8 +2,6 @@ package org.compiere.product;
 
 import kotliquery.Row;
 
-import java.util.Properties;
-
 /**
  * Serial Number Control Model
  *
@@ -16,33 +14,28 @@ public class MSerNoCtl extends X_M_SerNoCtl {
      */
     private static final long serialVersionUID = -6746210722573475011L;
 
+
     /**
      * Standard Constructor
      *
-     * @param ctx           context
      * @param M_SerNoCtl_ID id
-     * @param trxName       transaction
      */
-    public MSerNoCtl(Properties ctx, int M_SerNoCtl_ID) {
-        super(ctx, M_SerNoCtl_ID);
+    public MSerNoCtl(int M_SerNoCtl_ID) {
+        super(M_SerNoCtl_ID);
         if (M_SerNoCtl_ID == 0) {
-            //	setSerNoCtl_ID (0);
             setStartNo(1);
             setCurrentNext(1);
             setIncrementNo(1);
-            //	setName (null);
         }
     } //	MSerNoCtl
 
     /**
      * Load Constructor
      *
-     * @param ctx     context
-     * @param rs      result set
-     * @param trxName transaction
+     * @param ctx context
      */
-    public MSerNoCtl(Properties ctx, Row row) {
-        super(ctx, row);
+    public MSerNoCtl(Row row) {
+        super(row);
     } //	MSerNoCtl
 
     /**

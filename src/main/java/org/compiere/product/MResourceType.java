@@ -8,7 +8,6 @@ import org.idempiere.common.util.CCache;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.util.Properties;
 
 /**
  * Resource Type Model
@@ -37,8 +36,8 @@ public class MResourceType extends X_S_ResourceType {
      * @param ctx               context
      * @param S_ResourceType_ID id
      */
-    public MResourceType(Properties ctx, int S_ResourceType_ID) {
-        super(ctx, S_ResourceType_ID);
+    public MResourceType(int S_ResourceType_ID) {
+        super(S_ResourceType_ID);
     } //	MResourceType
 
     /**
@@ -47,8 +46,8 @@ public class MResourceType extends X_S_ResourceType {
      * @param ctx context
      * @param rs  result set
      */
-    public MResourceType(Properties ctx, Row row) {
-        super(ctx, row);
+    public MResourceType(Row row) {
+        super(row);
     } //	MResourceType
 
     /**
@@ -58,12 +57,12 @@ public class MResourceType extends X_S_ResourceType {
      * @param S_ResourceType_ID
      * @return MResourceType
      */
-    public static MResourceType get(Properties ctx, int S_ResourceType_ID) {
+    public static MResourceType get(int S_ResourceType_ID) {
         if (S_ResourceType_ID <= 0) return null;
 
         MResourceType type = s_cache.get(S_ResourceType_ID);
         if (type == null) {
-            type = new MResourceType(ctx, S_ResourceType_ID);
+            type = new MResourceType(S_ResourceType_ID);
             if (type.getId() == S_ResourceType_ID) {
                 s_cache.put(S_ResourceType_ID, type);
             }
@@ -94,7 +93,6 @@ public class MResourceType extends X_S_ResourceType {
         if (!newRecord) {
             MProduct[] products =
                     MProduct.get(
-                            getCtx(),
                             "S_Resource_ID IN "
                                     + "(SELECT S_Resource_ID FROM S_Resource WHERE S_ResourceType_ID="
                                     + getResourceTypeId()

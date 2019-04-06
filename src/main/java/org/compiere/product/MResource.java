@@ -5,8 +5,6 @@ import org.compiere.model.I_S_Resource;
 import org.idempiere.common.exceptions.AdempiereException;
 import org.idempiere.common.util.CCache;
 
-import java.util.Properties;
-
 /**
  * Resource Model
  *
@@ -43,18 +41,17 @@ public class MResource extends X_S_Resource {
      * @param ctx           context
      * @param S_Resource_ID id
      */
-    public MResource(Properties ctx, int S_Resource_ID) {
-        super(ctx, S_Resource_ID);
+    public MResource(int S_Resource_ID) {
+        super(S_Resource_ID);
     } //	MResource
 
     /**
      * Load Constructor
      *
      * @param ctx context
-     * @param rs  result set
      */
-    public MResource(Properties ctx, Row row) {
-        super(ctx, row);
+    public MResource(Row row) {
+        super(row);
     } //	MResource
 
     /**
@@ -64,11 +61,11 @@ public class MResource extends X_S_Resource {
      * @param S_Resource_ID
      * @return MResource
      */
-    public static MResource get(Properties ctx, int S_Resource_ID) {
+    public static MResource get(int S_Resource_ID) {
         if (S_Resource_ID <= 0) return null;
         MResource r = s_cache.get(S_Resource_ID);
         if (r == null) {
-            r = new MResource(ctx, S_Resource_ID);
+            r = new MResource(S_Resource_ID);
             if (r.getId() == S_Resource_ID) {
                 s_cache.put(S_Resource_ID, r);
             }
@@ -84,10 +81,10 @@ public class MResource extends X_S_Resource {
     public MResourceType getResourceType() {
         // Use cache if we are outside transaction:
         if (null == null && getResourceTypeId() > 0)
-            return MResourceType.get(getCtx(), getResourceTypeId());
+            return MResourceType.get(getResourceTypeId());
         //
         if (m_resourceType == null && getResourceTypeId() != 0) {
-            m_resourceType = new MResourceType(getCtx(), getResourceTypeId());
+            m_resourceType = new MResourceType(getResourceTypeId());
         }
         return m_resourceType;
     } //	getResourceType
@@ -99,8 +96,7 @@ public class MResource extends X_S_Resource {
      */
     public MProduct getProduct() {
         if (m_product == null) {
-            m_product = MProduct.forS_ResourceId(getCtx(), getResourceId());
-        } else {
+            m_product = MProduct.forS_ResourceId(getResourceId());
         }
         return m_product;
     } //	getProduct
@@ -145,14 +141,12 @@ public class MResource extends X_S_Resource {
 
     @Override
     public String toString() {
-        StringBuffer sb =
-                new StringBuffer("MResource[")
-                        .append(getId())
-                        .append(", Value=")
-                        .append(getValue())
-                        .append(", Name=")
-                        .append(getName())
-                        .append("]");
-        return sb.toString();
+        return "MResource[" +
+                getId() +
+                ", Value=" +
+                getValue() +
+                ", Name=" +
+                getName() +
+                "]";
     }
 } //	MResource

@@ -4,8 +4,6 @@ import kotliquery.Row;
 import org.compiere.model.I_M_Attribute;
 import org.compiere.orm.BasePOName;
 
-import java.util.Properties;
-
 /**
  * Generated Model for M_Attribute
  *
@@ -26,15 +24,15 @@ public class X_M_Attribute extends BasePOName implements I_M_Attribute {
     /**
      * Standard Constructor
      */
-    public X_M_Attribute(Properties ctx, int M_Attribute_ID) {
-        super(ctx, M_Attribute_ID);
+    public X_M_Attribute(int M_Attribute_ID) {
+        super(M_Attribute_ID);
     }
 
     /**
      * Load Constructor
      */
-    public X_M_Attribute(Properties ctx, Row row) {
-        super(ctx, row);
+    public X_M_Attribute(Row row) {
+        super(row);
     }
 
     /**

@@ -2,8 +2,6 @@ package org.compiere.product;
 
 import kotliquery.Row;
 
-import java.util.Properties;
-
 /**
  * Product Attribute Value
  *
@@ -19,27 +17,17 @@ public class MAttributeValue extends X_M_AttributeValue {
     /**
      * Constructor
      *
-     * @param ctx                 context
      * @param M_AttributeValue_ID id
-     * @param trxName             transaction
      */
-    public MAttributeValue(Properties ctx, int M_AttributeValue_ID) {
-        super(ctx, M_AttributeValue_ID);
-        /**
-         * if (M_AttributeValue_ID == 0) { setAttributeValue_ID (0); setMAttributeID (0); setName
-         * (null); setValue (null); }
-         */
+    public MAttributeValue(int M_AttributeValue_ID) {
+        super(M_AttributeValue_ID);
     } //	MAttributeValue
 
     /**
      * Load Constructor
-     *
-     * @param ctx     context
-     * @param rs      result set
-     * @param trxName transaction
      */
-    public MAttributeValue(Properties ctx, Row row) {
-        super(ctx, row);
+    public MAttributeValue(Row row) {
+        super(row);
     } //	MAttributeValue
 
     /**

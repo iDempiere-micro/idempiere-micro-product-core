@@ -6,7 +6,6 @@ import org.compiere.orm.MTable;
 import org.compiere.orm.PO;
 
 import java.sql.Timestamp;
-import java.util.Properties;
 
 /**
  * Generated Model for M_AttributeSetInstance
@@ -24,8 +23,8 @@ public class X_M_AttributeSetInstance extends PO implements I_M_AttributeSetInst
     /**
      * Standard Constructor
      */
-    public X_M_AttributeSetInstance(Properties ctx, int M_AttributeSetInstance_ID) {
-        super(ctx, M_AttributeSetInstance_ID);
+    public X_M_AttributeSetInstance(int M_AttributeSetInstance_ID) {
+        super(M_AttributeSetInstance_ID);
         /**
          * if (M_AttributeSetInstance_ID == 0) { setAttributeSetId (0); setAttributeSetInstanceId
          * (0); }
@@ -35,8 +34,8 @@ public class X_M_AttributeSetInstance extends PO implements I_M_AttributeSetInst
     /**
      * Load Constructor
      */
-    public X_M_AttributeSetInstance(Properties ctx, Row row) {
-        super(ctx, row);
+    public X_M_AttributeSetInstance(Row row) {
+        super(row);
     }
 
     /**
@@ -109,7 +108,7 @@ public class X_M_AttributeSetInstance extends PO implements I_M_AttributeSetInst
 
     public org.compiere.model.I_M_AttributeSet getMAttributeSet() throws RuntimeException {
         return (org.compiere.model.I_M_AttributeSet)
-                MTable.get(getCtx(), org.compiere.model.I_M_AttributeSet.Table_Name)
+                MTable.get(org.compiere.model.I_M_AttributeSet.Table_Name)
                         .getPO(getAttributeSetId());
     }
 

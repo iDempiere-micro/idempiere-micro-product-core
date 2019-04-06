@@ -11,7 +11,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 import static software.hsharp.core.util.DBKt.executeUpdate;
 import static software.hsharp.core.util.DBKt.prepareStatement;
@@ -50,12 +49,10 @@ public class MAttributeSet extends X_M_AttributeSet {
     /**
      * Standard constructor
      *
-     * @param ctx               context
      * @param M_AttributeSet_ID id
-     * @param trxName           transaction
      */
-    public MAttributeSet(Properties ctx, int M_AttributeSet_ID) {
-        super(ctx, M_AttributeSet_ID);
+    public MAttributeSet(int M_AttributeSet_ID) {
+        super(M_AttributeSet_ID);
         if (M_AttributeSet_ID == 0) {
             //	setName (null);
             setIsGuaranteeDate(false);
@@ -72,12 +69,10 @@ public class MAttributeSet extends X_M_AttributeSet {
     /**
      * Load constructor
      *
-     * @param ctx     context
-     * @param rs      result set
-     * @param trxName transaction
+     * @param ctx context
      */
-    public MAttributeSet(Properties ctx, Row row) {
-        super(ctx, row);
+    public MAttributeSet(Row row) {
+        super(row);
     } //	MAttributeSet
 
     /**
@@ -87,11 +82,11 @@ public class MAttributeSet extends X_M_AttributeSet {
      * @param M_AttributeSet_ID id
      * @return MAttributeSet
      */
-    public static MAttributeSet get(Properties ctx, int M_AttributeSet_ID) {
+    public static MAttributeSet get(int M_AttributeSet_ID) {
         Integer key = new Integer(M_AttributeSet_ID);
         MAttributeSet retValue = s_cache.get(key);
         if (retValue != null) return retValue;
-        retValue = new MAttributeSet(ctx, M_AttributeSet_ID);
+        retValue = new MAttributeSet(M_AttributeSet_ID);
         if (retValue.getId() != 0) s_cache.put(key, retValue);
         return retValue;
     } //	get
@@ -121,7 +116,7 @@ public class MAttributeSet extends X_M_AttributeSet {
                 pstmt.setString(2, instanceAttributes ? "Y" : "N");
                 rs = pstmt.executeQuery();
                 while (rs.next()) {
-                    MAttribute ma = new MAttribute(getCtx(), rs.getInt(1));
+                    MAttribute ma = new MAttribute(rs.getInt(1));
                     list.add(ma);
                 }
             } catch (SQLException ex) {
@@ -195,7 +190,7 @@ public class MAttributeSet extends X_M_AttributeSet {
         if (m_excludes == null) {
             final String whereClause = X_M_AttributeSetExclude.COLUMNNAME_M_AttributeSet_ID + "=?";
             List<X_M_AttributeSetExclude> list =
-                    new Query(getCtx(), X_M_AttributeSetExclude.Table_Name, whereClause)
+                    new Query(X_M_AttributeSetExclude.Table_Name, whereClause)
                             .setParameters(getId())
                             .setOnlyActiveRecords(true)
                             .list();

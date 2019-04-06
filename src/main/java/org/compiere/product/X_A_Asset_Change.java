@@ -4,8 +4,6 @@ import kotliquery.Row;
 import org.compiere.model.I_A_Asset_Change;
 import org.compiere.orm.PO;
 
-import java.util.Properties;
-
 /**
  * Generated Model for A_Asset_Change
  *
@@ -22,8 +20,8 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change {
     /**
      * Standard Constructor
      */
-    public X_A_Asset_Change(Properties ctx, int A_Asset_Change_ID) {
-        super(ctx, A_Asset_Change_ID);
+    public X_A_Asset_Change(int A_Asset_Change_ID) {
+        super(A_Asset_Change_ID);
         /**
          * if (A_Asset_Change_ID == 0) { setA_Asset_Change_ID (0); setA_Asset_ID (0); setAssetValueAmt
          * (Env.ZERO); // 0 setChangeType (null); setTextDetails (null); }
@@ -33,8 +31,8 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change {
     /**
      * Load Constructor
      */
-    public X_A_Asset_Change(Properties ctx, Row row) {
-        super(ctx, row);
+    public X_A_Asset_Change(Row row) {
+        super(row);
     }
 
     /**

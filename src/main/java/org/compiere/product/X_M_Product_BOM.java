@@ -6,7 +6,6 @@ import org.compiere.orm.PO;
 import org.idempiere.common.util.Env;
 
 import java.math.BigDecimal;
-import java.util.Properties;
 
 /**
  * Generated Model for M_Product_BOM
@@ -24,8 +23,8 @@ public class X_M_Product_BOM extends PO implements I_M_Product_BOM {
     /**
      * Standard Constructor
      */
-    public X_M_Product_BOM(Properties ctx, int M_Product_BOM_ID) {
-        super(ctx, M_Product_BOM_ID);
+    public X_M_Product_BOM(int M_Product_BOM_ID) {
+        super(M_Product_BOM_ID);
         /**
          * if (M_Product_BOM_ID == 0) { setBOMQty (Env.ZERO); // 1 setLine (0); // @SQL=SELECT
          * NVL(MAX(Line),0)+10 AS DefaultValue FROM M_Product_BOM WHERE M_Product_ID=@M_Product_ID@
@@ -36,8 +35,8 @@ public class X_M_Product_BOM extends PO implements I_M_Product_BOM {
     /**
      * Load Constructor
      */
-    public X_M_Product_BOM(Properties ctx, Row row) {
-        super(ctx, row);
+    public X_M_Product_BOM(Row row) {
+        super(row);
     }
 
     /**

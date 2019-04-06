@@ -11,7 +11,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Iterator;
-import java.util.Properties;
 import java.util.Vector;
 import java.util.logging.Level;
 
@@ -48,13 +47,10 @@ public class MProductCategory extends X_M_Product_Category {
      *
      * @param ctx                   context
      * @param M_Product_Category_ID id
-     * @param trxName               transaction
      */
-    public MProductCategory(Properties ctx, int M_Product_Category_ID) {
-        super(ctx, M_Product_Category_ID);
+    public MProductCategory(int M_Product_Category_ID) {
+        super(M_Product_Category_ID);
         if (M_Product_Category_ID == 0) {
-            //	setName (null);
-            //	setValue (null);
             setMMPolicy(MMPOLICY_FiFo); // F
             setPlannedMargin(Env.ZERO);
             setIsDefault(false);
@@ -65,12 +61,10 @@ public class MProductCategory extends X_M_Product_Category {
     /**
      * Load Constructor
      *
-     * @param ctx     context
-     * @param rs      result set
-     * @param trxName transaction
+     * @param ctx context
      */
-    public MProductCategory(Properties ctx, Row row) {
-        super(ctx, row);
+    public MProductCategory(Row row) {
+        super(row);
     } //	MProductCategory
 
     /**
@@ -80,11 +74,11 @@ public class MProductCategory extends X_M_Product_Category {
      * @param M_Product_Category_ID id
      * @return category
      */
-    public static MProductCategory get(Properties ctx, int M_Product_Category_ID) {
+    public static MProductCategory get(int M_Product_Category_ID) {
         Integer ii = M_Product_Category_ID;
         MProductCategory retValue = s_cache.get(ii);
         if (retValue != null) return retValue;
-        retValue = new MProductCategory(ctx, M_Product_Category_ID);
+        retValue = new MProductCategory(M_Product_Category_ID);
         if (retValue.getId() != 0) s_cache.put(M_Product_Category_ID, retValue);
         return retValue;
     } //	get
@@ -145,7 +139,7 @@ public class MProductCategory extends X_M_Product_Category {
      */
     protected boolean beforeSave(boolean newRecord) {
         if (hasLoopInTree()) {
-            log.saveError("Error", Msg.getMsg(getCtx(), "ProductCategoryLoopDetected"));
+            log.saveError("Error", Msg.getMsg("ProductCategoryLoopDetected"));
             return false;
         }
 
@@ -169,16 +163,13 @@ public class MProductCategory extends X_M_Product_Category {
     /**
      * Loop detection of product category tree.
      *
-     * @param productCategoryId
-     * @param newParentCategoryId
-     * @param newParentCategoryId New Parent Category
      * @return "" or error message
      */
     public boolean hasLoopInTree() {
         int productCategoryId = getProductCategoryId();
         int newParentCategoryId = getProductCategoryParentId();
         //	get values
-        ResultSet rs = null;
+        ResultSet rs;
         PreparedStatement pstmt = null;
         String sql =
                 " SELECT M_Product_Category_ID, M_Product_Category_Parent_ID FROM M_Product_Category";
@@ -195,9 +186,6 @@ public class MProductCategory extends X_M_Product_Category {
         } catch (SQLException e) {
             s_log.log(Level.SEVERE, sql, e);
             return true;
-        } finally {
-            rs = null;
-            pstmt = null;
         }
         return false;
     } //	hasLoopInTree

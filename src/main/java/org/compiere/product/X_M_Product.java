@@ -9,7 +9,6 @@ import org.compiere.orm.PO;
 import org.idempiere.common.util.Env;
 
 import java.math.BigDecimal;
-import java.util.Properties;
 
 /**
  * Generated Model for M_Product
@@ -27,15 +26,15 @@ public class X_M_Product extends PO {
     /**
      * Standard Constructor
      */
-    public X_M_Product(Properties ctx, int M_Product_ID) {
-        super(ctx, M_Product_ID);
+    public X_M_Product(int M_Product_ID) {
+        super(M_Product_ID);
     }
 
     /**
      * Load Constructor
      */
-    public X_M_Product(Properties ctx, Row row) {
-        super(ctx, row);
+    public X_M_Product(Row row) {
+        super(row);
     } //	MProduct
 
     /**
@@ -64,7 +63,7 @@ public class X_M_Product extends PO {
 
     public org.compiere.model.I_C_TaxCategory getTaxCategory() throws RuntimeException {
         return (org.compiere.model.I_C_TaxCategory)
-                MTable.get(getCtx(), org.compiere.model.I_C_TaxCategory.Table_Name)
+                MTable.get(org.compiere.model.I_C_TaxCategory.Table_Name)
                         .getPO(getTaxCategoryId());
     }
 
@@ -375,7 +374,7 @@ public class X_M_Product extends PO {
 
     public org.compiere.model.I_M_AttributeSet getMAttributeSet() throws RuntimeException {
         return (org.compiere.model.I_M_AttributeSet)
-                MTable.get(getCtx(), I_M_AttributeSet.Table_Name)
+                MTable.get(I_M_AttributeSet.Table_Name)
                         .getPO(getAttributeSetId());
     }
 
@@ -428,7 +427,7 @@ public class X_M_Product extends PO {
 
     public org.compiere.model.I_M_Product_Category getProductCategory() throws RuntimeException {
         return (org.compiere.model.I_M_Product_Category)
-                MTable.get(getCtx(), org.compiere.model.I_M_Product_Category.Table_Name)
+                MTable.get(org.compiere.model.I_M_Product_Category.Table_Name)
                         .getPO(getProductCategoryId());
     }
 
@@ -472,7 +471,7 @@ public class X_M_Product extends PO {
      * @return Alphanumeric identifier of the entity
      */
     public String getName() {
-        return (String) getValue(HasName.Companion.getCOLUMNNAME_Name());
+        return (String) getValue(HasName.COLUMNNAME_Name);
     }
 
     /**
@@ -481,7 +480,7 @@ public class X_M_Product extends PO {
      * @param Name Alphanumeric identifier of the entity
      */
     public void setName(String Name) {
-        setValue(HasName.Companion.getCOLUMNNAME_Name(), Name);
+        setValue(HasName.COLUMNNAME_Name, Name);
     }
 
     /**

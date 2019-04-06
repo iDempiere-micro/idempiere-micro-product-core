@@ -8,7 +8,6 @@ import org.idempiere.common.util.Env;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
-import java.util.Properties;
 
 /**
  * Generated Model for I_PriceList
@@ -26,16 +25,16 @@ public class X_I_PriceList extends PO implements I_I_PriceList {
     /**
      * Standard Constructor
      */
-    public X_I_PriceList(Properties ctx, int I_PriceList_ID) {
-        super(ctx, I_PriceList_ID);
+    public X_I_PriceList(int I_PriceList_ID) {
+        super(I_PriceList_ID);
         /** if (I_PriceList_ID == 0) { setIsImported (false); // N setI_PriceList_ID (0); } */
     }
 
     /**
      * Load Constructor
      */
-    public X_I_PriceList(Properties ctx, Row row) {
-        super(ctx, row);
+    public X_I_PriceList(Row row) {
+        super(row);
     }
 
     /**
@@ -185,7 +184,7 @@ public class X_I_PriceList extends PO implements I_I_PriceList {
      * @return Alphanumeric identifier of the entity
      */
     public String getName() {
-        return (String) getValue(HasName.Companion.getCOLUMNNAME_Name());
+        return (String) getValue(HasName.COLUMNNAME_Name);
     }
 
     /**

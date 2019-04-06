@@ -5,8 +5,6 @@ import org.compiere.model.I_M_PriceList;
 import org.compiere.orm.TimeUtil;
 import org.compiere.util.DisplayType;
 
-import java.util.Properties;
-
 /**
  * Price List Version Model
  *
@@ -24,27 +22,18 @@ public class MPriceListVersion extends X_M_PriceList_Version {
      *
      * @param ctx                    context
      * @param M_PriceList_Version_ID id
-     * @param trxName                transaction
      */
-    public MPriceListVersion(Properties ctx, int M_PriceList_Version_ID) {
-        super(ctx, M_PriceList_Version_ID);
-        if (M_PriceList_Version_ID == 0) {
-            //	setName (null);	// @#Date@
-            //	setPriceListId (0);
-            //	setValidFrom (TimeUtil.getDay(null));	// @#Date@
-            //	setDiscountSchemaId (0);
-        }
+    public MPriceListVersion(int M_PriceList_Version_ID) {
+        super(M_PriceList_Version_ID);
     } //	MPriceListVersion
 
     /**
      * Load Constructor
      *
-     * @param ctx     context
-     * @param rs      result set
-     * @param trxName transaction
+     * @param ctx context
      */
-    public MPriceListVersion(Properties ctx, Row row) {
-        super(ctx, row);
+    public MPriceListVersion(Row row) {
+        super(row);
     } //	MPriceListVersion
 
     /**
@@ -53,7 +42,7 @@ public class MPriceListVersion extends X_M_PriceList_Version {
      * @param pl parent
      */
     public MPriceListVersion(I_M_PriceList pl) {
-        this(pl.getCtx(), 0);
+        this(0);
         setClientOrg(pl);
         setPriceListId(pl.getPriceListId());
     } //	MPriceListVersion

@@ -4,8 +4,6 @@ import kotliquery.Row;
 import org.compiere.model.I_M_LotCtl;
 import org.compiere.orm.BasePOName;
 
-import java.util.Properties;
-
 /**
  * Generated Model for M_LotCtl
  *
@@ -22,8 +20,8 @@ public class X_M_LotCtl extends BasePOName implements I_M_LotCtl {
     /**
      * Standard Constructor
      */
-    public X_M_LotCtl(Properties ctx, int M_LotCtl_ID) {
-        super(ctx, M_LotCtl_ID);
+    public X_M_LotCtl(int M_LotCtl_ID) {
+        super(M_LotCtl_ID);
         /**
          * if (M_LotCtl_ID == 0) { setCurrentNext (0); // 100 setIncrementNo (0); // 1 setLotControlId
          * (0); setName (null); setStartNo (0); // 100 }
@@ -33,8 +31,8 @@ public class X_M_LotCtl extends BasePOName implements I_M_LotCtl {
     /**
      * Load Constructor
      */
-    public X_M_LotCtl(Properties ctx, Row row) {
-        super(ctx, row);
+    public X_M_LotCtl(Row row) {
+        super(row);
     }
 
     /**

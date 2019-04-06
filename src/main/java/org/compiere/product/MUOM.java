@@ -9,7 +9,6 @@ import org.idempiere.common.util.Env;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Properties;
 
 import static software.hsharp.core.util.DBKt.getSQLValue;
 
@@ -64,12 +63,10 @@ public class MUOM extends X_C_UOM {
     /**
      * ************************************************************************ Constructor.
      *
-     * @param ctx      context
      * @param C_UOM_ID UOM ID
-     * @param trxName  transaction
      */
-    public MUOM(Properties ctx, int C_UOM_ID) {
-        super(ctx, C_UOM_ID);
+    public MUOM(int C_UOM_ID) {
+        super(C_UOM_ID);
         if (C_UOM_ID == 0) {
             //	setName (null);
             //	setX12DE355 (null);
@@ -79,46 +76,40 @@ public class MUOM extends X_C_UOM {
         }
     } //	UOM
 
-    /** ********************************************************************** */
-
     /**
      * Load Constructor.
-     *
-     * @param ctx context
      */
-    public MUOM(Properties ctx, Row row) {
-        super(ctx, row);
+    public MUOM(Row row) {
+        super(row);
     } //	UOM
 
     /**
      * Get Default C_UOM_ID
      *
-     * @param ctx context for AD_Client
      * @return C_UOM_ID
      */
-    public static int getDefault_UOMId(Properties ctx) {
+    public static int getDefault_UOMId() {
         String sql =
                 "SELECT C_UOM_ID "
                         + "FROM C_UOM "
                         + "WHERE AD_Client_ID IN (0,?) "
                         + "ORDER BY IsDefault DESC, AD_Client_ID DESC, C_UOM_ID";
-        return getSQLValue(sql, Env.getClientId(ctx));
+        return getSQLValue(sql, Env.getClientId());
     } //	getDefault_UOM_ID
 
     /**
      * Get UOM from Cache
      *
-     * @param ctx      context
      * @param C_UOM_ID ID
      * @return UOM
      */
-    public static MUOM get(Properties ctx, int C_UOM_ID) {
-        if (s_cache.size() == 0) loadUOMs(ctx);
+    public static MUOM get(int C_UOM_ID) {
+        if (s_cache.size() == 0) loadUOMs();
         //
         MUOM uom = s_cache.get(C_UOM_ID);
         if (uom != null) return uom;
         //
-        uom = new MUOM(ctx, C_UOM_ID);
+        uom = new MUOM(C_UOM_ID);
         s_cache.put(C_UOM_ID, uom);
         return uom;
     } //	get
@@ -126,23 +117,20 @@ public class MUOM extends X_C_UOM {
     /**
      * Get Precision
      *
-     * @param ctx      context
      * @param C_UOM_ID ID
      * @return Precision
      */
-    public static int getPrecision(Properties ctx, int C_UOM_ID) {
-        MUOM uom = get(ctx, C_UOM_ID);
+    public static int getPrecision(int C_UOM_ID) {
+        MUOM uom = get(C_UOM_ID);
         return uom.getStdPrecision();
     } //	getPrecision
 
     /**
      * Load All UOMs
-     *
-     * @param ctx context
      */
-    private static void loadUOMs(Properties ctx) {
+    private static void loadUOMs() {
         List<MUOM> list =
-                new Query(ctx, I_C_UOM.Table_Name, "IsActive='Y'")
+                new Query(I_C_UOM.Table_Name, "IsActive='Y'")
                         .setApplyAccessFilter(MRole.SQL_NOTQUALIFIED, MRole.SQL_RO)
                         .list();
         //
@@ -157,9 +145,7 @@ public class MUOM extends X_C_UOM {
      * @return info
      */
     public String toString() {
-        StringBuilder sb = new StringBuilder("UOM[");
-        sb.append("ID=").append(getId()).append(", Name=").append(getName());
-        return sb.toString();
+        return "UOM[" + "ID=" + getId() + ", Name=" + getName();
     } //	toString
 
     /**

@@ -7,7 +7,6 @@ import org.compiere.orm.MTable;
 import org.compiere.orm.PO;
 
 import java.sql.Timestamp;
-import java.util.Properties;
 
 /**
  * Generated Model for M_PriceList_Version
@@ -25,8 +24,8 @@ public class X_M_PriceList_Version extends PO implements I_M_PriceList_Version {
     /**
      * Standard Constructor
      */
-    public X_M_PriceList_Version(Properties ctx, int M_PriceList_Version_ID) {
-        super(ctx, M_PriceList_Version_ID);
+    public X_M_PriceList_Version(int M_PriceList_Version_ID) {
+        super(M_PriceList_Version_ID);
         /**
          * if (M_PriceList_Version_ID == 0) { setDiscountSchemaId (0); setPriceListId (0);
          * setPriceListVersionId (0); setName (null); // @#Date@ setValidFrom (new Timestamp(
@@ -37,8 +36,8 @@ public class X_M_PriceList_Version extends PO implements I_M_PriceList_Version {
     /**
      * Load Constructor
      */
-    public X_M_PriceList_Version(Properties ctx, Row row) {
-        super(ctx, row);
+    public X_M_PriceList_Version(Row row) {
+        super(row);
     }
 
     /**
@@ -67,7 +66,7 @@ public class X_M_PriceList_Version extends PO implements I_M_PriceList_Version {
 
     public org.compiere.model.I_M_PriceList getPriceList() throws RuntimeException {
         return (org.compiere.model.I_M_PriceList)
-                MTable.get(getCtx(), org.compiere.model.I_M_PriceList.Table_Name)
+                MTable.get(org.compiere.model.I_M_PriceList.Table_Name)
                         .getPO(getPriceListId());
     }
 
@@ -109,7 +108,7 @@ public class X_M_PriceList_Version extends PO implements I_M_PriceList_Version {
      * @return Alphanumeric identifier of the entity
      */
     public String getName() {
-        return (String) getValue(HasName.Companion.getCOLUMNNAME_Name());
+        return (String) getValue(HasName.COLUMNNAME_Name);
     }
 
     /**
@@ -118,7 +117,7 @@ public class X_M_PriceList_Version extends PO implements I_M_PriceList_Version {
      * @param Name Alphanumeric identifier of the entity
      */
     public void setName(String Name) {
-        setValue(HasName.Companion.getCOLUMNNAME_Name(), Name);
+        setValue(HasName.COLUMNNAME_Name, Name);
     }
 
     /**

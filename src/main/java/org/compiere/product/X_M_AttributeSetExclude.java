@@ -4,8 +4,6 @@ import kotliquery.Row;
 import org.compiere.model.I_M_AttributeSetExclude;
 import org.compiere.orm.PO;
 
-import java.util.Properties;
-
 /**
  * Generated Model for M_AttributeSetExclude
  *
@@ -22,8 +20,8 @@ public class X_M_AttributeSetExclude extends PO implements I_M_AttributeSetExclu
     /**
      * Standard Constructor
      */
-    public X_M_AttributeSetExclude(Properties ctx, int M_AttributeSetExclude_ID) {
-        super(ctx, M_AttributeSetExclude_ID);
+    public X_M_AttributeSetExclude(int M_AttributeSetExclude_ID) {
+        super(M_AttributeSetExclude_ID);
         /**
          * if (M_AttributeSetExclude_ID == 0) { setColumnTableId (0); setIsSOTrx (false);
          * setAttributeSetExclude_ID (0); setAttributeSetId (0); }
@@ -33,8 +31,8 @@ public class X_M_AttributeSetExclude extends PO implements I_M_AttributeSetExclu
     /**
      * Load Constructor
      */
-    public X_M_AttributeSetExclude(Properties ctx, Row row) {
-        super(ctx, row);
+    public X_M_AttributeSetExclude(Row row) {
+        super(row);
     }
 
     /**

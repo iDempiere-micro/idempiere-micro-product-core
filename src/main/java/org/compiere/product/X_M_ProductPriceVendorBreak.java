@@ -5,7 +5,6 @@ import org.compiere.model.I_M_ProductPriceVendorBreak;
 import org.compiere.orm.PO;
 
 import java.math.BigDecimal;
-import java.util.Properties;
 
 public class X_M_ProductPriceVendorBreak extends PO
         implements I_M_ProductPriceVendorBreak {
@@ -19,8 +18,8 @@ public class X_M_ProductPriceVendorBreak extends PO
      * Standard Constructor
      */
     public X_M_ProductPriceVendorBreak(
-            Properties ctx, int M_ProductPriceVendorBreak_ID) {
-        super(ctx, M_ProductPriceVendorBreak_ID);
+            int M_ProductPriceVendorBreak_ID) {
+        super(M_ProductPriceVendorBreak_ID);
         /**
          * if (M_ProductPriceVendorBreak_ID == 0) { setBreakValue (Env.ZERO); setPriceListVersionId
          * (0); setProductId (0); setProductPriceVendorBreak_ID (0); setPriceLimit (Env.ZERO);
@@ -31,8 +30,8 @@ public class X_M_ProductPriceVendorBreak extends PO
     /**
      * Load Constructor
      */
-    public X_M_ProductPriceVendorBreak(Properties ctx, Row row) {
-        super(ctx, row);
+    public X_M_ProductPriceVendorBreak(Row row) {
+        super(row);
     }
 
     /**

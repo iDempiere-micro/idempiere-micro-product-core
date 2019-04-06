@@ -4,8 +4,6 @@ import kotliquery.Row;
 import org.compiere.model.I_S_ExpenseType;
 import org.compiere.orm.BasePONameValue;
 
-import java.util.Properties;
-
 /**
  * Generated Model for S_ExpenseType
  *
@@ -22,8 +20,8 @@ public class X_S_ExpenseType extends BasePONameValue implements I_S_ExpenseType 
     /**
      * Standard Constructor
      */
-    public X_S_ExpenseType(Properties ctx, int S_ExpenseType_ID) {
-        super(ctx, S_ExpenseType_ID);
+    public X_S_ExpenseType(int S_ExpenseType_ID) {
+        super(S_ExpenseType_ID);
         /**
          * if (S_ExpenseType_ID == 0) { setTaxCategoryId (0); setUOMId (0); setIsInvoiced (false);
          * setProductCategoryId (0); setName (null); setExpenseTypeId (0); setValue (null); }
@@ -33,8 +31,8 @@ public class X_S_ExpenseType extends BasePONameValue implements I_S_ExpenseType 
     /**
      * Load Constructor
      */
-    public X_S_ExpenseType(Properties ctx, Row row) {
-        super(ctx, row);
+    public X_S_ExpenseType(Row row) {
+        super(row);
     }
 
     /**

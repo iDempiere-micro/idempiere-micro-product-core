@@ -7,7 +7,6 @@ import org.compiere.orm.MTable;
 import org.idempiere.common.util.Env;
 
 import java.math.BigDecimal;
-import java.util.Properties;
 
 /**
  * Generated Model for M_Product_Category
@@ -30,15 +29,15 @@ public class X_M_Product_Category extends BasePONameValue
     /**
      * Standard Constructor
      */
-    public X_M_Product_Category(Properties ctx, int M_Product_Category_ID) {
-        super(ctx, M_Product_Category_ID);
+    public X_M_Product_Category(int M_Product_Category_ID) {
+        super(M_Product_Category_ID);
     }
 
     /**
      * Load Constructor
      */
-    public X_M_Product_Category(Properties ctx, Row row) {
-        super(ctx, row);
+    public X_M_Product_Category(Row row) {
+        super(row);
     }
 
     /**
@@ -57,7 +56,7 @@ public class X_M_Product_Category extends BasePONameValue
 
     public org.compiere.model.I_A_Asset_Group getAssetGroup() throws RuntimeException {
         return (org.compiere.model.I_A_Asset_Group)
-                MTable.get(getCtx(), org.compiere.model.I_A_Asset_Group.Table_Name)
+                MTable.get(org.compiere.model.I_A_Asset_Group.Table_Name)
                         .getPO(getAssetGroupId());
     }
 

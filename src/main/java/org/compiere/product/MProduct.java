@@ -4,7 +4,7 @@ import kotliquery.Row;
 import org.compiere.model.I_C_UOM;
 import org.compiere.model.I_M_Product;
 import org.compiere.model.I_M_StorageOnHand;
-import org.compiere.orm.MClient;
+import org.compiere.orm.MClientKt;
 import org.compiere.orm.MTable;
 import org.compiere.orm.MTree_Base;
 import org.compiere.orm.Query;
@@ -13,7 +13,6 @@ import org.idempiere.common.exceptions.AdempiereException;
 import org.idempiere.common.util.CCache;
 
 import java.util.List;
-import java.util.Properties;
 import java.util.logging.Level;
 
 import static software.hsharp.core.util.DBKt.executeUpdate;
@@ -52,18 +51,11 @@ public class MProduct extends X_M_Product implements I_M_Product {
     /**
      * ************************************************************************ Standard Constructor
      *
-     * @param ctx          context
      * @param M_Product_ID id
      */
-    public MProduct(Properties ctx, int M_Product_ID) {
-        super(ctx, M_Product_ID);
+    public MProduct(int M_Product_ID) {
+        super(M_Product_ID);
         if (M_Product_ID == 0) {
-            //	setValue (null);
-            //	setName (null);
-            //	setProductCategoryId (0);
-            //	setTaxCategoryId (0);
-            //	setUOMId (0);
-            //
             setProductType(I_M_Product.PRODUCTTYPE_Item); // I
             setIsBOM(false); // N
             setIsInvoicePrintDetails(false);
@@ -83,11 +75,9 @@ public class MProduct extends X_M_Product implements I_M_Product {
 
     /**
      * Load constructor
-     *
-     * @param ctx context
      */
-    public MProduct(Properties ctx, Row row) {
-        super(ctx, row);
+    public MProduct(Row row) {
+        super(row);
     } //	MProduct
 
     /**
@@ -96,7 +86,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
      * @param et parent
      */
     public MProduct(MExpenseType et) {
-        this(et.getCtx(), 0);
+        this(0);
         setProductType(I_M_Product.PRODUCTTYPE_ExpenseType);
         setExpenseType(et);
     } //	MProduct
@@ -108,7 +98,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
      * @param resourceType resource type
      */
     public MProduct(MResource resource, MResourceType resourceType) {
-        this(resource.getCtx(), 0);
+        this(0);
         setOrgId(resource.getOrgId());
         setProductType(I_M_Product.PRODUCTTYPE_Resource);
         setResource(resource);
@@ -121,7 +111,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
      * @param impP import
      */
     public MProduct(X_I_Product impP) {
-        this(impP.getCtx(), 0);
+        this(0);
         setClientOrg(impP);
         setUpdatedBy(impP.getUpdatedBy());
         //
@@ -144,11 +134,10 @@ public class MProduct extends X_M_Product implements I_M_Product {
     /**
      * Get MProduct from Cache
      *
-     * @param ctx          context
      * @param M_Product_ID id
      * @return MProduct or null
      */
-    public static MProduct get(Properties ctx, int M_Product_ID) {
+    public static MProduct get(int M_Product_ID) {
         if (M_Product_ID <= 0) {
             return null;
         }
@@ -157,7 +146,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
         if (retValue != null) {
             return retValue;
         }
-        retValue = new MProduct(ctx, M_Product_ID);
+        retValue = new MProduct(M_Product_ID);
         if (retValue.getId() != 0) {
             s_cache.put(key, retValue);
         }
@@ -167,24 +156,22 @@ public class MProduct extends X_M_Product implements I_M_Product {
     /**
      * Get MProduct from Cache
      *
-     * @param ctx         context
      * @param whereClause sql where clause
      * @return MProduct
      */
-    public static MProduct[] get(Properties ctx, String whereClause) {
+    public static MProduct[] get(String whereClause) {
         List<MProduct> list =
-                new Query(ctx, I_M_Product.Table_Name, whereClause).setClientId().list();
+                new Query(I_M_Product.Table_Name, whereClause).setClientId().list();
         return list.toArray(new MProduct[0]);
     } //	get
 
     /**
      * Get Product from Cache
      *
-     * @param ctx           context
      * @param S_Resource_ID resource ID
      * @return MProduct or null if not found
      */
-    public static MProduct forS_ResourceId(Properties ctx, int S_Resource_ID) {
+    public static MProduct forS_ResourceId(int S_Resource_ID) {
         if (S_Resource_ID <= 0) {
             return null;
         }
@@ -196,7 +183,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
         }
         // Load from DB
         MProduct p =
-                new Query(ctx, I_M_Product.Table_Name, I_M_Product.COLUMNNAME_S_Resource_ID + "=?")
+                new Query(I_M_Product.Table_Name, I_M_Product.COLUMNNAME_S_Resource_ID + "=?")
                         .setParameters(S_Resource_ID)
                         .firstOnly();
         if (p != null) {
@@ -340,7 +327,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
         if (m_precision == null) {
             int C_UOM_ID = getUOMId();
             if (C_UOM_ID == 0) return 0; // 	EA
-            m_precision = MUOM.getPrecision(getCtx(), C_UOM_ID);
+            m_precision = MUOM.getPrecision(C_UOM_ID);
         }
         return m_precision;
     } //	getUOMPrecision
@@ -351,7 +338,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
      * @return asset group id
      */
     public int getAssetGroupId() {
-        MProductCategory pc = MProductCategory.get(getCtx(), getProductCategoryId());
+        MProductCategory pc = MProductCategory.get(getProductCategoryId());
         return pc.getAssetGroupId();
     } //	getAssetGroupId
 
@@ -361,7 +348,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
      * @return true if asset is created
      */
     public boolean isCreateAsset() {
-        MProductCategory pc = MProductCategory.get(getCtx(), getProductCategoryId());
+        MProductCategory pc = MProductCategory.get(getProductCategoryId());
         return pc.getAssetGroupId() != 0;
     } //	isCreated
 
@@ -371,7 +358,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
      * @return set or null
      */
     public MAttributeSet getAttributeSet() {
-        if (getAttributeSetId() != 0) return MAttributeSet.get(getCtx(), getAttributeSetId());
+        if (getAttributeSetId() != 0) return MAttributeSet.get(getAttributeSetId());
         return null;
     } //	getAttributeSet
 
@@ -382,7 +369,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
      */
     public boolean isInstanceAttribute() {
         if (getAttributeSetId() == 0) return false;
-        MAttributeSet mas = MAttributeSet.get(getCtx(), getAttributeSetId());
+        MAttributeSet mas = MAttributeSet.get(getAttributeSetId());
         return mas.isInstanceAttribute();
     } //	isInstanceAttribute
 
@@ -392,9 +379,9 @@ public class MProduct extends X_M_Product implements I_M_Product {
      * @return individual asset
      */
     public boolean isOneAssetPerUOM() {
-        MProductCategory pc = MProductCategory.get(getCtx(), getProductCategoryId());
+        MProductCategory pc = MProductCategory.get(getProductCategoryId());
         if (pc.getAssetGroupId() == 0) return false;
-        MAssetGroup ag = MAssetGroup.get(getCtx(), pc.getAssetGroupId());
+        MAssetGroup ag = MAssetGroup.get(pc.getAssetGroupId());
         return ag.isOneAssetPerUOM();
     } //	isOneAssetPerUOM
 
@@ -452,7 +439,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
         if (getAttributeSetInstanceId() > 0
                 && isValueChanged(I_M_Product.COLUMNNAME_M_AttributeSet_ID)) {
             MAttributeSetInstance asi =
-                    new MAttributeSetInstance(getCtx(), getAttributeSetInstanceId());
+                    new MAttributeSetInstance(getAttributeSetInstanceId());
             if (asi.getAttributeSetId() != getAttributeSetId()) setAttributeSetInstanceId(0);
         }
         if (!newRecord && isValueChanged(I_M_Product.COLUMNNAME_M_AttributeSetInstance_ID)) {
@@ -461,7 +448,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
             if (oldasiid > 0) {
                 MAttributeSetInstance oldasi =
                         new MAttributeSetInstance(
-                                getCtx(),
+
                                 getValueOldAsInt(I_M_Product.COLUMNNAME_M_AttributeSetInstance_ID));
                 int cnt =
                         getSQLValueEx(
@@ -523,7 +510,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
         }
 
         // [ 1674225 ] Delete Product: Costing deletion error
-    /*MAcctSchema[] mass = MAcctSchema.getClientAcctSchema(getCtx(),getADClientID(), null);
+    /*MAcctSchema[] mass = MAcctSchema.getClientAcctSchema(getADClientID(), null);
     for(int i=0; i<mass.length; i++)
     {
     	// Get Cost Elements
@@ -561,9 +548,9 @@ public class MProduct extends X_M_Product implements I_M_Product {
      * @return Material Management Policy
      */
     public String getMMPolicy() {
-        MProductCategory pc = MProductCategory.get(getCtx(), getProductCategoryId());
+        MProductCategory pc = MProductCategory.get(getProductCategoryId());
         String MMPolicy = pc.getMMPolicy();
-        if (MMPolicy == null || MMPolicy.length() == 0) MMPolicy = MClient.get(getCtx()).getMMPolicy();
+        if (MMPolicy == null || MMPolicy.length() == 0) MMPolicy = MClientKt.getClient().getMMPolicy();
         return MMPolicy;
     }
 
@@ -580,9 +567,8 @@ public class MProduct extends X_M_Product implements I_M_Product {
         return as.isUseGuaranteeDateForMPolicy();
     }
 
-    public org.compiere.model.I_C_UOM getUOM() throws RuntimeException
-    {
-        return (I_C_UOM) MTable.get(getCtx(), org.compiere.model.I_C_UOM.Table_Name)
+    public org.compiere.model.I_C_UOM getUOM() throws RuntimeException {
+        return (I_C_UOM) MTable.get(org.compiere.model.I_C_UOM.Table_Name)
                 .getPO(getUOMId());
     }
 

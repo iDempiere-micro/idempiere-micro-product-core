@@ -2,8 +2,6 @@ package org.compiere.product;
 
 import kotliquery.Row;
 
-import java.util.Properties;
-
 /**
  * Expense Type Model
  *
@@ -28,8 +26,8 @@ public class MExpenseType extends X_S_ExpenseType {
      * @param S_ExpenseType_ID id
      * @param trxName          transaction
      */
-    public MExpenseType(Properties ctx, int S_ExpenseType_ID) {
-        super(ctx, S_ExpenseType_ID);
+    public MExpenseType(int S_ExpenseType_ID) {
+        super(S_ExpenseType_ID);
     } //	MExpenseType
 
     /**
@@ -39,8 +37,8 @@ public class MExpenseType extends X_S_ExpenseType {
      * @param rs      result set
      * @param trxName transaction
      */
-    public MExpenseType(Properties ctx, Row row) {
-        super(ctx, row);
+    public MExpenseType(Row row) {
+        super(row);
     } //	MExpenseType
 
     /**
@@ -51,7 +49,7 @@ public class MExpenseType extends X_S_ExpenseType {
     public MProduct getProduct() {
         if (m_product == null) {
             StringBuilder msgmp = new StringBuilder("S_ExpenseType_ID=").append(getExpenseTypeId());
-            MProduct[] products = MProduct.get(getCtx(), msgmp.toString());
+            MProduct[] products = MProduct.get(msgmp.toString());
             if (products.length > 0) m_product = products[0];
         }
         return m_product;

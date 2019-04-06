@@ -2,8 +2,6 @@ package org.compiere.product;
 
 import kotliquery.Row;
 
-import java.util.Properties;
-
 /**
  * Discount Schema Line (Price List) Model
  *
@@ -24,8 +22,8 @@ public class MDiscountSchemaLine extends X_M_DiscountSchemaLine {
      * @param M_DiscountSchemaLine_ID id
      * @param trxName                 transaction
      */
-    public MDiscountSchemaLine(Properties ctx, int M_DiscountSchemaLine_ID) {
-        super(ctx, M_DiscountSchemaLine_ID);
+    public MDiscountSchemaLine(int M_DiscountSchemaLine_ID) {
+        super(M_DiscountSchemaLine_ID);
     } //	MDiscountSchemaLine
 
     /**
@@ -35,7 +33,7 @@ public class MDiscountSchemaLine extends X_M_DiscountSchemaLine {
      * @param rs      result set
      * @param trxName transaction
      */
-    public MDiscountSchemaLine(Properties ctx, Row row) {
-        super(ctx, row);
+    public MDiscountSchemaLine(Row row) {
+        super(row);
     } //	MDiscountSchemaLine
 } //	MDiscountSchemaLine

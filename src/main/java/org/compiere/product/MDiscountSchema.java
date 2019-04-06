@@ -7,7 +7,6 @@ import org.idempiere.common.util.CCache;
 import org.idempiere.common.util.Env;
 
 import java.math.BigDecimal;
-import java.util.Properties;
 import java.util.logging.Level;
 
 /**
@@ -41,8 +40,8 @@ public class MDiscountSchema extends X_M_DiscountSchema {
      * @param ctx                 context
      * @param M_DiscountSchema_ID id
      */
-    public MDiscountSchema(Properties ctx, int M_DiscountSchema_ID) {
-        super(ctx, M_DiscountSchema_ID);
+    public MDiscountSchema(int M_DiscountSchema_ID) {
+        super(M_DiscountSchema_ID);
         if (M_DiscountSchema_ID == 0) {
             //	setName();
             setDiscountType(X_M_DiscountSchema.DISCOUNTTYPE_FlatPercent);
@@ -59,8 +58,8 @@ public class MDiscountSchema extends X_M_DiscountSchema {
      *
      * @param ctx context
      */
-    public MDiscountSchema(Properties ctx, Row row) {
-        super(ctx, row);
+    public MDiscountSchema(Row row) {
+        super(row);
     } //	MDiscountSchema
 
     /**
@@ -70,11 +69,11 @@ public class MDiscountSchema extends X_M_DiscountSchema {
      * @param M_DiscountSchema_ID id
      * @return MDiscountSchema
      */
-    public static MDiscountSchema get(Properties ctx, int M_DiscountSchema_ID) {
+    public static MDiscountSchema get(int M_DiscountSchema_ID) {
         Integer key = new Integer(M_DiscountSchema_ID);
         MDiscountSchema retValue = s_cache.get(key);
         if (retValue != null) return retValue;
-        retValue = new MDiscountSchema(ctx, M_DiscountSchema_ID);
+        retValue = new MDiscountSchema(M_DiscountSchema_ID);
         if (retValue.getId() != 0) s_cache.put(key, retValue);
         return retValue;
     } //	get
@@ -88,7 +87,7 @@ public class MDiscountSchema extends X_M_DiscountSchema {
     public MDiscountSchemaBreak[] getBreaks(boolean reload) {
         if (m_breaks != null && !reload) return m_breaks;
 
-        m_breaks = MBaseDiscountSchemaKt.getBreaks(getCtx(), getDiscountSchemaId());
+        m_breaks = MBaseDiscountSchemaKt.getBreaks(getDiscountSchemaId());
         return m_breaks;
     } //	getBreaks
 
@@ -102,7 +101,7 @@ public class MDiscountSchema extends X_M_DiscountSchema {
         if (m_lines != null && !reload) {
             return m_lines;
         }
-        m_lines = MBaseDiscountSchemaKt.getLines(getCtx(), getDiscountSchemaId());
+        m_lines = MBaseDiscountSchemaKt.getLines(getDiscountSchemaId());
 
         return m_lines;
     } //	getBreaks

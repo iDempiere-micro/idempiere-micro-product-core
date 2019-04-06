@@ -5,8 +5,6 @@ import org.compiere.model.HasName;
 import org.compiere.model.I_S_Resource;
 import org.compiere.orm.BasePOUser;
 
-import java.util.Properties;
-
 /**
  * Generated Model for S_Resource
  *
@@ -27,8 +25,8 @@ public class X_S_Resource extends BasePOUser implements I_S_Resource {
     /**
      * Standard Constructor
      */
-    public X_S_Resource(Properties ctx, int S_Resource_ID) {
-        super(ctx, S_Resource_ID);
+    public X_S_Resource(int S_Resource_ID) {
+        super(S_Resource_ID);
         /**
          * if (S_Resource_ID == 0) { setIsAvailable (true); // Y setWarehouseId (0); setName (null);
          * setPercentUtilization (Env.ZERO); // 100 setResourceID (0); setS_ResourceType_ID (0);
@@ -39,8 +37,8 @@ public class X_S_Resource extends BasePOUser implements I_S_Resource {
     /**
      * Load Constructor
      */
-    public X_S_Resource(Properties ctx, Row row) {
-        super(ctx, row);
+    public X_S_Resource(Row row) {
+        super(row);
     }
 
     /**
@@ -94,7 +92,7 @@ public class X_S_Resource extends BasePOUser implements I_S_Resource {
      * @return Alphanumeric identifier of the entity
      */
     public String getName() {
-        return (String) getValue(HasName.Companion.getCOLUMNNAME_Name());
+        return (String) getValue(HasName.COLUMNNAME_Name);
     }
 
     /**

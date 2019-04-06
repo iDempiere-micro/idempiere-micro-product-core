@@ -3,7 +3,6 @@ package org.compiere.product;
 import org.compiere.model.HasName;
 import org.compiere.util.DisplayType;
 import org.idempiere.common.exceptions.AdempiereException;
-import org.idempiere.common.util.Env;
 
 import java.text.DateFormat;
 
@@ -32,16 +31,16 @@ public class ProductNotOnPriceListException extends AdempiereException {
             sb.append("@Line@:").append(documentLineNo);
         }
         if (pp.getProductId() > 0) {
-            MProduct p = MProduct.get(Env.getCtx(), pp.getProductId());
+            MProduct p = MProduct.get(pp.getProductId());
             if (sb.length() > 0) sb.append(", ");
             sb.append("@M_Product_ID@:")
-                    .append(p == null ? "?" : p.get_Translation(HasName.Companion.getCOLUMNNAME_Name()));
+                    .append(p == null ? "?" : p.get_Translation(HasName.COLUMNNAME_Name));
         }
         if (pp.getPriceListId() > 0) {
-            MPriceList pl = MPriceList.get(Env.getCtx(), pp.getPriceListId());
+            MPriceList pl = MPriceList.get(pp.getPriceListId());
             if (sb.length() > 0) sb.append(", ");
             sb.append("@M_PriceList_ID@:")
-                    .append(pl == null ? "?" : pl.get_Translation(HasName.Companion.getCOLUMNNAME_Name()));
+                    .append(pl == null ? "?" : pl.get_Translation(HasName.COLUMNNAME_Name));
         }
         if (pp.getPriceDate() != null) {
             DateFormat df = DisplayType.getDateFormat(DisplayType.Date);

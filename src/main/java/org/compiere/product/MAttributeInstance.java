@@ -3,7 +3,6 @@ package org.compiere.product;
 import kotliquery.Row;
 
 import java.math.BigDecimal;
-import java.util.Properties;
 
 /**
  * Product Attribute Set
@@ -23,8 +22,8 @@ public class MAttributeInstance extends X_M_AttributeInstance {
      * @param ctx     context
      * @param ignored ignored
      */
-    public MAttributeInstance(Properties ctx, int ignored) {
-        super(ctx, 0);
+    public MAttributeInstance(int ignored) {
+        super(0);
         if (ignored != 0) throw new IllegalArgumentException("Multi-Key");
     } //	MAttributeInstance
 
@@ -33,8 +32,8 @@ public class MAttributeInstance extends X_M_AttributeInstance {
      *
      * @param ctx context
      */
-    public MAttributeInstance(Properties ctx, Row row) {
-        super(ctx, row);
+    public MAttributeInstance(Row row) {
+        super(row);
     } //	MAttributeInstance
 
     /**
@@ -47,12 +46,12 @@ public class MAttributeInstance extends X_M_AttributeInstance {
      * @param trxName                   transaction
      */
     public MAttributeInstance(
-            Properties ctx,
+
             int M_Attribute_ID,
             int M_AttributeSetInstance_ID,
             String Value,
             String trxName) {
-        super(ctx, 0);
+        super(0);
         setMAttributeID(M_Attribute_ID);
         setAttributeSetInstanceId(M_AttributeSetInstance_ID);
         setValue(Value);
@@ -68,12 +67,12 @@ public class MAttributeInstance extends X_M_AttributeInstance {
      * @param trxName                   transaction
      */
     public MAttributeInstance(
-            Properties ctx,
+
             int M_Attribute_ID,
             int M_AttributeSetInstance_ID,
             BigDecimal BDValue,
             String trxName) {
-        super(ctx, 0);
+        super(0);
         setMAttributeID(M_Attribute_ID);
         setAttributeSetInstanceId(M_AttributeSetInstance_ID);
         setValueNumber(BDValue);
@@ -90,13 +89,13 @@ public class MAttributeInstance extends X_M_AttributeInstance {
      * @param trxName                   transaction
      */
     public MAttributeInstance(
-            Properties ctx,
+
             int M_Attribute_ID,
             int M_AttributeSetInstance_ID,
             int M_AttributeValue_ID,
             String Value,
             String trxName) {
-        super(ctx, 0);
+        super(0);
         setMAttributeID(M_Attribute_ID);
         setAttributeSetInstanceId(M_AttributeSetInstance_ID);
         setAttributeValueId(M_AttributeValue_ID);

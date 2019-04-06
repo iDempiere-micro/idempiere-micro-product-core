@@ -4,8 +4,6 @@ import kotliquery.Row;
 import org.compiere.model.I_C_UOM;
 import org.compiere.orm.BasePOName;
 
-import java.util.Properties;
-
 /**
  * Generated Model for C_UOM
  *
@@ -22,15 +20,15 @@ public class X_C_UOM extends BasePOName implements I_C_UOM {
     /**
      * Standard Constructor
      */
-    public X_C_UOM(Properties ctx, int C_UOM_ID) {
-        super(ctx, C_UOM_ID);
+    public X_C_UOM(int C_UOM_ID) {
+        super(C_UOM_ID);
     }
 
     /**
      * Load Constructor
      */
-    public X_C_UOM(Properties ctx, Row row) {
-        super(ctx, row);
+    public X_C_UOM(Row row) {
+        super(row);
     } //	UOM
 
     /**
@@ -121,21 +119,22 @@ public class X_C_UOM extends BasePOName implements I_C_UOM {
         return I_C_UOM.Table_ID;
     }
 
-    /** Get Symbol.
-     @return Symbol for a Unit of Measure
+    /**
+     * Get Symbol.
+     *
+     * @return Symbol for a Unit of Measure
      */
-    public String getUOMSymbol ()
-    {
-        return (String)getValue(COLUMNNAME_UOMSymbol);
+    public String getUOMSymbol() {
+        return (String) getValue(COLUMNNAME_UOMSymbol);
     }
 
-    /** Set Symbol.
-     @param UOMSymbol
-     Symbol for a Unit of Measure
+    /**
+     * Set Symbol.
+     *
+     * @param UOMSymbol Symbol for a Unit of Measure
      */
-    public void setUOMSymbol (String UOMSymbol)
-    {
-        setValue (COLUMNNAME_UOMSymbol, UOMSymbol);
+    public void setUOMSymbol(String UOMSymbol) {
+        setValue(COLUMNNAME_UOMSymbol, UOMSymbol);
     }
 
 }

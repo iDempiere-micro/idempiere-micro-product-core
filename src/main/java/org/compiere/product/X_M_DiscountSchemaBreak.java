@@ -6,7 +6,6 @@ import org.compiere.orm.PO;
 import org.idempiere.common.util.Env;
 
 import java.math.BigDecimal;
-import java.util.Properties;
 
 /**
  * Generated Model for M_DiscountSchemaBreak
@@ -24,8 +23,8 @@ public class X_M_DiscountSchemaBreak extends PO implements I_M_DiscountSchemaBre
     /**
      * Standard Constructor
      */
-    public X_M_DiscountSchemaBreak(Properties ctx, int M_DiscountSchemaBreak_ID) {
-        super(ctx, M_DiscountSchemaBreak_ID);
+    public X_M_DiscountSchemaBreak(int M_DiscountSchemaBreak_ID) {
+        super(M_DiscountSchemaBreak_ID);
         /**
          * if (M_DiscountSchemaBreak_ID == 0) { setBreakDiscount (Env.ZERO); setBreakValue (Env.ZERO);
          * setIsBPartnerFlatDiscount (false); // N setDiscountSchemaBreak_ID (0);
@@ -37,8 +36,8 @@ public class X_M_DiscountSchemaBreak extends PO implements I_M_DiscountSchemaBre
     /**
      * Load Constructor
      */
-    public X_M_DiscountSchemaBreak(Properties ctx, Row row) {
-        super(ctx, row);
+    public X_M_DiscountSchemaBreak(Row row) {
+        super(row);
     }
 
     /**

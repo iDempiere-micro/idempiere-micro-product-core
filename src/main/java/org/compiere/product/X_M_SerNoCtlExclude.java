@@ -4,8 +4,6 @@ import kotliquery.Row;
 import org.compiere.model.I_M_SerNoCtlExclude;
 import org.compiere.orm.PO;
 
-import java.util.Properties;
-
 /**
  * Generated Model for M_SerNoCtlExclude
  *
@@ -22,8 +20,8 @@ public class X_M_SerNoCtlExclude extends PO implements I_M_SerNoCtlExclude {
     /**
      * Standard Constructor
      */
-    public X_M_SerNoCtlExclude(Properties ctx, int M_SerNoCtlExclude_ID) {
-        super(ctx, M_SerNoCtlExclude_ID);
+    public X_M_SerNoCtlExclude(int M_SerNoCtlExclude_ID) {
+        super(M_SerNoCtlExclude_ID);
         /**
          * if (M_SerNoCtlExclude_ID == 0) { setColumnTableId (0); setIsSOTrx (false);
          * setSerNoCtlExclude_ID (0); setSerNoCtl_ID (0); }
@@ -33,8 +31,8 @@ public class X_M_SerNoCtlExclude extends PO implements I_M_SerNoCtlExclude {
     /**
      * Load Constructor
      */
-    public X_M_SerNoCtlExclude(Properties ctx, Row row) {
-        super(ctx, row);
+    public X_M_SerNoCtlExclude(Row row) {
+        super(row);
     }
 
     /**

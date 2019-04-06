@@ -8,7 +8,6 @@ import org.compiere.orm.MTable;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
-import java.util.Properties;
 
 /**
  * Generated Model for A_Asset
@@ -46,8 +45,8 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset {
     /**
      * Standard Constructor
      */
-    public X_A_Asset(Properties ctx, int A_Asset_ID) {
-        super(ctx, A_Asset_ID);
+    public X_A_Asset(int A_Asset_ID) {
+        super(A_Asset_ID);
         /**
          * if (A_Asset_ID == 0) { setA_Asset_Action (null); // 'MD' setAssetGroup_ID (0);
          * setA_Asset_ID (0); setA_Asset_Status (null); // 'NW' setIsDepreciated (false); setIsDisposed
@@ -60,8 +59,8 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset {
     /**
      * Load Constructor
      */
-    public X_A_Asset(Properties ctx, Row row) {
-        super(ctx, row);
+    public X_A_Asset(Row row) {
+        super(row);
     }
 
     /**
@@ -140,7 +139,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset {
 
     public org.compiere.model.I_A_Asset_Type getAssetType() throws RuntimeException {
         return (org.compiere.model.I_A_Asset_Type)
-                MTable.get(getCtx(), org.compiere.model.I_A_Asset_Type.Table_Name)
+                MTable.get(org.compiere.model.I_A_Asset_Type.Table_Name)
                         .getPO(getAssetTypeId());
     }
 
@@ -419,7 +418,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset {
      * @return Alphanumeric identifier of the entity
      */
     public String getName() {
-        return (String) getValue(HasName.Companion.getCOLUMNNAME_Name());
+        return (String) getValue(HasName.COLUMNNAME_Name);
     }
 
     /**
@@ -428,7 +427,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset {
      * @param Name Alphanumeric identifier of the entity
      */
     public void setName(String Name) {
-        setValue(HasName.Companion.getCOLUMNNAME_Name(), Name);
+        setValue(HasName.COLUMNNAME_Name, Name);
     }
 
     /**

@@ -558,7 +558,7 @@ public class MProductPricing extends AbstractProductPricing {
     private void setBaseInfo() {
         if (m_M_Product_ID == 0) return;
 
-        MProduct product = MProduct.get(Env.getCtx(), m_M_Product_ID);
+        MProduct product = MProduct.get(m_M_Product_ID);
         if (product != null) {
             m_C_UOM_ID = product.getUOMId();
             m_M_Product_Category_ID = product.getProductCategoryId();
@@ -600,7 +600,7 @@ public class MProductPricing extends AbstractProductPricing {
         //	No Discount Schema
         if (M_DiscountSchema_ID == 0) return;
 
-        MDiscountSchema sd = MDiscountSchema.get(Env.getCtx(), M_DiscountSchema_ID); // 	not correct
+        MDiscountSchema sd = MDiscountSchema.get(M_DiscountSchema_ID); // 	not correct
         if (sd.getId() == 0
                 || (MDiscountSchema.DISCOUNTTYPE_Breaks.equals(sd.getDiscountType())
                 && !MDiscountSchema.CUMULATIVELEVEL_Line.equals(sd.getCumulativeLevel()))) return;
@@ -652,7 +652,7 @@ public class MProductPricing extends AbstractProductPricing {
      */
     private void setPrecision() {
         if (m_M_PriceList_ID != 0)
-            m_precision = MPriceList.getPricePrecision(Env.getCtx(), getPriceListId());
+            m_precision = MPriceList.getPricePrecision(getPriceListId());
     } //	setPrecision
 
     /**

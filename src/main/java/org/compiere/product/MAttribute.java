@@ -4,7 +4,6 @@ import kotliquery.Row;
 import org.compiere.model.I_M_AttributeInstance;
 import org.compiere.orm.Query;
 
-import java.util.Properties;
 import java.util.logging.Level;
 
 import static software.hsharp.core.util.DBKt.executeUpdate;
@@ -24,12 +23,10 @@ public class MAttribute extends X_M_Attribute {
     /**
      * Standard Constructor
      *
-     * @param ctx            context
      * @param M_Attribute_ID id
-     * @param trxName        transaction
      */
-    public MAttribute(Properties ctx, int M_Attribute_ID) {
-        super(ctx, M_Attribute_ID);
+    public MAttribute(int M_Attribute_ID) {
+        super(M_Attribute_ID);
         if (M_Attribute_ID == 0) {
             setAttributeValueType(X_M_Attribute.ATTRIBUTEVALUETYPE_StringMax40);
             setIsInstanceAttribute(false);
@@ -40,12 +37,10 @@ public class MAttribute extends X_M_Attribute {
     /**
      * Load Constructor
      *
-     * @param ctx     context
-     * @param rs      result set
-     * @param trxName transaction
+     * @param ctx context
      */
-    public MAttribute(Properties ctx, Row row) {
-        super(ctx, row);
+    public MAttribute(Row row) {
+        super(row);
     } //	MAttribute
 
     /**
@@ -61,7 +56,7 @@ public class MAttribute extends X_M_Attribute {
                         + I_M_AttributeInstance.COLUMNNAME_M_AttributeSetInstance_ID
                         + "=?";
         MAttributeInstance retValue =
-                new Query(getCtx(), I_M_AttributeInstance.Table_Name, whereClause)
+                new Query(I_M_AttributeInstance.Table_Name, whereClause)
                         .setParameters(getProductAttributeId(), M_AttributeSetInstance_ID)
                         .first();
 

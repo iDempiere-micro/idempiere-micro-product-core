@@ -4,8 +4,6 @@ import kotliquery.Row;
 import org.compiere.model.I_M_AttributeValue;
 import org.compiere.orm.BasePONameValue;
 
-import java.util.Properties;
-
 /**
  * Generated Model for M_AttributeValue
  *
@@ -23,8 +21,8 @@ public class X_M_AttributeValue extends BasePONameValue
     /**
      * Standard Constructor
      */
-    public X_M_AttributeValue(Properties ctx, int M_AttributeValue_ID) {
-        super(ctx, M_AttributeValue_ID);
+    public X_M_AttributeValue(int M_AttributeValue_ID) {
+        super(M_AttributeValue_ID);
         /**
          * if (M_AttributeValue_ID == 0) { setMAttributeID (0); setAttributeValue_ID (0); setName
          * (null); setValue (null); }
@@ -34,8 +32,8 @@ public class X_M_AttributeValue extends BasePONameValue
     /**
      * Load Constructor
      */
-    public X_M_AttributeValue(Properties ctx, Row row) {
-        super(ctx, row);
+    public X_M_AttributeValue(Row row) {
+        super(row);
     }
 
     /**

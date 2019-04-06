@@ -4,8 +4,6 @@ import kotliquery.Row;
 import org.compiere.model.I_M_ProductDownload;
 import org.compiere.orm.BasePOName;
 
-import java.util.Properties;
-
 /**
  * Generated Model for M_ProductDownload
  *
@@ -22,8 +20,8 @@ public class X_M_ProductDownload extends BasePOName implements I_M_ProductDownlo
     /**
      * Standard Constructor
      */
-    public X_M_ProductDownload(Properties ctx, int M_ProductDownload_ID) {
-        super(ctx, M_ProductDownload_ID);
+    public X_M_ProductDownload(int M_ProductDownload_ID) {
+        super(M_ProductDownload_ID);
         /**
          * if (M_ProductDownload_ID == 0) { setDownloadURL (null); setProductDownload_ID (0);
          * setProductId (0); setName (null); }
@@ -33,8 +31,8 @@ public class X_M_ProductDownload extends BasePOName implements I_M_ProductDownlo
     /**
      * Load Constructor
      */
-    public X_M_ProductDownload(Properties ctx, Row row) {
-        super(ctx, row);
+    public X_M_ProductDownload(Row row) {
+        super(row);
     }
 
     /**

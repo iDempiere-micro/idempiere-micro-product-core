@@ -4,8 +4,6 @@ import kotliquery.Row;
 import org.compiere.model.I_M_DiscountSchemaLine;
 import org.compiere.orm.PO;
 
-import java.util.Properties;
-
 /**
  * Generated Model for M_DiscountSchemaLine
  *
@@ -34,8 +32,8 @@ public class X_M_DiscountSchemaLine extends PO implements I_M_DiscountSchemaLine
     /**
      * Standard Constructor
      */
-    public X_M_DiscountSchemaLine(Properties ctx, int M_DiscountSchemaLine_ID) {
-        super(ctx, M_DiscountSchemaLine_ID);
+    public X_M_DiscountSchemaLine(int M_DiscountSchemaLine_ID) {
+        super(M_DiscountSchemaLine_ID);
         /**
          * if (M_DiscountSchemaLine_ID == 0) { setConversionTypeId (0); setConversionDate (new
          * Timestamp( System.currentTimeMillis() )); // @#Date@ setLimit_AddAmt (Env.ZERO);
@@ -53,8 +51,8 @@ public class X_M_DiscountSchemaLine extends PO implements I_M_DiscountSchemaLine
     /**
      * Load Constructor
      */
-    public X_M_DiscountSchemaLine(Properties ctx, Row row) {
-        super(ctx, row);
+    public X_M_DiscountSchemaLine(Row row) {
+        super(row);
     }
 
     /**

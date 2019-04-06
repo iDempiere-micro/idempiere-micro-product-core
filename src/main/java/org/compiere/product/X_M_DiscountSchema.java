@@ -7,7 +7,6 @@ import org.idempiere.common.util.Env;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
-import java.util.Properties;
 
 /**
  * Generated Model for M_DiscountSchema
@@ -45,15 +44,15 @@ public class X_M_DiscountSchema extends BasePOName implements I_M_DiscountSchema
     /**
      * Standard Constructor
      */
-    public X_M_DiscountSchema(Properties ctx, int M_DiscountSchema_ID) {
-        super(ctx, M_DiscountSchema_ID);
+    public X_M_DiscountSchema(int M_DiscountSchema_ID) {
+        super(M_DiscountSchema_ID);
     }
 
     /**
      * Load Constructor
      */
-    public X_M_DiscountSchema(Properties ctx, Row row) {
-        super(ctx, row);
+    public X_M_DiscountSchema(Row row) {
+        super(row);
     }
 
     /**

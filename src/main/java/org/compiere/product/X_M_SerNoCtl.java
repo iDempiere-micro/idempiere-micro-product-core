@@ -4,8 +4,6 @@ import kotliquery.Row;
 import org.compiere.model.I_M_SerNoCtl;
 import org.compiere.orm.BasePOName;
 
-import java.util.Properties;
-
 /**
  * Generated Model for M_SerNoCtl
  *
@@ -22,8 +20,8 @@ public class X_M_SerNoCtl extends BasePOName implements I_M_SerNoCtl {
     /**
      * Standard Constructor
      */
-    public X_M_SerNoCtl(Properties ctx, int M_SerNoCtl_ID) {
-        super(ctx, M_SerNoCtl_ID);
+    public X_M_SerNoCtl(int M_SerNoCtl_ID) {
+        super(M_SerNoCtl_ID);
         /**
          * if (M_SerNoCtl_ID == 0) { setCurrentNext (0); // 100 setIncrementNo (0); // 1
          * setSerNoCtl_ID (0); setName (null); setStartNo (0); // 100 }
@@ -33,8 +31,8 @@ public class X_M_SerNoCtl extends BasePOName implements I_M_SerNoCtl {
     /**
      * Load Constructor
      */
-    public X_M_SerNoCtl(Properties ctx, Row row) {
-        super(ctx, row);
+    public X_M_SerNoCtl(Row row) {
+        super(row);
     }
 
     /**

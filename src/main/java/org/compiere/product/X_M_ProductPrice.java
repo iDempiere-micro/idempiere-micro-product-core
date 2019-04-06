@@ -7,7 +7,6 @@ import org.compiere.orm.PO;
 import org.idempiere.common.util.Env;
 
 import java.math.BigDecimal;
-import java.util.Properties;
 
 /**
  * Generated Model for M_ProductPrice
@@ -25,8 +24,8 @@ public class X_M_ProductPrice extends PO implements I_M_ProductPrice {
     /**
      * Standard Constructor
      */
-    public X_M_ProductPrice(Properties ctx, int M_ProductPrice_ID) {
-        super(ctx, M_ProductPrice_ID);
+    public X_M_ProductPrice(int M_ProductPrice_ID) {
+        super(M_ProductPrice_ID);
         /**
          * if (M_ProductPrice_ID == 0) { setPriceListVersionId (0); setProductId (0);
          * setPriceLimit (Env.ZERO); setPriceList (Env.ZERO); setPriceStd (Env.ZERO); }
@@ -36,8 +35,8 @@ public class X_M_ProductPrice extends PO implements I_M_ProductPrice {
     /**
      * Load Constructor
      */
-    public X_M_ProductPrice(Properties ctx, Row row) {
-        super(ctx, row);
+    public X_M_ProductPrice(Row row) {
+        super(row);
     }
 
     /**
@@ -56,7 +55,7 @@ public class X_M_ProductPrice extends PO implements I_M_ProductPrice {
 
     public org.compiere.model.I_M_PriceList_Version getPriceListVersion() throws RuntimeException {
         return (org.compiere.model.I_M_PriceList_Version)
-                MTable.get(getCtx(), org.compiere.model.I_M_PriceList_Version.Table_Name)
+                MTable.get(org.compiere.model.I_M_PriceList_Version.Table_Name)
                         .getPO(getPriceListVersionId());
     }
 

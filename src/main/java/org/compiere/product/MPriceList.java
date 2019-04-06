@@ -2,6 +2,7 @@ package org.compiere.product;
 
 import kotliquery.Row;
 import org.compiere.bo.MCurrency;
+import org.compiere.bo.MCurrencyKt;
 import org.compiere.model.I_M_PriceList;
 import org.compiere.model.I_M_PriceList_Version;
 import org.compiere.orm.Query;
@@ -9,7 +10,6 @@ import org.idempiere.common.util.CCache;
 import org.idempiere.common.util.Env;
 
 import java.sql.Timestamp;
-import java.util.Properties;
 import java.util.logging.Level;
 
 /**
@@ -41,8 +41,8 @@ public class MPriceList extends X_M_PriceList {
      * @param ctx            context
      * @param M_PriceList_ID id
      */
-    public MPriceList(Properties ctx, int M_PriceList_ID) {
-        super(ctx, M_PriceList_ID);
+    public MPriceList(int M_PriceList_ID) {
+        super(M_PriceList_ID);
         if (M_PriceList_ID == 0) {
             setEnforcePriceLimit(false);
             setIsDefault(false);
@@ -58,10 +58,9 @@ public class MPriceList extends X_M_PriceList {
      * Load Constructor
      *
      * @param ctx context
-     * @param rs  result set
      */
-    public MPriceList(Properties ctx, Row row) {
-        super(ctx, row);
+    public MPriceList(Row row) {
+        super(row);
     } //	MPriceList
 
     /**
@@ -70,7 +69,7 @@ public class MPriceList extends X_M_PriceList {
      * @param impPL import
      */
     public MPriceList(X_I_PriceList impPL) {
-        this(impPL.getCtx(), 0);
+        this(0);
         setClientOrg(impPL);
         setUpdatedBy(impPL.getUpdatedBy());
         //
@@ -90,11 +89,11 @@ public class MPriceList extends X_M_PriceList {
      * @param M_PriceList_ID id
      * @return PriceList
      */
-    public static MPriceList get(Properties ctx, int M_PriceList_ID) {
+    public static MPriceList get(int M_PriceList_ID) {
         Integer key = M_PriceList_ID;
         MPriceList retValue = s_cache.get(key);
         if (retValue == null) {
-            retValue = new MPriceList(ctx, M_PriceList_ID);
+            retValue = new MPriceList(M_PriceList_ID);
             s_cache.put(key, retValue);
         }
         return retValue;
@@ -107,8 +106,8 @@ public class MPriceList extends X_M_PriceList {
      * @param IsSOPriceList SO or PO
      * @return PriceList or null
      */
-    public static MPriceList getDefault(Properties ctx, boolean IsSOPriceList) {
-        int AD_Client_ID = Env.getClientId(ctx);
+    public static MPriceList getDefault(boolean IsSOPriceList) {
+        int AD_Client_ID = Env.getClientId();
         MPriceList retValue;
         //	Search for it in cache
         for (MPriceList mPriceList : s_cache.values()) {
@@ -123,7 +122,7 @@ public class MPriceList extends X_M_PriceList {
         //	Get from DB
         final String whereClause = "AD_Client_ID=? AND IsDefault=? AND IsSOPriceList=?";
         retValue =
-                new Query(ctx, I_M_PriceList.Table_Name, whereClause)
+                new Query(I_M_PriceList.Table_Name, whereClause)
                         .setParameters(AD_Client_ID, "Y", IsSOPriceList ? "Y" : "N")
                         .setOnlyActiveRecords(true)
                         .setOrderBy("M_PriceList_ID")
@@ -143,8 +142,8 @@ public class MPriceList extends X_M_PriceList {
      * @param M_PriceList_ID price list
      * @return precision
      */
-    public static int getStandardPrecision(Properties ctx, int M_PriceList_ID) {
-        MPriceList pl = MPriceList.get(ctx, M_PriceList_ID);
+    public static int getStandardPrecision(int M_PriceList_ID) {
+        MPriceList pl = MPriceList.get(M_PriceList_ID);
         return pl.getStandardPrecision();
     } //	getStandardPrecision
 
@@ -155,8 +154,8 @@ public class MPriceList extends X_M_PriceList {
      * @param M_PriceList_ID price list
      * @return precision
      */
-    public static int getPricePrecision(Properties ctx, int M_PriceList_ID) {
-        MPriceList pl = MPriceList.get(ctx, M_PriceList_ID);
+    public static int getPricePrecision(int M_PriceList_ID) {
+        MPriceList pl = MPriceList.get(M_PriceList_ID);
         return pl.getPricePrecision();
     } //	getPricePrecision
 
@@ -173,7 +172,7 @@ public class MPriceList extends X_M_PriceList {
         /*
          * Cached PLV
          */
-        MPriceListVersion m_plv = new Query(getCtx(), I_M_PriceList_Version.Table_Name, whereClause)
+        MPriceListVersion m_plv = new Query(I_M_PriceList_Version.Table_Name, whereClause)
                 .setParameters(getPriceListId(), valid)
                 .setOnlyActiveRecords(true)
                 .setOrderBy("ValidFrom DESC")
@@ -191,7 +190,7 @@ public class MPriceList extends X_M_PriceList {
      */
     public int getStandardPrecision() {
         if (m_precision == null) {
-            MCurrency c = MCurrency.get(getCtx(), getCurrencyId());
+            MCurrency c = MCurrencyKt.getCurrency(getCurrencyId());
             m_precision = c.getStdPrecision();
         }
         return m_precision;

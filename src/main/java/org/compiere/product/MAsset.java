@@ -9,7 +9,6 @@ import org.idempiere.common.util.Env;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
-import java.util.Properties;
 import java.util.logging.Level;
 
 import static software.hsharp.core.util.DBKt.convertString;
@@ -55,27 +54,18 @@ public class MAsset extends X_A_Asset
     /**
      * Create constructor
      */
-    public MAsset(Properties ctx, int A_Asset_ID) {
-        super(ctx, A_Asset_ID);
+    public MAsset(int A_Asset_ID) {
+        super(A_Asset_ID);
         if (A_Asset_ID == 0) {
             setAssetStatus(X_A_Asset.A_ASSET_STATUS_New);
-            // commented out by @win
-      /*
-      setA_Asset_Type("MFX");
-      setA_Asset_TypeId(1); // MFX
-      */
-            // end comment by @win
         }
     } //	MAsset
 
     /**
      * Load Constructor
-     *
-     * @param ctx context
-     * @param rs  result set record
      */
-    public MAsset(Properties ctx, Row row) {
-        super(ctx, row);
+    public MAsset(Row row) {
+        super(row);
     } //	MAsset
 
     // Temporary used variables:
@@ -134,9 +124,9 @@ public class MAsset extends X_A_Asset
         //
         // Create ASI if not exist:
         if (getProductId() > 0 && getAttributeSetInstanceId() <= 0) {
-            MProduct product = MProduct.get(getCtx(), getProductId());
+            MProduct product = MProduct.get(getProductId());
             MAttributeSetInstance asi =
-                    new MAttributeSetInstance(getCtx(), 0, product.getAttributeSetId());
+                    new MAttributeSetInstance(0, product.getAttributeSetId());
             asi.setSerNo(getSerNo());
             asi.setDescription();
             asi.saveEx();
@@ -181,7 +171,7 @@ public class MAsset extends X_A_Asset
         // If new record, create accounting and workfile
         if (newRecord) {
             // @win: set value at asset group as default value for asset
-            MAssetGroup assetgroup = new MAssetGroup(getCtx(), getAssetGroupId());
+            MAssetGroup assetgroup = new MAssetGroup(getAssetGroupId());
             String isDepreciated = (assetgroup.isDepreciated()) ? "Y" : "N";
             String isOwned = (assetgroup.isOwned()) ? "Y" : "N";
             setIsDepreciated(assetgroup.isDepreciated());
@@ -196,7 +186,7 @@ public class MAsset extends X_A_Asset
             // end @win
 
         } else {
-            MAssetChange.createAndSave(getCtx(), "UPD", new PO[]{this});
+            MAssetChange.createAndSave("UPD", new PO[]{this});
         }
 
         return true;
@@ -212,14 +202,11 @@ public class MAsset extends X_A_Asset
     public void updateStatus() {
         String status = getAssetStatus();
         setProcessed(!status.equals(X_A_Asset.A_ASSET_STATUS_New));
-        //		setIsDisposed(!status.equals(A_ASSET_STATUS_New) &&
-        // !status.equals(A_ASSET_STATUS_Activated));
         setIsDisposed(status.equals(X_A_Asset.A_ASSET_STATUS_Disposed));
         setIsFullyDepreciated(status.equals(X_A_Asset.A_ASSET_STATUS_Depreciated));
         if (isFullyDepreciated() || status.equals(X_A_Asset.A_ASSET_STATUS_Disposed)) {
             setIsDepreciated(false);
         }
-        // end comment by @win
         if (status.equals(X_A_Asset.A_ASSET_STATUS_Activated) || getAssetActivationDate() == null) {
             setAssetActivationDate(getAssetServiceDate());
         }
@@ -239,7 +226,7 @@ public class MAsset extends X_A_Asset
         //
         // If date is null, use context #Date
         if (date == null) {
-            date = Env.getContextAsDate(getCtx(), "#Date");
+            date = Env.getContextAsDate();
         }
 
         //

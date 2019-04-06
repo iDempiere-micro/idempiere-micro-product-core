@@ -6,7 +6,6 @@ import org.compiere.orm.BasePONameValue;
 import org.idempiere.common.util.Env;
 
 import java.math.BigDecimal;
-import java.util.Properties;
 
 /**
  * Generated Model for I_Product
@@ -24,16 +23,16 @@ public class X_I_Product extends BasePONameValue implements I_I_Product {
     /**
      * Standard Constructor
      */
-    public X_I_Product(Properties ctx, int I_Product_ID) {
-        super(ctx, I_Product_ID);
+    public X_I_Product(int I_Product_ID) {
+        super(I_Product_ID);
         /** if (I_Product_ID == 0) { setIsImported (false); setI_Product_ID (0); } */
     }
 
     /**
      * Load Constructor
      */
-    public X_I_Product(Properties ctx, Row row) {
-        super(ctx, row);
+    public X_I_Product(Row row) {
+        super(row);
     }
 
     /**

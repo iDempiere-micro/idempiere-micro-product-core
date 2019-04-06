@@ -4,8 +4,6 @@ import kotliquery.Row;
 import org.compiere.model.I_M_LotCtlExclude;
 import org.compiere.orm.PO;
 
-import java.util.Properties;
-
 /**
  * Generated Model for M_LotCtlExclude
  *
@@ -22,8 +20,8 @@ public class X_M_LotCtlExclude extends PO implements I_M_LotCtlExclude {
     /**
      * Standard Constructor
      */
-    public X_M_LotCtlExclude(Properties ctx, int M_LotCtlExclude_ID) {
-        super(ctx, M_LotCtlExclude_ID);
+    public X_M_LotCtlExclude(int M_LotCtlExclude_ID) {
+        super(M_LotCtlExclude_ID);
         /**
          * if (M_LotCtlExclude_ID == 0) { setColumnTableId (0); setIsSOTrx (false); setLotCtlExclude_ID
          * (0); setLotControlId (0); }
@@ -33,8 +31,8 @@ public class X_M_LotCtlExclude extends PO implements I_M_LotCtlExclude {
     /**
      * Load Constructor
      */
-    public X_M_LotCtlExclude(Properties ctx, Row row) {
-        super(ctx, row);
+    public X_M_LotCtlExclude(Row row) {
+        super(row);
     }
 
     /**
