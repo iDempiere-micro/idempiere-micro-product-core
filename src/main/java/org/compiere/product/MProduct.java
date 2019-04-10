@@ -6,15 +6,14 @@ import org.compiere.model.I_M_Product;
 import org.compiere.model.I_M_StorageOnHand;
 import org.compiere.orm.MClientKt;
 import org.compiere.orm.MTable;
-import org.compiere.orm.MTree_Base;
 import org.compiere.orm.Query;
-import org.compiere.orm.X_AD_Tree;
 import org.idempiere.common.exceptions.AdempiereException;
 import org.idempiere.common.util.CCache;
 
 import java.util.List;
 import java.util.logging.Level;
 
+import static org.compiere.orm.MTree_Base.TREETYPE_Product;
 import static software.hsharp.core.util.DBKt.executeUpdate;
 import static software.hsharp.core.util.DBKt.getSQLValueEx;
 
@@ -495,10 +494,10 @@ public class MProduct extends X_M_Product implements I_M_Product {
                     "M_Product_Acct",
                     "M_Product_Category_Acct",
                     "p.M_Product_Category_ID=" + getProductCategoryId());
-            insert_Tree(X_AD_Tree.TREETYPE_Product);
+            insert_Tree(TREETYPE_Product);
         }
         if (newRecord || isValueChanged(I_M_Product.COLUMNNAME_Value))
-            update_Tree(MTree_Base.TREETYPE_Product);
+            update_Tree(TREETYPE_Product);
 
         return success;
     } //	afterSave
@@ -509,36 +508,13 @@ public class MProduct extends X_M_Product implements I_M_Product {
             throw new AdempiereException("@S_Resource_ID@<>0");
         }
 
-        // [ 1674225 ] Delete Product: Costing deletion error
-    /*MAcctSchema[] mass = MAcctSchema.getClientAcctSchema(getADClientID(), null);
-    for(int i=0; i<mass.length; i++)
-    {
-    	// Get Cost Elements
-    	MCostElement[] ces = MCostElement.getMaterialWithCostingMethods(this);
-    	MCostElement ce = null;
-    	for(int j=0; j<ces.length; j++)
-    	{
-    		if(MCostElement.COSTINGMETHOD_StandardCosting.equals(ces[i].getCostingMethod()))
-    		{
-    			ce = ces[i];
-    			break;
-    		}
-    	}
-
-    	if(ce == null)
-    		continue;
-
-    	MCost mcost = MCost.get(this, 0, mass[i], 0, ce.getCostElementId());
-    	mcost.delete(true, null);
-    }*/
-
         //
         return true;
     } //	beforeDelete
 
     @Override
     protected boolean afterDelete(boolean success) {
-        if (success) delete_Tree(X_AD_Tree.TREETYPE_Product);
+        if (success) delete_Tree(TREETYPE_Product);
         return success;
     } //	afterDelete
 

@@ -2,7 +2,7 @@ package org.compiere.product;
 
 import kotliquery.Row;
 import org.compiere.model.I_M_Product;
-import org.compiere.util.Msg;
+import org.compiere.util.MsgKt;
 import org.idempiere.common.util.CCache;
 import org.idempiere.common.util.CLogger;
 import org.idempiere.common.util.Env;
@@ -139,7 +139,7 @@ public class MProductCategory extends X_M_Product_Category {
      */
     protected boolean beforeSave(boolean newRecord) {
         if (hasLoopInTree()) {
-            log.saveError("Error", Msg.getMsg("ProductCategoryLoopDetected"));
+            log.saveError("Error", MsgKt.getMsg("ProductCategoryLoopDetected"));
             return false;
         }
 
