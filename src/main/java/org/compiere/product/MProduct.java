@@ -8,6 +8,7 @@ import org.compiere.orm.MClientKt;
 import org.compiere.orm.MTable;
 import org.compiere.orm.Query;
 import org.idempiere.common.exceptions.AdempiereException;
+import org.idempiere.common.util.AdempiereSystemError;
 import org.idempiere.common.util.CCache;
 
 import java.util.List;
@@ -398,6 +399,11 @@ public class MProduct extends X_M_Product implements I_M_Product {
         return null;
     }
 
+    @Override
+    public boolean isASIMandatory(boolean soTrx) {
+        throw new Error("Do not know, use org.compiere.accounting.MProduct if you need this");
+    }
+
     /**
      * Product is an Item and Stocked
      *
@@ -547,5 +553,4 @@ public class MProduct extends X_M_Product implements I_M_Product {
         return (I_C_UOM) MTable.get(org.compiere.model.I_C_UOM.Table_Name)
                 .getPO(getUOMId());
     }
-
 } //	MProduct

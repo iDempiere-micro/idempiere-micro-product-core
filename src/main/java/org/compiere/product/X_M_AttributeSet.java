@@ -10,7 +10,7 @@ import org.compiere.orm.BasePOName;
  * @author iDempiere (generated)
  * @version Release 5.1 - $Id$
  */
-public class X_M_AttributeSet extends BasePOName implements I_M_AttributeSet {
+public abstract class X_M_AttributeSet extends BasePOName implements I_M_AttributeSet {
 
     /**
      * Not Mandatory = N
@@ -71,7 +71,7 @@ public class X_M_AttributeSet extends BasePOName implements I_M_AttributeSet {
     public boolean isAutoGenerateLot() {
         Object oo = getValue(COLUMNNAME_IsAutoGenerateLot);
         if (oo != null) {
-            if (oo instanceof Boolean) return ((Boolean) oo).booleanValue();
+            if (oo instanceof Boolean) return (Boolean) oo;
             return "Y".equals(oo);
         }
         return false;
@@ -83,7 +83,7 @@ public class X_M_AttributeSet extends BasePOName implements I_M_AttributeSet {
      * @param IsGuaranteeDate Product has Guarantee or Expiry Date
      */
     public void setIsGuaranteeDate(boolean IsGuaranteeDate) {
-        setValue(COLUMNNAME_IsGuaranteeDate, Boolean.valueOf(IsGuaranteeDate));
+        setValue(COLUMNNAME_IsGuaranteeDate, IsGuaranteeDate);
     }
 
     /**
@@ -94,7 +94,7 @@ public class X_M_AttributeSet extends BasePOName implements I_M_AttributeSet {
     public boolean isGuaranteeDate() {
         Object oo = getValue(COLUMNNAME_IsGuaranteeDate);
         if (oo != null) {
-            if (oo instanceof Boolean) return ((Boolean) oo).booleanValue();
+            if (oo instanceof Boolean) return (Boolean) oo;
             return "Y".equals(oo);
         }
         return false;
@@ -107,7 +107,7 @@ public class X_M_AttributeSet extends BasePOName implements I_M_AttributeSet {
      *                                 Product Instance
      */
     public void setIsGuaranteeDateMandatory(boolean IsGuaranteeDateMandatory) {
-        setValue(COLUMNNAME_IsGuaranteeDateMandatory, Boolean.valueOf(IsGuaranteeDateMandatory));
+        setValue(COLUMNNAME_IsGuaranteeDateMandatory, IsGuaranteeDateMandatory);
     }
 
     /**
@@ -118,7 +118,7 @@ public class X_M_AttributeSet extends BasePOName implements I_M_AttributeSet {
     public boolean isGuaranteeDateMandatory() {
         Object oo = getValue(COLUMNNAME_IsGuaranteeDateMandatory);
         if (oo != null) {
-            if (oo instanceof Boolean) return ((Boolean) oo).booleanValue();
+            if (oo instanceof Boolean) return (Boolean) oo;
             return "Y".equals(oo);
         }
         return false;
@@ -131,7 +131,7 @@ public class X_M_AttributeSet extends BasePOName implements I_M_AttributeSet {
      *                            Lot or Guarantee Date)
      */
     public void setIsInstanceAttribute(boolean IsInstanceAttribute) {
-        setValue(COLUMNNAME_IsInstanceAttribute, Boolean.valueOf(IsInstanceAttribute));
+        setValue(COLUMNNAME_IsInstanceAttribute, IsInstanceAttribute);
     }
 
     /**
@@ -143,7 +143,7 @@ public class X_M_AttributeSet extends BasePOName implements I_M_AttributeSet {
     public boolean isInstanceAttribute() {
         Object oo = getValue(COLUMNNAME_IsInstanceAttribute);
         if (oo != null) {
-            if (oo instanceof Boolean) return ((Boolean) oo).booleanValue();
+            if (oo instanceof Boolean) return (Boolean) oo;
             return "Y".equals(oo);
         }
         return false;
@@ -155,7 +155,7 @@ public class X_M_AttributeSet extends BasePOName implements I_M_AttributeSet {
      * @param IsLot The product instances have a Lot Number
      */
     public void setIsLot(boolean IsLot) {
-        setValue(COLUMNNAME_IsLot, Boolean.valueOf(IsLot));
+        setValue(COLUMNNAME_IsLot, IsLot);
     }
 
     /**
@@ -166,7 +166,7 @@ public class X_M_AttributeSet extends BasePOName implements I_M_AttributeSet {
     public boolean isLot() {
         Object oo = getValue(COLUMNNAME_IsLot);
         if (oo != null) {
-            if (oo instanceof Boolean) return ((Boolean) oo).booleanValue();
+            if (oo instanceof Boolean) return (Boolean) oo;
             return "Y".equals(oo);
         }
         return false;
@@ -178,7 +178,7 @@ public class X_M_AttributeSet extends BasePOName implements I_M_AttributeSet {
      * @param IsLotMandatory The entry of Lot info is mandatory when creating a Product Instance
      */
     public void setIsLotMandatory(boolean IsLotMandatory) {
-        setValue(COLUMNNAME_IsLotMandatory, Boolean.valueOf(IsLotMandatory));
+        setValue(COLUMNNAME_IsLotMandatory, IsLotMandatory);
     }
 
     /**
@@ -189,7 +189,7 @@ public class X_M_AttributeSet extends BasePOName implements I_M_AttributeSet {
     public boolean isLotMandatory() {
         Object oo = getValue(COLUMNNAME_IsLotMandatory);
         if (oo != null) {
-            if (oo instanceof Boolean) return ((Boolean) oo).booleanValue();
+            if (oo instanceof Boolean) return (Boolean) oo;
             return "Y".equals(oo);
         }
         return false;
@@ -201,7 +201,7 @@ public class X_M_AttributeSet extends BasePOName implements I_M_AttributeSet {
      * @param IsSerNo The product instances have Serial Numbers
      */
     public void setIsSerNo(boolean IsSerNo) {
-        setValue(COLUMNNAME_IsSerNo, Boolean.valueOf(IsSerNo));
+        setValue(COLUMNNAME_IsSerNo, IsSerNo);
     }
 
     /**
@@ -212,7 +212,7 @@ public class X_M_AttributeSet extends BasePOName implements I_M_AttributeSet {
     public boolean isSerNo() {
         Object oo = getValue(COLUMNNAME_IsSerNo);
         if (oo != null) {
-            if (oo instanceof Boolean) return ((Boolean) oo).booleanValue();
+            if (oo instanceof Boolean) return (Boolean) oo;
             return "Y".equals(oo);
         }
         return false;
@@ -224,7 +224,7 @@ public class X_M_AttributeSet extends BasePOName implements I_M_AttributeSet {
      * @param IsSerNoMandatory The entry of a Serial No is mandatory when creating a Product Instance
      */
     public void setIsSerNoMandatory(boolean IsSerNoMandatory) {
-        setValue(COLUMNNAME_IsSerNoMandatory, Boolean.valueOf(IsSerNoMandatory));
+        setValue(COLUMNNAME_IsSerNoMandatory, IsSerNoMandatory);
     }
 
     /**
@@ -235,7 +235,7 @@ public class X_M_AttributeSet extends BasePOName implements I_M_AttributeSet {
     public boolean isSerNoMandatory() {
         Object oo = getValue(COLUMNNAME_IsSerNoMandatory);
         if (oo != null) {
-            if (oo instanceof Boolean) return ((Boolean) oo).booleanValue();
+            if (oo instanceof Boolean) return (Boolean) oo;
             return "Y".equals(oo);
         }
         return false;

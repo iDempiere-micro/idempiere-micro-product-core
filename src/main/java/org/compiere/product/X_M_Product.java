@@ -2,8 +2,10 @@ package org.compiere.product;
 
 import kotliquery.Row;
 import org.compiere.model.HasName;
+import org.compiere.model.I_C_TaxCategory;
 import org.compiere.model.I_M_AttributeSet;
 import org.compiere.model.I_M_Product;
+import org.compiere.model.I_M_Product_Category;
 import org.compiere.orm.MTable;
 import org.compiere.orm.PO;
 import org.idempiere.common.util.Env;
@@ -61,9 +63,9 @@ public class X_M_Product extends PO {
         return ii;
     }
 
-    public org.compiere.model.I_C_TaxCategory getTaxCategory() throws RuntimeException {
-        return (org.compiere.model.I_C_TaxCategory)
-                MTable.get(org.compiere.model.I_C_TaxCategory.Table_Name)
+    public I_C_TaxCategory getTaxCategory() throws RuntimeException {
+        return (I_C_TaxCategory)
+                MTable.get(I_C_TaxCategory.Table_Name)
                         .getPO(getTaxCategoryId());
     }
 
@@ -372,8 +374,8 @@ public class X_M_Product extends PO {
         setValue(I_M_Product.COLUMNNAME_LowLevel, LowLevel);
     }
 
-    public org.compiere.model.I_M_AttributeSet getMAttributeSet() throws RuntimeException {
-        return (org.compiere.model.I_M_AttributeSet)
+    public I_M_AttributeSet getMAttributeSet() throws RuntimeException {
+        return (I_M_AttributeSet)
                 MTable.get(I_M_AttributeSet.Table_Name)
                         .getPO(getAttributeSetId());
     }
@@ -425,9 +427,9 @@ public class X_M_Product extends PO {
         return ii;
     }
 
-    public org.compiere.model.I_M_Product_Category getProductCategory() throws RuntimeException {
-        return (org.compiere.model.I_M_Product_Category)
-                MTable.get(org.compiere.model.I_M_Product_Category.Table_Name)
+    public I_M_Product_Category getProductCategory() throws RuntimeException {
+        return (I_M_Product_Category)
+                MTable.get(I_M_Product_Category.Table_Name)
                         .getPO(getProductCategoryId());
     }
 
