@@ -1,15 +1,19 @@
 package org.compiere.product;
 
 import kotliquery.Row;
+import org.compiere.model.I_C_AcctSchema;
 import org.compiere.model.I_C_UOM;
+import org.compiere.model.I_M_Cost;
 import org.compiere.model.I_M_Product;
 import org.compiere.model.I_M_StorageOnHand;
+import org.compiere.model.I_S_ExpenseType;
+import org.compiere.model.I_S_Resource;
+import org.compiere.model.I_S_ResourceType;
 import org.compiere.orm.MClientKt;
-import org.compiere.orm.MTable;
 import org.compiere.orm.Query;
 import org.idempiere.common.exceptions.AdempiereException;
-import org.idempiere.common.util.AdempiereSystemError;
 import org.idempiere.common.util.CCache;
+import software.hsharp.core.orm.MBaseTableKt;
 
 import java.util.List;
 import java.util.logging.Level;
@@ -41,7 +45,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
     /**
      * Cache
      */
-    private static CCache<Integer, MProduct> s_cache =
+    private static CCache<Integer, I_M_Product> s_cache =
             new CCache<>(I_M_Product.Table_Name, 40, 5); // 	5 minutes
     /**
      * UOM Precision
@@ -137,12 +141,12 @@ public class MProduct extends X_M_Product implements I_M_Product {
      * @param M_Product_ID id
      * @return MProduct or null
      */
-    public static MProduct get(int M_Product_ID) {
+    public static I_M_Product get(int M_Product_ID) {
         if (M_Product_ID <= 0) {
             return null;
         }
         Integer key = M_Product_ID;
-        MProduct retValue = s_cache.get(key);
+        I_M_Product retValue = s_cache.get(key);
         if (retValue != null) {
             return retValue;
         }
@@ -159,10 +163,10 @@ public class MProduct extends X_M_Product implements I_M_Product {
      * @param whereClause sql where clause
      * @return MProduct
      */
-    public static MProduct[] get(String whereClause) {
-        List<MProduct> list =
-                new Query(I_M_Product.Table_Name, whereClause).setClientId().list();
-        return list.toArray(new MProduct[0]);
+    public static I_M_Product[] get(String whereClause) {
+        List<I_M_Product> list =
+                new Query<I_M_Product>(I_M_Product.Table_Name, whereClause).setClientId().list();
+        return list.toArray(new I_M_Product[0]);
     } //	get
 
     /**
@@ -171,19 +175,19 @@ public class MProduct extends X_M_Product implements I_M_Product {
      * @param S_Resource_ID resource ID
      * @return MProduct or null if not found
      */
-    public static MProduct forS_ResourceId(int S_Resource_ID) {
+    public static I_M_Product forS_ResourceId(int S_Resource_ID) {
         if (S_Resource_ID <= 0) {
             return null;
         }
 
-        for (MProduct p : s_cache.values()) {
+        for (I_M_Product p : s_cache.values()) {
             if (p.getResourceID() == S_Resource_ID) {
                 return p;
             }
         }
         // Load from DB
-        MProduct p =
-                new Query(I_M_Product.Table_Name, I_M_Product.COLUMNNAME_S_Resource_ID + "=?")
+        I_M_Product p =
+                new Query<I_M_Product>(I_M_Product.Table_Name, I_M_Product.COLUMNNAME_S_Resource_ID + "=?")
                         .setParameters(S_Resource_ID)
                         .firstOnly();
         if (p != null) {
@@ -207,7 +211,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
      * @param parent expense type
      * @return true if changed
      */
-    public boolean setExpenseType(MExpenseType parent) {
+    public boolean setExpenseType(I_S_ExpenseType parent) {
         boolean changed = false;
         if (!I_M_Product.PRODUCTTYPE_ExpenseType.equals(getProductType())) {
             setProductType(I_M_Product.PRODUCTTYPE_ExpenseType);
@@ -257,7 +261,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
      * @param parent resource
      * @return true if changed
      */
-    public boolean setResource(MResource parent) {
+    public boolean setResource(I_S_Resource parent) {
         boolean changed = false;
         if (!I_M_Product.PRODUCTTYPE_Resource.equals(getProductType())) {
             setProductType(I_M_Product.PRODUCTTYPE_Resource);
@@ -295,7 +299,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
      * @param parent resource type
      * @return true if changed
      */
-    public boolean setResource(MResourceType parent) {
+    public boolean setResource(I_S_ResourceType parent) {
         boolean changed = false;
         if (I_M_Product.PRODUCTTYPE_Resource.equals(getProductType())) {
             setProductType(I_M_Product.PRODUCTTYPE_Resource);
@@ -384,6 +388,11 @@ public class MProduct extends X_M_Product implements I_M_Product {
         MAssetGroup ag = MAssetGroup.get(pc.getAssetGroupId());
         return ag.isOneAssetPerUOM();
     } //	isOneAssetPerUOM
+
+    @Override
+    public I_M_Cost getCostingRecord(I_C_AcctSchema as, int orgId, int attributeSetInstanceId, String costingMethod) {
+        throw new Error("you need accounting to get consting Error");
+    }
 
     /**
      * Product is Item
@@ -549,8 +558,8 @@ public class MProduct extends X_M_Product implements I_M_Product {
         return as.isUseGuaranteeDateForMPolicy();
     }
 
-    public org.compiere.model.I_C_UOM getUOM() throws RuntimeException {
-        return (I_C_UOM) MTable.get(org.compiere.model.I_C_UOM.Table_Name)
+    public I_C_UOM getUOM() throws RuntimeException {
+        return (I_C_UOM) MBaseTableKt.getTable(I_C_UOM.Table_Name)
                 .getPO(getUOMId());
     }
 } //	MProduct

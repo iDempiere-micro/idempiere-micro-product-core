@@ -3,6 +3,7 @@ package org.compiere.product;
 import org.compiere.model.I_C_InvoiceLine;
 import org.compiere.model.I_C_OrderLine;
 import org.compiere.model.I_C_ProjectLine;
+import org.compiere.model.I_M_Product;
 import org.compiere.model.I_M_RequisitionLine;
 import org.idempiere.common.util.CLogger;
 import org.idempiere.common.util.Env;
@@ -558,7 +559,7 @@ public class MProductPricing extends AbstractProductPricing {
     private void setBaseInfo() {
         if (m_M_Product_ID == 0) return;
 
-        MProduct product = MProduct.get(m_M_Product_ID);
+        I_M_Product product = MProduct.get(m_M_Product_ID);
         if (product != null) {
             m_C_UOM_ID = product.getUOMId();
             m_M_Product_Category_ID = product.getProductCategoryId();

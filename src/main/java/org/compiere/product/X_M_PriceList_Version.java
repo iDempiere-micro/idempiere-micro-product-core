@@ -2,9 +2,10 @@ package org.compiere.product;
 
 import kotliquery.Row;
 import org.compiere.model.HasName;
+import org.compiere.model.I_M_PriceList;
 import org.compiere.model.I_M_PriceList_Version;
-import org.compiere.orm.MTable;
 import org.compiere.orm.PO;
+import software.hsharp.core.orm.MBaseTableKt;
 
 import java.sql.Timestamp;
 
@@ -26,11 +27,6 @@ public class X_M_PriceList_Version extends PO implements I_M_PriceList_Version {
      */
     public X_M_PriceList_Version(int M_PriceList_Version_ID) {
         super(M_PriceList_Version_ID);
-        /**
-         * if (M_PriceList_Version_ID == 0) { setDiscountSchemaId (0); setPriceListId (0);
-         * setPriceListVersionId (0); setName (null); // @#Date@ setValidFrom (new Timestamp(
-         * System.currentTimeMillis() )); // @#Date@ }
-         */
     }
 
     /**
@@ -50,8 +46,7 @@ public class X_M_PriceList_Version extends PO implements I_M_PriceList_Version {
     }
 
     public String toString() {
-        StringBuffer sb = new StringBuffer("X_M_PriceList_Version[").append(getId()).append("]");
-        return sb.toString();
+        return "X_M_PriceList_Version[" + getId() + "]";
     }
 
     /**
@@ -61,12 +56,12 @@ public class X_M_PriceList_Version extends PO implements I_M_PriceList_Version {
      */
     public void setDiscountSchemaId(int M_DiscountSchema_ID) {
         if (M_DiscountSchema_ID < 1) setValue(COLUMNNAME_M_DiscountSchema_ID, null);
-        else setValue(COLUMNNAME_M_DiscountSchema_ID, Integer.valueOf(M_DiscountSchema_ID));
+        else setValue(COLUMNNAME_M_DiscountSchema_ID, M_DiscountSchema_ID);
     }
 
-    public org.compiere.model.I_M_PriceList getPriceList() throws RuntimeException {
-        return (org.compiere.model.I_M_PriceList)
-                MTable.get(org.compiere.model.I_M_PriceList.Table_Name)
+    public I_M_PriceList getPriceList() throws RuntimeException {
+        return (I_M_PriceList)
+                MBaseTableKt.getTable(I_M_PriceList.Table_Name)
                         .getPO(getPriceListId());
     }
 

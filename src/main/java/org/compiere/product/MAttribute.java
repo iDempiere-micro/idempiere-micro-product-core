@@ -37,7 +37,6 @@ public class MAttribute extends X_M_Attribute {
     /**
      * Load Constructor
      *
-     * @param ctx context
      */
     public MAttribute(Row row) {
         super(row);
@@ -49,18 +48,16 @@ public class MAttribute extends X_M_Attribute {
      * @param M_AttributeSetInstance_ID attribute set instance
      * @return Attribute Instance or null
      */
-    public MAttributeInstance getMAttributeInstance(int M_AttributeSetInstance_ID) {
+    public I_M_AttributeInstance getMAttributeInstance(int M_AttributeSetInstance_ID) {
         final String whereClause =
                 I_M_AttributeInstance.COLUMNNAME_M_Attribute_ID
                         + "=? AND "
                         + I_M_AttributeInstance.COLUMNNAME_M_AttributeSetInstance_ID
                         + "=?";
-        MAttributeInstance retValue =
-                new Query(I_M_AttributeInstance.Table_Name, whereClause)
-                        .setParameters(getProductAttributeId(), M_AttributeSetInstance_ID)
-                        .first();
 
-        return retValue;
+        return new Query<I_M_AttributeInstance>(I_M_AttributeInstance.Table_Name, whereClause)
+                .setParameters(getProductAttributeId(), M_AttributeSetInstance_ID)
+                .first();
     } //	getAttributeInstance
 
     /**
@@ -69,16 +66,14 @@ public class MAttribute extends X_M_Attribute {
      * @return info
      */
     public String toString() {
-        StringBuilder sb = new StringBuilder("MAttribute[");
-        sb.append(getId())
-                .append("-")
-                .append(getName())
-                .append(",Type=")
-                .append(getAttributeValueType())
-                .append(",Instance=")
-                .append(isInstanceAttribute())
-                .append("]");
-        return sb.toString();
+        return "MAttribute[" + getId() +
+                "-" +
+                getName() +
+                ",Type=" +
+                getAttributeValueType() +
+                ",Instance=" +
+                isInstanceAttribute() +
+                "]";
     } //	toString
 
     /**
@@ -92,16 +87,15 @@ public class MAttribute extends X_M_Attribute {
         if (!success) return success;
         //	Changed to Instance Attribute
         if (!newRecord && isValueChanged("IsInstanceAttribute") && isInstanceAttribute()) {
-            StringBuilder sql =
-                    new StringBuilder("UPDATE M_AttributeSet mas ")
-                            .append("SET IsInstanceAttribute='Y' ")
-                            .append("WHERE IsInstanceAttribute='N'")
-                            .append(" AND EXISTS (SELECT * FROM M_AttributeUse mau ")
-                            .append("WHERE mas.M_AttributeSet_ID=mau.M_AttributeSet_ID")
-                            .append(" AND mau.M_Attribute_ID=")
-                            .append(getProductAttributeId())
-                            .append(")");
-            int no = executeUpdate(sql.toString());
+            String sql = "UPDATE M_AttributeSet mas " +
+                    "SET IsInstanceAttribute='Y' " +
+                    "WHERE IsInstanceAttribute='N'" +
+                    " AND EXISTS (SELECT * FROM M_AttributeUse mau " +
+                    "WHERE mas.M_AttributeSet_ID=mau.M_AttributeSet_ID" +
+                    " AND mau.M_Attribute_ID=" +
+                    getProductAttributeId() +
+                    ")";
+            int no = executeUpdate(sql);
             if (log.isLoggable(Level.FINE)) log.fine("AttributeSet Instance set #" + no);
         }
         return success;

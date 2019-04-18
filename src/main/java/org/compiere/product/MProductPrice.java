@@ -110,14 +110,14 @@ public class MProductPrice extends X_M_ProductPrice {
      * @param M_Product_ID           id
      * @return product price or null
      */
-    public static MProductPrice get(
+    public static I_M_ProductPrice get(
             int M_PriceList_Version_ID, int M_Product_ID) {
         final String whereClause =
                 MProductPrice.COLUMNNAME_M_PriceList_Version_ID
                         + "=? AND "
                         + MProductPrice.COLUMNNAME_M_Product_ID
                         + "=?";
-        return new Query(I_M_ProductPrice.Table_Name, whereClause)
+        return new Query<I_M_ProductPrice>(I_M_ProductPrice.Table_Name, whereClause)
                 .setParameters(M_PriceList_Version_ID, M_Product_ID)
                 .first();
     } //	get

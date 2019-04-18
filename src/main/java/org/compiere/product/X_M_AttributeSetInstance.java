@@ -1,9 +1,10 @@
 package org.compiere.product;
 
 import kotliquery.Row;
+import org.compiere.model.I_M_AttributeSet;
 import org.compiere.model.I_M_AttributeSetInstance;
-import org.compiere.orm.MTable;
 import org.compiere.orm.PO;
+import software.hsharp.core.orm.MBaseTableKt;
 
 import java.sql.Timestamp;
 
@@ -106,9 +107,9 @@ public class X_M_AttributeSetInstance extends PO implements I_M_AttributeSetInst
         setValue(COLUMNNAME_Lot, Lot);
     }
 
-    public org.compiere.model.I_M_AttributeSet getMAttributeSet() throws RuntimeException {
-        return (org.compiere.model.I_M_AttributeSet)
-                MTable.get(org.compiere.model.I_M_AttributeSet.Table_Name)
+    public I_M_AttributeSet getMAttributeSet() throws RuntimeException {
+        return (I_M_AttributeSet)
+                MBaseTableKt.getTable(I_M_AttributeSet.Table_Name)
                         .getPO(getAttributeSetId());
     }
 
@@ -130,7 +131,7 @@ public class X_M_AttributeSetInstance extends PO implements I_M_AttributeSetInst
      */
     public void setAttributeSetId(int M_AttributeSet_ID) {
         if (M_AttributeSet_ID < 0) setValue(COLUMNNAME_M_AttributeSet_ID, null);
-        else setValue(COLUMNNAME_M_AttributeSet_ID, Integer.valueOf(M_AttributeSet_ID));
+        else setValue(COLUMNNAME_M_AttributeSet_ID, M_AttributeSet_ID);
     }
 
     /**
@@ -151,7 +152,7 @@ public class X_M_AttributeSetInstance extends PO implements I_M_AttributeSetInst
      */
     public void setLotId(int M_Lot_ID) {
         if (M_Lot_ID < 1) setValue(COLUMNNAME_M_Lot_ID, null);
-        else setValue(COLUMNNAME_M_Lot_ID, Integer.valueOf(M_Lot_ID));
+        else setValue(COLUMNNAME_M_Lot_ID, M_Lot_ID);
     }
 
     /**

@@ -1,6 +1,7 @@
 package org.compiere.product;
 
 import kotliquery.Row;
+import org.compiere.model.I_M_Product;
 import org.compiere.model.I_M_Product_BOM;
 import org.compiere.orm.Query;
 import org.idempiere.common.util.CLogger;
@@ -60,7 +61,7 @@ public class MProductBOM extends X_M_Product_BOM {
      * @param product product
      * @return array of BOMs
      */
-    public static MProductBOM[] getBOMLines(MProduct product) {
+    public static MProductBOM[] getBOMLines(I_M_Product product) {
         return getBOMLines(product.getProductId());
     } //	getBOMLines
 
@@ -74,8 +75,8 @@ public class MProductBOM extends X_M_Product_BOM {
     public static MProductBOM[] getBOMLines(int M_Product_ID) {
         // FR: [ 2214883 ] Remove SQL code and Replace for Query - red1
         final String whereClause = "M_Product_ID=?";
-        List<MProductBOM> list =
-                new Query(I_M_Product_BOM.Table_Name, whereClause)
+        List<I_M_Product_BOM> list =
+                new Query<I_M_Product_BOM>(I_M_Product_BOM.Table_Name, whereClause)
                         .setParameters(M_Product_ID)
                         .setOrderBy("Line")
                         .list();

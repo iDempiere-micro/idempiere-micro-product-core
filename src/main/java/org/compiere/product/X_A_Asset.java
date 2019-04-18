@@ -3,8 +3,9 @@ package org.compiere.product;
 import kotliquery.Row;
 import org.compiere.model.HasName;
 import org.compiere.model.I_A_Asset;
+import org.compiere.model.I_A_Asset_Type;
 import org.compiere.orm.BasePOUser;
-import org.compiere.orm.MTable;
+import software.hsharp.core.orm.MBaseTableKt;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -137,9 +138,9 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset {
         setValue(COLUMNNAME_A_Asset_Status, A_Asset_Status);
     }
 
-    public org.compiere.model.I_A_Asset_Type getAssetType() throws RuntimeException {
-        return (org.compiere.model.I_A_Asset_Type)
-                MTable.get(org.compiere.model.I_A_Asset_Type.Table_Name)
+    public I_A_Asset_Type getAssetType() throws RuntimeException {
+        return (I_A_Asset_Type)
+                MBaseTableKt.getTable(I_A_Asset_Type.Table_Name)
                         .getPO(getAssetTypeId());
     }
 
@@ -172,7 +173,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset {
      */
     public void setParentAssetId(int A_Parent_Asset_ID) {
         if (A_Parent_Asset_ID < 1) setValue(COLUMNNAME_A_Parent_Asset_ID, null);
-        else setValue(COLUMNNAME_A_Parent_Asset_ID, Integer.valueOf(A_Parent_Asset_ID));
+        else setValue(COLUMNNAME_A_Parent_Asset_ID, A_Parent_Asset_ID);
     }
 
     /**
@@ -227,7 +228,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset {
      */
     public void setActivityId(int C_Activity_ID) {
         if (C_Activity_ID < 1) setValue(COLUMNNAME_C_Activity_ID, null);
-        else setValue(COLUMNNAME_C_Activity_ID, Integer.valueOf(C_Activity_ID));
+        else setValue(COLUMNNAME_C_Activity_ID, C_Activity_ID);
     }
 
     /**
@@ -292,7 +293,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset {
      * @param IsDepreciated The asset will be depreciated
      */
     public void setIsDepreciated(boolean IsDepreciated) {
-        setValue(COLUMNNAME_IsDepreciated, Boolean.valueOf(IsDepreciated));
+        setValue(COLUMNNAME_IsDepreciated, IsDepreciated);
     }
 
     /**
@@ -303,7 +304,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset {
     public boolean isDepreciated() {
         Object oo = getValue(COLUMNNAME_IsDepreciated);
         if (oo != null) {
-            if (oo instanceof Boolean) return ((Boolean) oo).booleanValue();
+            if (oo instanceof Boolean) return (Boolean) oo;
             return "Y".equals(oo);
         }
         return false;
@@ -315,7 +316,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset {
      * @param IsDisposed The asset is disposed
      */
     public void setIsDisposed(boolean IsDisposed) {
-        setValue(COLUMNNAME_IsDisposed, Boolean.valueOf(IsDisposed));
+        setValue(COLUMNNAME_IsDisposed, IsDisposed);
     }
 
     /**
@@ -324,7 +325,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset {
      * @param IsFullyDepreciated The asset is fully depreciated
      */
     public void setIsFullyDepreciated(boolean IsFullyDepreciated) {
-        setValueNoCheck(COLUMNNAME_IsFullyDepreciated, Boolean.valueOf(IsFullyDepreciated));
+        setValueNoCheck(COLUMNNAME_IsFullyDepreciated, IsFullyDepreciated);
     }
 
     /**
@@ -335,7 +336,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset {
     public boolean isFullyDepreciated() {
         Object oo = getValue(COLUMNNAME_IsFullyDepreciated);
         if (oo != null) {
-            if (oo instanceof Boolean) return ((Boolean) oo).booleanValue();
+            if (oo instanceof Boolean) return (Boolean) oo;
             return "Y".equals(oo);
         }
         return false;
@@ -347,7 +348,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset {
      * @param IsInPosession The asset is in the possession of the organization
      */
     public void setIsInPosession(boolean IsInPosession) {
-        setValue(COLUMNNAME_IsInPosession, Boolean.valueOf(IsInPosession));
+        setValue(COLUMNNAME_IsInPosession, IsInPosession);
     }
 
     /**
@@ -356,7 +357,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset {
      * @param IsOwned The asset is owned by the organization
      */
     public void setIsOwned(boolean IsOwned) {
-        setValue(COLUMNNAME_IsOwned, Boolean.valueOf(IsOwned));
+        setValue(COLUMNNAME_IsOwned, IsOwned);
     }
 
     /**
@@ -388,7 +389,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset {
         if (M_AttributeSetInstance_ID < 0) setValueNoCheck(COLUMNNAME_M_AttributeSetInstance_ID, null);
         else
             setValueNoCheck(
-                    COLUMNNAME_M_AttributeSetInstance_ID, Integer.valueOf(M_AttributeSetInstance_ID));
+                    COLUMNNAME_M_AttributeSetInstance_ID, M_AttributeSetInstance_ID);
     }
 
     /**
@@ -409,7 +410,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset {
      */
     public void setProductId(int M_Product_ID) {
         if (M_Product_ID < 1) setValue(COLUMNNAME_M_Product_ID, null);
-        else setValue(COLUMNNAME_M_Product_ID, Integer.valueOf(M_Product_ID));
+        else setValue(COLUMNNAME_M_Product_ID, M_Product_ID);
     }
 
     /**
@@ -436,7 +437,7 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset {
      * @param Processed The document has been processed
      */
     public void setProcessed(boolean Processed) {
-        setValue(COLUMNNAME_Processed, Boolean.valueOf(Processed));
+        setValue(COLUMNNAME_Processed, Processed);
     }
 
     /**

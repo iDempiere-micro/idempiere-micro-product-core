@@ -20,7 +20,6 @@ public class MLot extends X_M_Lot {
     /**
      * ************************************************************************ Standard Constructor
      *
-     * @param ctx      context
      * @param M_Lot_ID ID
      */
     public MLot(int M_Lot_ID) {
@@ -30,7 +29,6 @@ public class MLot extends X_M_Lot {
     /**
      * Load Constructor
      *
-     * @param ctx context
      */
     public MLot(Row row) {
         super(row);
@@ -58,9 +56,9 @@ public class MLot extends X_M_Lot {
      * @param lot
      * @return Last Lot for Product
      */
-    public static MLot getProductLot(int M_Product_ID, String lot) {
+    public static I_M_Lot getProductLot(int M_Product_ID, String lot) {
         final String whereClause = "M_Product_ID=? AND Name=?";
-        return new Query(I_M_Lot.Table_Name, whereClause)
+        return new Query<I_M_Lot>(I_M_Lot.Table_Name, whereClause)
                 .setParameters(M_Product_ID, lot)
                 .setOrderBy(I_M_Lot.COLUMNNAME_M_Lot_ID + " DESC")
                 .first();

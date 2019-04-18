@@ -1,6 +1,7 @@
 package org.compiere.product;
 
 import kotliquery.Row;
+import org.compiere.model.I_M_Product;
 import org.compiere.model.I_S_Resource;
 import org.idempiere.common.exceptions.AdempiereException;
 import org.idempiere.common.util.CCache;
@@ -33,12 +34,11 @@ public class MResource extends X_S_Resource {
     /**
      * Cached Product
      */
-    private MProduct m_product = null;
+    private I_M_Product m_product = null;
 
     /**
      * Standard Constructor
      *
-     * @param ctx           context
      * @param S_Resource_ID id
      */
     public MResource(int S_Resource_ID) {
@@ -48,7 +48,6 @@ public class MResource extends X_S_Resource {
     /**
      * Load Constructor
      *
-     * @param ctx context
      */
     public MResource(Row row) {
         super(row);
@@ -57,7 +56,6 @@ public class MResource extends X_S_Resource {
     /**
      * Get from Cache
      *
-     * @param ctx
      * @param S_Resource_ID
      * @return MResource
      */
@@ -94,7 +92,7 @@ public class MResource extends X_S_Resource {
      *
      * @return product
      */
-    public MProduct getProduct() {
+    public I_M_Product getProduct() {
         if (m_product == null) {
             m_product = MProduct.forS_ResourceId(getResourceId());
         }
@@ -122,7 +120,7 @@ public class MResource extends X_S_Resource {
     protected boolean afterSave(boolean newRecord, boolean success) {
         if (!success) return success;
 
-        MProduct prod = getProduct();
+        I_M_Product prod = getProduct();
         if (prod.setResource(this)) prod.saveEx();
 
         return success;
@@ -131,7 +129,7 @@ public class MResource extends X_S_Resource {
     @Override
     protected boolean beforeDelete() {
         // Delete product
-        MProduct product = getProduct();
+        I_M_Product product = getProduct();
         if (product != null && product.getProductId() > 0) {
             product.setResourceID(0); // unlink resource
             product.deleteEx(true);

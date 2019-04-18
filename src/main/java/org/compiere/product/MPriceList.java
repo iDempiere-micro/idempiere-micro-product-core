@@ -28,7 +28,7 @@ public class MPriceList extends X_M_PriceList {
     /**
      * Cache of Price Lists
      */
-    private static CCache<Integer, MPriceList> s_cache =
+    private static CCache<Integer, I_M_PriceList> s_cache =
             new CCache<>(I_M_PriceList.Table_Name, 5, 5);
     /**
      * Cached Precision
@@ -38,7 +38,6 @@ public class MPriceList extends X_M_PriceList {
     /**
      * ************************************************************************ Standard Constructor
      *
-     * @param ctx            context
      * @param M_PriceList_ID id
      */
     public MPriceList(int M_PriceList_ID) {
@@ -49,15 +48,12 @@ public class MPriceList extends X_M_PriceList {
             setIsSOPriceList(false);
             setIsTaxIncluded(false);
             setPricePrecision(2); // 2
-            //	setName (null);
-            //	setCurrencyId (0);
         }
     } //	MPriceList
 
     /**
      * Load Constructor
      *
-     * @param ctx context
      */
     public MPriceList(Row row) {
         super(row);
@@ -85,13 +81,12 @@ public class MPriceList extends X_M_PriceList {
     /**
      * Get Price List (cached)
      *
-     * @param ctx            context
      * @param M_PriceList_ID id
      * @return PriceList
      */
-    public static MPriceList get(int M_PriceList_ID) {
+    public static I_M_PriceList get(int M_PriceList_ID) {
         Integer key = M_PriceList_ID;
-        MPriceList retValue = s_cache.get(key);
+        I_M_PriceList retValue = s_cache.get(key);
         if (retValue == null) {
             retValue = new MPriceList(M_PriceList_ID);
             s_cache.put(key, retValue);
@@ -102,15 +97,14 @@ public class MPriceList extends X_M_PriceList {
     /**
      * Get Default Price List for Client (cached)
      *
-     * @param ctx           context
      * @param IsSOPriceList SO or PO
      * @return PriceList or null
      */
-    public static MPriceList getDefault(boolean IsSOPriceList) {
+    public static I_M_PriceList getDefault(boolean IsSOPriceList) {
         int AD_Client_ID = Env.getClientId();
-        MPriceList retValue;
+        I_M_PriceList retValue;
         //	Search for it in cache
-        for (MPriceList mPriceList : s_cache.values()) {
+        for (I_M_PriceList mPriceList : s_cache.values()) {
             retValue = mPriceList;
             if (retValue.isDefault()
                     && retValue.getClientId() == AD_Client_ID
@@ -122,7 +116,7 @@ public class MPriceList extends X_M_PriceList {
         //	Get from DB
         final String whereClause = "AD_Client_ID=? AND IsDefault=? AND IsSOPriceList=?";
         retValue =
-                new Query(I_M_PriceList.Table_Name, whereClause)
+                new Query<I_M_PriceList>(I_M_PriceList.Table_Name, whereClause)
                         .setParameters(AD_Client_ID, "Y", IsSOPriceList ? "Y" : "N")
                         .setOnlyActiveRecords(true)
                         .setOrderBy("M_PriceList_ID")
@@ -138,24 +132,22 @@ public class MPriceList extends X_M_PriceList {
     /**
      * Get Standard Currency Precision
      *
-     * @param ctx            context
      * @param M_PriceList_ID price list
      * @return precision
      */
     public static int getStandardPrecision(int M_PriceList_ID) {
-        MPriceList pl = MPriceList.get(M_PriceList_ID);
+        I_M_PriceList pl = MPriceList.get(M_PriceList_ID);
         return pl.getStandardPrecision();
     } //	getStandardPrecision
 
     /**
      * Get Price Precision
      *
-     * @param ctx            context
      * @param M_PriceList_ID price list
      * @return precision
      */
     public static int getPricePrecision(int M_PriceList_ID) {
-        MPriceList pl = MPriceList.get(M_PriceList_ID);
+        I_M_PriceList pl = MPriceList.get(M_PriceList_ID);
         return pl.getPricePrecision();
     } //	getPricePrecision
 
@@ -165,14 +157,14 @@ public class MPriceList extends X_M_PriceList {
      * @param valid date where PLV must be valid or today if null
      * @return PLV
      */
-    public MPriceListVersion getPriceListVersion(Timestamp valid) {
+    public I_M_PriceList_Version getPriceListVersion(Timestamp valid) {
         if (valid == null) valid = new Timestamp(System.currentTimeMillis());
 
         final String whereClause = "M_PriceList_ID=? AND TRUNC(ValidFrom)<=?";
         /*
          * Cached PLV
          */
-        MPriceListVersion m_plv = new Query(I_M_PriceList_Version.Table_Name, whereClause)
+        I_M_PriceList_Version m_plv = new Query<I_M_PriceList_Version>(I_M_PriceList_Version.Table_Name, whereClause)
                 .setParameters(getPriceListId(), valid)
                 .setOnlyActiveRecords(true)
                 .setOrderBy("ValidFrom DESC")

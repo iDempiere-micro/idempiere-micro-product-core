@@ -3,6 +3,7 @@ package org.compiere.product;
 import kotliquery.Row;
 import org.compiere.model.I_A_Asset;
 import org.compiere.model.I_C_BPartner_Location;
+import org.compiere.model.I_M_Product;
 import org.compiere.orm.PO;
 import org.compiere.orm.SetGetUtil;
 import org.idempiere.common.util.Env;
@@ -124,7 +125,7 @@ public class MAsset extends X_A_Asset
         //
         // Create ASI if not exist:
         if (getProductId() > 0 && getAttributeSetInstanceId() <= 0) {
-            MProduct product = MProduct.get(getProductId());
+            I_M_Product product = MProduct.get(getProductId());
             MAttributeSetInstance asi =
                     new MAttributeSetInstance(0, product.getAttributeSetId());
             asi.setSerNo(getSerNo());

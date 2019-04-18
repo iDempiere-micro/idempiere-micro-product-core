@@ -1,6 +1,7 @@
 package org.compiere.product;
 
 import kotliquery.Row;
+import org.compiere.model.I_M_Product;
 
 /**
  * Expense Type Model
@@ -17,14 +18,12 @@ public class MExpenseType extends X_S_ExpenseType {
     /**
      * Cached Product
      */
-    private MProduct m_product = null;
+    private I_M_Product m_product = null;
 
     /**
      * Default Constructor
      *
-     * @param ctx              context
      * @param S_ExpenseType_ID id
-     * @param trxName          transaction
      */
     public MExpenseType(int S_ExpenseType_ID) {
         super(S_ExpenseType_ID);
@@ -33,9 +32,6 @@ public class MExpenseType extends X_S_ExpenseType {
     /**
      * MExpenseType
      *
-     * @param ctx     context
-     * @param rs      result set
-     * @param trxName transaction
      */
     public MExpenseType(Row row) {
         super(row);
@@ -46,10 +42,9 @@ public class MExpenseType extends X_S_ExpenseType {
      *
      * @return product
      */
-    public MProduct getProduct() {
+    public I_M_Product getProduct() {
         if (m_product == null) {
-            StringBuilder msgmp = new StringBuilder("S_ExpenseType_ID=").append(getExpenseTypeId());
-            MProduct[] products = MProduct.get(msgmp.toString());
+            I_M_Product[] products = MProduct.get("S_ExpenseType_ID=" + getExpenseTypeId());
             if (products.length > 0) m_product = products[0];
         }
         return m_product;
@@ -81,7 +76,7 @@ public class MExpenseType extends X_S_ExpenseType {
     protected boolean afterSave(boolean newRecord, boolean success) {
         if (!success) return success;
 
-        MProduct prod = getProduct();
+        I_M_Product prod = getProduct();
         if (prod.setExpenseType(this)) prod.saveEx();
 
         return success;

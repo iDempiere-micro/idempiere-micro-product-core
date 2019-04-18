@@ -25,11 +25,6 @@ public class X_M_Product_BOM extends PO implements I_M_Product_BOM {
      */
     public X_M_Product_BOM(int M_Product_BOM_ID) {
         super(M_Product_BOM_ID);
-        /**
-         * if (M_Product_BOM_ID == 0) { setBOMQty (Env.ZERO); // 1 setLine (0); // @SQL=SELECT
-         * NVL(MAX(Line),0)+10 AS DefaultValue FROM M_Product_BOM WHERE M_Product_ID=@M_Product_ID@
-         * setProduct_BOM_ID (0); setProductBOM_ID (0); setProductId (0); }
-         */
     }
 
     /**

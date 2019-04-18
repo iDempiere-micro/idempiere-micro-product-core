@@ -1,6 +1,8 @@
 package org.compiere.product;
 
 import org.compiere.model.HasName;
+import org.compiere.model.I_M_PriceList;
+import org.compiere.model.I_M_Product;
 import org.compiere.util.DisplayType;
 import org.idempiere.common.exceptions.AdempiereException;
 
@@ -31,13 +33,13 @@ public class ProductNotOnPriceListException extends AdempiereException {
             sb.append("@Line@:").append(documentLineNo);
         }
         if (pp.getProductId() > 0) {
-            MProduct p = MProduct.get(pp.getProductId());
+            I_M_Product p = MProduct.get(pp.getProductId());
             if (sb.length() > 0) sb.append(", ");
             sb.append("@M_Product_ID@:")
                     .append(p == null ? "?" : p.get_Translation(HasName.COLUMNNAME_Name));
         }
         if (pp.getPriceListId() > 0) {
-            MPriceList pl = MPriceList.get(pp.getPriceListId());
+            I_M_PriceList pl = MPriceList.get(pp.getPriceListId());
             if (sb.length() > 0) sb.append(", ");
             sb.append("@M_PriceList_ID@:")
                     .append(pl == null ? "?" : pl.get_Translation(HasName.COLUMNNAME_Name));

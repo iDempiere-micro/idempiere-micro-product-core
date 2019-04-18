@@ -1,10 +1,11 @@
 package org.compiere.product;
 
 import kotliquery.Row;
+import org.compiere.model.I_M_PriceList_Version;
 import org.compiere.model.I_M_ProductPrice;
-import org.compiere.orm.MTable;
 import org.compiere.orm.PO;
 import org.idempiere.common.util.Env;
+import software.hsharp.core.orm.MBaseTableKt;
 
 import java.math.BigDecimal;
 
@@ -26,10 +27,6 @@ public class X_M_ProductPrice extends PO implements I_M_ProductPrice {
      */
     public X_M_ProductPrice(int M_ProductPrice_ID) {
         super(M_ProductPrice_ID);
-        /**
-         * if (M_ProductPrice_ID == 0) { setPriceListVersionId (0); setProductId (0);
-         * setPriceLimit (Env.ZERO); setPriceList (Env.ZERO); setPriceStd (Env.ZERO); }
-         */
     }
 
     /**
@@ -53,9 +50,9 @@ public class X_M_ProductPrice extends PO implements I_M_ProductPrice {
         return sb.toString();
     }
 
-    public org.compiere.model.I_M_PriceList_Version getPriceListVersion() throws RuntimeException {
-        return (org.compiere.model.I_M_PriceList_Version)
-                MTable.get(org.compiere.model.I_M_PriceList_Version.Table_Name)
+    public I_M_PriceList_Version getPriceListVersion() throws RuntimeException {
+        return (I_M_PriceList_Version)
+                MBaseTableKt.getTable(I_M_PriceList_Version.Table_Name)
                         .getPO(getPriceListVersionId());
     }
 

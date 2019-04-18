@@ -6,9 +6,9 @@ import org.compiere.model.I_C_TaxCategory;
 import org.compiere.model.I_M_AttributeSet;
 import org.compiere.model.I_M_Product;
 import org.compiere.model.I_M_Product_Category;
-import org.compiere.orm.MTable;
 import org.compiere.orm.PO;
 import org.idempiere.common.util.Env;
+import software.hsharp.core.orm.MBaseTableKt;
 
 import java.math.BigDecimal;
 
@@ -65,7 +65,7 @@ public class X_M_Product extends PO {
 
     public I_C_TaxCategory getTaxCategory() throws RuntimeException {
         return (I_C_TaxCategory)
-                MTable.get(I_C_TaxCategory.Table_Name)
+                MBaseTableKt.getTable(I_C_TaxCategory.Table_Name)
                         .getPO(getTaxCategoryId());
     }
 
@@ -376,7 +376,7 @@ public class X_M_Product extends PO {
 
     public I_M_AttributeSet getMAttributeSet() throws RuntimeException {
         return (I_M_AttributeSet)
-                MTable.get(I_M_AttributeSet.Table_Name)
+                MBaseTableKt.getTable(I_M_AttributeSet.Table_Name)
                         .getPO(getAttributeSetId());
     }
 
@@ -429,7 +429,7 @@ public class X_M_Product extends PO {
 
     public I_M_Product_Category getProductCategory() throws RuntimeException {
         return (I_M_Product_Category)
-                MTable.get(I_M_Product_Category.Table_Name)
+                MBaseTableKt.getTable(I_M_Product_Category.Table_Name)
                         .getPO(getProductCategoryId());
     }
 

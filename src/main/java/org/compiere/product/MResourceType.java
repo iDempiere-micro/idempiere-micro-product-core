@@ -1,6 +1,7 @@
 package org.compiere.product;
 
 import kotliquery.Row;
+import org.compiere.model.I_M_Product;
 import org.compiere.model.I_S_ResourceType;
 import org.idempiere.common.exceptions.AdempiereException;
 import org.idempiere.common.exceptions.FillMandatoryException;
@@ -91,13 +92,13 @@ public class MResourceType extends X_S_ResourceType {
 
         //	Update Products
         if (!newRecord) {
-            MProduct[] products =
+            I_M_Product[] products =
                     MProduct.get(
                             "S_Resource_ID IN "
                                     + "(SELECT S_Resource_ID FROM S_Resource WHERE S_ResourceType_ID="
                                     + getResourceTypeId()
                                     + ")");
-            for (MProduct product : products) {
+            for (I_M_Product product : products) {
                 if (product.setResource(this)) {
                     product.saveEx();
                 }

@@ -1,10 +1,11 @@
 package org.compiere.product;
 
 import kotliquery.Row;
+import org.compiere.model.I_A_Asset_Group;
 import org.compiere.model.I_M_Product_Category;
 import org.compiere.orm.BasePONameValue;
-import org.compiere.orm.MTable;
 import org.idempiere.common.util.Env;
+import software.hsharp.core.orm.MBaseTableKt;
 
 import java.math.BigDecimal;
 
@@ -50,13 +51,12 @@ public class X_M_Product_Category extends BasePONameValue
     }
 
     public String toString() {
-        StringBuffer sb = new StringBuffer("X_M_Product_Category[").append(getId()).append("]");
-        return sb.toString();
+        return "X_M_Product_Category[" + getId() + "]";
     }
 
-    public org.compiere.model.I_A_Asset_Group getAssetGroup() throws RuntimeException {
-        return (org.compiere.model.I_A_Asset_Group)
-                MTable.get(org.compiere.model.I_A_Asset_Group.Table_Name)
+    public I_A_Asset_Group getAssetGroup() throws RuntimeException {
+        return (I_A_Asset_Group)
+                MBaseTableKt.getTable(I_A_Asset_Group.Table_Name)
                         .getPO(getAssetGroupId());
     }
 
@@ -77,7 +77,7 @@ public class X_M_Product_Category extends BasePONameValue
      * @param IsDefault Default value
      */
     public void setIsDefault(boolean IsDefault) {
-        setValue(COLUMNNAME_IsDefault, Boolean.valueOf(IsDefault));
+        setValue(COLUMNNAME_IsDefault, IsDefault);
     }
 
     /**
@@ -86,7 +86,7 @@ public class X_M_Product_Category extends BasePONameValue
      * @param IsSelfService This is a Self-Service entry or this entry can be changed via Self-Service
      */
     public void setIsSelfService(boolean IsSelfService) {
-        setValue(COLUMNNAME_IsSelfService, Boolean.valueOf(IsSelfService));
+        setValue(COLUMNNAME_IsSelfService, IsSelfService);
     }
 
     /**

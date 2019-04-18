@@ -1,6 +1,9 @@
 package org.compiere.product;
 
 import kotliquery.Row;
+import org.compiere.model.I_M_AttributeInstance;
+import org.compiere.model.I_M_Lot;
+import org.compiere.model.I_M_Product;
 import org.compiere.orm.TimeUtil;
 import org.compiere.util.DisplayType;
 import org.idempiere.common.util.CLogger;
@@ -43,7 +46,6 @@ public class MAttributeSetInstance extends X_M_AttributeSetInstance {
     /**
      * ************************************************************************ Standard Constructor
      *
-     * @param ctx                       context
      * @param M_AttributeSetInstance_ID id
      */
     public MAttributeSetInstance(int M_AttributeSetInstance_ID) {
@@ -53,7 +55,6 @@ public class MAttributeSetInstance extends X_M_AttributeSetInstance {
     /**
      * Load Constructor
      *
-     * @param ctx context
      */
     public MAttributeSetInstance(Row row) {
         super(row);
@@ -62,7 +63,6 @@ public class MAttributeSetInstance extends X_M_AttributeSetInstance {
     /**
      * Standard Constructor
      *
-     * @param ctx                       context
      * @param M_AttributeSetInstance_ID id
      * @param M_AttributeSet_ID         attribute set
      */
@@ -75,7 +75,6 @@ public class MAttributeSetInstance extends X_M_AttributeSetInstance {
     /**
      * Get Attribute Set Instance from ID or Product
      *
-     * @param ctx                       context
      * @param M_AttributeSetInstance_ID id or 0
      * @param M_Product_ID              required if id is 0
      * @return Attribute Set Instance or null if error
@@ -120,7 +119,6 @@ public class MAttributeSetInstance extends X_M_AttributeSetInstance {
      * Create & save a new ASI for given product. Automatically creates Lot#, Serial# and Guarantee
      * Date.
      *
-     * @param ctx
      * @param product
      * @return newly created ASI
      */
@@ -142,12 +140,11 @@ public class MAttributeSetInstance extends X_M_AttributeSetInstance {
     /**
      * AutoGerate & save a new ASI for given product. Automatically creates Lot#
      *
-     * @param ctx
      * @param product
      * @return newly created ASI
      */
     public static MAttributeSetInstance generateLot(
-            MProduct product) {
+            I_M_Product product) {
         MAttributeSetInstance asi = new MAttributeSetInstance(0);
         asi.setClientOrg(product.getClientId(), 0);
         asi.setAttributeSetId(product.getAttributeSetId());
@@ -188,8 +185,8 @@ public class MAttributeSetInstance extends X_M_AttributeSetInstance {
 
         //	Instance Attribute Values
         MAttribute[] attributes = m_mas.getMAttributes(true);
-        for (int i = 0; i < attributes.length; i++) {
-            MAttributeInstance mai = attributes[i].getMAttributeInstance(getAttributeSetInstanceId());
+        for (MAttribute attribute : attributes) {
+            I_M_AttributeInstance mai = attribute.getMAttributeInstance(getAttributeSetInstanceId());
             if (mai != null && mai.getValue() != null) {
                 if (sb.length() > 0) sb.append("_");
                 sb.append(mai.getValue());
@@ -213,8 +210,8 @@ public class MAttributeSetInstance extends X_M_AttributeSetInstance {
 
         //	Product Attribute Values
         attributes = m_mas.getMAttributes(false);
-        for (int i = 0; i < attributes.length; i++) {
-            MAttributeInstance mai = attributes[i].getMAttributeInstance(getAttributeSetInstanceId());
+        for (MAttribute attribute : attributes) {
+            I_M_AttributeInstance mai = attribute.getMAttributeInstance(getAttributeSetInstanceId());
             if (mai != null) {
                 if (sb.length() > 0) sb.append("_");
                 if (mai.getValue() != null) sb.append(mai.getValue());
@@ -279,7 +276,7 @@ public class MAttributeSetInstance extends X_M_AttributeSetInstance {
      */
     public void setLot(String Lot, int M_Product_ID) {
         //	Try to find it
-        MLot mLot = MLot.getProductLot(M_Product_ID, Lot);
+        I_M_Lot mLot = MLot.getProductLot(M_Product_ID, Lot);
         if (mLot != null) setLotId(mLot.getLotId());
         setLot(Lot);
     } //	setLot
