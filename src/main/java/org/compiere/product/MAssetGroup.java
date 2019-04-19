@@ -1,7 +1,7 @@
 package org.compiere.product;
 
 import kotliquery.Row;
-import org.compiere.model.I_A_Asset_Group;
+import org.compiere.model.AssetGroup;
 import org.compiere.model.SetGetModel;
 import org.compiere.orm.SetGetUtil;
 import org.idempiere.common.util.CCache;
@@ -23,7 +23,7 @@ public class MAssetGroup extends X_A_Asset_Group {
      * Cache: ID -> MAssetGroup
      */
     private static CCache<Integer, MAssetGroup> s_cache =
-            new CCache<>(I_A_Asset_Group.Table_Name, 10, 0);
+            new CCache<>(AssetGroup.Table_Name, 10, 0);
 
     /**
      * Default Constructor
@@ -72,16 +72,16 @@ public class MAssetGroup extends X_A_Asset_Group {
         int AD_Client_ID = SetGetUtil.get_AttrValueAsInt(m, "AD_Client_ID");
         final String sql =
                 "SELECT "
-                        + I_A_Asset_Group.COLUMNNAME_A_Asset_Group_ID
+                        + AssetGroup.COLUMNNAME_A_Asset_Group_ID
                         + " FROM "
-                        + I_A_Asset_Group.Table_Name
+                        + AssetGroup.Table_Name
                         + " WHERE AD_Client_ID=?"
                         //	+ " AND NVL("+COLUMNNAME_A_Asset_Type_ID+",0) IN (0,?)" //commented by @win
                         + " ORDER BY "
-                        + I_A_Asset_Group.COLUMNNAME_IsDefault
+                        + AssetGroup.COLUMNNAME_IsDefault
                         + " DESC"
                         + ", "
-                        + I_A_Asset_Group.COLUMNNAME_A_Asset_Group_ID
+                        + AssetGroup.COLUMNNAME_A_Asset_Group_ID
                         + " ASC" // default first, older first
                 ;
         return getSQLValueEx(sql, AD_Client_ID);

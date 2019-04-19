@@ -1,7 +1,7 @@
 package org.compiere.product;
 
 import kotliquery.Row;
-import org.compiere.model.I_A_Asset_Change;
+import org.compiere.model.AssetChange;
 import org.compiere.orm.PO;
 
 /**
@@ -10,7 +10,7 @@ import org.compiere.orm.PO;
  * @author iDempiere (generated)
  * @version Release 5.1 - $Id$
  */
-public class X_A_Asset_Change extends PO implements I_A_Asset_Change {
+public class X_A_Asset_Change extends PO implements AssetChange {
 
     /**
      *
@@ -51,6 +51,6 @@ public class X_A_Asset_Change extends PO implements I_A_Asset_Change {
 
     @Override
     public int getTableId() {
-        return I_A_Asset_Change.Table_ID;
+        return AssetChange.Table_ID;
     }
 }

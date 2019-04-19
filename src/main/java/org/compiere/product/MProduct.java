@@ -1,7 +1,7 @@
 package org.compiere.product;
 
 import kotliquery.Row;
-import org.compiere.model.I_C_AcctSchema;
+import org.compiere.model.AccountingSchema;
 import org.compiere.model.I_C_UOM;
 import org.compiere.model.I_M_Cost;
 import org.compiere.model.I_M_Product;
@@ -390,7 +390,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
     } //	isOneAssetPerUOM
 
     @Override
-    public I_M_Cost getCostingRecord(I_C_AcctSchema as, int orgId, int attributeSetInstanceId, String costingMethod) {
+    public I_M_Cost getCostingRecord(AccountingSchema as, int orgId, int attributeSetInstanceId, String costingMethod) {
         throw new Error("you need accounting to get consting Error");
     }
 

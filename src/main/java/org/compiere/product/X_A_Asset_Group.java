@@ -1,7 +1,7 @@
 package org.compiere.product;
 
 import kotliquery.Row;
-import org.compiere.model.I_A_Asset_Group;
+import org.compiere.model.AssetGroup;
 import org.compiere.orm.BasePOName;
 
 /**
@@ -10,7 +10,7 @@ import org.compiere.orm.BasePOName;
  * @author iDempiere (generated)
  * @version Release 5.1 - $Id$
  */
-public class X_A_Asset_Group extends BasePOName implements I_A_Asset_Group {
+public class X_A_Asset_Group extends BasePOName implements AssetGroup {
 
     /**
      *
@@ -114,6 +114,6 @@ public class X_A_Asset_Group extends BasePOName implements I_A_Asset_Group {
 
     @Override
     public int getTableId() {
-        return I_A_Asset_Group.Table_ID;
+        return AssetGroup.Table_ID;
     }
 }

@@ -1,7 +1,7 @@
 package org.compiere.product;
 
 import kotliquery.Row;
-import org.idempiere.icommon.model.IPO;
+import org.idempiere.icommon.model.PersistentObject;
 
 /**
  * Asset Addition Model
@@ -40,7 +40,7 @@ public class MAssetChange extends X_A_Asset_Change {
      * @return
      */
     public static MAssetChange createAndSave(
-            String changeType, IPO[] pos) {
+            String changeType, PersistentObject[] pos) {
         return null;
         // ~ return create(changeType, pos, true);
     }

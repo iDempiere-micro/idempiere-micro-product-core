@@ -1,7 +1,7 @@
 package org.compiere.product;
 
 import kotliquery.Row;
-import org.compiere.model.I_A_Asset;
+import org.compiere.model.Asset;
 import org.compiere.model.I_C_BPartner_Location;
 import org.compiere.model.I_M_Product;
 import org.compiere.orm.PO;
@@ -113,7 +113,7 @@ public class MAsset extends X_A_Asset
         }
 
         // Copy fields from C_BPartner_Location
-        if (isValueChanged(I_A_Asset.COLUMNNAME_C_BPartner_Location_ID)
+        if (isValueChanged(Asset.COLUMNNAME_C_BPartner_Location_ID)
                 && getBPartnerLocationId() > 0) {
             // Goodwill BF: Error: MAsset cannot be cast to SetGetModel
             SetGetUtil.copyValues(

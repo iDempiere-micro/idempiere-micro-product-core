@@ -2,8 +2,8 @@ package org.compiere.product;
 
 import kotliquery.Row;
 import org.compiere.model.HasName;
-import org.compiere.model.I_A_Asset;
-import org.compiere.model.I_A_Asset_Type;
+import org.compiere.model.Asset;
+import org.compiere.model.AssetType;
 import org.compiere.orm.BasePOUser;
 import software.hsharp.core.orm.MBaseTableKt;
 
@@ -16,7 +16,7 @@ import java.sql.Timestamp;
  * @author iDempiere (generated)
  * @version Release 5.1 - $Id$
  */
-public class X_A_Asset extends BasePOUser implements I_A_Asset {
+public class X_A_Asset extends BasePOUser implements Asset {
 
     /**
      * Activated = AC
@@ -138,9 +138,9 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset {
         setValue(COLUMNNAME_A_Asset_Status, A_Asset_Status);
     }
 
-    public I_A_Asset_Type getAssetType() throws RuntimeException {
-        return (I_A_Asset_Type)
-                MBaseTableKt.getTable(I_A_Asset_Type.Table_Name)
+    public AssetType getAssetType() throws RuntimeException {
+        return (AssetType)
+                MBaseTableKt.getTable(AssetType.Table_Name)
                         .getPO(getAssetTypeId());
     }
 
@@ -507,6 +507,6 @@ public class X_A_Asset extends BasePOUser implements I_A_Asset {
 
     @Override
     public int getTableId() {
-        return I_A_Asset.Table_ID;
+        return Asset.Table_ID;
     }
 }

@@ -1,7 +1,7 @@
 package org.compiere.product;
 
 import kotliquery.Row;
-import org.compiere.model.I_A_Asset_Group;
+import org.compiere.model.AssetGroup;
 import org.compiere.model.I_M_Product_Category;
 import org.compiere.orm.BasePONameValue;
 import org.idempiere.common.util.Env;
@@ -54,9 +54,9 @@ public class X_M_Product_Category extends BasePONameValue
         return "X_M_Product_Category[" + getId() + "]";
     }
 
-    public I_A_Asset_Group getAssetGroup() throws RuntimeException {
-        return (I_A_Asset_Group)
-                MBaseTableKt.getTable(I_A_Asset_Group.Table_Name)
+    public AssetGroup getAssetGroup() throws RuntimeException {
+        return (AssetGroup)
+                MBaseTableKt.getTable(AssetGroup.Table_Name)
                         .getPO(getAssetGroupId());
     }
 
