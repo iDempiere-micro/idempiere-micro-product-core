@@ -75,7 +75,7 @@ public class X_M_DiscountSchema extends BasePOName implements I_M_DiscountSchema
      * @return Level for accumulative calculations
      */
     public String getCumulativeLevel() {
-        return (String) getValue(COLUMNNAME_CumulativeLevel);
+        return getValue(COLUMNNAME_CumulativeLevel);
     }
 
     /**
@@ -94,7 +94,7 @@ public class X_M_DiscountSchema extends BasePOName implements I_M_DiscountSchema
      * @return Type of trade discount calculation
      */
     public String getDiscountType() {
-        return (String) getValue(COLUMNNAME_DiscountType);
+        return getValue(COLUMNNAME_DiscountType);
     }
 
     /**
@@ -113,7 +113,7 @@ public class X_M_DiscountSchema extends BasePOName implements I_M_DiscountSchema
      * @return Flat discount percentage
      */
     public BigDecimal getFlatDiscount() {
-        BigDecimal bd = (BigDecimal) getValue(COLUMNNAME_FlatDiscount);
+        BigDecimal bd = getValue(COLUMNNAME_FlatDiscount);
         if (bd == null) return Env.ZERO;
         return bd;
     }
@@ -179,7 +179,7 @@ public class X_M_DiscountSchema extends BasePOName implements I_M_DiscountSchema
      * @return Schema to calculate the trade discount percentage
      */
     public int getDiscountSchemaId() {
-        Integer ii = (Integer) getValue(COLUMNNAME_M_DiscountSchema_ID);
+        Integer ii = getValue(COLUMNNAME_M_DiscountSchema_ID);
         if (ii == null) return 0;
         return ii;
     }

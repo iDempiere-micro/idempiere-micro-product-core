@@ -59,7 +59,7 @@ public class X_M_AttributeSetInstance extends PO implements I_M_AttributeSetInst
      * @return Optional short description of the record
      */
     public String getDescription() {
-        return (String) getValue(COLUMNNAME_Description);
+        return getValue(COLUMNNAME_Description);
     }
 
     /**
@@ -95,7 +95,7 @@ public class X_M_AttributeSetInstance extends PO implements I_M_AttributeSetInst
      * @return Lot number (alphanumeric)
      */
     public String getLot() {
-        return (String) getValue(COLUMNNAME_Lot);
+        return getValue(COLUMNNAME_Lot);
     }
 
     /**
@@ -119,7 +119,7 @@ public class X_M_AttributeSetInstance extends PO implements I_M_AttributeSetInst
      * @return Product Attribute Set
      */
     public int getAttributeSetId() {
-        Integer ii = (Integer) getValue(COLUMNNAME_M_AttributeSet_ID);
+        Integer ii = getValue(COLUMNNAME_M_AttributeSet_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -140,7 +140,7 @@ public class X_M_AttributeSetInstance extends PO implements I_M_AttributeSetInst
      * @return Product Attribute Set Instance
      */
     public int getAttributeSetInstanceId() {
-        Integer ii = (Integer) getValue(COLUMNNAME_M_AttributeSetInstance_ID);
+        Integer ii = getValue(COLUMNNAME_M_AttributeSetInstance_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -161,7 +161,7 @@ public class X_M_AttributeSetInstance extends PO implements I_M_AttributeSetInst
      * @return Product Serial Number
      */
     public String getSerNo() {
-        return (String) getValue(COLUMNNAME_SerNo);
+        return getValue(COLUMNNAME_SerNo);
     }
 
     /**

@@ -46,7 +46,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
      * Cache
      */
     private static CCache<Integer, I_M_Product> s_cache =
-            new CCache<>(I_M_Product.Table_Name, 40, 5); // 	5 minutes
+            new CCache<>(I_M_Product.Table_Name, 5); // 	5 minutes
     /**
      * UOM Precision
      */
@@ -505,14 +505,14 @@ public class MProduct extends X_M_Product implements I_M_Product {
 
         //	New - Acct, Tree, Old Costing
         if (newRecord) {
-            insert_Accounting(
+            insertAccounting(
                     "M_Product_Acct",
                     "M_Product_Category_Acct",
                     "p.M_Product_Category_ID=" + getProductCategoryId());
-            insert_Tree(TREETYPE_Product);
+            insertTree(TREETYPE_Product);
         }
         if (newRecord || isValueChanged(I_M_Product.COLUMNNAME_Value))
-            update_Tree(TREETYPE_Product);
+            updateTree(TREETYPE_Product);
 
         return success;
     } //	afterSave
@@ -529,7 +529,7 @@ public class MProduct extends X_M_Product implements I_M_Product {
 
     @Override
     protected boolean afterDelete(boolean success) {
-        if (success) delete_Tree(TREETYPE_Product);
+        if (success) deleteTree(TREETYPE_Product);
         return success;
     } //	afterDelete
 

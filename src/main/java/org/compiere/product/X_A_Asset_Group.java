@@ -51,7 +51,7 @@ public class X_A_Asset_Group extends BasePOName implements AssetGroup {
      * @return Group of Assets
      */
     public int getAssetGroupId() {
-        Integer ii = (Integer) getValue(COLUMNNAME_A_Asset_Group_ID);
+        Integer ii = getValue(COLUMNNAME_A_Asset_Group_ID);
         if (ii == null) return 0;
         return ii;
     }

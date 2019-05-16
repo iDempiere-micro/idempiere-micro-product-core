@@ -87,7 +87,7 @@ public class X_M_AttributeInstance extends PO implements I_M_AttributeInstance {
      * @return Search key for the record in the format required - must be unique
      */
     public String getValue() {
-        return (String) getValue(COLUMNNAME_Value);
+        return getValue(COLUMNNAME_Value);
     }
 
     /**

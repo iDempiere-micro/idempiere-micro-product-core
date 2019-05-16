@@ -60,7 +60,7 @@ public class X_S_Resource extends BasePOUser implements I_S_Resource {
      * @return Optional short description of the record
      */
     public String getDescription() {
-        return (String) getValue(COLUMNNAME_Description);
+        return getValue(COLUMNNAME_Description);
     }
 
     /**
@@ -83,7 +83,7 @@ public class X_S_Resource extends BasePOUser implements I_S_Resource {
      * @return Manufacturing Resource Type
      */
     public String getManufacturingResourceType() {
-        return (String) getValue(COLUMNNAME_ManufacturingResourceType);
+        return getValue(COLUMNNAME_ManufacturingResourceType);
     }
 
     /**
@@ -92,7 +92,7 @@ public class X_S_Resource extends BasePOUser implements I_S_Resource {
      * @return Alphanumeric identifier of the entity
      */
     public String getName() {
-        return (String) getValue(HasName.COLUMNNAME_Name);
+        return getValue(HasName.COLUMNNAME_Name);
     }
 
     /**
@@ -102,7 +102,7 @@ public class X_S_Resource extends BasePOUser implements I_S_Resource {
      * future when preparing a strategic plan.
      */
     public int getPlanningHorizon() {
-        Integer ii = (Integer) getValue(COLUMNNAME_PlanningHorizon);
+        Integer ii = getValue(COLUMNNAME_PlanningHorizon);
         if (ii == null) return 0;
         return ii;
     }
@@ -113,7 +113,7 @@ public class X_S_Resource extends BasePOUser implements I_S_Resource {
      * @return Resource
      */
     public int getResourceId() {
-        Integer ii = (Integer) getValue(COLUMNNAME_S_Resource_ID);
+        Integer ii = getValue(COLUMNNAME_S_Resource_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -124,7 +124,7 @@ public class X_S_Resource extends BasePOUser implements I_S_Resource {
      * @return Resource Type
      */
     public int getResourceTypeId() {
-        Integer ii = (Integer) getValue(COLUMNNAME_S_ResourceType_ID);
+        Integer ii = getValue(COLUMNNAME_S_ResourceType_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -135,7 +135,7 @@ public class X_S_Resource extends BasePOUser implements I_S_Resource {
      * @return Search key for the record in the format required - must be unique
      */
     public String getValue() {
-        return (String) getValue(COLUMNNAME_Value);
+        return getValue(COLUMNNAME_Value);
     }
 
     /**

@@ -60,7 +60,7 @@ public class X_M_DiscountSchemaBreak extends PO implements I_M_DiscountSchemaBre
      * @return Trade Discount in Percent for the break level
      */
     public BigDecimal getBreakDiscount() {
-        BigDecimal bd = (BigDecimal) getValue(COLUMNNAME_BreakDiscount);
+        BigDecimal bd = getValue(COLUMNNAME_BreakDiscount);
         if (bd == null) return Env.ZERO;
         return bd;
     }
@@ -71,7 +71,7 @@ public class X_M_DiscountSchemaBreak extends PO implements I_M_DiscountSchemaBre
      * @return Low Value of trade discount break level
      */
     public BigDecimal getBreakValue() {
-        BigDecimal bd = (BigDecimal) getValue(COLUMNNAME_BreakValue);
+        BigDecimal bd = getValue(COLUMNNAME_BreakValue);
         if (bd == null) return Env.ZERO;
         return bd;
     }
@@ -96,7 +96,7 @@ public class X_M_DiscountSchemaBreak extends PO implements I_M_DiscountSchemaBre
      * @return Category of a Product
      */
     public int getProductCategoryId() {
-        Integer ii = (Integer) getValue(COLUMNNAME_M_Product_Category_ID);
+        Integer ii = getValue(COLUMNNAME_M_Product_Category_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -117,7 +117,7 @@ public class X_M_DiscountSchemaBreak extends PO implements I_M_DiscountSchemaBre
      * @return Product, Service, Item
      */
     public int getProductId() {
-        Integer ii = (Integer) getValue(COLUMNNAME_M_Product_ID);
+        Integer ii = getValue(COLUMNNAME_M_Product_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -128,7 +128,7 @@ public class X_M_DiscountSchemaBreak extends PO implements I_M_DiscountSchemaBre
      * @return Method of ordering records; lowest number comes first
      */
     public int getSeqNo() {
-        Integer ii = (Integer) getValue(COLUMNNAME_SeqNo);
+        Integer ii = getValue(COLUMNNAME_SeqNo);
         if (ii == null) return 0;
         return ii;
     }

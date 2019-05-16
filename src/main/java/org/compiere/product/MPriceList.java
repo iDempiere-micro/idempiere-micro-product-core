@@ -29,7 +29,7 @@ public class MPriceList extends X_M_PriceList {
      * Cache of Price Lists
      */
     private static CCache<Integer, I_M_PriceList> s_cache =
-            new CCache<>(I_M_PriceList.Table_Name, 5, 5);
+            new CCache<>(I_M_PriceList.Table_Name, 5);
     /**
      * Cached Precision
      */

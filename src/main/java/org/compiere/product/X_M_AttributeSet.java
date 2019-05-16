@@ -58,7 +58,7 @@ public abstract class X_M_AttributeSet extends BasePOName implements I_M_Attribu
      * @return Number of days the product is guaranteed or available
      */
     public int getGuaranteeDays() {
-        Integer ii = (Integer) getValue(COLUMNNAME_GuaranteeDays);
+        Integer ii = getValue(COLUMNNAME_GuaranteeDays);
         if (ii == null) return 0;
         return ii;
     }
@@ -247,7 +247,7 @@ public abstract class X_M_AttributeSet extends BasePOName implements I_M_Attribu
      * @return Lot/Batch End Indicator overwrite - default »
      */
     public String getLotCharEOverwrite() {
-        return (String) getValue(COLUMNNAME_LotCharEOverwrite);
+        return getValue(COLUMNNAME_LotCharEOverwrite);
     }
 
     /**
@@ -256,7 +256,7 @@ public abstract class X_M_AttributeSet extends BasePOName implements I_M_Attribu
      * @return Lot/Batch Start Indicator overwrite - default «
      */
     public String getLotCharSOverwrite() {
-        return (String) getValue(COLUMNNAME_LotCharSOverwrite);
+        return getValue(COLUMNNAME_LotCharSOverwrite);
     }
 
     /**
@@ -265,7 +265,7 @@ public abstract class X_M_AttributeSet extends BasePOName implements I_M_Attribu
      * @return The specification of a Product Attribute Instance is mandatory
      */
     public String getMandatoryType() {
-        return (String) getValue(COLUMNNAME_MandatoryType);
+        return getValue(COLUMNNAME_MandatoryType);
     }
 
     /**
@@ -284,7 +284,7 @@ public abstract class X_M_AttributeSet extends BasePOName implements I_M_Attribu
      * @return Product Attribute Set
      */
     public int getAttributeSetId() {
-        Integer ii = (Integer) getValue(COLUMNNAME_M_AttributeSet_ID);
+        Integer ii = getValue(COLUMNNAME_M_AttributeSet_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -295,7 +295,7 @@ public abstract class X_M_AttributeSet extends BasePOName implements I_M_Attribu
      * @return Product Lot Control
      */
     public int getLotControlId() {
-        Integer ii = (Integer) getValue(COLUMNNAME_M_LotCtl_ID);
+        Integer ii = getValue(COLUMNNAME_M_LotCtl_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -306,7 +306,7 @@ public abstract class X_M_AttributeSet extends BasePOName implements I_M_Attribu
      * @return Product Serial Number Control
      */
     public int getSerialNoControlId() {
-        Integer ii = (Integer) getValue(COLUMNNAME_M_SerNoCtl_ID);
+        Integer ii = getValue(COLUMNNAME_M_SerNoCtl_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -317,7 +317,7 @@ public abstract class X_M_AttributeSet extends BasePOName implements I_M_Attribu
      * @return Serial Number End Indicator overwrite - default empty
      */
     public String getSerNoCharEOverwrite() {
-        return (String) getValue(COLUMNNAME_SerNoCharEOverwrite);
+        return getValue(COLUMNNAME_SerNoCharEOverwrite);
     }
 
     /**
@@ -326,7 +326,7 @@ public abstract class X_M_AttributeSet extends BasePOName implements I_M_Attribu
      * @return Serial Number Start Indicator overwrite - default #
      */
     public String getSerNoCharSOverwrite() {
-        return (String) getValue(COLUMNNAME_SerNoCharSOverwrite);
+        return getValue(COLUMNNAME_SerNoCharSOverwrite);
     }
 
     /**

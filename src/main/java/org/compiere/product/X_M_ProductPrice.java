@@ -62,7 +62,7 @@ public class X_M_ProductPrice extends PO implements I_M_ProductPrice {
      * @return Identifies a unique instance of a Price List
      */
     public int getPriceListVersionId() {
-        Integer ii = (Integer) getValue(COLUMNNAME_M_PriceList_Version_ID);
+        Integer ii = getValue(COLUMNNAME_M_PriceList_Version_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -84,7 +84,7 @@ public class X_M_ProductPrice extends PO implements I_M_ProductPrice {
      * @return Product, Service, Item
      */
     public int getProductId() {
-        Integer ii = (Integer) getValue(COLUMNNAME_M_Product_ID);
+        Integer ii = getValue(COLUMNNAME_M_Product_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -105,7 +105,7 @@ public class X_M_ProductPrice extends PO implements I_M_ProductPrice {
      * @return Lowest price for a product
      */
     public BigDecimal getPriceLimit() {
-        BigDecimal bd = (BigDecimal) getValue(COLUMNNAME_PriceLimit);
+        BigDecimal bd = getValue(COLUMNNAME_PriceLimit);
         if (bd == null) return Env.ZERO;
         return bd;
     }
@@ -125,7 +125,7 @@ public class X_M_ProductPrice extends PO implements I_M_ProductPrice {
      * @return List Price
      */
     public BigDecimal getPriceList() {
-        BigDecimal bd = (BigDecimal) getValue(COLUMNNAME_PriceList);
+        BigDecimal bd = getValue(COLUMNNAME_PriceList);
         if (bd == null) return Env.ZERO;
         return bd;
     }
@@ -145,7 +145,7 @@ public class X_M_ProductPrice extends PO implements I_M_ProductPrice {
      * @return Standard Price
      */
     public BigDecimal getPriceStd() {
-        BigDecimal bd = (BigDecimal) getValue(COLUMNNAME_PriceStd);
+        BigDecimal bd = getValue(COLUMNNAME_PriceStd);
         if (bd == null) return Env.ZERO;
         return bd;
     }

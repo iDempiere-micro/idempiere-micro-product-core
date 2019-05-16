@@ -51,7 +51,7 @@ public class X_C_UOM extends BasePOName implements I_C_UOM {
      * @return Rounding used costing calculations
      */
     public int getCostingPrecision() {
-        Integer ii = (Integer) getValue(COLUMNNAME_CostingPrecision);
+        Integer ii = getValue(COLUMNNAME_CostingPrecision);
         if (ii == null) return 0;
         return ii;
     }
@@ -71,7 +71,7 @@ public class X_C_UOM extends BasePOName implements I_C_UOM {
      * @return Unit of Measure
      */
     public int getUOMId() {
-        Integer ii = (Integer) getValue(COLUMNNAME_C_UOM_ID);
+        Integer ii = getValue(COLUMNNAME_C_UOM_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -91,7 +91,7 @@ public class X_C_UOM extends BasePOName implements I_C_UOM {
      * @return Rule for rounding calculated amounts
      */
     public int getStdPrecision() {
-        Integer ii = (Integer) getValue(COLUMNNAME_StdPrecision);
+        Integer ii = getValue(COLUMNNAME_StdPrecision);
         if (ii == null) return 0;
         return ii;
     }
@@ -111,7 +111,7 @@ public class X_C_UOM extends BasePOName implements I_C_UOM {
      * @return UOM EDI X12 Code
      */
     public String getX12DE355() {
-        return (String) getValue(COLUMNNAME_X12DE355);
+        return getValue(COLUMNNAME_X12DE355);
     }
 
     @Override
@@ -125,7 +125,7 @@ public class X_C_UOM extends BasePOName implements I_C_UOM {
      * @return Symbol for a Unit of Measure
      */
     public String getUOMSymbol() {
-        return (String) getValue(COLUMNNAME_UOMSymbol);
+        return getValue(COLUMNNAME_UOMSymbol);
     }
 
     /**

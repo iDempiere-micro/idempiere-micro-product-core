@@ -55,7 +55,7 @@ public class X_M_SerNoCtl extends BasePOName implements I_M_SerNoCtl {
      * @return The next number to be used
      */
     public int getCurrentNext() {
-        Integer ii = (Integer) getValue(COLUMNNAME_CurrentNext);
+        Integer ii = getValue(COLUMNNAME_CurrentNext);
         if (ii == null) return 0;
         return ii;
     }
@@ -75,7 +75,7 @@ public class X_M_SerNoCtl extends BasePOName implements I_M_SerNoCtl {
      * @return The number to increment the last document number by
      */
     public int getIncrementNo() {
-        Integer ii = (Integer) getValue(COLUMNNAME_IncrementNo);
+        Integer ii = getValue(COLUMNNAME_IncrementNo);
         if (ii == null) return 0;
         return ii;
     }
@@ -95,7 +95,7 @@ public class X_M_SerNoCtl extends BasePOName implements I_M_SerNoCtl {
      * @return Prefix before the sequence number
      */
     public String getPrefix() {
-        return (String) getValue(COLUMNNAME_Prefix);
+        return getValue(COLUMNNAME_Prefix);
     }
 
     /**
@@ -113,7 +113,7 @@ public class X_M_SerNoCtl extends BasePOName implements I_M_SerNoCtl {
      * @return Suffix after the number
      */
     public String getSuffix() {
-        return (String) getValue(COLUMNNAME_Suffix);
+        return getValue(COLUMNNAME_Suffix);
     }
 
     @Override

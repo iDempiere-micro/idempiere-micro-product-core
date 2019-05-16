@@ -54,7 +54,7 @@ public class X_M_LotCtl extends BasePOName implements I_M_LotCtl {
      * @return The next number to be used
      */
     public int getCurrentNext() {
-        Integer ii = (Integer) getValue(COLUMNNAME_CurrentNext);
+        Integer ii = getValue(COLUMNNAME_CurrentNext);
         if (ii == null) return 0;
         return ii;
     }
@@ -74,7 +74,7 @@ public class X_M_LotCtl extends BasePOName implements I_M_LotCtl {
      * @return The number to increment the last document number by
      */
     public int getIncrementNo() {
-        Integer ii = (Integer) getValue(COLUMNNAME_IncrementNo);
+        Integer ii = getValue(COLUMNNAME_IncrementNo);
         if (ii == null) return 0;
         return ii;
     }
@@ -94,7 +94,7 @@ public class X_M_LotCtl extends BasePOName implements I_M_LotCtl {
      * @return Product Lot Control
      */
     public int getLotControlId() {
-        Integer ii = (Integer) getValue(COLUMNNAME_M_LotCtl_ID);
+        Integer ii = getValue(COLUMNNAME_M_LotCtl_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -105,7 +105,7 @@ public class X_M_LotCtl extends BasePOName implements I_M_LotCtl {
      * @return Prefix before the sequence number
      */
     public String getPrefix() {
-        return (String) getValue(COLUMNNAME_Prefix);
+        return getValue(COLUMNNAME_Prefix);
     }
 
     /**
@@ -123,7 +123,7 @@ public class X_M_LotCtl extends BasePOName implements I_M_LotCtl {
      * @return Suffix after the number
      */
     public String getSuffix() {
-        return (String) getValue(COLUMNNAME_Suffix);
+        return getValue(COLUMNNAME_Suffix);
     }
 
     @Override

@@ -56,7 +56,7 @@ public class X_I_PriceList extends PO implements I_I_PriceList {
      * @return Low Value of trade discount break level
      */
     public BigDecimal getBreakValue() {
-        BigDecimal bd = (BigDecimal) getValue(COLUMNNAME_BreakValue);
+        BigDecimal bd = getValue(COLUMNNAME_BreakValue);
         if (bd == null) return Env.ZERO;
         return bd;
     }
@@ -67,7 +67,7 @@ public class X_I_PriceList extends PO implements I_I_PriceList {
      * @return Identifies a Business Partner
      */
     public int getBusinessPartnerId() {
-        Integer ii = (Integer) getValue(COLUMNNAME_C_BPartner_ID);
+        Integer ii = getValue(COLUMNNAME_C_BPartner_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -78,7 +78,7 @@ public class X_I_PriceList extends PO implements I_I_PriceList {
      * @return The Currency for this record
      */
     public int getCurrencyId() {
-        Integer ii = (Integer) getValue(COLUMNNAME_C_Currency_ID);
+        Integer ii = getValue(COLUMNNAME_C_Currency_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -89,7 +89,7 @@ public class X_I_PriceList extends PO implements I_I_PriceList {
      * @return Optional short description of the record
      */
     public String getDescription() {
-        return (String) getValue(COLUMNNAME_Description);
+        return getValue(COLUMNNAME_Description);
     }
 
     /**
@@ -112,7 +112,7 @@ public class X_I_PriceList extends PO implements I_I_PriceList {
      * @return Import Price List
      */
     public int getImportPriceListId() {
-        Integer ii = (Integer) getValue(COLUMNNAME_I_PriceList_ID);
+        Integer ii = getValue(COLUMNNAME_I_PriceList_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -151,7 +151,7 @@ public class X_I_PriceList extends PO implements I_I_PriceList {
      * @return Unique identifier of a Price List
      */
     public int getPriceListId() {
-        Integer ii = (Integer) getValue(COLUMNNAME_M_PriceList_ID);
+        Integer ii = getValue(COLUMNNAME_M_PriceList_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -162,7 +162,7 @@ public class X_I_PriceList extends PO implements I_I_PriceList {
      * @return Identifies a unique instance of a Price List
      */
     public int getPriceListVersionId() {
-        Integer ii = (Integer) getValue(COLUMNNAME_M_PriceList_Version_ID);
+        Integer ii = getValue(COLUMNNAME_M_PriceList_Version_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -173,7 +173,7 @@ public class X_I_PriceList extends PO implements I_I_PriceList {
      * @return Product, Service, Item
      */
     public int getProductId() {
-        Integer ii = (Integer) getValue(COLUMNNAME_M_Product_ID);
+        Integer ii = getValue(COLUMNNAME_M_Product_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -184,7 +184,7 @@ public class X_I_PriceList extends PO implements I_I_PriceList {
      * @return Alphanumeric identifier of the entity
      */
     public String getName() {
-        return (String) getValue(HasName.COLUMNNAME_Name);
+        return getValue(HasName.COLUMNNAME_Name);
     }
 
     /**
@@ -193,7 +193,7 @@ public class X_I_PriceList extends PO implements I_I_PriceList {
      * @return Lowest price for a product
      */
     public BigDecimal getPriceLimit() {
-        BigDecimal bd = (BigDecimal) getValue(COLUMNNAME_PriceLimit);
+        BigDecimal bd = getValue(COLUMNNAME_PriceLimit);
         if (bd == null) return Env.ZERO;
         return bd;
     }
@@ -204,7 +204,7 @@ public class X_I_PriceList extends PO implements I_I_PriceList {
      * @return List Price
      */
     public BigDecimal getPriceList() {
-        BigDecimal bd = (BigDecimal) getValue(COLUMNNAME_PriceList);
+        BigDecimal bd = getValue(COLUMNNAME_PriceList);
         if (bd == null) return Env.ZERO;
         return bd;
     }
@@ -215,7 +215,7 @@ public class X_I_PriceList extends PO implements I_I_PriceList {
      * @return Precision (number of decimals) for the Price
      */
     public int getPricePrecision() {
-        Integer ii = (Integer) getValue(COLUMNNAME_PricePrecision);
+        Integer ii = getValue(COLUMNNAME_PricePrecision);
         if (ii == null) return 0;
         return ii;
     }
@@ -226,7 +226,7 @@ public class X_I_PriceList extends PO implements I_I_PriceList {
      * @return Standard Price
      */
     public BigDecimal getPriceStd() {
-        BigDecimal bd = (BigDecimal) getValue(COLUMNNAME_PriceStd);
+        BigDecimal bd = getValue(COLUMNNAME_PriceStd);
         if (bd == null) return Env.ZERO;
         return bd;
     }

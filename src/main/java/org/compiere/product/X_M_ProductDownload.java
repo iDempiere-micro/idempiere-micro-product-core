@@ -55,7 +55,7 @@ public class X_M_ProductDownload extends BasePOName implements I_M_ProductDownlo
      * @return URL of the Download files
      */
     public String getDownloadURL() {
-        return (String) getValue(COLUMNNAME_DownloadURL);
+        return getValue(COLUMNNAME_DownloadURL);
     }
 
     /**
@@ -64,7 +64,7 @@ public class X_M_ProductDownload extends BasePOName implements I_M_ProductDownlo
      * @return Product, Service, Item
      */
     public int getProductId() {
-        Integer ii = (Integer) getValue(COLUMNNAME_M_Product_ID);
+        Integer ii = getValue(COLUMNNAME_M_Product_ID);
         if (ii == null) return 0;
         return ii;
     }
