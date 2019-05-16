@@ -23,7 +23,7 @@ public class MAssetGroup extends X_A_Asset_Group {
      * Cache: ID -> MAssetGroup
      */
     private static CCache<Integer, MAssetGroup> s_cache =
-            new CCache<>(AssetGroup.Table_Name, 10, 0);
+            new CCache<>(AssetGroup.Table_Name, 0);
 
     /**
      * Default Constructor
@@ -69,7 +69,7 @@ public class MAssetGroup extends X_A_Asset_Group {
      * @return default asset group ID or 0 if not found
      */
     public static int getDefaultId(SetGetModel m) {
-        int AD_Client_ID = SetGetUtil.get_AttrValueAsInt(m, "AD_Client_ID");
+        int AD_Client_ID = SetGetUtil.getAttrValueAsInt(m, "AD_Client_ID");
         final String sql =
                 "SELECT "
                         + AssetGroup.COLUMNNAME_A_Asset_Group_ID

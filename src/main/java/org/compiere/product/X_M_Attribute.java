@@ -54,7 +54,7 @@ public class X_M_Attribute extends BasePOName implements I_M_Attribute {
      * @return Type of Attribute Value
      */
     public String getAttributeValueType() {
-        return (String) getValue(COLUMNNAME_AttributeValueType);
+        return getValue(COLUMNNAME_AttributeValueType);
     }
 
     /**
@@ -107,7 +107,7 @@ public class X_M_Attribute extends BasePOName implements I_M_Attribute {
      * @return Product Attribute
      */
     public int getProductAttributeId() {
-        Integer ii = (Integer) getValue(COLUMNNAME_M_Attribute_ID);
+        Integer ii = getValue(COLUMNNAME_M_Attribute_ID);
         if (ii == null) return 0;
         return ii;
     }

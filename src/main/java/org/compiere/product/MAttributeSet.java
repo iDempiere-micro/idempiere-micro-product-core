@@ -2,6 +2,7 @@ package org.compiere.product;
 
 import kotliquery.Row;
 import org.compiere.model.I_M_AttributeSet;
+import org.compiere.model.I_M_AttributeSetExclude;
 import org.compiere.orm.Query;
 import org.idempiere.common.exceptions.DBException;
 import org.idempiere.common.util.CCache;
@@ -44,7 +45,7 @@ public class MAttributeSet extends X_M_AttributeSet {
     /**
      * Entry Exclude
      */
-    private X_M_AttributeSetExclude[] m_excludes = null;
+    private I_M_AttributeSetExclude[] m_excludes = null;
 
     /**
      * Standard constructor
@@ -69,7 +70,6 @@ public class MAttributeSet extends X_M_AttributeSet {
     /**
      * Load constructor
      *
-     * @param ctx context
      */
     public MAttributeSet(Row row) {
         super(row);
@@ -78,12 +78,11 @@ public class MAttributeSet extends X_M_AttributeSet {
     /**
      * Get MAttributeSet from Cache
      *
-     * @param ctx               context
      * @param M_AttributeSet_ID id
      * @return MAttributeSet
      */
     public static MAttributeSet get(int M_AttributeSet_ID) {
-        Integer key = new Integer(M_AttributeSet_ID);
+        Integer key = M_AttributeSet_ID;
         MAttributeSet retValue = s_cache.get(key);
         if (retValue != null) return retValue;
         retValue = new MAttributeSet(M_AttributeSet_ID);
@@ -107,9 +106,9 @@ public class MAttributeSet extends X_M_AttributeSet {
                             + "WHERE mau.IsActive='Y' AND ma.IsActive='Y'"
                             + " AND mau.M_AttributeSet_ID=? AND ma.IsInstanceAttribute=? " //	#1,2
                             + "ORDER BY mau.SeqNo";
-            ArrayList<MAttribute> list = new ArrayList<MAttribute>();
-            PreparedStatement pstmt = null;
-            ResultSet rs = null;
+            ArrayList<MAttribute> list = new ArrayList<>();
+            PreparedStatement pstmt;
+            ResultSet rs;
             try {
                 pstmt = prepareStatement(sql);
                 pstmt.setInt(1, getAttributeSetId());
@@ -120,10 +119,7 @@ public class MAttributeSet extends X_M_AttributeSet {
                     list.add(ma);
                 }
             } catch (SQLException ex) {
-                throw new DBException(ex, sql);
-            } finally {
-                rs = null;
-                pstmt = null;
+                throw new DBException(ex);
             }
 
             //	Differentiate attributes
@@ -178,8 +174,8 @@ public class MAttributeSet extends X_M_AttributeSet {
         loadExcludes();
         //	Find it
         if (m_excludes != null && m_excludes.length > 0) {
-            for (int i = 0; i < m_excludes.length; i++) {
-                if (m_excludes[i].getRowTableId() == AD_Table_ID && m_excludes[i].isSOTrx() == isSOTrx)
+            for (I_M_AttributeSetExclude m_exclude : m_excludes) {
+                if (m_exclude.getRowTableId() == AD_Table_ID && m_exclude.isSOTrx() == isSOTrx)
                     return true;
             }
         }
@@ -189,12 +185,12 @@ public class MAttributeSet extends X_M_AttributeSet {
     private void loadExcludes() {
         if (m_excludes == null) {
             final String whereClause = X_M_AttributeSetExclude.COLUMNNAME_M_AttributeSet_ID + "=?";
-            List<X_M_AttributeSetExclude> list =
-                    new Query(X_M_AttributeSetExclude.Table_Name, whereClause)
+            List<I_M_AttributeSetExclude> list =
+                    new Query<I_M_AttributeSetExclude>(I_M_AttributeSetExclude.Table_Name, whereClause)
                             .setParameters(getId())
                             .setOnlyActiveRecords(true)
                             .list();
-            m_excludes = new X_M_AttributeSetExclude[list.size()];
+            m_excludes = new I_M_AttributeSetExclude[list.size()];
             list.toArray(m_excludes);
         }
     }
@@ -266,20 +262,19 @@ public class MAttributeSet extends X_M_AttributeSet {
         //	Set Instance Attribute
         if (!success) return success;
         if (!isInstanceAttribute()) {
-            StringBuilder sql =
-                    new StringBuilder("UPDATE M_AttributeSet mas")
-                            .append(" SET IsInstanceAttribute='Y' ")
-                            .append("WHERE M_AttributeSet_ID=")
-                            .append(getAttributeSetId())
-                            .append(" AND IsInstanceAttribute='N'")
-                            .append(" AND (IsSerNo='Y' OR IsLot='Y' OR IsGuaranteeDate='Y'")
-                            .append(" OR EXISTS (SELECT * FROM M_AttributeUse mau")
-                            .append(" INNER JOIN M_Attribute ma ON (mau.M_Attribute_ID=ma.M_Attribute_ID) ")
-                            .append("WHERE mau.M_AttributeSet_ID=mas.M_AttributeSet_ID")
-                            .append(" AND mau.IsActive='Y' AND ma.IsActive='Y'")
-                            .append(" AND ma.IsInstanceAttribute='Y')")
-                            .append(")");
-            int no = executeUpdate(sql.toString());
+            String sql = "UPDATE M_AttributeSet mas" +
+                    " SET IsInstanceAttribute='Y' " +
+                    "WHERE M_AttributeSet_ID=" +
+                    getAttributeSetId() +
+                    " AND IsInstanceAttribute='N'" +
+                    " AND (IsSerNo='Y' OR IsLot='Y' OR IsGuaranteeDate='Y'" +
+                    " OR EXISTS (SELECT * FROM M_AttributeUse mau" +
+                    " INNER JOIN M_Attribute ma ON (mau.M_Attribute_ID=ma.M_Attribute_ID) " +
+                    "WHERE mau.M_AttributeSet_ID=mas.M_AttributeSet_ID" +
+                    " AND mau.IsActive='Y' AND ma.IsActive='Y'" +
+                    " AND ma.IsInstanceAttribute='Y')" +
+                    ")";
+            int no = executeUpdate(sql);
             if (no != 0) {
                 log.warning("Set Instance Attribute");
                 setIsInstanceAttribute(true);
@@ -287,19 +282,18 @@ public class MAttributeSet extends X_M_AttributeSet {
         }
         //	Reset Instance Attribute
         if (isInstanceAttribute() && !isSerNo() && !isLot() && !isGuaranteeDate()) {
-            StringBuilder sql =
-                    new StringBuilder("UPDATE M_AttributeSet mas")
-                            .append(" SET IsInstanceAttribute='N' ")
-                            .append("WHERE M_AttributeSet_ID=")
-                            .append(getAttributeSetId())
-                            .append(" AND IsInstanceAttribute='Y'")
-                            .append("	AND IsSerNo='N' AND IsLot='N' AND IsGuaranteeDate='N'")
-                            .append(" AND NOT EXISTS (SELECT * FROM M_AttributeUse mau")
-                            .append(" INNER JOIN M_Attribute ma ON (mau.M_Attribute_ID=ma.M_Attribute_ID) ")
-                            .append("WHERE mau.M_AttributeSet_ID=mas.M_AttributeSet_ID")
-                            .append(" AND mau.IsActive='Y' AND ma.IsActive='Y'")
-                            .append(" AND ma.IsInstanceAttribute='Y')");
-            int no = executeUpdate(sql.toString());
+            String sql = "UPDATE M_AttributeSet mas" +
+                    " SET IsInstanceAttribute='N' " +
+                    "WHERE M_AttributeSet_ID=" +
+                    getAttributeSetId() +
+                    " AND IsInstanceAttribute='Y'" +
+                    "	AND IsSerNo='N' AND IsLot='N' AND IsGuaranteeDate='N'" +
+                    " AND NOT EXISTS (SELECT * FROM M_AttributeUse mau" +
+                    " INNER JOIN M_Attribute ma ON (mau.M_Attribute_ID=ma.M_Attribute_ID) " +
+                    "WHERE mau.M_AttributeSet_ID=mas.M_AttributeSet_ID" +
+                    " AND mau.IsActive='Y' AND ma.IsActive='Y'" +
+                    " AND ma.IsInstanceAttribute='Y')";
+            int no = executeUpdate(sql);
             if (no != 0) {
                 log.warning("Reset Instance Attribute");
                 setIsInstanceAttribute(false);

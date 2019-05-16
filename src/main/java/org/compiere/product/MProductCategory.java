@@ -155,7 +155,7 @@ public class MProductCategory extends X_M_Product_Category {
      */
     protected boolean afterSave(boolean newRecord, boolean success) {
         if (newRecord && success)
-            insert_Accounting("M_Product_Category_Acct", "C_AcctSchema_Default", null);
+            insertAccounting("M_Product_Category_Acct", "C_AcctSchema_Default", null);
 
         return success;
     } //	afterSave

@@ -74,7 +74,7 @@ public class X_M_DiscountSchemaLine extends PO implements I_M_DiscountSchemaLine
      * @return Method of ordering records; lowest number comes first
      */
     public int getSeqNo() {
-        Integer ii = (Integer) getValue(COLUMNNAME_SeqNo);
+        Integer ii = getValue(COLUMNNAME_SeqNo);
         if (ii == null) return 0;
         return ii;
     }

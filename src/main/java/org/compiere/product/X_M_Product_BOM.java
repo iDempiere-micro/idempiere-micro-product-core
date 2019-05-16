@@ -54,7 +54,7 @@ public class X_M_Product_BOM extends PO implements I_M_Product_BOM {
      * @return Bill of Materials Quantity
      */
     public BigDecimal getBOMQty() {
-        BigDecimal bd = (BigDecimal) getValue(COLUMNNAME_BOMQty);
+        BigDecimal bd = getValue(COLUMNNAME_BOMQty);
         if (bd == null) return Env.ZERO;
         return bd;
     }
@@ -74,7 +74,7 @@ public class X_M_Product_BOM extends PO implements I_M_Product_BOM {
      * @return Type of BOM
      */
     public String getBOMType() {
-        return (String) getValue(COLUMNNAME_BOMType);
+        return getValue(COLUMNNAME_BOMType);
     }
 
     /**
@@ -83,7 +83,7 @@ public class X_M_Product_BOM extends PO implements I_M_Product_BOM {
      * @return Optional short description of the record
      */
     public String getDescription() {
-        return (String) getValue(COLUMNNAME_Description);
+        return getValue(COLUMNNAME_Description);
     }
 
     /**
@@ -92,7 +92,7 @@ public class X_M_Product_BOM extends PO implements I_M_Product_BOM {
      * @return Unique line for this document
      */
     public int getLine() {
-        Integer ii = (Integer) getValue(COLUMNNAME_Line);
+        Integer ii = getValue(COLUMNNAME_Line);
         if (ii == null) return 0;
         return ii;
     }
@@ -112,7 +112,7 @@ public class X_M_Product_BOM extends PO implements I_M_Product_BOM {
      * @return BOM Line
      */
     public int getBOMLineId() {
-        Integer ii = (Integer) getValue(COLUMNNAME_M_Product_BOM_ID);
+        Integer ii = getValue(COLUMNNAME_M_Product_BOM_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -123,7 +123,7 @@ public class X_M_Product_BOM extends PO implements I_M_Product_BOM {
      * @return Bill of Material Component Product
      */
     public int getBOMProductId() {
-        Integer ii = (Integer) getValue(COLUMNNAME_M_ProductBOM_ID);
+        Integer ii = getValue(COLUMNNAME_M_ProductBOM_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -144,7 +144,7 @@ public class X_M_Product_BOM extends PO implements I_M_Product_BOM {
      * @return Product, Service, Item
      */
     public int getProductId() {
-        Integer ii = (Integer) getValue(COLUMNNAME_M_Product_ID);
+        Integer ii = getValue(COLUMNNAME_M_Product_ID);
         if (ii == null) return 0;
         return ii;
     }

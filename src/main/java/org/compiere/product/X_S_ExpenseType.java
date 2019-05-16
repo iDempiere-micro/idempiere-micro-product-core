@@ -54,7 +54,7 @@ public class X_S_ExpenseType extends BasePONameValue implements I_S_ExpenseType 
      * @return Tax Category
      */
     public int getTaxCategoryId() {
-        Integer ii = (Integer) getValue(COLUMNNAME_C_TaxCategory_ID);
+        Integer ii = getValue(COLUMNNAME_C_TaxCategory_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -65,7 +65,7 @@ public class X_S_ExpenseType extends BasePONameValue implements I_S_ExpenseType 
      * @return Unit of Measure
      */
     public int getUOMId() {
-        Integer ii = (Integer) getValue(COLUMNNAME_C_UOM_ID);
+        Integer ii = getValue(COLUMNNAME_C_UOM_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -76,7 +76,7 @@ public class X_S_ExpenseType extends BasePONameValue implements I_S_ExpenseType 
      * @return Optional short description of the record
      */
     public String getDescription() {
-        return (String) getValue(COLUMNNAME_Description);
+        return getValue(COLUMNNAME_Description);
     }
 
     /**
@@ -85,7 +85,7 @@ public class X_S_ExpenseType extends BasePONameValue implements I_S_ExpenseType 
      * @return Category of a Product
      */
     public int getProductCategoryId() {
-        Integer ii = (Integer) getValue(COLUMNNAME_M_Product_Category_ID);
+        Integer ii = getValue(COLUMNNAME_M_Product_Category_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -96,7 +96,7 @@ public class X_S_ExpenseType extends BasePONameValue implements I_S_ExpenseType 
      * @return Expense report type
      */
     public int getExpenseTypeId() {
-        Integer ii = (Integer) getValue(COLUMNNAME_S_ExpenseType_ID);
+        Integer ii = getValue(COLUMNNAME_S_ExpenseType_ID);
         if (ii == null) return 0;
         return ii;
     }

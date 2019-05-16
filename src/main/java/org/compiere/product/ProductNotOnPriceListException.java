@@ -36,13 +36,13 @@ public class ProductNotOnPriceListException extends AdempiereException {
             I_M_Product p = MProduct.get(pp.getProductId());
             if (sb.length() > 0) sb.append(", ");
             sb.append("@M_Product_ID@:")
-                    .append(p == null ? "?" : p.get_Translation(HasName.COLUMNNAME_Name));
+                    .append(p == null ? "?" : p.getTranslation(HasName.COLUMNNAME_Name));
         }
         if (pp.getPriceListId() > 0) {
             I_M_PriceList pl = MPriceList.get(pp.getPriceListId());
             if (sb.length() > 0) sb.append(", ");
             sb.append("@M_PriceList_ID@:")
-                    .append(pl == null ? "?" : pl.get_Translation(HasName.COLUMNNAME_Name));
+                    .append(pl == null ? "?" : pl.getTranslation(HasName.COLUMNNAME_Name));
         }
         if (pp.getPriceDate() != null) {
             DateFormat df = DisplayType.getDateFormat(DisplayType.Date);

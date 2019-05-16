@@ -61,7 +61,7 @@ public class X_M_Lot extends BasePOName implements I_M_Lot {
      * @return Product Lot Definition
      */
     public int getLotId() {
-        Integer ii = (Integer) getValue(COLUMNNAME_M_Lot_ID);
+        Integer ii = getValue(COLUMNNAME_M_Lot_ID);
         if (ii == null) return 0;
         return ii;
     }

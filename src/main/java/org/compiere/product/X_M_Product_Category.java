@@ -66,7 +66,7 @@ public class X_M_Product_Category extends BasePONameValue
      * @return Group of Assets
      */
     public int getAssetGroupId() {
-        Integer ii = (Integer) getValue(COLUMNNAME_A_Asset_Group_ID);
+        Integer ii = getValue(COLUMNNAME_A_Asset_Group_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -95,7 +95,7 @@ public class X_M_Product_Category extends BasePONameValue
      * @return Material Movement Policy
      */
     public String getMMPolicy() {
-        return (String) getValue(COLUMNNAME_MMPolicy);
+        return getValue(COLUMNNAME_MMPolicy);
     }
 
     /**
@@ -114,7 +114,7 @@ public class X_M_Product_Category extends BasePONameValue
      * @return Category of a Product
      */
     public int getProductCategoryId() {
-        Integer ii = (Integer) getValue(COLUMNNAME_M_Product_Category_ID);
+        Integer ii = getValue(COLUMNNAME_M_Product_Category_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -125,7 +125,7 @@ public class X_M_Product_Category extends BasePONameValue
      * @return Parent Product Category
      */
     public int getProductCategoryParentId() {
-        Integer ii = (Integer) getValue(COLUMNNAME_M_Product_Category_Parent_ID);
+        Integer ii = getValue(COLUMNNAME_M_Product_Category_Parent_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -136,7 +136,7 @@ public class X_M_Product_Category extends BasePONameValue
      * @return Project's planned margin as a percentage
      */
     public BigDecimal getPlannedMargin() {
-        BigDecimal bd = (BigDecimal) getValue(COLUMNNAME_PlannedMargin);
+        BigDecimal bd = getValue(COLUMNNAME_PlannedMargin);
         if (bd == null) return Env.ZERO;
         return bd;
     }

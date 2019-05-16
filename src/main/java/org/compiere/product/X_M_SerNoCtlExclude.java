@@ -55,7 +55,7 @@ public class X_M_SerNoCtlExclude extends PO implements I_M_SerNoCtlExclude {
      * @return Database Table information
      */
     public int getRowTableId() {
-        Integer ii = (Integer) getValue(COLUMNNAME_AD_Table_ID);
+        Integer ii = getValue(COLUMNNAME_AD_Table_ID);
         if (ii == null) return 0;
         return ii;
     }

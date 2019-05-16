@@ -58,7 +58,7 @@ public class X_M_Product extends PO {
      * @return Method for recording revenue
      */
     public int getRevenueRecognitionId() {
-        Integer ii = (Integer) getValue(I_M_Product.COLUMNNAME_C_RevenueRecognition_ID);
+        Integer ii = getValue(I_M_Product.COLUMNNAME_C_RevenueRecognition_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -75,7 +75,7 @@ public class X_M_Product extends PO {
      * @return Tax Category
      */
     public int getTaxCategoryId() {
-        Integer ii = (Integer) getValue(I_M_Product.COLUMNNAME_C_TaxCategory_ID);
+        Integer ii = getValue(I_M_Product.COLUMNNAME_C_TaxCategory_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -96,7 +96,7 @@ public class X_M_Product extends PO {
      * @return Unit of Measure
      */
     public int getUOMId() {
-        Integer ii = (Integer) getValue(I_M_Product.COLUMNNAME_C_UOM_ID);
+        Integer ii = getValue(I_M_Product.COLUMNNAME_C_UOM_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -117,7 +117,7 @@ public class X_M_Product extends PO {
      * @return Optional short description of the record
      */
     public String getDescription() {
-        return (String) getValue(I_M_Product.COLUMNNAME_Description);
+        return getValue(I_M_Product.COLUMNNAME_Description);
     }
 
     /**
@@ -386,7 +386,7 @@ public class X_M_Product extends PO {
      * @return Product Attribute Set
      */
     public int getAttributeSetId() {
-        Integer ii = (Integer) getValue(I_M_Product.COLUMNNAME_M_AttributeSet_ID);
+        Integer ii = getValue(I_M_Product.COLUMNNAME_M_AttributeSet_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -397,7 +397,7 @@ public class X_M_Product extends PO {
      * @return Product Attribute Set Instance
      */
     public int getAttributeSetInstanceId() {
-        Integer ii = (Integer) getValue(I_M_Product.COLUMNNAME_M_AttributeSetInstance_ID);
+        Integer ii = getValue(I_M_Product.COLUMNNAME_M_AttributeSetInstance_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -422,7 +422,7 @@ public class X_M_Product extends PO {
      * @return Warehouse Locator
      */
     public int getLocatorId() {
-        Integer ii = (Integer) getValue(I_M_Product.COLUMNNAME_M_Locator_ID);
+        Integer ii = getValue(I_M_Product.COLUMNNAME_M_Locator_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -439,7 +439,7 @@ public class X_M_Product extends PO {
      * @return Category of a Product
      */
     public int getProductCategoryId() {
-        Integer ii = (Integer) getValue(I_M_Product.COLUMNNAME_M_Product_Category_ID);
+        Integer ii = getValue(I_M_Product.COLUMNNAME_M_Product_Category_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -462,7 +462,7 @@ public class X_M_Product extends PO {
      * @return Product, Service, Item
      */
     public int getProductId() {
-        Integer ii = (Integer) getValue(I_M_Product.COLUMNNAME_M_Product_ID);
+        Integer ii = getValue(I_M_Product.COLUMNNAME_M_Product_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -473,7 +473,7 @@ public class X_M_Product extends PO {
      * @return Alphanumeric identifier of the entity
      */
     public String getName() {
-        return (String) getValue(HasName.COLUMNNAME_Name);
+        return getValue(HasName.COLUMNNAME_Name);
     }
 
     /**
@@ -500,7 +500,7 @@ public class X_M_Product extends PO {
      * @return Type of product
      */
     public String getProductType() {
-        return (String) getValue(I_M_Product.COLUMNNAME_ProductType);
+        return getValue(I_M_Product.COLUMNNAME_ProductType);
     }
 
     /**
@@ -519,7 +519,7 @@ public class X_M_Product extends PO {
      * @return Expense report type
      */
     public int getExpenseTypeId() {
-        Integer ii = (Integer) getValue(I_M_Product.COLUMNNAME_S_ExpenseType_ID);
+        Integer ii = getValue(I_M_Product.COLUMNNAME_S_ExpenseType_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -541,7 +541,7 @@ public class X_M_Product extends PO {
      * @return Shelf depth required
      */
     public int getShelfDepth() {
-        Integer ii = (Integer) getValue(I_M_Product.COLUMNNAME_ShelfDepth);
+        Integer ii = getValue(I_M_Product.COLUMNNAME_ShelfDepth);
         if (ii == null) return 0;
         return ii;
     }
@@ -552,7 +552,7 @@ public class X_M_Product extends PO {
      * @return Shelf height required
      */
     public BigDecimal getShelfHeight() {
-        BigDecimal bd = (BigDecimal) getValue(I_M_Product.COLUMNNAME_ShelfHeight);
+        BigDecimal bd = getValue(I_M_Product.COLUMNNAME_ShelfHeight);
         if (bd == null) return Env.ZERO;
         return bd;
     }
@@ -563,7 +563,7 @@ public class X_M_Product extends PO {
      * @return Shelf width required
      */
     public int getShelfWidth() {
-        Integer ii = (Integer) getValue(I_M_Product.COLUMNNAME_ShelfWidth);
+        Integer ii = getValue(I_M_Product.COLUMNNAME_ShelfWidth);
         if (ii == null) return 0;
         return ii;
     }
@@ -583,7 +583,7 @@ public class X_M_Product extends PO {
      * @return Resource
      */
     public int getResourceID() {
-        Integer ii = (Integer) getValue(I_M_Product.COLUMNNAME_S_Resource_ID);
+        Integer ii = getValue(I_M_Product.COLUMNNAME_S_Resource_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -613,7 +613,7 @@ public class X_M_Product extends PO {
      * @return Search key for the record in the format required - must be unique
      */
     public String getSearchKey() {
-        return (String) getValue(I_M_Product.COLUMNNAME_Value);
+        return getValue(I_M_Product.COLUMNNAME_Value);
     }
 
     /**
@@ -631,7 +631,7 @@ public class X_M_Product extends PO {
      * @return Version Number
      */
     public String getVersionNo() {
-        return (String) getValue(I_M_Product.COLUMNNAME_VersionNo);
+        return getValue(I_M_Product.COLUMNNAME_VersionNo);
     }
 
     /**
@@ -640,7 +640,7 @@ public class X_M_Product extends PO {
      * @return Volume of a product
      */
     public BigDecimal getVolume() {
-        BigDecimal bd = (BigDecimal) getValue(I_M_Product.COLUMNNAME_Volume);
+        BigDecimal bd = getValue(I_M_Product.COLUMNNAME_Volume);
         if (bd == null) return Env.ZERO;
         return bd;
     }
@@ -660,7 +660,7 @@ public class X_M_Product extends PO {
      * @return Weight of a product
      */
     public BigDecimal getWeight() {
-        BigDecimal bd = (BigDecimal) getValue(I_M_Product.COLUMNNAME_Weight);
+        BigDecimal bd = getValue(I_M_Product.COLUMNNAME_Weight);
         if (bd == null) return Env.ZERO;
         return bd;
     }

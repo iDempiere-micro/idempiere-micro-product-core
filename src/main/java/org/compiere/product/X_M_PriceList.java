@@ -58,7 +58,7 @@ public abstract class X_M_PriceList extends PO implements I_M_PriceList {
      * @return The Currency for this record
      */
     public int getCurrencyId() {
-        Integer ii = (Integer) getValue(COLUMNNAME_C_Currency_ID);
+        Integer ii = getValue(COLUMNNAME_C_Currency_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -180,7 +180,7 @@ public abstract class X_M_PriceList extends PO implements I_M_PriceList {
      * @return Unique identifier of a Price List
      */
     public int getPriceListId() {
-        Integer ii = (Integer) getValue(COLUMNNAME_M_PriceList_ID);
+        Integer ii = getValue(COLUMNNAME_M_PriceList_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -191,7 +191,7 @@ public abstract class X_M_PriceList extends PO implements I_M_PriceList {
      * @return Alphanumeric identifier of the entity
      */
     public String getName() {
-        return (String) getValue(HasName.COLUMNNAME_Name);
+        return getValue(HasName.COLUMNNAME_Name);
     }
 
     /**
@@ -209,7 +209,7 @@ public abstract class X_M_PriceList extends PO implements I_M_PriceList {
      * @return Precision (number of decimals) for the Price
      */
     public int getPricePrecision() {
-        Integer ii = (Integer) getValue(COLUMNNAME_PricePrecision);
+        Integer ii = getValue(COLUMNNAME_PricePrecision);
         if (ii == null) return 0;
         return ii;
     }

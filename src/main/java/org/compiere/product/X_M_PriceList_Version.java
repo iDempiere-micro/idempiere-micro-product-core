@@ -71,7 +71,7 @@ public class X_M_PriceList_Version extends PO implements I_M_PriceList_Version {
      * @return Unique identifier of a Price List
      */
     public int getPriceListId() {
-        Integer ii = (Integer) getValue(COLUMNNAME_M_PriceList_ID);
+        Integer ii = getValue(COLUMNNAME_M_PriceList_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -92,7 +92,7 @@ public class X_M_PriceList_Version extends PO implements I_M_PriceList_Version {
      * @return Identifies a unique instance of a Price List
      */
     public int getPriceListVersionId() {
-        Integer ii = (Integer) getValue(COLUMNNAME_M_PriceList_Version_ID);
+        Integer ii = getValue(COLUMNNAME_M_PriceList_Version_ID);
         if (ii == null) return 0;
         return ii;
     }
@@ -103,7 +103,7 @@ public class X_M_PriceList_Version extends PO implements I_M_PriceList_Version {
      * @return Alphanumeric identifier of the entity
      */
     public String getName() {
-        return (String) getValue(HasName.COLUMNNAME_Name);
+        return getValue(HasName.COLUMNNAME_Name);
     }
 
     /**

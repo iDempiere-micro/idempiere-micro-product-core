@@ -56,7 +56,7 @@ public class MAsset extends X_A_Asset
      * Create constructor
      */
     public MAsset(int A_Asset_ID) {
-        super(A_Asset_ID);
+        super(null, A_Asset_ID);
         if (A_Asset_ID == 0) {
             setAssetStatus(X_A_Asset.A_ASSET_STATUS_New);
         }
@@ -66,7 +66,7 @@ public class MAsset extends X_A_Asset
      * Load Constructor
      */
     public MAsset(Row row) {
-        super(row);
+        super(row, -1);
     } //	MAsset
 
     // Temporary used variables:
